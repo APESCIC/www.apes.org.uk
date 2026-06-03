@@ -75,6 +75,23 @@ if (!function_exists('apes_current_page')) {
         return '<a class="' . $class . '" href="' . $href . '"' . (empty($attributes) ? '' : ' ' . implode(' ', $attributes)) . '>' . $label . '</a>';
     }
 
+    function apes_render_breadcrumb_item(array $crumb): string
+    {
+        $label = htmlspecialchars((string) ($crumb['label'] ?? ''), ENT_QUOTES);
+
+        if (!empty($crumb['current'])) {
+            return '<span aria-current="page">' . $label . '</span>';
+        }
+
+        if (!empty($crumb['href'])) {
+            $href = htmlspecialchars((string) $crumb['href'], ENT_QUOTES);
+
+            return '<a href="' . $href . '">' . $label . '</a>';
+        }
+
+        return '<span>' . $label . '</span>';
+    }
+
     function apes_search_results(array $pages): array
     {
         $query = trim((string) ($_GET['q'] ?? ''));
@@ -147,6 +164,7 @@ $is_search_page = ($page_key ?? '') === 'search';
 $active_nav_group = apes_primary_nav_group((string) ($page_key ?? ''));
 $absolute_og_image = rtrim(APES_PRIMARY_DOMAIN, '/') . $site['brand']['og_image'];
 $absolute_twitter_image = rtrim(APES_PRIMARY_DOMAIN, '/') . $site['brand']['twitter_image'];
+$breadcrumbs = apes_breadcrumbs_for_page($page, isset($page_key) ? (string) $page_key : null);
 ?><!DOCTYPE html>
 <html lang="en-GB">
 <head>
@@ -177,6 +195,16 @@ $absolute_twitter_image = rtrim(APES_PRIMARY_DOMAIN, '/') . $site['brand']['twit
   <?php require __DIR__ . '/header.php'; ?>
 
   <main id="main-content" class="site-main">
+    <?php if (!empty($breadcrumbs)): ?>
+      <nav class="breadcrumb-shell" aria-label="Breadcrumb">
+        <ol class="breadcrumb-list">
+          <?php foreach ($breadcrumbs as $crumb): ?>
+            <li class="breadcrumb-item"><?= apes_render_breadcrumb_item($crumb) ?></li>
+          <?php endforeach; ?>
+        </ol>
+      </nav>
+    <?php endif; ?>
+
     <section class="hero-shell">
       <div class="hero-panel">
         <p class="eyebrow"><?= htmlspecialchars($page['hero_kicker'], ENT_QUOTES) ?></p>

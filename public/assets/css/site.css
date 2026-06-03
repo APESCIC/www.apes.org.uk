@@ -252,7 +252,8 @@ img {
 .nav-link:focus-visible,
 .mega-summary:hover,
 .mega-summary:focus-visible,
-.mega-menu[open] > .mega-summary {
+.mega-menu[open] > .mega-summary,
+.mega-menu.is-active > .mega-summary {
   background: rgba(0, 140, 140, 0.08);
   border-color: rgba(0, 140, 140, 0.16);
 }
@@ -388,6 +389,57 @@ img {
 .page-body,
 .page-sidebar {
   padding: 1.25rem;
+}
+
+.breadcrumb-shell {
+  width: var(--site-width);
+  margin: 0 auto;
+  padding: 1rem 0 0;
+}
+
+.breadcrumb-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem 0.5rem;
+  margin: 0;
+  padding: 0.85rem 1rem;
+  list-style: none;
+  border: 1px solid rgba(0, 95, 95, 0.12);
+  border-radius: 1rem;
+  background: linear-gradient(90deg, rgba(221, 243, 239, 0.9), rgba(255, 255, 255, 0.94));
+  box-shadow: var(--apes-shadow);
+  font-size: 1rem;
+  line-height: 1.5;
+}
+
+.breadcrumb-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+  content: "/";
+  color: rgba(38, 50, 56, 0.52);
+}
+
+.breadcrumb-item a {
+  font-weight: 800;
+  text-decoration: none;
+  color: var(--apes-deep-teal);
+}
+
+.breadcrumb-item a:hover,
+.breadcrumb-item a:focus-visible {
+  color: var(--apes-primary-teal);
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+.breadcrumb-item [aria-current="page"] {
+  color: var(--apes-charcoal);
+  font-weight: 800;
 }
 
 .page-body {
@@ -885,6 +937,7 @@ input:focus-visible {
 @media (max-width: 640px) {
   .topbar-inner,
   .nav-shell,
+  .breadcrumb-shell,
   .hero-shell,
   .page-shell,
   .footer-grid,

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-const APES_FALLBACK_VERSION = 'v2.2.1';
+const APES_FALLBACK_VERSION = 'v2.3.0';
 const APES_SITE_NAME = 'Association of Protecting Exotic Species CIC';
 const APES_CIC_NUMBER = '16253848';
 const APES_CONTACT_EMAIL = 'info@apes.org.uk';
@@ -2084,9 +2084,9 @@ HTML,
                 'hero_summary' => 'Track every major release for this website, including updates, fixes, compliance changes, and user-facing improvements.',
                 'hero_actions' => [
                     ['label' => 'Expand all releases', 'href' => '#release-list', 'variant' => 'primary'],
-                    ['label' => 'View current release', 'href' => '#release-v221', 'variant' => 'secondary'],
+                    ['label' => 'View current release', 'href' => '#release-v230', 'variant' => 'secondary'],
                 ],
-                'pills' => ['Current version ' . $siteVersion, 'Patch stable', 'Public-facing'],
+                'pills' => ['Current version ' . $siteVersion, 'Minor stable', 'Public-facing'],
                 'body_html' => <<<'HTML'
 <section class="section-shell">
   <div class="release-tools">
@@ -2114,50 +2114,49 @@ HTML,
 </section>
 
 <section class="section-shell" id="release-list">
-  <details class="release-card" data-release-card data-tags="current stable changed fixed compliance accessibility public-facing" open id="release-v221">
+  <details class="release-card" data-release-card data-tags="current stable added fixed accessibility public-facing" open id="release-v230">
     <summary>
-      <span class="release-version">v2.2.1</span>
+      <span class="release-version">v2.3.0</span>
       <span class="release-date">2026-06-03</span>
     </summary>
     <div class="release-body">
       <div class="pill-row">
-        <span class="pill pill-version">Version v2.2.1</span>
+        <span class="pill pill-version">Version v2.3.0</span>
         <span class="pill pill-status">Stable</span>
-        <span class="pill pill-type">Changed</span>
+        <span class="pill pill-type">Added</span>
         <span class="pill pill-fix">Fix</span>
-        <span class="pill pill-compliance">Compliance</span>
       </div>
       <h3>Summary</h3>
-      <p>Updated the shared hero layout so hero titles and descriptions now span the full available width of the main hero card across the APES website.</p>
+      <p>Added a site-wide breadcrumb trail, kept the shared navigation closed after menu clicks, and corrected the FileZilla deployment target so uploads point at the public site root instead of generated artefacts.</p>
       <h3>Detailed changes</h3>
       <ul class="clean-list">
-        <li>Removed the shared max-width constraints from hero headings and hero summary text so each hero card uses the full available text column.</li>
-        <li>Kept the existing two-column hero layout, CTA rows, pill styling and hero aside stack intact while applying the fix site-wide through the shared stylesheet.</li>
-        <li>Regenerated the exported static HTML snapshots from the shared PHP renderer so the widened hero layout appears consistently across public pages and release records.</li>
-        <li>Bumped the canonical version and synchronised the website Change Log Hub, root changelog and footer version display.</li>
+        <li>Added a breadcrumb trail above the hero on every non-home page using the shared page metadata and route-aware section labels so nested routes stay readable.</li>
+        <li>Kept the menu closed after clicking a navigation item by removing the automatic open state from the shared header while preserving active-section styling.</li>
+        <li>Corrected the FileZilla deployment profile so uploads target the website root instead of the nested `outputs/.../.codex-exec/...` path and do not keep queueing non-public artefacts.</li>
+        <li>Regenerated the exported static HTML snapshots and synchronised the canonical version, Change Log Hub and root changelog.</li>
       </ul>
       <h3>Affected areas</h3>
       <ul class="clean-list">
         <li>Website: www.apes.org.uk</li>
-        <li>Page or route: homepage, content pages, policy pages, legacy news pages, Change Log Hub and shared release metadata</li>
-        <li>Files changed: shared CSS, shared site data, VERSION, root CHANGELOG and regenerated static HTML snapshots</li>
+        <li>Page or route: homepage, all non-home pages, nested service and policy routes, legacy news routes, Change Log Hub and shared release metadata</li>
+        <li>Files changed: shared PHP rendering, shared CSS, shared site data, VERSION, root CHANGELOG and regenerated static HTML snapshots</li>
         <li>User groups affected: supporters, adopters, service users, volunteers, partners and general public visitors</li>
-        <li>Public impact: hero titles and descriptions are easier to read because they now span the full width available within each hero card</li>
-        <li>Internal impact: the shared hero layout now behaves consistently across the full exported site without per-page template overrides</li>
+        <li>Public impact: visitors now get an immediate sense of location on the site, and menu navigation closes more predictably after selection</li>
+        <li>Internal impact: the shared navigation state is simpler and the deployment profile no longer points uploads at generated preflight artefacts</li>
       </ul>
       <h3>Version decision</h3>
       <ul class="clean-list">
-        <li>Previous version: v2.2.0b</li>
-        <li>New version: v2.2.1</li>
-        <li>Version type: patch stable</li>
-        <li>Reason for version bump: shared public-facing layout fix with no route, schema or structural change</li>
+        <li>Previous version: v2.2.1</li>
+        <li>New version: v2.3.0</li>
+        <li>Version type: minor stable</li>
+        <li>Reason for version bump: new breadcrumb navigation and shared navigation/deployment corrections without URL restructuring</li>
       </ul>
       <h3>Validation</h3>
       <ul class="clean-list">
         <li>Checks run: local PHP syntax checks, static HTML export and generated HTML inspection</li>
-        <li>Manual checks completed: homepage hero, representative content and policy heroes, legacy news hero, Change Log Hub hero and footer version/link review</li>
-        <li>Known limitations: validation is based on source-rendered output and representative page inspection rather than exhaustive browser checks on every route</li>
-        <li>Rollback notes: restore the previous shared CSS, version and changelog entries, then re-export the static HTML snapshots if needed</li>
+        <li>Manual checks completed: breadcrumb placement on representative routes, menu close behaviour, Change Log Hub hero and footer version/link review, FileZilla queue target inspection</li>
+        <li>Known limitations: FileZilla upload verification is based on profile inspection in this environment rather than an interactive FTP session</li>
+        <li>Rollback notes: restore the previous shared PHP, CSS, version and changelog entries, then re-export the static HTML snapshots if needed</li>
       </ul>
     </div>
   </details>
@@ -2316,5 +2315,61 @@ function apes_public_routes(): array
     }
 
     return $routes;
+}
+
+function apes_breadcrumb_section(string $section): array
+{
+    return match ($section) {
+        'news' => ['label' => 'News', 'href' => '/news/'],
+        'mission' => ['label' => 'Mission', 'href' => '/mission/our-main-mission-statement/'],
+        'policies' => ['label' => 'Policies'],
+        'services' => ['label' => 'Services', 'href' => '/'],
+        'donating' => ['label' => 'Support APES', 'href' => '/donate/'],
+        'about-us' => ['label' => 'About APES', 'href' => '/about-us/'],
+        'contact-centre' => ['label' => 'Contact centre', 'href' => '/contact-centre/'],
+        'change-log-hub' => ['label' => 'Change Log Hub', 'href' => '/change-log-hub/'],
+        default => ['label' => ucwords(str_replace('-', ' ', $section))],
+    };
+}
+
+function apes_breadcrumbs_for_page(array $page, ?string $pageKey = null): array
+{
+    if (($pageKey ?? '') === 'home') {
+        return [];
+    }
+
+    $title = trim((string) ($page['breadcrumb_label'] ?? $page['title'] ?? ''));
+
+    if ($title === '') {
+        $title = 'Page not found';
+    }
+
+    if ($pageKey === null || $pageKey === '' || !isset(apes_site_data()['pages'][$pageKey])) {
+        return [
+            ['label' => 'Home', 'href' => '/'],
+            ['label' => $title, 'current' => true],
+        ];
+    }
+
+    $route = trim((string) ($page['route'] ?? ''), '/');
+    $crumbs = [
+        ['label' => 'Home', 'href' => '/'],
+    ];
+
+    if ($route !== '') {
+        $segments = array_values(array_filter(explode('/', $route), 'strlen'));
+
+        if (count($segments) > 1) {
+            $section = apes_breadcrumb_section($segments[0]);
+
+            if (!empty($section['label'])) {
+                $crumbs[] = $section;
+            }
+        }
+    }
+
+    $crumbs[] = ['label' => $title, 'current' => true];
+
+    return $crumbs;
 }
 

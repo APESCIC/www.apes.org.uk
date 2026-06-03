@@ -48,7 +48,7 @@
           ?>
           <li class="<?= isset($item['children']) ? 'has-children' : '' ?><?= !empty($item['cta']) ? ' nav-cta-item' : '' ?>">
             <?php if (isset($item['children'])): ?>
-              <details class="mega-menu"<?= $isActive ? ' open' : '' ?>>
+              <details class="mega-menu<?= $isActive ? ' is-active' : '' ?>">
                 <summary class="mega-summary"><?= htmlspecialchars($item['label'], ENT_QUOTES) ?></summary>
                 <div class="mega-panel">
                   <p class="mega-heading"><?= htmlspecialchars($item['panel_heading'] ?? $item['label'], ENT_QUOTES) ?></p>

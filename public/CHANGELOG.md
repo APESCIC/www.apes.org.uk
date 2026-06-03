@@ -1,44 +1,43 @@
-## [v2.2.1] - 2026-06-03
+## [v2.3.0] - 2026-06-03
 
-<span class="pill pill-version">Version v2.2.1</span>
+<span class="pill pill-version">Version v2.3.0</span>
 <span class="pill pill-status">Stable</span>
-<span class="pill pill-type">Changed</span>
+<span class="pill pill-type">Added</span>
 <span class="pill pill-fix">Fix</span>
-<span class="pill pill-compliance">Compliance</span>
 
 ### Summary
 
-Updated the shared hero layout so hero titles and descriptions now span the full available width of the main hero card across the APES website.
+Added a site-wide breadcrumb trail, kept the shared navigation closed after menu clicks, and corrected the FileZilla deployment target so uploads point at the public site root instead of generated artefacts.
 
 ### Detailed changes
 
-- Removed the shared max-width constraints from hero headings and hero summary text so each hero card uses the full available text column.
-- Kept the existing two-column hero layout, CTA rows, pill styling and hero aside stack intact while applying the fix site-wide through the shared stylesheet.
-- Regenerated the exported static HTML snapshots from the shared PHP renderer so the widened hero layout appears consistently across public pages and release records.
-- Bumped the canonical version and synchronised the website Change Log Hub, root changelog and footer version display.
+- Added a breadcrumb trail above the hero on every non-home page using the shared page metadata and route-aware section labels so nested routes stay readable.
+- Kept the menu closed after clicking a navigation item by removing the automatic open state from the shared header while preserving active-section styling.
+- Corrected the FileZilla deployment profile so uploads target the website root instead of the nested `outputs/.../.codex-exec/...` path and do not keep queueing non-public artefacts.
+- Regenerated the exported static HTML snapshots and synchronised the canonical version, Change Log Hub and root changelog.
 
 ### Affected areas
 
 - Website: www.apes.org.uk
-- Page or route: homepage, content pages, policy pages, legacy news pages, Change Log Hub and shared release metadata
-- Files changed: shared CSS, shared site data, VERSION, root CHANGELOG and regenerated static HTML snapshots
+- Page or route: homepage, all non-home pages, nested service and policy routes, legacy news routes, Change Log Hub and shared release metadata
+- Files changed: shared PHP rendering, shared CSS, shared site data, VERSION, root CHANGELOG and regenerated static HTML snapshots
 - User groups affected: supporters, adopters, service users, volunteers, partners and general public visitors
-- Public impact: hero titles and descriptions are easier to read because they now span the full width available within each hero card
-- Internal impact: the shared hero layout now behaves consistently across the full exported site without per-page template overrides
+- Public impact: visitors now get an immediate sense of location on the site, and menu navigation closes more predictably after selection
+- Internal impact: the shared navigation state is simpler and the deployment profile no longer points uploads at generated preflight artefacts
 
 ### Version decision
 
-- Previous version: v2.2.0b
-- New version: v2.2.1
-- Version type: patch stable
-- Reason for version bump: shared public-facing layout fix with no route, schema or structural change
+- Previous version: v2.2.1
+- New version: v2.3.0
+- Version type: minor stable
+- Reason for version bump: new breadcrumb navigation and shared navigation/deployment corrections without URL restructuring
 
 ### Validation
 
 - Checks run: local PHP syntax checks, static HTML export and generated HTML inspection
-- Manual checks completed: homepage hero, representative content and policy heroes, legacy news hero, Change Log Hub hero and footer version/link review
-- Known limitations: validation is based on source-rendered output and representative page inspection rather than exhaustive browser checks on every route
-- Rollback notes: restore the previous shared CSS, version and changelog entries, then re-export the static HTML snapshots if needed
+- Manual checks completed: breadcrumb placement on representative routes, menu close behaviour, Change Log Hub hero and footer version/link review, FileZilla queue target inspection
+- Known limitations: FileZilla upload verification is based on profile inspection in this environment rather than an interactive FTP session
+- Rollback notes: restore the previous shared PHP, CSS, version and changelog entries, then re-export the static HTML snapshots if needed
 
 ## [v2.2.0b] - 2026-06-03
 
