@@ -3,17 +3,17 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>The centre | APES public location overview</title>
-  <meta name="description" content="A public walkthrough of the APES centre, including reception, animal spaces and accessibility notes." />
-  <link rel="canonical" href="https://www.apes.org.uk/the-center/" />
-  <meta property="og:title" content="The centre | APES public location overview" />
-  <meta property="og:description" content="A public walkthrough of the APES centre, including reception, animal spaces and accessibility notes." />
+  <title>Services | Find the right APES support route</title>
+  <meta name="description" content="Search, filter and compare APES public service routes across rescue, support, care, education and connected services." />
+  <link rel="canonical" href="https://www.apes.org.uk/services/" />
+  <meta property="og:title" content="Services | Find the right APES support route" />
+  <meta property="og:description" content="Search, filter and compare APES public service routes across rescue, support, care, education and connected services." />
   <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://www.apes.org.uk/the-center/" />
+  <meta property="og:url" content="https://www.apes.org.uk/services/" />
   <meta property="og:image" content="https://www.apes.org.uk/assets/logos/apes-og-image-1200x630.jpg" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="The centre | APES public location overview" />
-  <meta name="twitter:description" content="A public walkthrough of the APES centre, including reception, animal spaces and accessibility notes." />
+  <meta name="twitter:title" content="Services | Find the right APES support route" />
+  <meta name="twitter:description" content="Search, filter and compare APES public service routes across rescue, support, care, education and connected services." />
   <meta name="twitter:image" content="https://www.apes.org.uk/assets/logos/apes-twitter-card-1200x600.jpg" />
   <meta name="theme-color" content="#008C8C" />
   <link rel="icon" href="/assets/favicons/favicon.ico" sizes="any" />
@@ -23,7 +23,7 @@
   <link rel="manifest" href="/site.webmanifest" />
   <link rel="stylesheet" href="/assets/css/site.css" />
 </head>
-<body data-page-key="the-center">
+<body data-page-key="services">
   <a class="skip-link" href="#main-content">Skip to main content</a>
   <header class="site-header">
   <div class="topbar">
@@ -70,7 +70,7 @@
                           <a class="nav-link" href="/">Home</a>
                       </li>
                             <li class="has-children">
-                          <details class="mega-menu">
+                          <details class="mega-menu is-active">
                 <summary class="mega-summary">Services</summary>
                 <div class="mega-panel">
                   <p class="mega-heading">Services across the APES network</p>
@@ -186,7 +186,7 @@
               </details>
                       </li>
                             <li class="has-children">
-                          <details class="mega-menu is-active">
+                          <details class="mega-menu">
                 <summary class="mega-summary">Information</summary>
                 <div class="mega-panel">
                   <p class="mega-heading">About, policies, updates and APES Newsroom</p>
@@ -300,22 +300,22 @@
           <nav class="breadcrumb-shell" aria-label="Breadcrumb">
         <ol class="breadcrumb-list">
                       <li class="breadcrumb-item"><a href="/">Home</a></li>
-                      <li class="breadcrumb-item"><span aria-current="page">Visit the centre</span></li>
+                      <li class="breadcrumb-item"><span aria-current="page">Services</span></li>
                   </ol>
       </nav>
     
     <section class="hero-shell">
       <div class="hero-panel">
-        <p class="eyebrow">Visit and access</p>
-        <h1>Plan a visit to the APES centre.</h1>
-        <p class="hero-summary">Use this page for the clearest current public access, parking, appointment and wayfinding guidance published for the APES centre.</p>
+        <p class="eyebrow">Services hub</p>
+        <h1>Find the right APES route before you contact us.</h1>
+        <p class="hero-summary">Use the APES Services hub to compare rescue, lost-and-found, care, boarding, education, donation and support routes without guessing which service to approach first.</p>
                   <div class="pill-row">
-                          <span class="pill">Visitor information</span>
-                          <span class="pill">Access notes</span>
-                          <span class="pill">Centre overview</span>
+                          <span class="pill">Service routing</span>
+                          <span class="pill">Search and filters</span>
+                          <span class="pill">Safety-first guidance</span>
                       </div>
                           <div class="action-row">
-                                        <a class="button button-primary" href="/contact/">Contact APES</a>                                        <a class="button button-secondary" href="/opening-times/">Opening times</a>                      </div>
+                                        <a class="button button-primary" href="#service-route-search">Use the route finder</a>                                        <a class="button button-secondary" href="/bookings/">Open bookings</a>                      </div>
               </div>
       <aside class="hero-aside">
         <div class="mini-panel brand-feature-panel">
@@ -346,44 +346,300 @@
 
     <section class="page-shell">
       <article class="page-body">
-        <section class="section-shell">
+        <section class="route-finder route-finder-expanded" data-route-finder data-route-mode="expanded">
+  <div class="route-finder__intro">
+    <p class="eyebrow">Services hub</p>
+    <h2>Find the right APES route before you contact us.</h2>
+    <p>Search, filter or choose a common situation to see the most likely APES route, alternative routes and any safety-first guidance.</p>
+  </div>
+      <div class="route-finder__tools">
+      <label class="search-label" for="service-route-search">Search routes</label>
+      <input id="service-route-search" class="release-search" type="search" placeholder="Search adopt, surrender, lost pet, boarding, clinic, donate or urgent help" data-route-search />
+      <div class="filter-row">
+                  <button class="chip-button is-active" type="button" data-route-filter="all">All</button>
+                  <button class="chip-button" type="button" data-route-filter="rescue-and-shelter">Rescue and shelter</button>
+                  <button class="chip-button" type="button" data-route-filter="lost-and-found">Lost and found</button>
+                  <button class="chip-button" type="button" data-route-filter="support-apes">Support apes</button>
+                  <button class="chip-button" type="button" data-route-filter="contact-and-help">Contact and help</button>
+                  <button class="chip-button" type="button" data-route-filter="care-and-clinic">Care and clinic</button>
+                  <button class="chip-button" type="button" data-route-filter="boarding">Boarding</button>
+                  <button class="chip-button" type="button" data-route-filter="education">Education</button>
+              </div>
+    </div>
+    <div class="route-finder__layout">
+    <div class="route-finder__options">
+                      <button
+          class="route-option is-active"
+          type="button"
+          data-route-option
+          data-route-filters="rescue-and-shelter"
+          data-route-search="adopt an animal adopt adoption shelter rescue rehome animals shelter &amp; rescue adoption routes read the re-homing policy contact apes"
+          data-route-title="Shelter &amp; Rescue adoption routes"
+          data-route-description="View the APES Shelter &amp; Rescue adoption route for adoptable animals, suitability checks and aftercare expectations."
+          data-route-primary-label="View adoptable animals"
+          data-route-primary-href="https://www.apesshelter.org.uk/"
+          data-route-primary-external="true"
+          data-route-secondary-label="Read the Adoption Policy"
+          data-route-secondary-href="/policies/adoption-policy/"
+          data-route-secondary-external="false"
+          data-route-note="Expect suitability checks, setup expectations and welfare-first placement guidance before any animal leaves APES care."
+          data-route-alternatives="[{&quot;label&quot;:&quot;Read the Re-Homing Policy&quot;,&quot;href&quot;:&quot;\/policies\/re-homing-policy\/&quot;},{&quot;label&quot;:&quot;Contact APES&quot;,&quot;href&quot;:&quot;\/contact\/&quot;}]"
+        >
+          <span class="route-option__title">Adopt an animal</span>
+          <span class="route-option__summary">Start with the Shelter &amp; Rescue adoption route.</span>
+        </button>
+                      <button
+          class="route-option"
+          type="button"
+          data-route-option
+          data-route-filters="rescue-and-shelter"
+          data-route-search="i can no longer care for my pet surrender owner cannot care no longer care pet rescue shelter shelter and surrender support read 24/7 services guidance open help centre"
+          data-route-title="Shelter and surrender support"
+          data-route-description="Start with the APES Shelter &amp; Rescue surrender route so APES can separate owner surrender from stray or emergency cases."
+          data-route-primary-label="Start surrender route"
+          data-route-primary-href="https://www.apesshelter.org.uk/"
+          data-route-primary-external="true"
+          data-route-secondary-label="Contact the contact centre"
+          data-route-secondary-href="https://contact.apes.org.uk/"
+          data-route-secondary-external="true"
+          data-route-note="Use one request per animal and do not arrive without an arranged handover or confirmed APES instruction."
+          data-route-alternatives="[{&quot;label&quot;:&quot;Read 24\/7 services guidance&quot;,&quot;href&quot;:&quot;\/24-7-services\/&quot;},{&quot;label&quot;:&quot;Open Help Centre&quot;,&quot;href&quot;:&quot;https:\/\/help.apes.org.uk\/&quot;,&quot;external&quot;:true}]"
+        >
+          <span class="route-option__title">I can no longer care for my pet</span>
+          <span class="route-option__summary">Use the surrender route rather than a general contact request.</span>
+        </button>
+                      <button
+          class="route-option"
+          type="button"
+          data-route-option
+          data-route-filters="rescue-and-shelter lost-and-found"
+          data-route-search="this is not my pet not my pet rescue stray abandoned contained found unknown owner rescue services and containment guidance contact apes 24/7 services guidance"
+          data-route-title="Rescue services and containment guidance"
+          data-route-description="Request rescue support where the animal is not yours, especially if containment, species identification or public-safety support is needed."
+          data-route-primary-label="Request rescue support"
+          data-route-primary-href="https://www.apesshelter.org.uk/"
+          data-route-primary-external="true"
+          data-route-secondary-label="Found pet reporting"
+          data-route-secondary-href="/services/lost-n-found-pets/"
+          data-route-secondary-external="false"
+          data-route-note="Only provide species, location, containment status and photographs where it is safe to do so."
+          data-route-alternatives="[{&quot;label&quot;:&quot;Contact APES&quot;,&quot;href&quot;:&quot;\/contact\/&quot;},{&quot;label&quot;:&quot;24\/7 services guidance&quot;,&quot;href&quot;:&quot;\/24-7-services\/&quot;}]"
+        >
+          <span class="route-option__title">This is not my pet</span>
+          <span class="route-option__summary">Use rescue support rather than owner-surrender routes.</span>
+        </button>
+                      <button
+          class="route-option"
+          type="button"
+          data-route-option
+          data-route-filters="lost-and-found"
+          data-route-search="i have lost my pet lost pet missing animal reporting questionnaire lost-pet reporting route found pet route shelter &amp; rescue"
+          data-route-title="Lost-pet reporting route"
+          data-route-description="Open the APES lost-pet route and submit clear identifying details so reports can be matched if a related found-pet report arrives later."
+          data-route-primary-label="Open lost pet questionnaire"
+          data-route-primary-href="https://service.sheltermanager.com/"
+          data-route-primary-external="true"
+          data-route-secondary-label="Contact APES"
+          data-route-secondary-href="/contact/"
+          data-route-secondary-external="false"
+          data-route-note="Provide photographs and identifying details where available, but do not share sensitive information through the route-finder itself."
+          data-route-alternatives="[{&quot;label&quot;:&quot;Found pet route&quot;,&quot;href&quot;:&quot;\/services\/lost-n-found-pets\/&quot;},{&quot;label&quot;:&quot;Shelter \u0026 Rescue&quot;,&quot;href&quot;:&quot;https:\/\/www.apesshelter.org.uk\/&quot;,&quot;external&quot;:true}]"
+        >
+          <span class="route-option__title">I have lost my pet</span>
+          <span class="route-option__summary">Use the approved lost-pet reporting route.</span>
+        </button>
+                      <button
+          class="route-option"
+          type="button"
+          data-route-option
+          data-route-filters="lost-and-found"
+          data-route-search="i have found a pet found pet found animal owner report containment exotic found-pet reporting route request rescue support contact apes"
+          data-route-title="Found-pet reporting route"
+          data-route-description="Use the APES found-pet route if you can safely hold the animal or need the approved reporting path to help reconnect it with an owner."
+          data-route-primary-label="Open found pet questionnaire"
+          data-route-primary-href="https://service.sheltermanager.com/"
+          data-route-primary-external="true"
+          data-route-secondary-label="Read lost and found guidance"
+          data-route-secondary-href="/services/lost-n-found-pets/"
+          data-route-secondary-external="false"
+          data-route-note="Avoid unsafe handling and use rescue support for unknown, escaped or higher-risk exotic species."
+          data-route-alternatives="[{&quot;label&quot;:&quot;Request rescue support&quot;,&quot;href&quot;:&quot;https:\/\/www.apesshelter.org.uk\/&quot;,&quot;external&quot;:true},{&quot;label&quot;:&quot;Contact APES&quot;,&quot;href&quot;:&quot;\/contact\/&quot;}]"
+        >
+          <span class="route-option__title">I have found a pet</span>
+          <span class="route-option__summary">Use found-pet reporting and safe-handling guidance.</span>
+        </button>
+                      <button
+          class="route-option"
+          type="button"
+          data-route-option
+          data-route-filters="support-apes"
+          data-route-search="i want to support apes donate sponsor fundraising support volunteer help apes donate, sponsor and fundraising routes volunteer and placements sponsor and partner support"
+          data-route-title="Donate, sponsor and fundraising routes"
+          data-route-description="Use the main APES support routes to donate, back a current fundraising priority or explore sponsorship and volunteering options."
+          data-route-primary-label="Donate now"
+          data-route-primary-href="/donate/"
+          data-route-primary-external="false"
+          data-route-secondary-label="View fundraising priorities"
+          data-route-secondary-href="/donating/fundraising/"
+          data-route-secondary-external="false"
+          data-route-note="The donation route explains the external payment pathway, while fundraising and sponsorship pages cover current operational priorities and review notes."
+          data-route-alternatives="[{&quot;label&quot;:&quot;Volunteer and placements&quot;,&quot;href&quot;:&quot;\/volunteer\/&quot;},{&quot;label&quot;:&quot;Sponsor and partner support&quot;,&quot;href&quot;:&quot;\/sponsors\/&quot;}]"
+        >
+          <span class="route-option__title">I want to support APES</span>
+          <span class="route-option__summary">Choose the donation, fundraising or sponsor route.</span>
+        </button>
+                      <button
+          class="route-option"
+          type="button"
+          data-route-option
+          data-route-filters="contact-and-help"
+          data-route-search="the animal may be injured, loose in public or at immediate risk urgent injured loose public safety immediate risk emergency vet local authority urgent guidance and emergency signposting open contact centre visit opening times"
+          data-route-title="Urgent guidance and emergency signposting"
+          data-route-description="Read the urgent guidance first so emergency services, local authority routes or veterinary support are used where appropriate before routine APES forms."
+          data-route-primary-label="Read urgent guidance"
+          data-route-primary-href="/24-7-services/"
+          data-route-primary-external="false"
+          data-route-secondary-label="Contact APES"
+          data-route-secondary-href="/contact/"
+          data-route-secondary-external="false"
+          data-route-note="Do not rely on routine forms alone for immediate danger, injury, traffic risk or public-safety incidents."
+          data-route-alternatives="[{&quot;label&quot;:&quot;Open contact centre&quot;,&quot;href&quot;:&quot;https:\/\/contact.apes.org.uk\/&quot;,&quot;external&quot;:true},{&quot;label&quot;:&quot;Visit opening times&quot;,&quot;href&quot;:&quot;\/opening-times\/&quot;}]"
+        >
+          <span class="route-option__title">The animal may be injured, loose in public or at immediate risk</span>
+          <span class="route-option__summary">See emergency signposting before routine APES forms.</span>
+        </button>
+                      <button
+          class="route-option"
+          type="button"
+          data-route-option
+          data-route-filters="care-and-clinic boarding education"
+          data-route-search="i need pet care, boarding, education or a visit pet care clinic boarding education visits therapy book care, boarding and educational support pet boarding educational visits"
+          data-route-title="Care, boarding and educational support"
+          data-route-description="Choose the best route for Pet Care Clinic, pet boarding, educational visits or animal-therapy-related enquiries without guessing which APES service to contact first."
+          data-route-primary-label="Open the Services hub"
+          data-route-primary-href="/services/"
+          data-route-primary-external="false"
+          data-route-secondary-label="Bookings and visit routes"
+          data-route-secondary-href="/bookings/"
+          data-route-secondary-external="false"
+          data-route-note="Connected services remain separate where needed, including the external Pet Care Clinic and boarding portal journeys."
+          data-route-alternatives="[{&quot;label&quot;:&quot;Pet boarding&quot;,&quot;href&quot;:&quot;\/pet-boarding\/&quot;},{&quot;label&quot;:&quot;Educational visits&quot;,&quot;href&quot;:&quot;\/educational-visits\/&quot;}]"
+        >
+          <span class="route-option__title">I need pet care, boarding, education or a visit</span>
+          <span class="route-option__summary">Use care, boarding and education routes across the APES network.</span>
+        </button>
+          </div>
+    <div class="route-finder__result" aria-live="polite" data-route-result>
+      <p class="eyebrow">Most likely route</p>
+      <h3 data-route-result-title>Shelter &amp; Rescue adoption routes</h3>
+      <p data-route-result-description>View the APES Shelter &amp; Rescue adoption route for adoptable animals, suitability checks and aftercare expectations.</p>
+      <div class="action-row" data-route-result-actions>
+        <a class="button button-primary" href="https://www.apesshelter.org.uk/" target="_blank" rel="noopener noreferrer">View adoptable animals</a>        <a class="button button-secondary" href="/policies/adoption-policy/">Read the Adoption Policy</a>      </div>
+      <div class="route-finder__alt">
+        <h4>Alternative routes</h4>
+        <ul class="clean-list" data-route-result-alternatives>
+                      <li><a class="text-link" href="/policies/re-homing-policy/">Read the Re-Homing Policy</a></li>
+                      <li><a class="text-link" href="/contact/">Contact APES</a></li>
+                  </ul>
+      </div>
+      <p class="route-finder__note" data-route-result-note>Expect suitability checks, setup expectations and welfare-first placement guidance before any animal leaves APES care.</p>
+    </div>
+  </div>
+      <div class="route-finder__service-cards" data-route-card-grid>
+                      <article class="service-card route-service-card" data-route-card data-route-filters="rescue-and-shelter" data-route-search="adopt an animal adopt adoption shelter rescue rehome animals">
+          <h3>Shelter &amp; Rescue adoption routes</h3>
+          <p>View the APES Shelter &amp; Rescue adoption route for adoptable animals, suitability checks and aftercare expectations.</p>
+          <div class="action-stack">
+            <a class="button button-primary" href="https://www.apesshelter.org.uk/" target="_blank" rel="noopener noreferrer">View adoptable animals</a>            <a class="button button-secondary" href="/policies/adoption-policy/">Read the Adoption Policy</a>          </div>
+        </article>
+                      <article class="service-card route-service-card" data-route-card data-route-filters="rescue-and-shelter" data-route-search="i can no longer care for my pet surrender owner cannot care no longer care pet rescue shelter">
+          <h3>Shelter and surrender support</h3>
+          <p>Start with the APES Shelter &amp; Rescue surrender route so APES can separate owner surrender from stray or emergency cases.</p>
+          <div class="action-stack">
+            <a class="button button-primary" href="https://www.apesshelter.org.uk/" target="_blank" rel="noopener noreferrer">Start surrender route</a>            <a class="button button-secondary" href="https://contact.apes.org.uk/" target="_blank" rel="noopener noreferrer">Contact the contact centre</a>          </div>
+        </article>
+                      <article class="service-card route-service-card" data-route-card data-route-filters="rescue-and-shelter lost-and-found" data-route-search="this is not my pet not my pet rescue stray abandoned contained found unknown owner">
+          <h3>Rescue services and containment guidance</h3>
+          <p>Request rescue support where the animal is not yours, especially if containment, species identification or public-safety support is needed.</p>
+          <div class="action-stack">
+            <a class="button button-primary" href="https://www.apesshelter.org.uk/" target="_blank" rel="noopener noreferrer">Request rescue support</a>            <a class="button button-secondary" href="/services/lost-n-found-pets/">Found pet reporting</a>          </div>
+        </article>
+                      <article class="service-card route-service-card" data-route-card data-route-filters="lost-and-found" data-route-search="i have lost my pet lost pet missing animal reporting questionnaire">
+          <h3>Lost-pet reporting route</h3>
+          <p>Open the APES lost-pet route and submit clear identifying details so reports can be matched if a related found-pet report arrives later.</p>
+          <div class="action-stack">
+            <a class="button button-primary" href="https://service.sheltermanager.com/" target="_blank" rel="noopener noreferrer">Open lost pet questionnaire</a>            <a class="button button-secondary" href="/contact/">Contact APES</a>          </div>
+        </article>
+                      <article class="service-card route-service-card" data-route-card data-route-filters="lost-and-found" data-route-search="i have found a pet found pet found animal owner report containment exotic">
+          <h3>Found-pet reporting route</h3>
+          <p>Use the APES found-pet route if you can safely hold the animal or need the approved reporting path to help reconnect it with an owner.</p>
+          <div class="action-stack">
+            <a class="button button-primary" href="https://service.sheltermanager.com/" target="_blank" rel="noopener noreferrer">Open found pet questionnaire</a>            <a class="button button-secondary" href="/services/lost-n-found-pets/">Read lost and found guidance</a>          </div>
+        </article>
+                      <article class="service-card route-service-card" data-route-card data-route-filters="support-apes" data-route-search="i want to support apes donate sponsor fundraising support volunteer help apes">
+          <h3>Donate, sponsor and fundraising routes</h3>
+          <p>Use the main APES support routes to donate, back a current fundraising priority or explore sponsorship and volunteering options.</p>
+          <div class="action-stack">
+            <a class="button button-primary" href="/donate/">Donate now</a>            <a class="button button-secondary" href="/donating/fundraising/">View fundraising priorities</a>          </div>
+        </article>
+                      <article class="service-card route-service-card" data-route-card data-route-filters="contact-and-help" data-route-search="the animal may be injured, loose in public or at immediate risk urgent injured loose public safety immediate risk emergency vet local authority">
+          <h3>Urgent guidance and emergency signposting</h3>
+          <p>Read the urgent guidance first so emergency services, local authority routes or veterinary support are used where appropriate before routine APES forms.</p>
+          <div class="action-stack">
+            <a class="button button-primary" href="/24-7-services/">Read urgent guidance</a>            <a class="button button-secondary" href="/contact/">Contact APES</a>          </div>
+        </article>
+                      <article class="service-card route-service-card" data-route-card data-route-filters="care-and-clinic boarding education" data-route-search="i need pet care, boarding, education or a visit pet care clinic boarding education visits therapy book">
+          <h3>Care, boarding and educational support</h3>
+          <p>Choose the best route for Pet Care Clinic, pet boarding, educational visits or animal-therapy-related enquiries without guessing which APES service to contact first.</p>
+          <div class="action-stack">
+            <a class="button button-primary" href="/services/">Open the Services hub</a>            <a class="button button-secondary" href="/bookings/">Bookings and visit routes</a>          </div>
+        </article>
+          </div>
+    <noscript>
+    <div class="route-finder__fallback">
+      <h3>All APES route options</h3>
+      <ul class="clean-list">
+                  <li><strong>Adopt an animal:</strong> <a class="text-link" href="https://www.apesshelter.org.uk/" target="_blank" rel="noopener noreferrer">View adoptable animals</a>. Expect suitability checks, setup expectations and welfare-first placement guidance before any animal leaves APES care.</li>
+                  <li><strong>I can no longer care for my pet:</strong> <a class="text-link" href="https://www.apesshelter.org.uk/" target="_blank" rel="noopener noreferrer">Start surrender route</a>. Use one request per animal and do not arrive without an arranged handover or confirmed APES instruction.</li>
+                  <li><strong>This is not my pet:</strong> <a class="text-link" href="https://www.apesshelter.org.uk/" target="_blank" rel="noopener noreferrer">Request rescue support</a>. Only provide species, location, containment status and photographs where it is safe to do so.</li>
+                  <li><strong>I have lost my pet:</strong> <a class="text-link" href="https://service.sheltermanager.com/" target="_blank" rel="noopener noreferrer">Open lost pet questionnaire</a>. Provide photographs and identifying details where available, but do not share sensitive information through the route-finder itself.</li>
+                  <li><strong>I have found a pet:</strong> <a class="text-link" href="https://service.sheltermanager.com/" target="_blank" rel="noopener noreferrer">Open found pet questionnaire</a>. Avoid unsafe handling and use rescue support for unknown, escaped or higher-risk exotic species.</li>
+                  <li><strong>I want to support APES:</strong> <a class="text-link" href="/donate/">Donate now</a>. The donation route explains the external payment pathway, while fundraising and sponsorship pages cover current operational priorities and review notes.</li>
+                  <li><strong>The animal may be injured, loose in public or at immediate risk:</strong> <a class="text-link" href="/24-7-services/">Read urgent guidance</a>. Do not rely on routine forms alone for immediate danger, injury, traffic risk or public-safety incidents.</li>
+                  <li><strong>I need pet care, boarding, education or a visit:</strong> <a class="text-link" href="/services/">Open the Services hub</a>. Connected services remain separate where needed, including the external Pet Care Clinic and boarding portal journeys.</li>
+              </ul>
+    </div>
+  </noscript>
+</section>
+        
+
+<section class="section-shell">
+  <div class="section-heading">
+    <p class="eyebrow">Connected APES services</p>
+    <h2>Crawlable routes stay available even when JavaScript is off.</h2>
+  </div>
   <div class="card-grid card-grid-three">
-    <article class="info-card">
-      <h3>Front entrance</h3>
-      <p>The public copy notes a small car park and ramp access at the entrance.</p>
+    <article class="service-card">
+      <h3>Rescue and shelter</h3>
+      <p>Use Shelter &amp; Rescue for adoption, surrender, rescue support and welfare-first case handling across exotic animal needs.</p>
+      <a class="text-link" href="https://www.apesshelter.org.uk/" target="_blank" rel="noreferrer">Open Shelter &amp; Rescue</a>
     </article>
-    <article class="info-card">
-      <h3>Reception</h3>
-      <p>Visitors are welcomed and directed from reception.</p>
+    <article class="service-card">
+      <h3>Care and clinic</h3>
+      <p>Use Pet Care Clinic, boarding, education and therapy routes for practical support that sits alongside the wider APES network.</p>
+      <a class="text-link" href="https://www.apespetcare.org.uk/" target="_blank" rel="noreferrer">Visit Pet Care Clinic</a>
     </article>
-    <article class="info-card">
-      <h3>Small animal walkthrough</h3>
-      <p>A public-facing walkthrough area for some adoption-ready animals.</p>
-    </article>
-    <article class="info-card">
-      <h3>Stairs and wayfinding</h3>
-      <p>The legacy page includes partially completed image captions for stairs and access routes.</p>
-    </article>
-    <article class="info-card">
-      <h3>Exotic adoption room</h3>
-      <p>Described as the space where healthy, adoptable animals wait for their forever homes.</p>
-    </article>
-    <article class="info-card">
-      <h3>Pet products area</h3>
-      <p>The centre also connects with the APES Pet Shop offering.</p>
+    <article class="service-card">
+      <h3>Support APES</h3>
+      <p>Donate, back a current fundraising priority, volunteer or explore sponsorship when you want to strengthen day-to-day welfare work.</p>
+      <a class="text-link" href="/donate/">Support APES</a>
     </article>
   </div>
 </section>
 
-<section class="section-shell split-panel">
-  <div class="note-panel">
-    <h2>Before you attend</h2>
-    <p>Use the contact route or an agreed appointment before visiting where that is the current APES policy. This page is a public access guide, not a promise of unscheduled drop-in availability.</p>
-  </div>
-  <div class="note-panel">
-    <h2>Accessibility and review note</h2>
-    <p>The legacy source includes unfinished captions and developing content. This rebuilt route keeps the verified access descriptors while recording where APES should still approve clearer accessibility, parking and visitor-expectation wording.</p>
-  </div>
+<section class="note-panel">
+  <h2>Safety-first note</h2>
+  <p>The route finder does not collect case details. If an animal is injured, loose in public or poses an immediate welfare or public-safety risk, use the urgent guidance first rather than relying only on a routine form.</p>
 </section>
               </article>
 
@@ -391,8 +647,9 @@
           <div class="mini-panel">
             <p class="eyebrow">Related links</p>
             <ul class="clean-list">
-                              <li><a class="text-link" href="/contact/">Contact APES</a></li>
-                              <li><a class="text-link" href="/about-us/">About APES</a></li>
+                              <li><a class="text-link" href="/bookings/">Bookings</a></li>
+                              <li><a class="text-link" href="/services/lost-n-found-pets/">Lost and found pets</a></li>
+                              <li><a class="text-link" href="/24-7-services/">24/7 services</a></li>
                           </ul>
           </div>
           <div class="mini-panel">

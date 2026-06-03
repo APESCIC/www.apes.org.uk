@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-const APES_FALLBACK_VERSION = 'v2.3.3';
+const APES_FALLBACK_VERSION = 'v2.4.0';
 const APES_SITE_NAME = 'Association of Protecting Exotic Species CIC';
 const APES_CIC_NUMBER = '16253848';
 const APES_CONTACT_EMAIL = 'info@apes.org.uk';
@@ -73,11 +73,138 @@ function apes_site_data(): array
             'subtitle' => 'Rescue, rehabilitation, rehoming and public support across the APES network.',
         ],
         'newsroom_copy' => $newsroom_copy,
-        'social_links' => [
-            ['label' => 'APES Newsroom', 'href' => APES_NEWSROOM_URL],
-            ['label' => 'APES Social', 'href' => 'https://social.apes.org.uk/', 'icon' => 'apes-social'],
-            ['label' => 'Discord community', 'href' => 'https://discord.gg/', 'icon' => 'discord'],
-            ['label' => 'YouTube live stream', 'href' => 'https://www.youtube.com/', 'icon' => 'youtube'],
+        'social_profiles' => [
+            ['platform' => 'Facebook', 'label' => 'APES on Facebook', 'handle' => 'apesorguk', 'href' => 'https://www.facebook.com/apesorguk', 'icon' => 'facebook', 'external' => true, 'placements' => ['header', 'footer', 'socials-primary'], 'summary' => 'Follow the main APES Facebook page for public updates, welfare stories and supporter notices.'],
+            ['platform' => 'Instagram', 'label' => 'APES on Instagram', 'handle' => '@apesorguk', 'href' => 'https://www.instagram.com/apesorguk', 'icon' => 'instagram', 'external' => true, 'placements' => ['header', 'footer', 'socials-primary'], 'summary' => 'See outward-facing APES photos, visual updates and day-to-day supporter content.'],
+            ['platform' => 'X', 'label' => 'APES on X', 'handle' => '@apesorguk', 'href' => 'https://www.x.com/apesorguk', 'icon' => 'x', 'external' => true, 'placements' => ['header', 'footer', 'socials-primary'], 'summary' => 'Use the verified APES X route for quick updates and public-facing announcements.'],
+            ['platform' => 'YouTube', 'label' => 'APES on YouTube', 'handle' => '@apesorguk', 'href' => 'https://www.youtube.com/@apesorguk', 'icon' => 'youtube', 'external' => true, 'placements' => ['header', 'footer', 'socials-primary'], 'summary' => 'Watch APES video content, live streams and supporter-facing uploads.'],
+            ['platform' => 'Threads', 'label' => 'APES on Threads', 'handle' => '@apesorguk', 'href' => 'https://www.threads.net/@apesorguk', 'icon' => 'threads', 'external' => true, 'placements' => ['header', 'footer', 'socials-primary'], 'summary' => 'Follow APES on Threads for lighter public updates and connected social posts.'],
+            ['platform' => 'Bluesky', 'label' => 'APES on Bluesky', 'handle' => '@apesorguk.bsky.social', 'href' => 'https://bsky.app/profile/apesorguk.bsky.social', 'icon' => 'bluesky', 'external' => true, 'placements' => ['header', 'footer', 'socials-primary'], 'summary' => 'Use the verified Bluesky route for decentralised public updates from APES.'],
+            ['platform' => 'Facebook group', 'label' => 'APES Facebook group', 'handle' => 'apesorguk group', 'href' => 'https://www.facebook.com/groups/apesorguk', 'icon' => 'facebook', 'external' => true, 'placements' => ['socials-community'], 'summary' => 'Join the APES Facebook group for community discussion rather than the primary public announcement feed.'],
+            ['platform' => 'APES Social', 'label' => 'APES Social', 'handle' => 'social.apes.org.uk', 'href' => 'https://social.apes.org.uk/', 'icon' => 'apes-social', 'external' => true, 'placements' => ['socials-community'], 'summary' => 'Visit the APES Social/Mastodon instance as a connected community platform while public handle verification remains under review.'],
+            ['platform' => 'Discord', 'label' => 'APES Discord community', 'handle' => 'Discord invite', 'href' => 'https://discord.gg/', 'icon' => 'discord', 'external' => true, 'placements' => ['socials-community'], 'summary' => 'Use the APES Discord route for community discussion and informal supporter chat where that external platform remains active.'],
+        ],
+        'route_finder_items' => [
+            [
+                'label' => 'Adopt an animal',
+                'summary' => 'Start with the Shelter & Rescue adoption route.',
+                'filters' => ['rescue-and-shelter'],
+                'keywords' => ['adopt adoption shelter rescue rehome animals'],
+                'recommendation_title' => 'Shelter & Rescue adoption routes',
+                'description' => 'View the APES Shelter & Rescue adoption route for adoptable animals, suitability checks and aftercare expectations.',
+                'primary' => ['label' => 'View adoptable animals', 'href' => 'https://www.apesshelter.org.uk/', 'external' => true],
+                'secondary' => ['label' => 'Read the Adoption Policy', 'href' => '/policies/adoption-policy/'],
+                'alternatives' => [
+                    ['label' => 'Read the Re-Homing Policy', 'href' => '/policies/re-homing-policy/'],
+                    ['label' => 'Contact APES', 'href' => '/contact/'],
+                ],
+                'note' => 'Expect suitability checks, setup expectations and welfare-first placement guidance before any animal leaves APES care.',
+            ],
+            [
+                'label' => 'I can no longer care for my pet',
+                'summary' => 'Use the surrender route rather than a general contact request.',
+                'filters' => ['rescue-and-shelter'],
+                'keywords' => ['surrender owner cannot care no longer care pet rescue shelter'],
+                'recommendation_title' => 'Shelter and surrender support',
+                'description' => 'Start with the APES Shelter & Rescue surrender route so APES can separate owner surrender from stray or emergency cases.',
+                'primary' => ['label' => 'Start surrender route', 'href' => 'https://www.apesshelter.org.uk/', 'external' => true],
+                'secondary' => ['label' => 'Contact the contact centre', 'href' => 'https://contact.apes.org.uk/', 'external' => true],
+                'alternatives' => [
+                    ['label' => 'Read 24/7 services guidance', 'href' => '/24-7-services/'],
+                    ['label' => 'Open Help Centre', 'href' => 'https://help.apes.org.uk/', 'external' => true],
+                ],
+                'note' => 'Use one request per animal and do not arrive without an arranged handover or confirmed APES instruction.',
+            ],
+            [
+                'label' => 'This is not my pet',
+                'summary' => 'Use rescue support rather than owner-surrender routes.',
+                'filters' => ['rescue-and-shelter', 'lost-and-found'],
+                'keywords' => ['not my pet rescue stray abandoned contained found unknown owner'],
+                'recommendation_title' => 'Rescue services and containment guidance',
+                'description' => 'Request rescue support where the animal is not yours, especially if containment, species identification or public-safety support is needed.',
+                'primary' => ['label' => 'Request rescue support', 'href' => 'https://www.apesshelter.org.uk/', 'external' => true],
+                'secondary' => ['label' => 'Found pet reporting', 'href' => '/services/lost-n-found-pets/'],
+                'alternatives' => [
+                    ['label' => 'Contact APES', 'href' => '/contact/'],
+                    ['label' => '24/7 services guidance', 'href' => '/24-7-services/'],
+                ],
+                'note' => 'Only provide species, location, containment status and photographs where it is safe to do so.',
+            ],
+            [
+                'label' => 'I have lost my pet',
+                'summary' => 'Use the approved lost-pet reporting route.',
+                'filters' => ['lost-and-found'],
+                'keywords' => ['lost pet missing animal reporting questionnaire'],
+                'recommendation_title' => 'Lost-pet reporting route',
+                'description' => 'Open the APES lost-pet route and submit clear identifying details so reports can be matched if a related found-pet report arrives later.',
+                'primary' => ['label' => 'Open lost pet questionnaire', 'href' => 'https://service.sheltermanager.com/', 'external' => true],
+                'secondary' => ['label' => 'Contact APES', 'href' => '/contact/'],
+                'alternatives' => [
+                    ['label' => 'Found pet route', 'href' => '/services/lost-n-found-pets/'],
+                    ['label' => 'Shelter & Rescue', 'href' => 'https://www.apesshelter.org.uk/', 'external' => true],
+                ],
+                'note' => 'Provide photographs and identifying details where available, but do not share sensitive information through the route-finder itself.',
+            ],
+            [
+                'label' => 'I have found a pet',
+                'summary' => 'Use found-pet reporting and safe-handling guidance.',
+                'filters' => ['lost-and-found'],
+                'keywords' => ['found pet found animal owner report containment exotic'],
+                'recommendation_title' => 'Found-pet reporting route',
+                'description' => 'Use the APES found-pet route if you can safely hold the animal or need the approved reporting path to help reconnect it with an owner.',
+                'primary' => ['label' => 'Open found pet questionnaire', 'href' => 'https://service.sheltermanager.com/', 'external' => true],
+                'secondary' => ['label' => 'Read lost and found guidance', 'href' => '/services/lost-n-found-pets/'],
+                'alternatives' => [
+                    ['label' => 'Request rescue support', 'href' => 'https://www.apesshelter.org.uk/', 'external' => true],
+                    ['label' => 'Contact APES', 'href' => '/contact/'],
+                ],
+                'note' => 'Avoid unsafe handling and use rescue support for unknown, escaped or higher-risk exotic species.',
+            ],
+            [
+                'label' => 'I want to support APES',
+                'summary' => 'Choose the donation, fundraising or sponsor route.',
+                'filters' => ['support-apes'],
+                'keywords' => ['donate sponsor fundraising support volunteer help apes'],
+                'recommendation_title' => 'Donate, sponsor and fundraising routes',
+                'description' => 'Use the main APES support routes to donate, back a current fundraising priority or explore sponsorship and volunteering options.',
+                'primary' => ['label' => 'Donate now', 'href' => '/donate/'],
+                'secondary' => ['label' => 'View fundraising priorities', 'href' => '/donating/fundraising/'],
+                'alternatives' => [
+                    ['label' => 'Volunteer and placements', 'href' => '/volunteer/'],
+                    ['label' => 'Sponsor and partner support', 'href' => '/sponsors/'],
+                ],
+                'note' => 'The donation route explains the external payment pathway, while fundraising and sponsorship pages cover current operational priorities and review notes.',
+            ],
+            [
+                'label' => 'The animal may be injured, loose in public or at immediate risk',
+                'summary' => 'See emergency signposting before routine APES forms.',
+                'filters' => ['contact-and-help'],
+                'keywords' => ['urgent injured loose public safety immediate risk emergency vet local authority'],
+                'recommendation_title' => 'Urgent guidance and emergency signposting',
+                'description' => 'Read the urgent guidance first so emergency services, local authority routes or veterinary support are used where appropriate before routine APES forms.',
+                'primary' => ['label' => 'Read urgent guidance', 'href' => '/24-7-services/'],
+                'secondary' => ['label' => 'Contact APES', 'href' => '/contact/'],
+                'alternatives' => [
+                    ['label' => 'Open contact centre', 'href' => 'https://contact.apes.org.uk/', 'external' => true],
+                    ['label' => 'Visit opening times', 'href' => '/opening-times/'],
+                ],
+                'note' => 'Do not rely on routine forms alone for immediate danger, injury, traffic risk or public-safety incidents.',
+            ],
+            [
+                'label' => 'I need pet care, boarding, education or a visit',
+                'summary' => 'Use care, boarding and education routes across the APES network.',
+                'filters' => ['care-and-clinic', 'boarding', 'education'],
+                'keywords' => ['pet care clinic boarding education visits therapy book'],
+                'recommendation_title' => 'Care, boarding and educational support',
+                'description' => 'Choose the best route for Pet Care Clinic, pet boarding, educational visits or animal-therapy-related enquiries without guessing which APES service to contact first.',
+                'primary' => ['label' => 'Open the Services hub', 'href' => '/services/'],
+                'secondary' => ['label' => 'Bookings and visit routes', 'href' => '/bookings/'],
+                'alternatives' => [
+                    ['label' => 'Pet boarding', 'href' => '/pet-boarding/'],
+                    ['label' => 'Educational visits', 'href' => '/educational-visits/'],
+                ],
+                'note' => 'Connected services remain separate where needed, including the external Pet Care Clinic and boarding portal journeys.',
+            ],
         ],
         'nav' => [
             [
@@ -88,7 +215,8 @@ function apes_site_data(): array
                 'label' => 'Services',
                 'panel_heading' => 'Services across the APES network',
                 'children' => [
-                    ['label' => 'Services overview', 'description' => 'Start with the public-facing routes for rescue, care, support, education and connected services.', 'href' => '/'],
+                    ['label' => 'Services hub', 'description' => 'Search, filter and compare the main APES public service routes before choosing where to go next.', 'href' => '/services/'],
+                    ['label' => 'Bookings', 'description' => 'Use the narrower bookings route for visits, boarding and practical booking guidance.', 'href' => '/bookings/'],
                     ['label' => 'Shelter, rescue and adoptions', 'description' => 'Open the APES Shelter & Rescue website for rehoming, surrender guidance and welfare support.', 'href' => 'https://www.apesshelter.org.uk/', 'external' => true],
                     ['label' => 'Pet care clinic', 'description' => 'Visit APES Pet Care Clinic for low-cost support, care plans, bookings and pet health guidance.', 'href' => 'https://www.apespetcare.org.uk/', 'external' => true],
                     ['label' => 'Pet shop', 'description' => 'Browse APES pet-shop information and connected shopping routes that help fund welfare work.', 'href' => '/apes-pet-shop/'],
@@ -116,7 +244,16 @@ function apes_site_data(): array
                 'panel_heading' => 'About, policies, updates and APES Newsroom',
                 'children' => [
                     ['label' => 'About APES', 'description' => 'Learn about APES CIC, the three Rs and the organisation\'s welfare-first operating model.', 'href' => '/about-us/'],
+                    ['label' => 'Mission statement', 'description' => 'Read the APES mission, owner-support focus, public benefit role and the three Rs in more detail.', 'href' => '/mission/our-main-mission-statement/'],
+                    ['label' => 'Ethical rehabilitation', 'description' => 'See how APES frames rehabilitation, recovery planning and welfare-first outcomes.', 'href' => '/mission/support-ethical-rehabilitation/'],
+                    ['label' => 'Visit the centre', 'description' => 'Check visitor access, parking, appointment and accessibility notes before attending.', 'href' => '/the-center/'],
+                    ['label' => 'Opening times', 'description' => 'Use the canonical public opening-hours page and out-of-hours guidance.', 'href' => '/opening-times/'],
+                    ['label' => 'Policies hub', 'description' => 'Browse welfare policies, legal website policies and the main APES public policy routes in one place.', 'href' => '/policies/'],
+                    ['label' => 'Adoption Policy', 'description' => 'Review APES public adoption conditions and related welfare-policy guidance.', 'href' => '/policies/adoption-policy/'],
+                    ['label' => 'Re-Homing Policy', 'description' => 'Read the public re-homing checks and welfare safeguards used by APES.', 'href' => '/policies/re-homing-policy/'],
+                    ['label' => 'Euthanasia Policy', 'description' => 'Read the public welfare-threshold guidance for individual euthanasia decisions.', 'href' => '/policies/euthanasia-policy/'],
                     ['label' => 'APES Newsroom', 'description' => 'Read organisation updates, service notices, appeals and cross-division stories in APES Newsroom.', 'href' => APES_NEWSROOM_URL, 'external' => true],
+                    ['label' => 'Socials', 'description' => 'Find the verified public APES social channels and connected community routes.', 'href' => '/socials/'],
                     ['label' => 'Change Log Hub', 'description' => 'Track public website releases, fixes, compliance changes and layout improvements.', 'href' => '/change-log-hub/'],
                     ['label' => 'Privacy Policy', 'description' => 'Review how APES handles personal data, communications and public website information.', 'href' => '/policies/privacy/'],
                     ['label' => 'Terms of Service', 'description' => 'Read the public terms that govern use of APES services, routes and website content.', 'href' => '/policies/terms-of-service/'],
@@ -138,17 +275,19 @@ function apes_site_data(): array
                 'title' => 'About APES CIC',
                 'items' => [
                     ['label' => 'Association of Protecting Exotic Species CIC', 'href' => '/about-us/'],
-                    ['label' => 'Rescue, rehabilitation, rehoming and education across exotic animal welfare.', 'href' => '/mission/our-main-mission-statement/'],
-                    ['label' => 'Support urgent welfare work, long-term residents and the next stage of the APES move.', 'href' => '/help-us-move/'],
+                    ['label' => 'Mission statement and public benefit', 'href' => '/mission/our-main-mission-statement/'],
+                    ['label' => 'Ethical rehabilitation', 'href' => '/mission/support-ethical-rehabilitation/'],
+                    ['label' => 'Visit the centre', 'href' => '/the-center/'],
                 ],
             ],
             [
-                'title' => 'Get help',
+                'title' => 'Find the right route',
                 'items' => [
+                    ['label' => 'Services hub', 'href' => '/services/'],
+                    ['label' => 'Bookings', 'href' => '/bookings/'],
+                    ['label' => 'Opening times', 'href' => '/opening-times/'],
                     ['label' => 'Contact page', 'href' => '/contact/'],
                     ['label' => 'Contact centre', 'href' => 'https://contact.apes.org.uk/', 'external' => true],
-                    ['label' => 'Help Centre', 'href' => 'https://help.apes.org.uk/', 'external' => true],
-                    ['label' => '40 Morris Street, St Helens, WA9 3EN', 'href' => '/contact/'],
                 ],
             ],
             [
@@ -156,14 +295,20 @@ function apes_site_data(): array
                 'items' => [
                     ['label' => 'Donate', 'href' => '/donate/'],
                     ['label' => 'Fundraising priorities', 'href' => '/donating/fundraising/'],
-                    ['label' => 'Who sponsors us', 'href' => '/sponsors/'],
-                    ['label' => 'Enterprise mailing list', 'href' => '/enterprise-mailing-list/'],
+                    ['label' => 'Volunteer and placements', 'href' => '/volunteer/'],
+                    ['label' => 'Sponsors and partners', 'href' => '/sponsors/'],
+                    ['label' => 'Help Us Move', 'href' => '/help-us-move/'],
                 ],
             ],
             [
-                'title' => 'Stay connected',
+                'title' => 'Policies and updates',
                 'items' => [
+                    ['label' => 'Adoption Policy', 'href' => '/policies/adoption-policy/'],
+                    ['label' => 'Re-Homing Policy', 'href' => '/policies/re-homing-policy/'],
+                    ['label' => 'Euthanasia Policy', 'href' => '/policies/euthanasia-policy/'],
+                    ['label' => 'Policies hub', 'href' => '/policies/'],
                     ['label' => 'APES Newsroom', 'href' => APES_NEWSROOM_URL, 'external' => true],
+                    ['label' => 'Socials', 'href' => '/socials/'],
                     ['label' => 'Privacy Policy', 'href' => '/policies/privacy/'],
                     ['label' => 'Terms of Service', 'href' => '/policies/terms-of-service/'],
                     ['label' => 'Change Log Hub', 'href' => '/change-log-hub/'],
@@ -201,7 +346,7 @@ function apes_site_data(): array
                 'hero_summary' => 'APES CIC brings together rescue, rehabilitation, rehoming, education and day-to-day support so animals, keepers and communities can get help quickly.',
                 'hero_actions' => [
                     ['label' => 'Donate today', 'href' => '/donate/', 'variant' => 'primary'],
-                    ['label' => 'Explore services', 'href' => '/bookings/', 'variant' => 'secondary'],
+                    ['label' => 'Explore services', 'href' => '/services/', 'variant' => 'secondary'],
                 ],
                 'pills' => ['Rescue and rehoming', 'Public support', 'Education and care'],
                 'body_html' => <<<'HTML'
@@ -209,6 +354,8 @@ function apes_site_data(): array
   <p><strong>Urgent operational update:</strong> APES continues to share relocation and continuity updates through APES Newsroom and the Help Us Move appeal. Supporters can help through donations, fundraising and practical sponsorship.</p>
   <p><a class="text-link" href="/help-us-move/">Read the relocation appeal</a></p>
 </section>
+
+[[ROUTE_FINDER_COMPACT]]
 
 <section class="spotlight-band">
   <div class="spotlight-copy">
@@ -360,10 +507,62 @@ function apes_site_data(): array
 </section>
 HTML,
                 'related_links' => [
+                    ['label' => 'Services hub', 'href' => '/services/'],
                     ['label' => 'Help Us Move', 'href' => '/help-us-move/'],
                     ['label' => 'Volunteer and student placements', 'href' => '/volunteer/'],
                     ['label' => 'APES Pet Care Clinic', 'href' => 'https://www.apespetcare.org.uk/', 'external' => true],
                     ['label' => 'APES Shelter & Rescue', 'href' => 'https://www.apesshelter.org.uk/', 'external' => true],
+                ],
+            ],
+            'services' => [
+                'route' => '/services/',
+                'meta_title' => 'Services | Find the right APES support route',
+                'title' => 'Services',
+                'description' => 'Search, filter and compare APES public service routes across rescue, support, care, education and connected services.',
+                'hero_kicker' => 'Services hub',
+                'hero_title' => 'Find the right APES route before you contact us.',
+                'hero_summary' => 'Use the APES Services hub to compare rescue, lost-and-found, care, boarding, education, donation and support routes without guessing which service to approach first.',
+                'hero_actions' => [
+                    ['label' => 'Use the route finder', 'href' => '#service-route-search', 'variant' => 'primary'],
+                    ['label' => 'Open bookings', 'href' => '/bookings/', 'variant' => 'secondary'],
+                ],
+                'pills' => ['Service routing', 'Search and filters', 'Safety-first guidance'],
+                'body_html' => <<<'HTML'
+[[ROUTE_FINDER_EXPANDED]]
+
+<section class="section-shell">
+  <div class="section-heading">
+    <p class="eyebrow">Connected APES services</p>
+    <h2>Crawlable routes stay available even when JavaScript is off.</h2>
+  </div>
+  <div class="card-grid card-grid-three">
+    <article class="service-card">
+      <h3>Rescue and shelter</h3>
+      <p>Use Shelter &amp; Rescue for adoption, surrender, rescue support and welfare-first case handling across exotic animal needs.</p>
+      <a class="text-link" href="https://www.apesshelter.org.uk/" target="_blank" rel="noreferrer">Open Shelter &amp; Rescue</a>
+    </article>
+    <article class="service-card">
+      <h3>Care and clinic</h3>
+      <p>Use Pet Care Clinic, boarding, education and therapy routes for practical support that sits alongside the wider APES network.</p>
+      <a class="text-link" href="https://www.apespetcare.org.uk/" target="_blank" rel="noreferrer">Visit Pet Care Clinic</a>
+    </article>
+    <article class="service-card">
+      <h3>Support APES</h3>
+      <p>Donate, back a current fundraising priority, volunteer or explore sponsorship when you want to strengthen day-to-day welfare work.</p>
+      <a class="text-link" href="/donate/">Support APES</a>
+    </article>
+  </div>
+</section>
+
+<section class="note-panel">
+  <h2>Safety-first note</h2>
+  <p>The route finder does not collect case details. If an animal is injured, loose in public or poses an immediate welfare or public-safety risk, use the urgent guidance first rather than relying only on a routine form.</p>
+</section>
+HTML,
+                'related_links' => [
+                    ['label' => 'Bookings', 'href' => '/bookings/'],
+                    ['label' => 'Lost and found pets', 'href' => '/services/lost-n-found-pets/'],
+                    ['label' => '24/7 services', 'href' => '/24-7-services/'],
                 ],
             ],
             'help-us-move' => [
@@ -524,6 +723,11 @@ HTML,
     <a class="button button-secondary" href="https://www.apesnews.org.uk/" target="_blank" rel="noreferrer">Sign up for updates</a>
   </div>
 </section>
+
+<section class="note-panel">
+  <h2>Before you book</h2>
+  <p>The current public route supports reptiles with UV and non-UV needs and keeps small-animal boarding under review. Owners should use the approved booking route, check species suitability before travel, and confirm any welfare, equipment or cancellation questions through APES if their case does not fit the standard portal flow.</p>
+</section>
 HTML,
                 'related_links' => [
                     ['label' => 'Lost and found pets', 'href' => '/services/lost-n-found-pets/'],
@@ -569,6 +773,11 @@ HTML,
     <a class="button button-primary" href="/contact/">Contact APES</a>
     <a class="button button-secondary" href="https://contact.apes.org.uk/" target="_blank" rel="noreferrer">Open contact centre</a>
   </div>
+</section>
+
+<section class="note-panel">
+  <h2>Reporting guidance</h2>
+  <p>Use clear descriptions, photographs and location details where available. If ownership is disputed, the animal is unsafe to contain, or the situation becomes urgent, move to direct APES or emergency guidance rather than relying only on the questionnaire flow.</p>
 </section>
 HTML,
                 'related_links' => [
@@ -657,6 +866,11 @@ HTML,
     <li>Offer a welfare-first, non-judgemental setting.</li>
   </ul>
 </section>
+
+<section class="note-panel">
+  <h2>Safeguarding and suitability</h2>
+  <p>Animal-therapy activity should be arranged through APES contact routes so suitability, supervision, exclusions, risk assessment and animal welfare controls can be reviewed before a session is confirmed.</p>
+</section>
 HTML,
                 'related_links' => [
                     ['label' => 'Educational visits', 'href' => '/educational-visits/'],
@@ -696,6 +910,17 @@ HTML,
       <h3>Community benefit</h3>
       <p>Visits are suitable for public learning, wellbeing sessions and responsible care awareness.</p>
     </article>
+  </div>
+</section>
+
+<section class="section-shell split-panel">
+  <div class="note-panel">
+    <h2>Who visits are for</h2>
+    <p>Current public copy supports schools, youth groups, community organisations, care settings and other supervised learning environments that want welfare-led exotic species education.</p>
+  </div>
+  <div class="note-panel">
+    <h2>Planning and safeguarding</h2>
+    <p>Use the APES contact route to discuss learning outcomes, venue suitability, safeguarding expectations, risk assessment needs and whether pricing or donations apply for the type of session requested.</p>
   </div>
 </section>
 HTML,
@@ -792,6 +1017,17 @@ HTML,
   <h2>Fundraising content note</h2>
   <p>The public page contains repeated donor-wall placeholders and some duplicated supporting wording. This rebuild keeps the priorities visible while recording those content issues in the audit for APES review.</p>
 </section>
+
+<section class="section-shell split-panel">
+  <div class="note-panel">
+    <h2>Current public priorities</h2>
+    <p>Members software, till systems, scales, iPads and steel tables remain the clearest verified priorities in the public source. APES should add target amounts, item owners and update dates before publishing more granular campaign claims.</p>
+  </div>
+  <div class="note-panel">
+    <h2>How support is used</h2>
+    <p>These routes exist to strengthen practical animal care, daily operations and supporter service quality rather than to create abstract fundraising categories without operational context.</p>
+  </div>
+</section>
 HTML,
                 'related_links' => [
                     ['label' => 'Donate', 'href' => '/donate/'],
@@ -831,6 +1067,11 @@ HTML,
 
 <section class="section-shell">
   <p>Across the current public website, APES also emphasises conservation awareness, non-judgemental support, sustainability and accountability. This rebuilt page acts as a clear cause overview without inventing new policy commitments.</p>
+</section>
+
+<section class="note-panel">
+  <h2>Campaigns and updates</h2>
+  <p>Use this page as a stable overview of APES welfare causes, but expect time-sensitive campaign updates, appeals and public stories to continue through APES Newsroom rather than through a separate campaign archive on this site.</p>
 </section>
 HTML,
                 'related_links' => [
@@ -930,6 +1171,17 @@ HTML,
   <h2>Before you apply</h2>
   <p>Because volunteering can involve public-facing support and animal welfare activity, APES may need to assess suitability, training needs, availability and role fit before confirming a placement.</p>
 </section>
+
+<section class="section-shell split-panel">
+  <div class="note-panel">
+    <h2>Likely role types</h2>
+    <p>Current public wording supports animal welfare routines, public support work and student placements. APES should continue to match applicants to practical, supervised roles rather than promise immediate placement.</p>
+  </div>
+  <div class="note-panel">
+    <h2>Checks and onboarding</h2>
+    <p>Depending on the role, APES may need to review age suitability, availability, safeguarding expectations, training needs, DBS-related considerations and induction requirements before confirming a placement.</p>
+  </div>
+</section>
 HTML,
                 'related_links' => [
                     ['label' => 'Contact centre', 'href' => 'https://contact.apes.org.uk/', 'external' => true],
@@ -951,6 +1203,10 @@ HTML,
                 'pills' => ['Rescue', 'Rehabilitate', 'Rehome'],
                 'body_html' => <<<'HTML'
 <section class="section-shell">
+  <div class="section-heading">
+    <p class="eyebrow">The three Rs</p>
+    <h2>Rescue, rehabilitate and rehome with practical owner support.</h2>
+  </div>
   <div class="card-grid card-grid-three">
     <article class="metric-card">
       <strong>Rescue</strong>
@@ -969,6 +1225,31 @@ HTML,
 
 <section class="section-shell">
   <p>The public mission also emphasises advice, education and support that help owners keep pets at home safely where appropriate, alongside stronger understanding of conservation, welfare and responsible ownership.</p>
+  <div class="card-grid card-grid-two">
+    <article class="info-card">
+      <h3>Owner support and prevention</h3>
+      <p>APES frames public support as practical, non-judgemental guidance that can sometimes prevent avoidable surrender, unsafe keeping or delayed welfare action.</p>
+    </article>
+    <article class="info-card">
+      <h3>Public benefit and trust</h3>
+      <p>Mission content supports rescue outcomes, responsible rehoming, public education and transparent supporter confidence without relying on unverified headline figures.</p>
+    </article>
+  </div>
+</section>
+
+<section class="section-shell split-panel">
+  <div class="note-panel">
+    <h2>Frequently asked mission questions</h2>
+    <ul class="clean-list">
+      <li>How does APES decide whether an animal needs rescue, rehabilitation or rehoming?</li>
+      <li>When can practical support help an owner keep a pet safely at home?</li>
+      <li>How do donation, volunteering and public routes support long-term welfare outcomes?</li>
+    </ul>
+  </div>
+  <div class="note-panel">
+    <h2>Supporter actions</h2>
+    <p>Use the Services hub to find the correct route, donate where operational support is needed, and review welfare policies before making assumptions about adoption, surrender or care processes.</p>
+  </div>
 </section>
 HTML,
                 'related_links' => [
@@ -991,12 +1272,29 @@ HTML,
                 'pills' => ['Recovery standards', 'Welfare-first', 'Owner support'],
                 'body_html' => <<<'HTML'
 <section class="section-shell">
-  <ul class="tick-list">
-    <li>Species-appropriate housing, nutrition and handling during recovery.</li>
-    <li>Thoughtful assessment before rehoming or long-term sanctuary decisions.</li>
-    <li>Owner education and non-judgemental support where prevention can keep animals safe.</li>
-    <li>Clear links between rehabilitation, conservation awareness and public trust.</li>
-  </ul>
+  <div class="card-grid card-grid-two">
+    <article class="info-card">
+      <h3>1. Safe intake and assessment</h3>
+      <p>APES frames rehabilitation as beginning with safe intake, species-aware assessment and stabilisation of immediate welfare needs.</p>
+    </article>
+    <article class="info-card">
+      <h3>2. Recovery and husbandry</h3>
+      <p>Recovery focuses on housing, nutrition, handling and environmental conditions that fit the animal rather than a generic shelter routine.</p>
+    </article>
+    <article class="info-card">
+      <h3>3. Outcome planning</h3>
+      <p>Next steps may include continued rehabilitation, rehoming, long-term sanctuary decisions or other welfare-led planning based on the individual case.</p>
+    </article>
+    <article class="info-card">
+      <h3>4. Owner and supporter role</h3>
+      <p>Owner education, sponsor support and public trust all contribute to better long-term outcomes when prevention or recovery is still possible.</p>
+    </article>
+  </div>
+</section>
+
+<section class="note-panel">
+  <h2>Ethical rehabilitation principles</h2>
+  <p>APES presents rehabilitation as species-appropriate, non-judgemental and outcome-focused. The public route should explain why some cases move toward rehoming while others require longer-term care, closer assessment or more limited options.</p>
 </section>
 HTML,
                 'related_links' => [
@@ -1007,11 +1305,11 @@ HTML,
             'the-center' => [
                 'route' => '/the-center/',
                 'meta_title' => 'The centre | APES public location overview',
-                'title' => 'The centre',
+                'title' => 'Visit the centre',
                 'description' => 'A public walkthrough of the APES centre, including reception, animal spaces and accessibility notes.',
-                'hero_kicker' => 'Location overview',
-                'hero_title' => 'A simple public walkthrough of the APES centre.',
-                'hero_summary' => 'Get a simple introduction to the public-facing spaces, access notes and wayfinding information available at the APES centre.',
+                'hero_kicker' => 'Visit and access',
+                'hero_title' => 'Plan a visit to the APES centre.',
+                'hero_summary' => 'Use this page for the clearest current public access, parking, appointment and wayfinding guidance published for the APES centre.',
                 'hero_actions' => [
                     ['label' => 'Contact APES', 'href' => '/contact/', 'variant' => 'primary'],
                     ['label' => 'Opening times', 'href' => '/opening-times/', 'variant' => 'secondary'],
@@ -1047,9 +1345,15 @@ HTML,
   </div>
 </section>
 
-<section class="note-panel">
-  <h2>Content review note</h2>
-  <p>The current public page includes unfinished captions and a "currently developing" message. Those issues are logged in the content audit rather than silently overwritten.</p>
+<section class="section-shell split-panel">
+  <div class="note-panel">
+    <h2>Before you attend</h2>
+    <p>Use the contact route or an agreed appointment before visiting where that is the current APES policy. This page is a public access guide, not a promise of unscheduled drop-in availability.</p>
+  </div>
+  <div class="note-panel">
+    <h2>Accessibility and review note</h2>
+    <p>The legacy source includes unfinished captions and developing content. This rebuilt route keeps the verified access descriptors while recording where APES should still approve clearer accessibility, parking and visitor-expectation wording.</p>
+  </div>
 </section>
 HTML,
                 'related_links' => [
@@ -1072,19 +1376,31 @@ HTML,
                 'pills' => ['Booking guidance', 'Service routes', 'External portals'],
                 'body_html' => <<<'HTML'
 <section class="section-shell">
+  <p>Bookings remains the narrower route for arranging visits, boarding and practical service conversations after the wider Services hub has helped you choose the right APES pathway.</p>
   <div class="card-grid card-grid-three">
     <article class="info-card">
-      <h3>Pet boarding</h3>
-      <p>Use the external boarding portal for boarding stays and packages.</p>
+      <h3>Boarding</h3>
+      <p>Use the external boarding portal for boarding stays and related packages.</p>
     </article>
     <article class="info-card">
-      <h3>Educational visits and support</h3>
-      <p>Use the APES contact route for education, outreach and general enquiries.</p>
+      <h3>Educational visits and therapy enquiries</h3>
+      <p>Use the APES contact route for visits, outreach, learning sessions and supported programme planning.</p>
     </article>
     <article class="info-card">
-      <h3>Specialist services</h3>
-      <p>Where a service is still developing or availability changes, APES Newsroom and the contact team remain the best routes for current information.</p>
+      <h3>Need help choosing first?</h3>
+      <p>Start with the Services hub if you are not yet sure whether your case belongs with rescue, care, support or education.</p>
     </article>
+  </div>
+</section>
+
+<section class="cta-band">
+  <div>
+    <p class="eyebrow">Need the wider route map?</p>
+    <h2>Use the Services hub before booking when the route is unclear.</h2>
+  </div>
+  <div class="action-row">
+    <a class="button button-primary" href="/services/">Open Services hub</a>
+    <a class="button button-secondary" href="/contact/">Contact APES</a>
   </div>
 </section>
 HTML,
@@ -1112,11 +1428,22 @@ HTML,
   <div class="note-panel">
     <h2>Public opening hours</h2>
     <p><strong>Monday to Sunday:</strong> 10:00 AM to 5:00 PM</p>
-    <p>The legacy site also contains inconsistent wording such as "Centre" and "Center". The rebuilt page keeps the hours clear and records those copy inconsistencies in the audit.</p>
+    <p>This page is the canonical public hours source for the rebuilt site and should be used ahead of older inconsistent mentions elsewhere.</p>
   </div>
   <div class="note-panel">
     <h2>Out-of-hours note</h2>
-    <p>The public footer states that some out-of-hours calls are directed to out-of-hours advisors and that some staff may be working from home.</p>
+    <p>Out-of-hours support guidance should not be read as a guarantee of physical rescue attendance. Use the urgent guidance route where welfare, injury or public safety is immediate.</p>
+  </div>
+</section>
+
+<section class="section-shell split-panel">
+  <div class="note-panel">
+    <h2>Before you travel</h2>
+    <p>Use the contact route or a confirmed appointment where needed, especially if your visit depends on reception support, a booking, or access to a connected service rather than a general public enquiry.</p>
+  </div>
+  <div class="note-panel">
+    <h2>Consistency note</h2>
+    <p>The older site contained conflicting opening-hour wording. This rebuilt route keeps the public truth to 10:00 AM to 5:00 PM daily until APES approves a stronger verified source.</p>
   </div>
 </section>
 HTML,
@@ -1195,6 +1522,22 @@ HTML,
     <p>Use the enterprise mailing-list route or the APES contact page for sponsorship, grant, software support or wider partnership conversations.</p>
   </div>
 </section>
+
+<section class="section-shell split-panel">
+  <div class="note-panel">
+    <h2>Current sponsor-style support</h2>
+    <p>Zoho, Shopify, Akamai and cPanel are the clearest verified sponsor-style or software-support routes in the current public source and are shown here as the main named supporters.</p>
+  </div>
+  <div class="note-panel">
+    <h2>Partner and network organisations</h2>
+    <p>BAS, FBH and Merseyside Police are currently better represented as partner or connected organisations in the footer network area than as full sponsor cards on this page.</p>
+  </div>
+</section>
+
+<section class="note-panel">
+  <h2>Review and categorisation note</h2>
+  <p>The current verified public list is strongest for Zoho, Shopify, Akamai and cPanel in sponsor-style roles, while BAS, FBH and Merseyside Police are currently surfaced as partner or connected organisations. APES should approve any future change to sponsor, partner, software-supporter or membership labels before this page grows further.</p>
+</section>
 HTML,
                 'related_links' => [
                     ['label' => 'Enterprise mailing list', 'href' => '/enterprise-mailing-list/'],
@@ -1259,34 +1602,30 @@ HTML,
                 'hero_title' => 'Official APES social and supporter channels.',
                 'hero_summary' => 'Find the main APES social, streaming and supporter channels in one place so you can follow updates in the way that suits you best.',
                 'hero_actions' => [
-                    ['label' => 'Visit APES Social', 'href' => 'https://social.apes.org.uk/', 'external' => true, 'variant' => 'primary'],
+                    ['label' => 'Follow APES on Facebook', 'href' => 'https://www.facebook.com/apesorguk', 'external' => true, 'variant' => 'primary'],
                     ['label' => 'Read APES Newsroom', 'href' => APES_NEWSROOM_URL, 'external' => true, 'variant' => 'secondary'],
                 ],
                 'pills' => ['Social channels', 'Supporter updates', 'Connected services'],
                 'body_html' => <<<'HTML'
 <section class="section-shell">
   <div class="section-heading">
-    <p class="eyebrow">Our socials</p>
-    <h2>Public APES channels across the web.</h2>
+    <p class="eyebrow">Verified public profiles</p>
+    <h2>Primary public APES channels across the web.</h2>
   </div>
-  <div class="card-grid card-grid-three">
-    <article class="info-card">
-      <h3>Facebook</h3>
-      <p>The live page lists both a Facebook Page and Facebook Group as public community routes for APES followers.</p>
-    </article>
-    <article class="info-card">
-      <h3>Instagram and X</h3>
-      <p>Instagram and X are shown as outward-facing social channels used for updates and wider public visibility.</p>
-    </article>
-    <article class="info-card">
-      <h3>Threads and Bluesky</h3>
-      <p>The live page also references Threads and Bluesky, alongside older or placeholder-style social entries that need APES review.</p>
-    </article>
-  </div>
+  [[SOCIAL_PRIMARY_GRID]]
 </section>
+
+<section class="section-shell">
+  <div class="section-heading">
+    <p class="eyebrow">Connected communities</p>
+    <h2>Secondary or community-led APES routes.</h2>
+  </div>
+  [[SOCIAL_COMMUNITY_GRID]]
+</section>
+
 <section class="note-panel">
-  <h2>Content review note</h2>
-  <p>The live socials page mixes real channel listings with weaker placeholder-style copy blocks. The rebuilt route keeps the public social structure visible while recording those weaker sections for APES review.</p>
+  <h2>Verification note</h2>
+  <p>The public header now uses only verified <strong>apesorguk</strong> profiles. Community-only routes remain here, while unverified consumer-social <strong>apescic</strong> accounts stay excluded until APES confirms them.</p>
 </section>
 HTML,
                 'related_links' => [
@@ -1467,6 +1806,79 @@ HTML,
                     ['label' => 'Cookie guidance', 'href' => '/policies/cookies/'],
                 ],
             ],
+            'policies' => [
+                'route' => '/policies/',
+                'meta_title' => 'Policies hub | APES CIC',
+                'title' => 'Policies hub',
+                'description' => 'Browse APES welfare policies, legal website policies and related public guidance in one place.',
+                'hero_kicker' => 'Policy hub',
+                'hero_title' => 'Welfare, legal and public policy guidance in one place.',
+                'hero_summary' => 'Use the Policies hub to distinguish between welfare decision policies, website legal policies and related APES public guidance before you rely on a route or process.',
+                'hero_actions' => [
+                    ['label' => 'Read Adoption Policy', 'href' => '/policies/adoption-policy/', 'variant' => 'primary'],
+                    ['label' => 'Read Terms of Service', 'href' => '/policies/terms-of-service/', 'variant' => 'secondary'],
+                ],
+                'pills' => ['Welfare policies', 'Legal website policies', 'Public guidance'],
+                'body_html' => <<<'HTML'
+<section class="section-shell">
+  <div class="section-heading">
+    <p class="eyebrow">Welfare policies</p>
+    <h2>Policies that explain how APES approaches animal welfare decisions.</h2>
+  </div>
+  <div class="card-grid card-grid-three">
+    <article class="info-card">
+      <h3>Adoption Policy</h3>
+      <p>Review the public adoption conditions, good-faith information notes and adopter responsibility guidance.</p>
+      <a class="text-link" href="/policies/adoption-policy/">Open Adoption Policy</a>
+    </article>
+    <article class="info-card">
+      <h3>Re-Homing Policy</h3>
+      <p>Read the public re-homing safeguards, stray-hold expectations and welfare checks described by APES.</p>
+      <a class="text-link" href="/policies/re-homing-policy/">Open Re-Homing Policy</a>
+    </article>
+    <article class="info-card">
+      <h3>Euthanasia Policy</h3>
+      <p>Read the welfare-threshold guidance published by APES for individual euthanasia decisions.</p>
+      <a class="text-link" href="/policies/euthanasia-policy/">Open Euthanasia Policy</a>
+    </article>
+  </div>
+</section>
+
+<section class="section-shell">
+  <div class="section-heading">
+    <p class="eyebrow">Legal and website policies</p>
+    <h2>Policies that govern the public website and personal-data handling.</h2>
+  </div>
+  <div class="card-grid card-grid-three">
+    <article class="info-card">
+      <h3>Privacy Policy</h3>
+      <p>Read how APES describes collection, use and protection of personal information across connected websites and services.</p>
+      <a class="text-link" href="/policies/privacy/">Open Privacy Policy</a>
+    </article>
+    <article class="info-card">
+      <h3>Terms of service</h3>
+      <p>Read the legal terms that apply to use of APES websites, connected services, payments and external links.</p>
+      <a class="text-link" href="/policies/terms-of-service/">Open Terms of service</a>
+    </article>
+    <article class="info-card">
+      <h3>Cookie guidance</h3>
+      <p>Review the current public cookie guidance and browser-control notes published for APES websites.</p>
+      <a class="text-link" href="/policies/cookies/">Open Cookie guidance</a>
+    </article>
+  </div>
+</section>
+
+<section class="note-panel">
+  <h2>How to use this hub</h2>
+  <p>Welfare policies explain APES animal-care and decision-making approaches. Legal website policies explain how the public websites work. Use the contact route if you need clarification on which policy applies to your situation.</p>
+</section>
+HTML,
+                'related_links' => [
+                    ['label' => 'Adoption Policy', 'href' => '/policies/adoption-policy/'],
+                    ['label' => 'Privacy Policy', 'href' => '/policies/privacy/'],
+                    ['label' => 'Contact APES', 'href' => '/contact/'],
+                ],
+            ],
             'privacy' => [
                 'route' => '/policies/privacy/',
                 'meta_title' => 'Privacy Policy | APES CIC',
@@ -1577,6 +1989,10 @@ HTML,
     <p>The visible public condition says the animal is deemed to be in normal health when leaving the facility unless specific conditions are noted on the Animal Adoption Form. Future veterinary or treatment costs become the adopter's responsibility except where another clause states otherwise.</p>
   </article>
   <article class="policy-block">
+    <h2>Adopter responsibilities</h2>
+    <p>The public route is intended to support informed adoption rather than impulse collection. Adopters should expect species-appropriate setup, realistic ongoing costs, legal compliance where relevant and continued responsibility once the animal leaves APES care.</p>
+  </article>
+  <article class="policy-block">
     <h2>Review note</h2>
     <p>Because the source page exposes only part of the longer adoption wording in crawlable public output, this rebuilt page preserves the visible text and records the need for APES review before any deeper legal rewrite.</p>
   </article>
@@ -1618,6 +2034,10 @@ HTML,
       <li>Home visits by trained volunteers are described as part of checking that adopters understand the responsibilities of ownership.</li>
     </ul>
   </article>
+  <article class="policy-block">
+    <h2>What this means in practice</h2>
+    <p>The rebuilt route keeps the priority points visible: a seven-day stray hold, no import-based rehoming for England and Wales, over-18 adopters, home checks where appropriate and welfare/legal safeguards before any placement proceeds.</p>
+  </article>
 </section>
 HTML,
                 'related_links' => [
@@ -1635,13 +2055,13 @@ HTML,
                 'hero_summary' => 'Read the public APES guidance on when euthanasia may be considered as part of an individual welfare assessment.',
                 'hero_actions' => [
                     ['label' => 'Contact APES', 'href' => '/contact/', 'variant' => 'primary'],
-                    ['label' => 'Privacy Policy', 'href' => '/policies/privacy/', 'variant' => 'secondary'],
+                    ['label' => 'Re-Homing Policy', 'href' => '/policies/re-homing-policy/', 'variant' => 'secondary'],
                 ],
                 'pills' => ['Welfare decisions', 'Public policy', 'Individual assessment'],
                 'body_html' => <<<'HTML'
 <section class="policy-stack">
   <article class="policy-block">
-    <h2>When APES says euthanasia may be considered</h2>
+    <h2>When euthanasia may be considered</h2>
     <p>The live page explains that although APES tries to give animals the best possible chance to return to good health, there are times when euthanasia may be used after individual assessment.</p>
     <ul class="clean-list">
       <li>If the animal is in pain that cannot be controlled and would otherwise face a slow, painful death.</li>
@@ -1650,8 +2070,16 @@ HTML,
     </ul>
   </article>
   <article class="policy-block">
+    <h2>Decision principles</h2>
+    <p>This public route should be read as welfare-threshold guidance rather than a promise of a fixed outcome. The emphasis remains on individual assessment, relief of suffering and species-appropriate decision making.</p>
+  </article>
+  <article class="policy-block">
+    <h2>Veterinary oversight and records</h2>
+    <p>Where euthanasia is considered, the brief supports clearer reference to professional oversight, documented reasoning and careful record keeping without inventing a procedural framework that APES has not yet published in full.</p>
+  </article>
+  <article class="policy-block">
     <h2>Presentation note</h2>
-    <p>The source page shows a clearly broken heading. That presentation issue is corrected here while the public policy content is kept narrow and unchanged in substance.</p>
+    <p>The legacy source shows a clearly broken heading. That presentation issue is corrected here while the public policy content remains grounded in the narrow verified criteria already published by APES.</p>
   </article>
 </section>
 HTML,
@@ -1728,7 +2156,7 @@ HTML,
   <div class="card-grid card-grid-three">
     <article class="info-card">
       <h3>Working hours</h3>
-      <p>Weekdays and weekends are both publicly listed as 10 AM to 5 PM.</p>
+      <p>Weekdays and weekends are publicly listed as 10:00 AM to 5:00 PM, matching the canonical opening-times route.</p>
     </article>
     <article class="info-card">
       <h3>Important links</h3>
@@ -1739,6 +2167,11 @@ HTML,
       <p>MyAPES, members area, public resources and APES Social remain external journeys rather than local rebuild features.</p>
     </article>
   </div>
+</section>
+
+<section class="note-panel">
+  <h2>Visit and access note</h2>
+  <p>If you need to attend in person, check opening times and visit guidance first. Use the contact centre or direct contact route to confirm appointment-based attendance where needed rather than assuming immediate on-site availability.</p>
 </section>
 HTML,
                 'related_links' => [
@@ -2084,9 +2517,9 @@ HTML,
                 'hero_summary' => 'Track every major release for this website, including updates, fixes, compliance changes, and user-facing improvements.',
                 'hero_actions' => [
                     ['label' => 'Expand all releases', 'href' => '#release-list', 'variant' => 'primary'],
-                    ['label' => 'View current release', 'href' => '#release-v233', 'variant' => 'secondary'],
+                    ['label' => 'View current release', 'href' => '#release-v240', 'variant' => 'secondary'],
                 ],
-                'pills' => ['Current version ' . $siteVersion, 'Patch stable', 'Public-facing'],
+                'pills' => ['Current version ' . $siteVersion, 'Minor stable', 'Public-facing'],
                 'body_html' => <<<'HTML'
 <section class="section-shell">
   <div class="release-tools">
@@ -2114,49 +2547,51 @@ HTML,
 </section>
 
 <section class="section-shell" id="release-list">
-  <details class="release-card" data-release-card data-tags="current stable changed fixed accessibility public-facing" open id="release-v233">
+  <details class="release-card" data-release-card data-tags="current stable added changed compliance accessibility public-facing" open id="release-v240">
     <summary>
-      <span class="release-version">v2.3.3</span>
+      <span class="release-version">v2.4.0</span>
       <span class="release-date">2026-06-03</span>
     </summary>
     <div class="release-body">
       <div class="pill-row">
-        <span class="pill pill-version">Version v2.3.3</span>
+        <span class="pill pill-version">Version v2.4.0</span>
         <span class="pill pill-status">Stable</span>
+        <span class="pill pill-type">Added</span>
         <span class="pill pill-type">Changed</span>
-        <span class="pill pill-fix">Fix</span>
+        <span class="pill pill-compliance">Compliance</span>
       </div>
       <h3>Summary</h3>
-      <p>Adjusted the Change Log Hub hero-side card container so the nested contact and connected service cards sit in from the parent panel edges instead of running flush to the outer shell.</p>
+      <p>Added a new Services hub with a shared route finder, replaced placeholder public social links with verified APES channels, strengthened mission and welfare-policy content, and aligned opening-hours, visit and footer guidance across the site.</p>
       <h3>Detailed changes</h3>
       <ul class="clean-list">
-        <li>Added internal padding to the shared hero aside and page sidebar container styles so stacked mini-panels keep a visible gutter from the enclosing background card.</li>
-        <li>Kept the existing mini-panel markup, APES teal-led branding, footer structure, required legal links and APES Newsroom routing unchanged while applying the spacing fix through shared CSS.</li>
-        <li>Bumped the canonical website version and synchronised the release record across the website Change Log Hub and root changelog.</li>
-        <li>Regenerated the exported static HTML snapshots so the corrected spacing and footer version display stay aligned across the published site.</li>
+        <li>Created a new public <code>/services/</code> hub and shared route-finder component, then reused the same route data on the homepage compact finder and the expanded Services page search and filter interface.</li>
+        <li>Updated shared navigation, footer content and breadcrumb routing so the Services hub, mission routes, visit guidance, opening times and welfare policies are easier to find.</li>
+        <li>Replaced placeholder header social links with verified <code>apesorguk</code> Facebook, Instagram, X, YouTube, Threads and Bluesky profiles, while keeping community-only channels on the Socials page.</li>
+        <li>Expanded the mission, ethical rehabilitation, visit, opening-times, volunteer, boarding, educational, therapy, fundraising, sponsor and welfare-policy routes using current repo truth plus review notes where external verification is still needed.</li>
+        <li>Kept APES Newsroom as the central public news destination, preserved required footer links and APES CIC identity, and synchronised the canonical version, Change Log Hub and root changelog before re-exporting static HTML snapshots.</li>
       </ul>
       <h3>Affected areas</h3>
       <ul class="clean-list">
         <li>Website: www.apes.org.uk</li>
-        <li>Page or route: Change Log Hub hero aside, homepage shared hero aside pattern, page sidebar pattern and regenerated static HTML snapshots</li>
-        <li>Files changed: shared CSS, shared site data, VERSION, root CHANGELOG and regenerated static HTML snapshots</li>
+        <li>Page or route: homepage, Services hub, bookings, mission routes, visit/opening-times routes, welfare policy routes, socials, footer, header, Change Log Hub and regenerated static HTML snapshots</li>
+        <li>Files changed: shared PHP rendering, shared site data, shared CSS, shared JS, VERSION, root CHANGELOG and regenerated static HTML snapshots</li>
         <li>User groups affected: supporters, adopters, service users, volunteers, partners and general public visitors</li>
-        <li>Public impact: aside mini-panels now keep a clearer inset from the parent card edges, improving layout balance and readability</li>
-        <li>Internal impact: shared aside container spacing is now consistent anywhere the mini-panel stack pattern is reused</li>
+        <li>Public impact: visitors now have clearer route selection, verified public social channels, stronger welfare-policy visibility and more consistent visit/contact guidance</li>
+        <li>Internal impact: shared route-finder and social-profile data now drive multiple public components from one source of truth</li>
       </ul>
       <h3>Version decision</h3>
       <ul class="clean-list">
-        <li>Previous version: v2.3.2</li>
-        <li>New version: v2.3.3</li>
-        <li>Version type: patch stable</li>
-        <li>Reason for version bump: small public-facing layout correction with no structural, content or URL change</li>
+        <li>Previous version: v2.3.3</li>
+        <li>New version: v2.4.0</li>
+        <li>Version type: minor stable</li>
+        <li>Reason for version bump: new public routing features, broader content expansion and shared navigation/footer improvements without breaking route removals</li>
       </ul>
       <h3>Validation</h3>
       <ul class="clean-list">
-        <li>Checks run: shared CSS inspection, local PHP syntax checks, static HTML export and generated HTML inspection</li>
-        <li>Manual checks completed: Change Log Hub hero aside spacing review, footer required link review, footer version alignment review and changelog synchronisation review</li>
-        <li>Known limitations: final visual confirmation in the in-app browser depends on the local rendered route rather than every exported page being opened individually</li>
-        <li>Rollback notes: restore the previous shared CSS, version and changelog entries, then re-export the static HTML snapshots if needed</li>
+        <li>Checks run: local PHP syntax checks, static HTML export, shared JS/CSS inspection and generated HTML inspection</li>
+        <li>Manual checks completed: homepage route finder, Services hub search/filter output, welfare-policy visibility, footer required links, verified social placement and changelog/version alignment review</li>
+        <li>Known limitations: visual QA depends on local rendered inspection in this environment, and some externally hosted service claims remain intentionally conservative until APES approves stronger source text</li>
+        <li>Rollback notes: restore the previous shared site data, rendering/CSS/JS changes, version and changelog entries, then re-export the static HTML snapshots if needed</li>
       </ul>
     </div>
   </details>
@@ -2460,8 +2895,8 @@ function apes_breadcrumb_section(string $section): array
     return match ($section) {
         'news' => ['label' => 'News', 'href' => '/news/'],
         'mission' => ['label' => 'Mission', 'href' => '/mission/our-main-mission-statement/'],
-        'policies' => ['label' => 'Policies'],
-        'services' => ['label' => 'Services', 'href' => '/'],
+        'policies' => ['label' => 'Policies', 'href' => '/policies/'],
+        'services' => ['label' => 'Services', 'href' => '/services/'],
         'donating' => ['label' => 'Support APES', 'href' => '/donate/'],
         'about-us' => ['label' => 'About APES', 'href' => '/about-us/'],
         'contact-centre' => ['label' => 'Contact centre', 'href' => '/contact-centre/'],

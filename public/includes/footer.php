@@ -22,11 +22,24 @@
           </a>
         <?php endforeach; ?>
       </div>
+      <?php $footerSocialLinks = apes_social_links_for_placement($site['social_profiles'] ?? [], 'footer'); ?>
+      <?php if (!empty($footerSocialLinks)): ?>
+        <div class="footer-social">
+          <span class="footer-partners-label">Follow APES:</span>
+          <div class="footer-social-list">
+            <?php foreach ($footerSocialLinks as $socialLink): ?>
+              <?= apes_render_social_icon_link($socialLink, 'social-icon-link footer-social-link') ?>
+            <?php endforeach; ?>
+          </div>
+        </div>
+      <?php endif; ?>
     </div>
     <div class="footer-bar">
       <div class="footer-bar__identity">
         <p>Part of <?= htmlspecialchars(APES_SITE_NAME, ENT_QUOTES) ?>.</p>
         <p>&copy; <?= htmlspecialchars((string) $site['year'], ENT_QUOTES) ?> <?= htmlspecialchars(APES_SITE_NAME, ENT_QUOTES) ?> &middot; CIC No: <?= htmlspecialchars(APES_CIC_NUMBER, ENT_QUOTES) ?></p>
+        <p>Registered office: <?= htmlspecialchars($site['registered_address'], ENT_QUOTES) ?></p>
+        <p>Public contact: <a class="footer-inline-link" href="mailto:<?= htmlspecialchars($site['contact_email'], ENT_QUOTES) ?>"><?= htmlspecialchars($site['contact_email'], ENT_QUOTES) ?></a> &middot; <a class="footer-inline-link" href="tel:03003020998"><?= htmlspecialchars($site['contact_phone_display'], ENT_QUOTES) ?></a></p>
       </div>
       <p class="footer-bar__links">
         <?php foreach ($site['footer_required_links'] as $index => $link): ?>

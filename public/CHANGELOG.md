@@ -1,3 +1,46 @@
+## [v2.4.0] - 2026-06-03
+
+<span class="pill pill-version">Version v2.4.0</span>
+<span class="pill pill-status">Stable</span>
+<span class="pill pill-type">Added</span>
+<span class="pill pill-type">Changed</span>
+<span class="pill pill-compliance">Compliance</span>
+
+### Summary
+
+Added a new Services hub with a shared route finder, replaced placeholder public social links with verified APES channels, strengthened mission and welfare-policy content, and aligned opening-hours, visit and footer guidance across the site.
+
+### Detailed changes
+
+- Created a new public `/services/` hub and shared route-finder component, then reused the same route data on the homepage compact finder and the expanded Services page search and filter interface.
+- Updated shared navigation, footer content and breadcrumb routing so the Services hub, mission routes, visit guidance, opening times and welfare policies are easier to find.
+- Replaced placeholder header social links with verified `apesorguk` Facebook, Instagram, X, YouTube, Threads and Bluesky profiles, while keeping community-only channels on the Socials page.
+- Expanded the mission, ethical rehabilitation, visit, opening-times, volunteer, boarding, educational, therapy, fundraising, sponsor and welfare-policy routes using current repo truth plus review notes where external verification is still needed.
+- Kept APES Newsroom as the central public news destination, preserved required footer links and APES CIC identity, and synchronised the canonical version, Change Log Hub and root changelog before re-exporting static HTML snapshots.
+
+### Affected areas
+
+- Website: www.apes.org.uk
+- Page or route: homepage, Services hub, bookings, mission routes, visit/opening-times routes, welfare policy routes, socials, footer, header, Change Log Hub and regenerated static HTML snapshots
+- Files changed: shared PHP rendering, shared site data, shared CSS, shared JS, VERSION, root CHANGELOG and regenerated static HTML snapshots
+- User groups affected: supporters, adopters, service users, volunteers, partners and general public visitors
+- Public impact: visitors now have clearer route selection, verified public social channels, stronger welfare-policy visibility and more consistent visit/contact guidance
+- Internal impact: shared route-finder and social-profile data now drive multiple public components from one source of truth
+
+### Version decision
+
+- Previous version: v2.3.3
+- New version: v2.4.0
+- Version type: minor stable
+- Reason for version bump: new public routing features, broader content expansion and shared navigation/footer improvements without breaking route removals
+
+### Validation
+
+- Checks run: local PHP syntax checks, static HTML export, shared JS/CSS inspection and generated HTML inspection
+- Manual checks completed: homepage route finder, Services hub search/filter output, welfare-policy visibility, footer required links, verified social placement and changelog/version alignment review
+- Known limitations: visual QA depends on local rendered inspection in this environment, and some externally hosted service claims remain intentionally conservative until APES approves stronger source text
+- Rollback notes: restore the previous shared site data, rendering/CSS/JS changes, version and changelog entries, then re-export the static HTML snapshots if needed
+
 ## [v2.3.3] - 2026-06-03
 
 <span class="pill pill-version">Version v2.3.3</span>

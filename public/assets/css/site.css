@@ -148,6 +148,11 @@ img {
   height: 100%;
 }
 
+.social-icon-large {
+  width: 1.6rem;
+  height: 1.6rem;
+}
+
 .site-header {
   position: sticky;
   top: 0;
@@ -454,6 +459,123 @@ img {
   padding: 1.25rem;
 }
 
+.route-finder {
+  display: grid;
+  gap: 1.1rem;
+  padding: 1.35rem;
+  border-radius: var(--radius-large);
+  border: 1px solid rgba(0, 95, 95, 0.12);
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.96), rgba(221, 243, 239, 0.8)),
+    #fff;
+  box-shadow: var(--apes-shadow);
+}
+
+.route-finder__intro h2,
+.route-finder__result h3,
+.route-finder__alt h4,
+.social-profile-card h3 {
+  margin-top: 0;
+  color: var(--apes-deep-teal);
+}
+
+.route-finder__intro p:last-child,
+.route-finder__result p:last-child {
+  margin-bottom: 0;
+}
+
+.route-finder__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(18rem, 0.95fr);
+  gap: 1rem;
+}
+
+.route-finder__options,
+.route-finder__service-cards {
+  display: grid;
+  gap: 0.8rem;
+}
+
+.route-option,
+.route-finder__result,
+.route-finder__fallback,
+.social-profile-card {
+  width: 100%;
+  text-align: left;
+  border: 1px solid rgba(0, 95, 95, 0.12);
+  border-radius: 1rem;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(247, 250, 249, 0.9)),
+    #fff;
+  box-shadow: 0 14px 34px rgba(17, 42, 42, 0.08);
+}
+
+.route-option {
+  padding: 1rem;
+  cursor: pointer;
+  transition: transform 0.18s ease, border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.route-option:hover,
+.route-option:focus-visible,
+.route-option.is-active {
+  transform: translateY(-1px);
+  border-color: rgba(0, 140, 140, 0.28);
+  box-shadow: 0 18px 42px rgba(17, 42, 42, 0.12);
+}
+
+.route-option__title {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-weight: 800;
+  color: var(--apes-deep-teal);
+}
+
+.route-option__summary,
+.route-finder__note,
+.social-profile-card__handle {
+  color: rgba(38, 50, 56, 0.82);
+}
+
+.route-finder__result,
+.route-finder__fallback {
+  padding: 1.1rem;
+}
+
+.route-finder__alt {
+  margin-top: 1rem;
+}
+
+.route-finder__service-cards {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.route-finder-expanded .route-finder__tools {
+  display: grid;
+  gap: 0.85rem;
+}
+
+.route-finder-compact .route-finder__options {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.social-profile-card {
+  display: grid;
+  gap: 0.85rem;
+  padding: 1.1rem;
+}
+
+.social-profile-card__head {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.social-profile-card__handle {
+  margin: 0;
+  font-weight: 700;
+}
+
 .brand-feature-panel {
   display: flex;
   justify-content: center;
@@ -709,6 +831,10 @@ img {
   margin-top: 0.55rem;
 }
 
+.tick-list li::before {
+  content: "\2022";
+}
+
 .text-link {
   font-weight: 700;
 }
@@ -822,6 +948,21 @@ img {
   gap: 0.8rem;
 }
 
+.footer-social {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.footer-social-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+}
+
+.footer-social-link {
+  background: rgba(255, 255, 255, 0.1);
+}
+
 .partner-chip {
   display: inline-flex;
   align-items: center;
@@ -893,7 +1034,10 @@ input:focus-visible {
   .card-grid-three,
   .metrics-grid,
   .mega-links,
-  .sponsor-grid {
+  .sponsor-grid,
+  .route-finder__service-cards,
+  .route-finder__layout,
+  .route-finder-compact .route-finder__options {
     grid-template-columns: 1fr;
   }
 
@@ -1313,6 +1457,10 @@ body {
 
   .spotlight-grid {
     padding-inline: 0.1rem;
+  }
+
+  .footer-social-list {
+    justify-content: flex-start;
   }
 }
 

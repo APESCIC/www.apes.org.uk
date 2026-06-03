@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://www.apes.org.uk/</loc></url>
+  <url><loc>https://www.apes.org.uk/services/</loc></url>
   <url><loc>https://www.apes.org.uk/help-us-move/</loc></url>
   <url><loc>https://www.apes.org.uk/apes-pet-shop/</loc></url>
   <url><loc>https://www.apes.org.uk/pet-boarding/</loc></url>
@@ -25,6 +26,7 @@
   <url><loc>https://www.apes.org.uk/apes-communities/</loc></url>
   <url><loc>https://www.apes.org.uk/staff/</loc></url>
   <url><loc>https://www.apes.org.uk/contact-centre/</loc></url>
+  <url><loc>https://www.apes.org.uk/policies/</loc></url>
   <url><loc>https://www.apes.org.uk/policies/terms-of-service/</loc></url>
   <url><loc>https://www.apes.org.uk/policies/privacy/</loc></url>
   <url><loc>https://www.apes.org.uk/policies/adoption-policy/</loc></url>

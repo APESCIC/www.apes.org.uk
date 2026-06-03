@@ -55,13 +55,11 @@ if (!function_exists('apes_current_page')) {
 
         if (!empty($link['external'])) {
             $attributes[] = 'target="_blank"';
-            $relParts = ['noopener', 'noreferrer'];
+            $relParts = !empty($link['nofollow'])
+                ? ['nofollow', 'noopener', 'noreferrer']
+                : ['noopener', 'noreferrer'];
 
-            if (!empty($link['nofollow'])) {
-                $relParts[] = 'nofollow';
-            }
-
-            $attributes[] = 'rel="' . implode(' ', array_unique($relParts)) . '"';
+            $attributes[] = 'rel="' . implode(' ', $relParts) . '"';
         }
 
         if (!empty($link['target']) && empty($link['external'])) {
@@ -122,7 +120,7 @@ if (!function_exists('apes_current_page')) {
     function apes_primary_nav_group(string $pageKey): string
     {
         return match ($pageKey) {
-            'about-us', 'news', 'change-log-hub', 'search' => 'information',
+            'about-us', 'news', 'change-log-hub', 'search', 'socials', 'apes-communities', 'our-main-mission-statement', 'support-ethical-rehabilitation', 'the-center', 'opening-times', 'policies', 'terms-of-service', 'privacy', 'cookies', 'adoption-policy', 're-homing-policy', 'euthanasia-policy' => 'information',
             'sponsors', 'volunteer', 'donate', 'enterprise-mailing-list', 'help-us-move' => 'support',
             'contact' => 'contact',
             'home' => 'home',
@@ -130,9 +128,194 @@ if (!function_exists('apes_current_page')) {
         };
     }
 
+    function apes_social_links_for_placement(array $profiles, string $placement): array
+    {
+        return array_values(array_filter(
+            $profiles,
+            static fn (array $profile): bool => in_array($placement, $profile['placements'] ?? [], true)
+        ));
+    }
+
+    function apes_render_social_icon_link(array $profile, string $class = 'social-icon-link'): string
+    {
+        $href = htmlspecialchars((string) $profile['href'], ENT_QUOTES);
+        $label = htmlspecialchars((string) $profile['label'], ENT_QUOTES);
+        $icon = apes_social_icon_markup((string) ($profile['icon'] ?? ''));
+        $rel = !empty($profile['external']) ? ' target="_blank" rel="noopener noreferrer"' : '';
+
+        return '<a class="' . $class . '" href="' . $href . '"' . $rel . ' aria-label="' . $label . '"><span class="social-icon" aria-hidden="true">' . $icon . '</span><span class="sr-only">' . $label . '</span></a>';
+    }
+
+    function apes_render_route_finder(array $items, string $mode = 'compact'): string
+    {
+        $isExpanded = $mode === 'expanded';
+        $wrapperClass = $isExpanded ? 'route-finder route-finder-expanded' : 'route-finder route-finder-compact';
+        $defaultItem = $items[0] ?? null;
+
+        if ($defaultItem === null) {
+            return '';
+        }
+
+        $filters = ['all' => 'All'];
+
+        foreach ($items as $item) {
+            foreach ($item['filters'] as $filter) {
+                $filters[$filter] = ucfirst(str_replace('-', ' ', $filter));
+            }
+        }
+
+        ob_start();
+        ?>
+<section class="<?= $wrapperClass ?>" data-route-finder data-route-mode="<?= htmlspecialchars($mode, ENT_QUOTES) ?>">
+  <div class="route-finder__intro">
+    <p class="eyebrow"><?= $isExpanded ? 'Services hub' : 'Fast route finder' ?></p>
+    <h2><?= $isExpanded ? 'Find the right APES route before you contact us.' : 'Find the right APES route in under a minute.' ?></h2>
+    <p><?= $isExpanded ? 'Search, filter or choose a common situation to see the most likely APES route, alternative routes and any safety-first guidance.' : 'Choose the situation that best matches what you need. APES will point you to the most appropriate public route without asking for case details here.' ?></p>
+  </div>
+  <?php if ($isExpanded): ?>
+    <div class="route-finder__tools">
+      <label class="search-label" for="service-route-search">Search routes</label>
+      <input id="service-route-search" class="release-search" type="search" placeholder="Search adopt, surrender, lost pet, boarding, clinic, donate or urgent help" data-route-search />
+      <div class="filter-row">
+        <?php foreach ($filters as $value => $label): ?>
+          <button class="chip-button<?= $value === 'all' ? ' is-active' : '' ?>" type="button" data-route-filter="<?= htmlspecialchars($value, ENT_QUOTES) ?>"><?= htmlspecialchars($label, ENT_QUOTES) ?></button>
+        <?php endforeach; ?>
+      </div>
+    </div>
+  <?php endif; ?>
+  <div class="route-finder__layout">
+    <div class="route-finder__options">
+      <?php foreach ($items as $index => $item): ?>
+        <?php
+          $filtersValue = implode(' ', $item['filters']);
+          $searchValue = strtolower($item['label'] . ' ' . implode(' ', $item['keywords']) . ' ' . $item['recommendation_title'] . ' ' . implode(' ', array_column($item['alternatives'], 'label')));
+        ?>
+        <button
+          class="route-option<?= $index === 0 ? ' is-active' : '' ?>"
+          type="button"
+          data-route-option
+          data-route-filters="<?= htmlspecialchars($filtersValue, ENT_QUOTES) ?>"
+          data-route-search="<?= htmlspecialchars($searchValue, ENT_QUOTES) ?>"
+          data-route-title="<?= htmlspecialchars($item['recommendation_title'], ENT_QUOTES) ?>"
+          data-route-description="<?= htmlspecialchars($item['description'], ENT_QUOTES) ?>"
+          data-route-primary-label="<?= htmlspecialchars($item['primary']['label'], ENT_QUOTES) ?>"
+          data-route-primary-href="<?= htmlspecialchars($item['primary']['href'], ENT_QUOTES) ?>"
+          data-route-primary-external="<?= !empty($item['primary']['external']) ? 'true' : 'false' ?>"
+          data-route-secondary-label="<?= htmlspecialchars($item['secondary']['label'], ENT_QUOTES) ?>"
+          data-route-secondary-href="<?= htmlspecialchars($item['secondary']['href'], ENT_QUOTES) ?>"
+          data-route-secondary-external="<?= !empty($item['secondary']['external']) ? 'true' : 'false' ?>"
+          data-route-note="<?= htmlspecialchars($item['note'], ENT_QUOTES) ?>"
+          data-route-alternatives="<?= htmlspecialchars(json_encode($item['alternatives'], JSON_HEX_APOS | JSON_HEX_AMP | JSON_HEX_QUOT), ENT_QUOTES) ?>"
+        >
+          <span class="route-option__title"><?= htmlspecialchars($item['label'], ENT_QUOTES) ?></span>
+          <span class="route-option__summary"><?= htmlspecialchars($item['summary'], ENT_QUOTES) ?></span>
+        </button>
+      <?php endforeach; ?>
+    </div>
+    <div class="route-finder__result" aria-live="polite" data-route-result>
+      <p class="eyebrow">Most likely route</p>
+      <h3 data-route-result-title><?= htmlspecialchars($defaultItem['recommendation_title'], ENT_QUOTES) ?></h3>
+      <p data-route-result-description><?= htmlspecialchars($defaultItem['description'], ENT_QUOTES) ?></p>
+      <div class="action-row" data-route-result-actions>
+        <?= apes_render_link($defaultItem['primary'], 'button button-primary') ?>
+        <?= apes_render_link($defaultItem['secondary'], 'button button-secondary') ?>
+      </div>
+      <div class="route-finder__alt">
+        <h4>Alternative routes</h4>
+        <ul class="clean-list" data-route-result-alternatives>
+          <?php foreach ($defaultItem['alternatives'] as $alternative): ?>
+            <li><?= apes_render_link($alternative) ?></li>
+          <?php endforeach; ?>
+        </ul>
+      </div>
+      <p class="route-finder__note" data-route-result-note><?= htmlspecialchars($defaultItem['note'], ENT_QUOTES) ?></p>
+    </div>
+  </div>
+  <?php if ($isExpanded): ?>
+    <div class="route-finder__service-cards" data-route-card-grid>
+      <?php foreach ($items as $item): ?>
+        <?php $filtersValue = implode(' ', $item['filters']); ?>
+        <article class="service-card route-service-card" data-route-card data-route-filters="<?= htmlspecialchars($filtersValue, ENT_QUOTES) ?>" data-route-search="<?= htmlspecialchars(strtolower($item['label'] . ' ' . implode(' ', $item['keywords'])), ENT_QUOTES) ?>">
+          <h3><?= htmlspecialchars($item['recommendation_title'], ENT_QUOTES) ?></h3>
+          <p><?= htmlspecialchars($item['description'], ENT_QUOTES) ?></p>
+          <div class="action-stack">
+            <?= apes_render_link($item['primary'], 'button button-primary') ?>
+            <?= apes_render_link($item['secondary'], 'button button-secondary') ?>
+          </div>
+        </article>
+      <?php endforeach; ?>
+    </div>
+  <?php endif; ?>
+  <noscript>
+    <div class="route-finder__fallback">
+      <h3>All APES route options</h3>
+      <ul class="clean-list">
+        <?php foreach ($items as $item): ?>
+          <li><strong><?= htmlspecialchars($item['label'], ENT_QUOTES) ?>:</strong> <?= apes_render_link($item['primary']) ?><?php if (!empty($item['note'])): ?>. <?= htmlspecialchars($item['note'], ENT_QUOTES) ?><?php endif; ?></li>
+        <?php endforeach; ?>
+      </ul>
+    </div>
+  </noscript>
+</section>
+        <?php
+
+        return (string) ob_get_clean();
+    }
+
+    function apes_render_social_cards(array $profiles): string
+    {
+        ob_start();
+        ?>
+<div class="card-grid card-grid-three social-card-grid">
+  <?php foreach ($profiles as $profile): ?>
+    <article class="info-card social-profile-card">
+      <div class="social-profile-card__head">
+        <span class="social-icon social-icon-large" aria-hidden="true"><?= apes_social_icon_markup((string) ($profile['icon'] ?? '')) ?></span>
+        <div>
+          <h3><?= htmlspecialchars((string) $profile['platform'], ENT_QUOTES) ?></h3>
+          <p class="social-profile-card__handle"><?= htmlspecialchars((string) $profile['handle'], ENT_QUOTES) ?></p>
+        </div>
+      </div>
+      <p><?= htmlspecialchars((string) $profile['summary'], ENT_QUOTES) ?></p>
+      <?= apes_render_link(['label' => 'Open ' . $profile['platform'], 'href' => $profile['href'], 'external' => !empty($profile['external'])], 'button button-secondary') ?>
+    </article>
+  <?php endforeach; ?>
+</div>
+        <?php
+
+        return (string) ob_get_clean();
+    }
+
+    function apes_render_page_body(string $bodyHtml, array $site): string
+    {
+        return strtr($bodyHtml, [
+            '[[ROUTE_FINDER_COMPACT]]' => apes_render_route_finder($site['route_finder_items'] ?? [], 'compact'),
+            '[[ROUTE_FINDER_EXPANDED]]' => apes_render_route_finder($site['route_finder_items'] ?? [], 'expanded'),
+            '[[SOCIAL_PRIMARY_GRID]]' => apes_render_social_cards(apes_social_links_for_placement($site['social_profiles'] ?? [], 'socials-primary')),
+            '[[SOCIAL_COMMUNITY_GRID]]' => apes_render_social_cards(apes_social_links_for_placement($site['social_profiles'] ?? [], 'socials-community')),
+        ]);
+    }
+
     function apes_social_icon_markup(string $icon): string
     {
         return match ($icon) {
+            'facebook' => <<<'SVG'
+<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+  <path d="M13.4 21v-7.7h2.6l.4-3.1h-3v-2c0-.9.2-1.5 1.5-1.5h1.6V4c-.3 0-1.2-.1-2.3-.1-2.3 0-3.8 1.4-3.8 4v2.3H8v3.1h2.4V21h3Z" fill="currentColor" />
+</svg>
+SVG,
+            'instagram' => <<<'SVG'
+<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+  <rect x="3.5" y="3.5" width="17" height="17" rx="4.2" fill="none" stroke="currentColor" stroke-width="1.8" />
+  <circle cx="12" cy="12" r="3.8" fill="none" stroke="currentColor" stroke-width="1.8" />
+  <circle cx="17.4" cy="6.7" r="1.1" fill="currentColor" />
+</svg>
+SVG,
+            'x' => <<<'SVG'
+<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+  <path d="M4.4 4h4.2l4.3 5.8L18 4h1.8l-6 6.8L20 20h-4.2l-4.7-6.3L5.6 20H3.8l6.3-7.1L4.4 4Zm3 1.6 8.8 12.8h1.4L8.8 5.6H7.4Z" fill="currentColor" />
+</svg>
+SVG,
             'apes-social' => <<<'SVG'
 <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
   <circle cx="12" cy="12" r="3.2" fill="currentColor" />
@@ -150,6 +333,16 @@ SVG,
             'youtube' => <<<'SVG'
 <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
   <path d="M21.4 7.4c.3 1 .6 2.4.6 4.6s-.2 3.6-.6 4.6c-.2.6-.7 1-1.3 1.2-.9.3-4.5.5-8.1.5s-7.2-.2-8.1-.5c-.6-.2-1.1-.6-1.3-1.2-.3-1-.6-2.4-.6-4.6s.2-3.6.6-4.6c.2-.6.7-1 1.3-1.2.9-.3 4.5-.5 8.1-.5s7.2.2 8.1.5c.6.2 1.1.6 1.3 1.2ZM14.7 12l-4.8-2.8v5.6Z" fill="currentColor" />
+</svg>
+SVG,
+            'threads' => <<<'SVG'
+<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+  <path d="M14.9 10.2c-.2-1.8-1.3-2.7-3.3-2.7-2.2 0-3.7 1.3-4 3.4l2 .3c.2-1.1.8-1.8 2-1.8 1 0 1.5.4 1.6 1.4-3.6.3-5.4 1.6-5.4 4 0 1.8 1.4 3 3.5 3 1.3 0 2.4-.5 3.1-1.5.5.9 1.4 1.4 2.6 1.4 2.2 0 3.8-1.8 3.8-4.5 0-3.7-2.5-6.3-6.4-6.3-4.4 0-7.2 3-7.2 7.4 0 4.6 3 7.6 7.5 7.6 2 0 3.6-.5 5.1-1.5l-.9-1.6c-1.2.8-2.6 1.2-4.1 1.2-3.4 0-5.6-2.2-5.6-5.7 0-3.4 2.1-5.7 5.3-5.7 2.7 0 4.4 1.7 4.4 4.3 0 1.5-.7 2.5-1.8 2.5-.8 0-1.2-.5-1.2-1.4v-2.4Zm-1.9 2.7c0 1.7-.8 2.8-2.2 2.8-.9 0-1.5-.5-1.5-1.3 0-1.1.9-1.8 3.7-2.1v.6Z" fill="currentColor" />
+</svg>
+SVG,
+            'bluesky' => <<<'SVG'
+<svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+  <path d="M12 10.5c1.4-2.2 5.3-6 7.2-7.1 1.3-.8 3-.1 3 1.4 0 3.1-2 8.3-4.5 9.9 2 0 3.9 1.8 4.5 3.7.3 1-.2 2.1-1.3 2.1-2.8 0-5-2.8-6.5-5.3-1.5 2.5-3.7 5.3-6.5 5.3-1.1 0-1.6-1.1-1.3-2.1.6-1.9 2.5-3.7 4.5-3.7C3.8 13.1 1.8 7.9 1.8 4.8c0-1.5 1.7-2.2 3-1.4C6.7 4.5 10.6 8.3 12 10.5Z" fill="currentColor" />
 </svg>
 SVG,
             default => '',
@@ -255,7 +448,7 @@ $breadcrumbs = apes_breadcrumbs_for_page($page, isset($page_key) ? (string) $pag
 
     <section class="page-shell">
       <article class="page-body">
-        <?= $page['body_html'] ?>
+        <?= apes_render_page_body($page['body_html'], $site) ?>
 
         <?php if ($is_search_page): ?>
           <section class="section-shell">

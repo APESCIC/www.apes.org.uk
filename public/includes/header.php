@@ -5,14 +5,11 @@
         <p><a href="mailto:<?= htmlspecialchars(APES_CONTACT_EMAIL, ENT_QUOTES) ?>"><?= htmlspecialchars(APES_CONTACT_EMAIL, ENT_QUOTES) ?></a></p>
         <p><a href="tel:03003020998"><?= htmlspecialchars($site['contact_phone_display'], ENT_QUOTES) ?></a></p>
       </div>
-      <?php if (!empty($site['social_links'])): ?>
+      <?php $headerSocialLinks = apes_social_links_for_placement($site['social_profiles'] ?? [], 'header'); ?>
+      <?php if (!empty($headerSocialLinks)): ?>
         <div class="topbar-social" aria-label="APES social media links">
-          <?php foreach ($site['social_links'] as $socialLink): ?>
-            <?php if (empty($socialLink['icon'])) { continue; } ?>
-            <a class="social-icon-link" href="<?= htmlspecialchars($socialLink['href'], ENT_QUOTES) ?>" target="_blank" rel="noopener noreferrer" aria-label="<?= htmlspecialchars($socialLink['label'], ENT_QUOTES) ?>">
-              <span class="social-icon" aria-hidden="true"><?= apes_social_icon_markup((string) $socialLink['icon']) ?></span>
-              <span class="sr-only"><?= htmlspecialchars($socialLink['label'], ENT_QUOTES) ?></span>
-            </a>
+          <?php foreach ($headerSocialLinks as $socialLink): ?>
+            <?= apes_render_social_icon_link($socialLink) ?>
           <?php endforeach; ?>
         </div>
       <?php endif; ?>
