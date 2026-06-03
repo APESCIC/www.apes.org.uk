@@ -90,6 +90,38 @@ if (!function_exists('apes_current_page')) {
         return '<span>' . $label . '</span>';
     }
 
+    function apes_render_shared_sidebar_cards(array $site): string
+    {
+        ob_start();
+        ?>
+<div class="mini-panel brand-feature-panel">
+  <picture>
+    <source srcset="<?= htmlspecialchars($site['brand']['logo_feature_webp'], ENT_QUOTES) ?>" type="image/webp" />
+    <img src="<?= htmlspecialchars($site['brand']['logo_feature_png'], ENT_QUOTES) ?>" alt="Association of Protecting Exotic Species CIC logo" width="320" height="277" />
+  </picture>
+</div>
+<div class="mini-panel">
+  <p class="eyebrow">Contact APES</p>
+  <ul class="clean-list">
+    <li><a href="mailto:<?= htmlspecialchars(APES_CONTACT_EMAIL, ENT_QUOTES) ?>"><?= htmlspecialchars(APES_CONTACT_EMAIL, ENT_QUOTES) ?></a></li>
+    <li><a href="tel:03003020998"><?= htmlspecialchars($site['contact_phone_display'], ENT_QUOTES) ?></a></li>
+    <li>40 Morris Street, St Helens, WA9 3EN</li>
+  </ul>
+</div>
+<div class="mini-panel">
+  <p class="eyebrow">Connected services</p>
+  <ul class="clean-list">
+    <li><a href="https://www.apesshelter.org.uk/" target="_blank" rel="noopener noreferrer">APES Shelter &amp; Rescue</a></li>
+    <li><a href="https://www.apespetcare.org.uk/" target="_blank" rel="noopener noreferrer">APES Pet Care Clinic</a></li>
+    <li><a href="https://www.apesshop.co.uk/" target="_blank" rel="noopener noreferrer">APES Pet Shop</a></li>
+    <li><a href="https://www.myapes.me.uk/" target="_blank" rel="noopener noreferrer">MyAPES</a></li>
+  </ul>
+</div>
+        <?php
+
+        return (string) ob_get_clean();
+    }
+
     function apes_search_results(array $pages): array
     {
         $query = trim((string) ($_GET['q'] ?? ''));
@@ -419,31 +451,6 @@ $breadcrumbs = apes_breadcrumbs_for_page($page, isset($page_key) ? (string) $pag
           </div>
         <?php endif; ?>
       </div>
-      <aside class="hero-aside">
-        <div class="mini-panel brand-feature-panel">
-          <picture>
-            <source srcset="<?= htmlspecialchars($site['brand']['logo_feature_webp'], ENT_QUOTES) ?>" type="image/webp" />
-            <img src="<?= htmlspecialchars($site['brand']['logo_feature_png'], ENT_QUOTES) ?>" alt="Association of Protecting Exotic Species CIC logo" width="320" height="277" />
-          </picture>
-        </div>
-        <div class="mini-panel">
-          <p class="eyebrow">Contact APES</p>
-          <ul class="clean-list">
-            <li><a href="mailto:<?= htmlspecialchars(APES_CONTACT_EMAIL, ENT_QUOTES) ?>"><?= htmlspecialchars(APES_CONTACT_EMAIL, ENT_QUOTES) ?></a></li>
-            <li><a href="tel:03003020998"><?= htmlspecialchars($site['contact_phone_display'], ENT_QUOTES) ?></a></li>
-            <li>40 Morris Street, St Helens, WA9 3EN</li>
-          </ul>
-        </div>
-        <div class="mini-panel">
-          <p class="eyebrow">Connected services</p>
-          <ul class="clean-list">
-            <li><a href="https://www.apesshelter.org.uk/" target="_blank" rel="noopener noreferrer">APES Shelter &amp; Rescue</a></li>
-            <li><a href="https://www.apespetcare.org.uk/" target="_blank" rel="noopener noreferrer">APES Pet Care Clinic</a></li>
-            <li><a href="https://www.apesshop.co.uk/" target="_blank" rel="noopener noreferrer">APES Pet Shop</a></li>
-            <li><a href="https://www.myapes.me.uk/" target="_blank" rel="noopener noreferrer">MyAPES</a></li>
-          </ul>
-        </div>
-      </aside>
     </section>
 
     <section class="page-shell">
@@ -473,8 +480,11 @@ $breadcrumbs = apes_breadcrumbs_for_page($page, isset($page_key) ? (string) $pag
         <?php endif; ?>
       </article>
 
-      <?php if (!empty($page['related_links'])): ?>
-        <aside class="page-sidebar">
+      <aside class="page-sidebar">
+        <div class="page-sidebar__shared">
+          <?= apes_render_shared_sidebar_cards($site) ?>
+        </div>
+        <?php if (!empty($page['related_links'])): ?>
           <div class="mini-panel">
             <p class="eyebrow">Related links</p>
             <ul class="clean-list">
@@ -491,8 +501,8 @@ $breadcrumbs = apes_breadcrumbs_for_page($page, isset($page_key) ? (string) $pag
                 <a class="button button-secondary" href="https://help.apes.org.uk/" target="_blank" rel="noopener noreferrer">Help Centre</a>
             </div>
           </div>
-        </aside>
-      <?php endif; ?>
+        <?php endif; ?>
+      </aside>
     </section>
   </main>
 
