@@ -1,44 +1,43 @@
-## [v2.1.0b] - 2026-06-03
+## [v2.1.1b] - 2026-06-03
 
-<span class="pill pill-version">Version v2.1.0b</span>
+<span class="pill pill-version">Version v2.1.1b</span>
 <span class="pill pill-status">Beta</span>
 <span class="pill pill-type">Changed</span>
 <span class="pill pill-fix">Fix</span>
-<span class="pill pill-type">Added</span>
 <span class="pill pill-compliance">Compliance</span>
 
 ### Summary
 
-Rebuilt the APES CIC website into a more graphical HTML5-first experience with richer editorial panels, stronger hierarchy, a more compliant footer, clearer public journeys and static HTML snapshots that now serve as the default site output.
+Split the shared APES site shell into reusable header and footer partials, added social icon links in the top bar, tightened menu behaviour and kept the HTML5-first delivery model in sync with the exported static site.
 
 ### Detailed changes
 
-- Introduced a more editorial homepage hero and spotlight band so the public front page feels graphical and easier to scan.
-- Refined the shared HTML5 structure and surface styles to create clearer section hierarchy, stronger cards, better spacing and more intentional call-to-action treatment.
-- Updated the footer into a card-based APES compliance pattern with direct donation, policy and Change Log Hub links plus staff, volunteer and student intranet access.
-- Kept APES Newsroom as the canonical news destination while preserving the existing public routes and legacy bridge pages.
-- Exported the current public routes to static HTML snapshots and switched Apache to prefer `index.html` before `index.php` so HTML5 is now the default delivery path.
-- Bumped the canonical website version and synchronised the release record across the website Change Log Hub and root changelog.
+- Split the site shell into `includes/header.php` and `includes/footer.php` so the shared navigation, footer and social links can be updated once and reused across every page.
+- Added a top-bar social icon strip for APES Social, Discord and YouTube with icon-style SVG marks and accessible labels.
+- Updated the menu script so clicking a nav item closes the menu and cached page restores do not leave the mobile menu open.
+- Kept the Services mega menu centered in the viewport on desktop and constrained it so it stays on screen.
+- Regenerated the static HTML snapshots so the HTML-first delivery path mirrors the new shared partials.
+- Bumped the canonical release record and synchronised the root `VERSION`, website Change Log Hub and repository changelog.
 
 ### Affected areas
 
 - Website: www.apes.org.uk
-- Page or route: shared site-wide header, hero sections, footer, homepage, change-log hub and release metadata
-- Files changed: shared PHP templates, shared site data, CSS, JS, static HTML snapshots, Apache routing, root VERSION and root CHANGELOG
+- Page or route: shared site-wide header, footer, navigation, homepage, change-log hub and release metadata
+- Files changed: shared PHP partials, shared site data, CSS, JS, static HTML snapshots, root VERSION and root CHANGELOG
 - User groups affected: supporters, adopters, service users, volunteers, partners and general public visitors
-- Public impact: clearer navigation, stronger visual hierarchy, improved footer compliance and a more polished first-impression experience
-- Internal impact: canonical versioning now lives in a root VERSION file and release records are synchronised across public and repository changelogs
+- Public impact: clearer navigation, improved header social access, better mobile behaviour and a more polished first-impression experience
+- Internal impact: shared shell components are now easier to update without touching every page
 
 ### Version decision
 
-- Previous version: v2.0.0b
-- New version: v2.1.0b
-- Version type: minor beta
-- Reason for version bump: additional public-facing delivery change to HTML5 static snapshots and HTML-first routing, on top of the shared shell redesign
+- Previous version: v2.1.0b
+- New version: v2.1.1b
+- Version type: patch beta
+- Reason for version bump: structural shared-shell refactor and user-visible navigation polish without a breaking URL or content restructure
 
 ### Validation
 
-- Checks run: local PHP syntax checks, footer-link review, navigation review, homepage layout review, static export generation and release-record alignment review
-- Manual checks completed: APES Newsroom routing, footer required links, intranet link targets, release filter logic, responsive section stacking, static HTML snapshots and version display alignment
-- Known limitations: the PHP renderer remains in the repository as the source of truth for future exports and fallback rendering
-- Rollback notes: remove the generated HTML snapshots, restore the previous Apache DirectoryIndex order and redeploy the prior bundle if needed
+- Checks run: local PHP syntax checks, Node syntax check, static HTML export, generated HTML inspection and browser interaction verification
+- Manual checks completed: top-bar social icon strip, footer links, mobile menu close-on-click, Services mega menu centering and release display alignment
+- Known limitations: the browser test used a local Chrome executable and the site still relies on the PHP renderer as the source of truth for future exports
+- Rollback notes: remove the regenerated snapshots, restore the previous partials and JS if needed, and redeploy the prior bundle

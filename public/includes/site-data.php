@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-const APES_FALLBACK_VERSION = 'v2.1.0b';
+const APES_FALLBACK_VERSION = 'v2.1.1b';
 const APES_SITE_NAME = 'Association of Protecting Exotic Species CIC';
 const APES_CIC_NUMBER = '16253848';
 const APES_CONTACT_EMAIL = 'info@apes.org.uk';
@@ -75,9 +75,9 @@ function apes_site_data(): array
         'newsroom_copy' => $newsroom_copy,
         'social_links' => [
             ['label' => 'APES Newsroom', 'href' => APES_NEWSROOM_URL],
-            ['label' => 'APES Social', 'href' => 'https://social.apes.org.uk/'],
-            ['label' => 'Discord community', 'href' => 'https://discord.gg/'],
-            ['label' => 'YouTube live stream', 'href' => 'https://www.youtube.com/'],
+            ['label' => 'APES Social', 'href' => 'https://social.apes.org.uk/', 'icon' => 'apes-social'],
+            ['label' => 'Discord community', 'href' => 'https://discord.gg/', 'icon' => 'discord'],
+            ['label' => 'YouTube live stream', 'href' => 'https://www.youtube.com/', 'icon' => 'youtube'],
         ],
         'nav' => [
             [
@@ -2081,7 +2081,7 @@ HTML,
                 'hero_summary' => 'Track every major release for this website, including updates, fixes, compliance changes, and user-facing improvements.',
                 'hero_actions' => [
                     ['label' => 'Expand all releases', 'href' => '#release-list', 'variant' => 'primary'],
-                    ['label' => 'View current release', 'href' => '#release-v210b', 'variant' => 'secondary'],
+                    ['label' => 'View current release', 'href' => '#release-v211b', 'variant' => 'secondary'],
                 ],
                 'pills' => ['Current version ' . $siteVersion, 'Minor beta', 'Public-facing'],
                 'body_html' => <<<'HTML'
@@ -2111,53 +2111,52 @@ HTML,
 </section>
 
 <section class="section-shell" id="release-list">
-  <details class="release-card" data-release-card data-tags="current beta added changed fixed compliance accessibility public-facing" open id="release-v210b">
+  <details class="release-card" data-release-card data-tags="current beta changed fixed compliance accessibility public-facing" open id="release-v211b">
     <summary>
-      <span class="release-version">v2.1.0b</span>
+      <span class="release-version">v2.1.1b</span>
       <span class="release-date">2026-06-03</span>
     </summary>
     <div class="release-body">
       <div class="pill-row">
-        <span class="pill pill-version">Version v2.1.0b</span>
+        <span class="pill pill-version">Version v2.1.1b</span>
         <span class="pill pill-status">Beta</span>
         <span class="pill pill-type">Changed</span>
         <span class="pill pill-fix">Fix</span>
-        <span class="pill pill-type">Added</span>
         <span class="pill pill-compliance">Compliance</span>
       </div>
       <h3>Summary</h3>
-      <p>Rebuilt the APES CIC website into a more graphical HTML5-first experience with richer editorial panels, stronger hierarchy, a more compliant footer, clearer public journeys and static HTML snapshots that now serve as the default site output.</p>
+      <p>Split the shared APES site shell into reusable header and footer partials, added social icon links in the top bar, tightened the mobile menu behaviour and centered the desktop mega menus while keeping the HTML5-first delivery model intact.</p>
       <h3>Detailed changes</h3>
       <ul class="clean-list">
-        <li>Introduced a more editorial homepage hero and spotlight band so the public front page feels graphical and easier to scan.</li>
-        <li>Refined the shared HTML5 structure and surface styles to create clearer section hierarchy, stronger cards, better spacing and more intentional call-to-action treatment.</li>
-        <li>Updated the footer into a card-based APES compliance pattern with direct donation, policy and Change Log Hub links plus staff, volunteer and student intranet access.</li>
-        <li>Kept APES Newsroom as the canonical news destination while preserving the existing public routes and legacy bridge pages.</li>
-        <li>Exported the current public routes to static HTML snapshots and switched Apache to prefer `index.html` before `index.php` so HTML5 is now the default delivery path.</li>
+        <li>Split the shared site shell into `includes/header.php` and `includes/footer.php` so the menu, footer and social links can be updated once and flow to every page.</li>
+        <li>Added a top-bar social icon strip for APES Social, Discord and YouTube using icon-style SVG marks and accessible labels.</li>
+        <li>Tightened the JavaScript navigation behaviour so opening a page or clicking a menu item closes the menu, including back-forward cache restores.</li>
+        <li>Kept the Services mega menu centered in the viewport on desktop and constrained it so it does not drift off-screen.</li>
+        <li>Regenerated the static HTML snapshots so the exported site mirrors the new shared partials and menu behaviour.</li>
         <li>Bumped the canonical website version and synchronised the release record across the website Change Log Hub and root changelog.</li>
       </ul>
       <h3>Affected areas</h3>
       <ul class="clean-list">
         <li>Website: www.apes.org.uk</li>
-        <li>Page or route: shared site-wide header, hero sections, footer, homepage, change-log hub and release metadata</li>
-        <li>Files changed: shared PHP templates, shared site data, CSS, JS, root VERSION and root CHANGELOG</li>
+        <li>Page or route: shared site-wide header, footer, navigation, homepage, change-log hub and release metadata</li>
+        <li>Files changed: shared PHP partials, shared site data, CSS, JS, static HTML snapshots, root VERSION and root CHANGELOG</li>
         <li>User groups affected: supporters, adopters, service users, volunteers, partners and general public visitors</li>
-        <li>Public impact: clearer navigation, stronger visual hierarchy, improved footer compliance and a more polished first-impression experience</li>
-        <li>Internal impact: canonical versioning now lives in a root VERSION file and release records are synchronised across public and repository changelogs</li>
+        <li>Public impact: clearer navigation, improved header social access, better mobile behaviour and a more polished first-impression experience</li>
+        <li>Internal impact: shared shell components are now easier to update without touching every page</li>
       </ul>
       <h3>Version decision</h3>
       <ul class="clean-list">
-        <li>Previous version: v2.0.0b</li>
-        <li>New version: v2.1.0b</li>
-        <li>Version type: minor beta</li>
-        <li>Reason for version bump: additional public-facing delivery change to HTML5 static snapshots and HTML-first routing, on top of the shared shell redesign</li>
+        <li>Previous version: v2.1.0b</li>
+        <li>New version: v2.1.1b</li>
+        <li>Version type: patch beta</li>
+        <li>Reason for version bump: structural shared-shell refactor and user-visible navigation polish without a breaking URL or content restructure</li>
       </ul>
       <h3>Validation</h3>
       <ul class="clean-list">
-        <li>Checks run: local PHP syntax checks, footer-link review, navigation review, homepage layout review, static export generation and release-record alignment review</li>
-        <li>Manual checks completed: APES Newsroom routing, footer required links, intranet link targets, release filter logic, responsive section stacking, static HTML snapshots and version display alignment</li>
-        <li>Known limitations: the PHP renderer remains in the repository as the source of truth for future exports and fallback rendering</li>
-        <li>Rollback notes: remove the generated HTML snapshots, restore the previous Apache DirectoryIndex order and redeploy the prior bundle if needed</li>
+        <li>Checks run: local PHP syntax checks, Node syntax check, static HTML export, generated HTML inspection and browser interaction verification</li>
+        <li>Manual checks completed: top-bar social icon strip, footer links, mobile menu close-on-click, Services mega menu centering and release display alignment</li>
+        <li>Known limitations: the browser test used a local Chrome executable and the site still relies on the PHP renderer as the source of truth for future exports</li>
+        <li>Rollback notes: remove the regenerated snapshots, restore the previous partials and JS if needed, and redeploy the prior bundle</li>
       </ul>
     </div>
   </details>

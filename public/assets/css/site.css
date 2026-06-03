@@ -92,13 +92,60 @@ img {
 
 .topbar-inner {
   display: flex;
-  gap: 1.5rem;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem 1.5rem;
   padding: 0.7rem 0;
   flex-wrap: wrap;
 }
 
 .topbar-inner p {
   margin: 0;
+}
+
+.topbar-contact,
+.topbar-social {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.topbar-social {
+  margin-left: auto;
+}
+
+.social-icon-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.6rem;
+  height: 2.6rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  text-decoration: none;
+  transition: transform 0.18s ease, background 0.18s ease, border-color 0.18s ease;
+}
+
+.social-icon-link:hover,
+.social-icon-link:focus-visible {
+  transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.16);
+  border-color: rgba(255, 255, 255, 0.32);
+  color: #fff;
+}
+
+.social-icon {
+  display: inline-flex;
+  width: 1.15rem;
+  height: 1.15rem;
+}
+
+.social-icon svg {
+  width: 100%;
+  height: 100%;
 }
 
 .site-header {
@@ -232,6 +279,7 @@ img {
   top: calc(100% + 0.55rem);
   transform: translateX(-50%);
   min-width: min(52rem, 88vw);
+  max-width: calc(100vw - 2rem);
   padding: 1rem;
   border-radius: var(--radius-large);
   background: rgba(255, 255, 255, 0.98);
@@ -824,6 +872,7 @@ input:focus-visible {
     position: static;
     transform: none;
     min-width: 0;
+    max-width: none;
     margin-top: 0.5rem;
     width: 100%;
   }
@@ -1172,6 +1221,19 @@ body {
   text-underline-offset: 0.16em;
 }
 
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
 @media (max-width: 980px) {
   .spotlight-band {
     grid-template-columns: 1fr;
@@ -1190,5 +1252,19 @@ body {
   .spotlight-grid,
   .footer-grid {
     grid-template-columns: 1fr;
+  }
+}
+
+@media (min-width: 981px) {
+  .mega-menu[open] > .mega-panel {
+    position: fixed;
+    left: 50%;
+    top: var(--mega-panel-top, 7.8rem);
+    transform: translateX(-50%);
+    width: min(52rem, calc(100vw - 2rem));
+    max-width: calc(100vw - 2rem);
+    max-height: calc(100vh - var(--mega-panel-top, 7.8rem) - 1.25rem);
+    overflow: auto;
+    z-index: 120;
   }
 }
