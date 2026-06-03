@@ -801,6 +801,40 @@ website: update footer links and bump to v0.0.0
 website: apply APES column card footer layout
 ```
 
+### Required commit description and summary
+
+At the end of every website task, before committing or opening a pull request, agents must prepare a concise commit description and a clear commit summary that can be copied into GitHub.
+
+The commit description must state what changed, why it changed, the affected website or repository areas, the version or release impact, and any relevant validation, footer, changelog, README, deployment or GitHub Issue notes.
+
+The commit summary must be a short plain-English overview suitable for the final response, pull request body, merge notes or release handover.
+
+Use this structure:
+
+```md
+## Commit description
+
+- Update type:
+- Release status:
+- Version:
+- Website or repository:
+- Areas changed:
+- Reason for change:
+- Changelog, README and version records:
+- Footer, brand and Newsroom checks:
+- Validation completed:
+- GitHub Issue updates:
+- Rollback notes:
+
+## Commit summary
+
+Briefly summarise the completed work, user-visible impact, release/version impact, validation result and any follow-up required.
+```
+
+The final response after completing the work must include both the commit description and the commit summary, even where the work is committed directly without a pull request.
+
+Do not commit with a vague message such as `updates`, `changes`, `fixes` or `website work`. The commit message, commit description and commit summary must make the release impact and completed scope clear.
+
 ---
 
 ## 15. Final self-check before completion
@@ -829,14 +863,16 @@ Before finishing any website task, check:
 20. APES Newsroom routing checked where relevant.
 21. Related GitHub Issue updated at start, meaningful progress and end where applicable.
 22. Root version, footer version, Change Log Hub, root `CHANGELOG.md`, `/public/CHANGELOG.md` and README release details all align.
+23. Commit description prepared.
+24. Commit summary prepared for the final response, pull request body or merge notes.
 
 ---
 
 ## 16. Non-negotiable instruction
 
-Do not treat changelog, version updates, APES brand compliance, APES universal footer compliance, APES Newsroom routing, README updates or related GitHub Issue updates as optional for website work.
+Do not treat changelog, version updates, APES brand compliance, APES universal footer compliance, APES Newsroom routing, README updates, commit descriptions, commit summaries or related GitHub Issue updates as optional for website work.
 
-If website files change, the website Change Log Hub page, root-level `CHANGELOG.md`, `/public/CHANGELOG.md` where `/public/` exists, root-level `README.md`, root canonical version, APES brand and feature standards, APES universal footer standard, APES Newsroom routing where relevant and related GitHub Issue must be checked.
+If website files change, the website Change Log Hub page, root-level `CHANGELOG.md`, `/public/CHANGELOG.md` where `/public/` exists, root-level `README.md`, root canonical version, APES brand and feature standards, APES universal footer standard, APES Newsroom routing where relevant and related GitHub Issue must be checked. A commit description and commit summary must also be prepared before committing or opening a pull request.
 
 Every APES website footer must use the APES column card footer format and include direct or clearly accessible links to the website donation page, Privacy Policy page, Terms of Service page and Change Log Hub.
 
