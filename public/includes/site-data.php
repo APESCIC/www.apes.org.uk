@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-const APES_FALLBACK_VERSION = 'v1.0.0b';
+const APES_FALLBACK_VERSION = 'v2.1.0b';
 const APES_SITE_NAME = 'Association of Protecting Exotic Species CIC';
 const APES_CIC_NUMBER = '16253848';
 const APES_CONTACT_EMAIL = 'info@apes.org.uk';
@@ -167,6 +167,9 @@ function apes_site_data(): array
                     ['label' => 'Privacy Policy', 'href' => '/policies/privacy/'],
                     ['label' => 'Terms of Service', 'href' => '/policies/terms-of-service/'],
                     ['label' => 'Change Log Hub', 'href' => '/change-log-hub/'],
+                    ['label' => 'Staff intranet', 'href' => 'https://intranet.apes.org.uk', 'external' => true, 'nofollow' => true],
+                    ['label' => 'Volunteer intranet', 'href' => 'https://intranet.apes.org.uk', 'external' => true, 'nofollow' => true],
+                    ['label' => 'Student intranet', 'href' => 'https://intranet.apes.org.uk', 'external' => true, 'nofollow' => true],
                 ],
             ],
         ],
@@ -195,16 +198,41 @@ function apes_site_data(): array
                 'description' => 'APES CIC supports exotic animal welfare through rescue, rehabilitation, rehoming, education, pet care and practical public support.',
                 'hero_kicker' => 'APES CIC',
                 'hero_title' => 'Rescue, rehabilitate and rehome with care, clarity and compassion.',
-                'hero_summary' => 'The rebuilt APES CIC website brings together public guidance, support routes, fundraising, policy information and connected services in one consistent home for Cloudron LAMP.',
+                'hero_summary' => 'The refreshed APES CIC website keeps the PHP delivery layer but presents the public site through richer HTML5 sections, clearer journeys and a more editorial APES visual style.',
                 'hero_actions' => [
                     ['label' => 'Donate today', 'href' => '/donate/', 'variant' => 'primary'],
                     ['label' => 'Read APES Newsroom', 'href' => APES_NEWSROOM_URL, 'external' => true, 'variant' => 'secondary'],
                 ],
-                'pills' => ['Major beta release', 'Cloudron-ready rebuild', 'APES Newsroom linked'],
+                'pills' => ['Major beta release', 'HTML5-first structure', 'APES Newsroom linked'],
                 'body_html' => <<<'HTML'
 <section class="alert-band">
-  <p><strong>Urgent operational update:</strong> APES has been sharing relocation and continuity updates through APES Newsroom and the Help Us Move appeal. Supporters can help through donations, fundraising and practical sponsorship.</p>
+  <p><strong>Urgent operational update:</strong> APES continues to share relocation and continuity updates through APES Newsroom and the Help Us Move appeal. Supporters can help through donations, fundraising and practical sponsorship.</p>
   <p><a class="text-link" href="/help-us-move/">Read the relocation appeal</a></p>
+</section>
+
+<section class="spotlight-band">
+  <div class="spotlight-copy">
+    <p class="eyebrow">HTML5-first rebuild</p>
+    <h2>A calmer, more visual home for rescue, care and support.</h2>
+    <p>The refreshed APES CIC front page keeps the PHP delivery layer but gives the public site a richer HTML5 structure, stronger editorial hierarchy and clearer routes to help, donate and read updates.</p>
+  </div>
+  <div class="spotlight-grid">
+    <article class="spotlight-card">
+      <span class="spotlight-kicker">News</span>
+      <h3>APES Newsroom</h3>
+      <p>All organisation updates and service notices now live in the central newsroom.</p>
+    </article>
+    <article class="spotlight-card">
+      <span class="spotlight-kicker">Support</span>
+      <h3>Donate or get help</h3>
+      <p>Donation, contact and relocation routes remain visible in every major journey.</p>
+    </article>
+    <article class="spotlight-card">
+      <span class="spotlight-kicker">Design</span>
+      <h3>Editorial and accessible</h3>
+      <p>Rounded cards, clearer spacing and stronger focus states guide the interface.</p>
+    </article>
+  </div>
 </section>
 
 <section class="section-shell">
@@ -2053,7 +2081,7 @@ HTML,
                 'hero_summary' => 'Track every major release for this website, including updates, fixes, compliance changes, and user-facing improvements.',
                 'hero_actions' => [
                     ['label' => 'Expand all releases', 'href' => '#release-list', 'variant' => 'primary'],
-                    ['label' => 'View current release', 'href' => '#release-v110b', 'variant' => 'secondary'],
+                    ['label' => 'View current release', 'href' => '#release-v210b', 'variant' => 'secondary'],
                 ],
                 'pills' => ['Current version ' . $siteVersion, 'Minor beta', 'Public-facing'],
                 'body_html' => <<<'HTML'
@@ -2065,11 +2093,15 @@ HTML,
       <button class="chip-button is-active" type="button" data-release-filter="all">All releases</button>
       <button class="chip-button" type="button" data-release-filter="current">Current release</button>
       <button class="chip-button" type="button" data-release-filter="beta">Beta</button>
+      <button class="chip-button" type="button" data-release-filter="added">Added</button>
       <button class="chip-button" type="button" data-release-filter="changed">Changed</button>
       <button class="chip-button" type="button" data-release-filter="fixed">Fixed</button>
+      <button class="chip-button" type="button" data-release-filter="removed">Removed</button>
+      <button class="chip-button" type="button" data-release-filter="security">Security</button>
       <button class="chip-button" type="button" data-release-filter="compliance">Compliance</button>
       <button class="chip-button" type="button" data-release-filter="accessibility">Accessibility</button>
       <button class="chip-button" type="button" data-release-filter="public-facing">Public-facing</button>
+      <button class="chip-button" type="button" data-release-filter="internal-only">Internal-only</button>
     </div>
     <div class="action-row">
       <button class="button button-secondary" type="button" data-expand-all>Expand all</button>
@@ -2079,51 +2111,53 @@ HTML,
 </section>
 
 <section class="section-shell" id="release-list">
-  <details class="release-card" data-release-card data-tags="current beta changed fixed compliance accessibility public-facing" open id="release-v110b">
+  <details class="release-card" data-release-card data-tags="current beta added changed fixed compliance accessibility public-facing" open id="release-v210b">
     <summary>
-      <span class="release-version">v1.1.0b</span>
+      <span class="release-version">v2.1.0b</span>
       <span class="release-date">2026-06-03</span>
     </summary>
     <div class="release-body">
       <div class="pill-row">
-        <span class="pill pill-version">Version v1.1.0b</span>
+        <span class="pill pill-version">Version v2.1.0b</span>
         <span class="pill pill-status">Beta</span>
         <span class="pill pill-type">Changed</span>
         <span class="pill pill-fix">Fix</span>
+        <span class="pill pill-type">Added</span>
         <span class="pill pill-compliance">Compliance</span>
       </div>
       <h3>Summary</h3>
-      <p>Updated the APES CIC website to use the approved logo pack, shelter-style footer, wider 90%-screen layout, descriptive mega menus, and a sponsor page that recognises software and service support.</p>
+      <p>Rebuilt the APES CIC website into a more graphical HTML5-first experience with richer editorial panels, stronger hierarchy, a more compliant footer, clearer public journeys and static HTML snapshots that now serve as the default site output.</p>
       <h3>Detailed changes</h3>
       <ul class="clean-list">
-        <li>Replaced the text-only brand mark with the approved APES logo pack, including favicon, manifest and social-sharing assets.</li>
-        <li>Expanded the shared desktop layout to approximately 90% of the viewport width while preserving comfortable padding and responsive mobile collapse rules.</li>
-        <li>Reworked the global navigation into descriptive mega menus for Services, Support APES and Information, while keeping APES Newsroom as the primary news destination.</li>
-        <li>Redesigned the footer to follow the APES Shelter full-footer pattern with four columns, direct governance links, a visible Change Log Hub reference and a partnership strip.</li>
-        <li>Upgraded the Sponsors page to feature Zoho, Shopify, Akamai and cPanel with logos, descriptions, external links and plain-English summaries of how they help APES.</li>
+        <li>Introduced a more editorial homepage hero and spotlight band so the public front page feels graphical and easier to scan.</li>
+        <li>Refined the shared HTML5 structure and surface styles to create clearer section hierarchy, stronger cards, better spacing and more intentional call-to-action treatment.</li>
+        <li>Updated the footer into a card-based APES compliance pattern with direct donation, policy and Change Log Hub links plus staff, volunteer and student intranet access.</li>
+        <li>Kept APES Newsroom as the canonical news destination while preserving the existing public routes and legacy bridge pages.</li>
+        <li>Exported the current public routes to static HTML snapshots and switched Apache to prefer `index.html` before `index.php` so HTML5 is now the default delivery path.</li>
+        <li>Bumped the canonical website version and synchronised the release record across the website Change Log Hub and root changelog.</li>
       </ul>
       <h3>Affected areas</h3>
       <ul class="clean-list">
         <li>Website: www.apes.org.uk</li>
-        <li>Page or route: shared site-wide header, footer, sponsors page, change-log page and release metadata</li>
-        <li>Files changed: shared PHP templates, shared site data, CSS, JS, root VERSION, root CHANGELOG, favicons and sponsor or partner logo assets</li>
+        <li>Page or route: shared site-wide header, hero sections, footer, homepage, change-log hub and release metadata</li>
+        <li>Files changed: shared PHP templates, shared site data, CSS, JS, root VERSION and root CHANGELOG</li>
         <li>User groups affected: supporters, adopters, service users, volunteers, partners and general public visitors</li>
-        <li>Public impact: clearer navigation, stronger branding, improved sponsor visibility, and a more connected footer and partnership presentation</li>
+        <li>Public impact: clearer navigation, stronger visual hierarchy, improved footer compliance and a more polished first-impression experience</li>
         <li>Internal impact: canonical versioning now lives in a root VERSION file and release records are synchronised across public and repository changelogs</li>
       </ul>
       <h3>Version decision</h3>
       <ul class="clean-list">
-        <li>Previous version: v1.0.0b</li>
-        <li>New version: v1.1.0b</li>
+        <li>Previous version: v2.0.0b</li>
+        <li>New version: v2.1.0b</li>
         <li>Version type: minor beta</li>
-        <li>Reason for version bump: public-facing feature additions across branding, layout, footer, sponsor content and navigation</li>
+        <li>Reason for version bump: additional public-facing delivery change to HTML5 static snapshots and HTML-first routing, on top of the shared shell redesign</li>
       </ul>
       <h3>Validation</h3>
       <ul class="clean-list">
-        <li>Checks run: local PHP syntax checks, footer-link review, navigation review, sponsor-route review, and manual brand and layout checks</li>
-        <li>Manual checks completed: header logo usage, mega-menu descriptions, footer required links, partnership strip, sponsor page content, APES Newsroom routing and version display alignment</li>
-        <li>Known limitations: sponsor descriptions are based on the supplied logo set and may need later editorial expansion if APES wants fuller recognition copy</li>
-        <li>Rollback notes: redeploy previous public bundle or restore prior Cloudron backup before cutover</li>
+        <li>Checks run: local PHP syntax checks, footer-link review, navigation review, homepage layout review, static export generation and release-record alignment review</li>
+        <li>Manual checks completed: APES Newsroom routing, footer required links, intranet link targets, release filter logic, responsive section stacking, static HTML snapshots and version display alignment</li>
+        <li>Known limitations: the PHP renderer remains in the repository as the source of truth for future exports and fallback rendering</li>
+        <li>Rollback notes: remove the generated HTML snapshots, restore the previous Apache DirectoryIndex order and redeploy the prior bundle if needed</li>
       </ul>
     </div>
   </details>

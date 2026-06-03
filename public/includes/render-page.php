@@ -3,94 +3,115 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/site-data.php';
 
-function apes_current_page(): array
-{
-    global $page_key;
+if (!function_exists('apes_current_page')) {
+    function apes_current_page(): array
+    {
+        global $page_key;
 
-    $site = apes_site_data();
-    $page = $site['pages'][$page_key] ?? null;
+        $site = apes_site_data();
+        $page = $site['pages'][$page_key] ?? null;
 
-    if ($page === null) {
-        http_response_code(404);
-        $page = [
-            'route' => '/404/',
-            'meta_title' => 'Page not found | APES CIC',
-            'title' => 'Page not found',
-            'description' => 'The page you tried to reach could not be found.',
-            'hero_kicker' => '404',
-            'hero_title' => 'The page you requested could not be found.',
-            'hero_summary' => 'Please use the main navigation, site search or contact route to continue.',
-            'hero_actions' => [
-                ['label' => 'Go to homepage', 'href' => '/', 'variant' => 'primary'],
-                ['label' => 'Search the site', 'href' => '/search/', 'variant' => 'secondary'],
-            ],
-            'pills' => ['Not found'],
-            'body_html' => '<section class="section-shell"><p>The requested page may have moved as part of the rebuild. Legacy routes are being preserved or redirected intentionally where possible.</p></section>',
-            'related_links' => [
-                ['label' => 'Homepage', 'href' => '/'],
-                ['label' => 'Contact APES', 'href' => '/contact/'],
-            ],
-        ];
-    }
-
-    return [$site, $page];
-}
-
-function apes_asset(string $path): string
-{
-    return '/assets/' . ltrim($path, '/');
-}
-
-function apes_page_url(array $page): string
-{
-    return rtrim(APES_PRIMARY_DOMAIN, '/') . $page['route'];
-}
-
-function apes_render_link(array $link, string $class = 'text-link'): string
-{
-    $href = htmlspecialchars($link['href'], ENT_QUOTES);
-    $label = htmlspecialchars($link['label'], ENT_QUOTES);
-    $target = !empty($link['external']) ? ' target="_blank" rel="noreferrer"' : '';
-
-    return '<a class="' . $class . '" href="' . $href . '"' . $target . '>' . $label . '</a>';
-}
-
-function apes_search_results(array $pages): array
-{
-    $query = trim((string) ($_GET['q'] ?? ''));
-
-    if ($query === '') {
-        return [$query, []];
-    }
-
-    $needle = mb_strtolower($query);
-    $results = [];
-
-    foreach ($pages as $key => $page) {
-        $haystack = mb_strtolower(
-            $page['title'] . ' ' .
-            $page['description'] . ' ' .
-            $page['route'] . ' ' .
-            strip_tags($page['body_html'])
-        );
-
-        if (str_contains($haystack, $needle)) {
-            $results[$key] = $page;
+        if ($page === null) {
+            http_response_code(404);
+            $page = [
+                'route' => '/404/',
+                'meta_title' => 'Page not found | APES CIC',
+                'title' => 'Page not found',
+                'description' => 'The page you tried to reach could not be found.',
+                'hero_kicker' => '404',
+                'hero_title' => 'The page you requested could not be found.',
+                'hero_summary' => 'Please use the main navigation, site search or contact route to continue.',
+                'hero_actions' => [
+                    ['label' => 'Go to homepage', 'href' => '/', 'variant' => 'primary'],
+                    ['label' => 'Search the site', 'href' => '/search/', 'variant' => 'secondary'],
+                ],
+                'pills' => ['Not found'],
+                'body_html' => '<section class="section-shell"><p>The requested page may have moved as part of the rebuild. Legacy routes are being preserved or redirected intentionally where possible.</p></section>',
+                'related_links' => [
+                    ['label' => 'Homepage', 'href' => '/'],
+                    ['label' => 'Contact APES', 'href' => '/contact/'],
+                ],
+            ];
         }
+
+        return [$site, $page];
     }
 
-    return [$query, $results];
-}
+    function apes_asset(string $path): string
+    {
+        return '/assets/' . ltrim($path, '/');
+    }
 
-function apes_primary_nav_group(string $pageKey): string
-{
-    return match ($pageKey) {
-        'about-us', 'news', 'change-log-hub', 'search' => 'information',
-        'sponsors', 'volunteer', 'donate', 'enterprise-mailing-list', 'help-us-move' => 'support',
-        'contact' => 'contact',
-        'home' => 'home',
-        default => 'services',
-    };
+    function apes_page_url(array $page): string
+    {
+        return rtrim(APES_PRIMARY_DOMAIN, '/') . $page['route'];
+    }
+
+    function apes_render_link(array $link, string $class = 'text-link'): string
+    {
+        $href = htmlspecialchars($link['href'], ENT_QUOTES);
+        $label = htmlspecialchars($link['label'], ENT_QUOTES);
+        $attributes = [];
+
+        if (!empty($link['external'])) {
+            $attributes[] = 'target="_blank"';
+            $relParts = ['noopener', 'noreferrer'];
+
+            if (!empty($link['nofollow'])) {
+                $relParts[] = 'nofollow';
+            }
+
+            $attributes[] = 'rel="' . implode(' ', array_unique($relParts)) . '"';
+        }
+
+        if (!empty($link['target']) && empty($link['external'])) {
+            $attributes[] = 'target="' . htmlspecialchars((string) $link['target'], ENT_QUOTES) . '"';
+        }
+
+        if (!empty($link['rel'])) {
+            $attributes[] = 'rel="' . htmlspecialchars((string) $link['rel'], ENT_QUOTES) . '"';
+        }
+
+        return '<a class="' . $class . '" href="' . $href . '"' . (empty($attributes) ? '' : ' ' . implode(' ', $attributes)) . '>' . $label . '</a>';
+    }
+
+    function apes_search_results(array $pages): array
+    {
+        $query = trim((string) ($_GET['q'] ?? ''));
+
+        if ($query === '') {
+            return [$query, []];
+        }
+
+        $needle = mb_strtolower($query);
+        $results = [];
+
+        foreach ($pages as $key => $page) {
+            $haystack = mb_strtolower(
+                $page['title'] . ' ' .
+                $page['description'] . ' ' .
+                $page['route'] . ' ' .
+                strip_tags($page['body_html'])
+            );
+
+            if (str_contains($haystack, $needle)) {
+                $results[$key] = $page;
+            }
+        }
+
+        return [$query, $results];
+    }
+
+    function apes_primary_nav_group(string $pageKey): string
+    {
+        return match ($pageKey) {
+            'about-us', 'news', 'change-log-hub', 'search' => 'information',
+            'sponsors', 'volunteer', 'donate', 'enterprise-mailing-list', 'help-us-move' => 'support',
+            'contact' => 'contact',
+            'home' => 'home',
+            default => 'services',
+        };
+    }
 }
 
 [$site, $page] = apes_current_page();
@@ -171,7 +192,7 @@ $absolute_twitter_image = rtrim(APES_PRIMARY_DOMAIN, '/') . $site['brand']['twit
                     <ul class="mega-links">
                       <?php foreach ($item['children'] as $child): ?>
                         <li>
-                          <a class="mega-link" href="<?= htmlspecialchars($child['href'], ENT_QUOTES) ?>"<?php if (!empty($child['external'])): ?> target="_blank" rel="noreferrer"<?php endif; ?>>
+                           <a class="mega-link" href="<?= htmlspecialchars($child['href'], ENT_QUOTES) ?>"<?php if (!empty($child['external'])): ?> target="_blank" rel="noopener noreferrer"<?php endif; ?>>
                             <span class="mega-link-title"><?= htmlspecialchars($child['label'], ENT_QUOTES) ?></span>
                             <span class="mega-link-description"><?= htmlspecialchars($child['description'] ?? '', ENT_QUOTES) ?></span>
                           </a>
@@ -190,7 +211,7 @@ $absolute_twitter_image = rtrim(APES_PRIMARY_DOMAIN, '/') . $site['brand']['twit
     </div>
   </header>
 
-  <main id="main-content">
+  <main id="main-content" class="site-main">
     <section class="hero-shell">
       <div class="hero-panel">
         <p class="eyebrow"><?= htmlspecialchars($page['hero_kicker'], ENT_QUOTES) ?></p>
@@ -230,10 +251,10 @@ $absolute_twitter_image = rtrim(APES_PRIMARY_DOMAIN, '/') . $site['brand']['twit
         <div class="mini-panel">
           <p class="eyebrow">Connected services</p>
           <ul class="clean-list">
-            <li><a href="https://www.apesshelter.org.uk/" target="_blank" rel="noreferrer">APES Shelter &amp; Rescue</a></li>
-            <li><a href="https://www.apespetcare.org.uk/" target="_blank" rel="noreferrer">APES Pet Care Clinic</a></li>
-            <li><a href="https://www.apesshop.co.uk/" target="_blank" rel="noreferrer">APES Pet Shop</a></li>
-            <li><a href="https://www.myapes.me.uk/" target="_blank" rel="noreferrer">MyAPES</a></li>
+            <li><a href="https://www.apesshelter.org.uk/" target="_blank" rel="noopener noreferrer">APES Shelter &amp; Rescue</a></li>
+            <li><a href="https://www.apespetcare.org.uk/" target="_blank" rel="noopener noreferrer">APES Pet Care Clinic</a></li>
+            <li><a href="https://www.apesshop.co.uk/" target="_blank" rel="noopener noreferrer">APES Pet Shop</a></li>
+            <li><a href="https://www.myapes.me.uk/" target="_blank" rel="noopener noreferrer">MyAPES</a></li>
           </ul>
         </div>
       </aside>
@@ -280,8 +301,8 @@ $absolute_twitter_image = rtrim(APES_PRIMARY_DOMAIN, '/') . $site['brand']['twit
             <p class="eyebrow">Need help?</p>
             <p>Use the APES contact centre or Help Centre if you are unsure which route fits your situation best.</p>
             <div class="action-stack">
-              <a class="button button-secondary" href="https://contact.apes.org.uk/" target="_blank" rel="noreferrer">Contact centre</a>
-              <a class="button button-secondary" href="https://help.apes.org.uk/" target="_blank" rel="noreferrer">Help Centre</a>
+                <a class="button button-secondary" href="https://contact.apes.org.uk/" target="_blank" rel="noopener noreferrer">Contact centre</a>
+                <a class="button button-secondary" href="https://help.apes.org.uk/" target="_blank" rel="noopener noreferrer">Help Centre</a>
             </div>
           </div>
         </aside>
@@ -290,38 +311,42 @@ $absolute_twitter_image = rtrim(APES_PRIMARY_DOMAIN, '/') . $site['brand']['twit
   </main>
 
   <footer class="site-footer">
-    <div class="footer-grid">
-      <?php foreach ($site['footer_columns'] as $column): ?>
-        <section>
-          <h2><?= htmlspecialchars($column['title'], ENT_QUOTES) ?></h2>
-          <ul class="clean-list">
-            <?php foreach ($column['items'] as $item): ?>
-              <li><?= apes_render_link($item) ?></li>
-            <?php endforeach; ?>
-          </ul>
-        </section>
-      <?php endforeach; ?>
-    </div>
-    <div class="footer-partners">
-      <span class="footer-partners-label">Working in partnership with:</span>
-      <div class="footer-partner-list">
-        <?php foreach ($site['footer_partners'] as $partner): ?>
-          <a class="partner-chip" href="<?= htmlspecialchars($partner['href'], ENT_QUOTES) ?>" target="_blank" rel="noreferrer">
-            <img src="<?= htmlspecialchars($partner['logo'], ENT_QUOTES) ?>" alt="<?= htmlspecialchars($partner['logo_alt'], ENT_QUOTES) ?>" />
-            <span><?= htmlspecialchars($partner['label'], ENT_QUOTES) ?></span>
-          </a>
+    <div class="footer-shell">
+      <div class="footer-grid">
+        <?php foreach ($site['footer_columns'] as $column): ?>
+          <section class="footer-card">
+            <h2><?= htmlspecialchars($column['title'], ENT_QUOTES) ?></h2>
+            <ul class="clean-list">
+              <?php foreach ($column['items'] as $item): ?>
+                <li><?= apes_render_link($item) ?></li>
+              <?php endforeach; ?>
+            </ul>
+          </section>
         <?php endforeach; ?>
       </div>
-    </div>
-    <div class="footer-meta">
-      <p>Part of <?= htmlspecialchars(APES_SITE_NAME, ENT_QUOTES) ?>.</p>
-      <p class="footer-required-links">
-        <?php foreach ($site['footer_required_links'] as $index => $link): ?>
-          <?= apes_render_link($link, 'footer-inline-link') ?><?= $index < count($site['footer_required_links']) - 1 ? '<span aria-hidden="true"> · </span>' : '' ?>
-        <?php endforeach; ?>
-      </p>
-      <p>Website version: <a href="/change-log-hub/">APES CIC <?= htmlspecialchars($site['version'], ENT_QUOTES) ?></a> · Change Log Hub</p>
-      <p>&copy; <?= htmlspecialchars((string) $site['year'], ENT_QUOTES) ?> <?= htmlspecialchars(APES_SITE_NAME, ENT_QUOTES) ?> · CIC No: <?= htmlspecialchars(APES_CIC_NUMBER, ENT_QUOTES) ?> · APES CIC website · <?= htmlspecialchars($site['version'], ENT_QUOTES) ?></p>
+      <div class="footer-partners">
+        <span class="footer-partners-label">Working in partnership with:</span>
+        <div class="footer-partner-list">
+          <?php foreach ($site['footer_partners'] as $partner): ?>
+            <a class="partner-chip" href="<?= htmlspecialchars($partner['href'], ENT_QUOTES) ?>" target="_blank" rel="noopener noreferrer">
+              <img src="<?= htmlspecialchars($partner['logo'], ENT_QUOTES) ?>" alt="<?= htmlspecialchars($partner['logo_alt'], ENT_QUOTES) ?>" />
+              <span><?= htmlspecialchars($partner['label'], ENT_QUOTES) ?></span>
+            </a>
+          <?php endforeach; ?>
+        </div>
+      </div>
+      <div class="footer-bar">
+        <div class="footer-bar__identity">
+          <p>Part of <?= htmlspecialchars(APES_SITE_NAME, ENT_QUOTES) ?>.</p>
+          <p>&copy; <?= htmlspecialchars((string) $site['year'], ENT_QUOTES) ?> <?= htmlspecialchars(APES_SITE_NAME, ENT_QUOTES) ?> &middot; CIC No: <?= htmlspecialchars(APES_CIC_NUMBER, ENT_QUOTES) ?></p>
+        </div>
+        <p class="footer-bar__links">
+          <?php foreach ($site['footer_required_links'] as $index => $link): ?>
+            <?= apes_render_link($link, 'footer-inline-link') ?><?= $index < count($site['footer_required_links']) - 1 ? '<span aria-hidden="true"> &middot; </span>' : '' ?>
+          <?php endforeach; ?>
+        </p>
+        <p class="footer-bar__version">Website version: <?= apes_render_link(['label' => 'APES CIC ' . $site['version'], 'href' => '/change-log-hub/'], 'footer-inline-link') ?> &middot; Change Log Hub</p>
+      </div>
     </div>
   </footer>
 
