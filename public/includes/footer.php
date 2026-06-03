@@ -9,7 +9,7 @@
               <?php if (($item['type'] ?? 'link') === 'subheading'): ?>
                 <li class="footer-item footer-item-subheading"><span class="footer-subheading"><?= htmlspecialchars($item['label'], ENT_QUOTES) ?></span></li>
               <?php else: ?>
-                <?php $linkClass = ($item['variant'] ?? '') === 'tile' ? 'text-link footer-link-tile' : 'text-link'; ?>
+                <?php $linkClass = 'text-link footer-link-tile'; ?>
                 <li class="footer-item"><?= apes_render_link($item, $linkClass) ?></li>
               <?php endif; ?>
             <?php endforeach; ?>
@@ -55,6 +55,35 @@
     </div>
   </div>
 </footer>
+
+<?php $developmentNotice = $site['development_notice'] ?? null; ?>
+<?php if (!empty($developmentNotice['enabled'])): ?>
+  <div class="development-popup" data-development-popup data-session-key="<?= htmlspecialchars((string) $developmentNotice['session_key'], ENT_QUOTES) ?>" hidden>
+    <div class="development-popup__backdrop" data-development-popup-close tabindex="-1"></div>
+    <div
+      class="development-popup__dialog"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="development-popup-title"
+      aria-describedby="development-popup-message"
+      tabindex="-1"
+      data-development-popup-dialog
+    >
+      <button class="development-popup__close" type="button" aria-label="Close development notice" data-development-popup-close>&times;</button>
+      <p class="development-popup__eyebrow">Website update</p>
+      <h2 id="development-popup-title">Some parts of this website are still being built.</h2>
+      <p id="development-popup-message"><?= htmlspecialchars((string) $developmentNotice['popup_message'], ENT_QUOTES) ?></p>
+      <div class="development-popup__actions">
+        <a
+          class="button button-primary"
+          href="<?= htmlspecialchars((string) $developmentNotice['fallback_href'], ENT_QUOTES) ?>"
+          data-live-chat-open
+        ><?= htmlspecialchars((string) $developmentNotice['live_chat_label'], ENT_QUOTES) ?></a>
+        <button class="button button-secondary" type="button" data-development-popup-close>Continue to website</button>
+      </div>
+    </div>
+  </div>
+<?php endif; ?>
 
 <div id="fb-root"></div>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v15.0&appId=670420541399530&autoLogAppEvents=1"></script>

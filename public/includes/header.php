@@ -15,6 +15,19 @@
       <?php endif; ?>
     </div>
   </div>
+  <?php $developmentNotice = $site['development_notice'] ?? null; ?>
+  <?php if (!empty($developmentNotice['enabled'])): ?>
+    <div class="development-notice" aria-label="Website development notice">
+      <div class="development-notice__inner">
+        <p class="development-notice__message"><?= htmlspecialchars((string) $developmentNotice['header_message'], ENT_QUOTES) ?></p>
+        <a
+          class="button button-secondary development-notice__action"
+          href="<?= htmlspecialchars((string) $developmentNotice['fallback_href'], ENT_QUOTES) ?>"
+          data-live-chat-open
+        ><?= htmlspecialchars((string) $developmentNotice['live_chat_label'], ENT_QUOTES) ?></a>
+      </div>
+    </div>
+  <?php endif; ?>
   <div class="nav-shell">
     <div class="brand-block">
       <a class="brand-mark" href="/">

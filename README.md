@@ -1,9 +1,9 @@
 ## Current release
 
-- Version: `v2.6.4`
-- Release date: `2026-06-03`
-- Release impact: centred the shared sidebar logo card through the main stylesheet so the APES feature logo sits consistently across public routes without changing the shared sidebar markup, footer structure or route layout.
-- Operational note: shared PHP and CSS files remain the source of truth; regenerate the static HTML snapshots in `/public/` after shared renderer, shared stylesheet or release-record changes.
+- Version: `v2.7.0`
+- Release date: `2026-06-04`
+- Release impact: added a site-wide development notice popup and persistent header message, rebalanced the shared APES footer columns, and converted all footer-card links to tile-style actions while keeping required legal, donation, Newsroom and intranet routes intact.
+- Operational note: shared PHP, CSS and JS files remain the source of truth; regenerate the static HTML snapshots in `/public/` after shared renderer, shared asset or release-record changes.
 
 <p align="center">
   <a href="https://www.apes.org.uk/" target="_blank" rel="noopener noreferrer">

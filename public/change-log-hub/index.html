@@ -65,7 +65,17 @@
 </svg></span><span class="sr-only">APES on Bluesky</span></a>                  </div>
           </div>
   </div>
-  <div class="nav-shell">
+        <div class="development-notice" aria-label="Website development notice">
+      <div class="development-notice__inner">
+        <p class="development-notice__message">Some links and features are still in development. Need help now? Use live chat for fast help.</p>
+        <a
+          class="button button-secondary development-notice__action"
+          href="/contact/"
+          data-live-chat-open
+        >Open live chat</a>
+      </div>
+    </div>
+    <div class="nav-shell">
     <div class="brand-block">
       <a class="brand-mark" href="/">
         <picture class="brand-logo-wrap">
@@ -479,12 +489,12 @@
         <h1>Change Log Hub</h1>
         <p class="hero-summary">Track every major release for this website, including updates, fixes, compliance changes, and user-facing improvements.</p>
                   <div class="pill-row">
-                          <span class="pill">Current version v2.6.4</span>
-                          <span class="pill">Patch stable</span>
+                          <span class="pill">Current version v2.7.0</span>
+                          <span class="pill">Minor stable</span>
                           <span class="pill">Public-facing</span>
                       </div>
                           <div class="action-row">
-                                        <a class="button button-primary" href="#release-list">Expand all releases</a>                                        <a class="button button-secondary" href="#release-v264">View current release</a>                      </div>
+                                        <a class="button button-primary" href="#release-list">Expand all releases</a>                                        <a class="button button-secondary" href="#release-v270">View current release</a>                      </div>
               </div>
           </section>
 
@@ -516,7 +526,55 @@
 </section>
 
 <section class="section-shell" id="release-list">
-  <details class="release-card" data-release-card data-tags="current stable changed fixed public-facing" open id="release-v264">
+  <details class="release-card" data-release-card data-tags="current stable added changed fixed compliance accessibility public-facing" open id="release-v270">
+    <summary>
+      <span class="release-version">v2.7.0</span>
+      <span class="release-date">2026-06-04</span>
+    </summary>
+    <div class="release-body">
+      <div class="pill-row">
+        <span class="pill pill-version">Version v2.7.0</span>
+        <span class="pill pill-status">Stable</span>
+        <span class="pill pill-type">Added</span>
+        <span class="pill pill-type">Changed</span>
+        <span class="pill pill-fix">Fix</span>
+        <span class="pill pill-compliance">Compliance</span>
+      </div>
+      <h3>Summary</h3>
+      <p>Added a site-wide development notice popup and persistent header message, then rebalanced the shared APES footer so every footer-card link now renders as a clearer tile-style action.</p>
+      <h3>Detailed changes</h3>
+      <ul class="clean-list">
+        <li>Added a persistent development notice band near the top of the shared header and a first-open popup that explains some links and features are still in development while directing visitors to live chat for fast help.</li>
+        <li>Wired the notice actions into the existing Chatwoot widget with a safe contact-page fallback, session-based dismissal, keyboard-accessible dialog behaviour and focus return on close.</li>
+        <li>Redistributed the four APES footer cards into more balanced groups and made every footer-card link render as a visible tile without removing the required donation, Privacy Policy, Terms of Service, Change Log Hub or intranet routes.</li>
+        <li>Preserved APES Newsroom routing, APES CIC identity and footer compliance rules, then synchronised the canonical version plus release records to v2.7.0 before regenerating the static HTML snapshots.</li>
+      </ul>
+      <h3>Affected areas</h3>
+      <ul class="clean-list">
+        <li>Website: www.apes.org.uk</li>
+        <li>Page or route: shared header, shared footer, shared site data, shared CSS, shared JS, Change Log Hub, footer version display, root and public release records, and regenerated static HTML snapshots</li>
+        <li>Files changed: shared PHP rendering, shared site data, shared CSS, shared JS, VERSION, public VERSION, root CHANGELOG, public CHANGELOG, README and regenerated static HTML snapshots</li>
+        <li>User groups affected: supporters, donors, volunteers, staff, partners and general public visitors</li>
+        <li>Public impact: visitors now see a clear development notice, get a direct route into live chat, and can use a more balanced, button-led footer across the public site</li>
+        <li>Internal impact: the shared shell now holds the development-notice copy and behaviour in one place, and the footer grouping is easier to maintain without route-level edits</li>
+      </ul>
+      <h3>Version decision</h3>
+      <ul class="clean-list">
+        <li>Previous version: v2.6.4</li>
+        <li>New version: v2.7.0</li>
+        <li>Version type: minor stable</li>
+        <li>Reason for version bump: site-wide public messaging and shared-shell footer behaviour additions without a breaking route restructure</li>
+      </ul>
+      <h3>Validation</h3>
+      <ul class="clean-list">
+        <li>Checks run: local PHP syntax checks, shared CSS and JS review, static HTML export and generated HTML inspection</li>
+        <li>Manual checks completed: header notice review, popup/session behaviour review, footer required link and intranet attribute review, footer version alignment review, APES Newsroom route review and changelog/version synchronisation review</li>
+        <li>Known limitations: deployed FTP validation and live browser confirmation still require a post-push check outside this repo-only implementation pass</li>
+        <li>Rollback notes: restore the previous shared PHP, site data, CSS, JS, version files and release records, then re-export the static HTML snapshots if the notice or footer rollout needs to be reversed</li>
+      </ul>
+    </div>
+  </details>
+  <details class="release-card" data-release-card data-tags="stable changed fixed public-facing" id="release-v264">
     <summary>
       <span class="release-version">v2.6.4</span>
       <span class="release-date">2026-06-03</span>
@@ -1176,53 +1234,50 @@
   <div class="footer-shell">
     <div class="footer-grid">
               <section class="footer-card">
-          <h2>About APES</h2>
+          <h2>About APES &amp; visitor info</h2>
           <ul class="clean-list">
-                                                          <li class="footer-item"><a class="text-link" href="/about-us/">Association of Protecting Exotic Species CIC</a></li>
-                                                                        <li class="footer-item"><a class="text-link" href="/mission/our-main-mission-statement/">Mission statement and public benefit</a></li>
-                                                                        <li class="footer-item"><a class="text-link" href="/mission/support-ethical-rehabilitation/">Ethical rehabilitation</a></li>
-                                                                        <li class="footer-item"><a class="text-link" href="/the-center/">Visit the centre</a></li>
-                                    </ul>
-        </section>
-              <section class="footer-card">
-          <h2>Find services</h2>
-          <ul class="clean-list">
-                                                          <li class="footer-item"><a class="text-link footer-link-tile" href="/services/">Services hub</a></li>
-                                                                        <li class="footer-item"><a class="text-link" href="/bookings/">Bookings</a></li>
+                                                          <li class="footer-item"><a class="text-link footer-link-tile" href="/about-us/">Association of Protecting Exotic Species CIC</a></li>
+                                                                        <li class="footer-item"><a class="text-link footer-link-tile" href="/mission/our-main-mission-statement/">Mission statement and public benefit</a></li>
+                                                                        <li class="footer-item"><a class="text-link footer-link-tile" href="/mission/support-ethical-rehabilitation/">Ethical rehabilitation</a></li>
+                                                                        <li class="footer-item"><a class="text-link footer-link-tile" href="/the-center/">Visit the centre</a></li>
                                                                         <li class="footer-item"><a class="text-link footer-link-tile" href="/opening-times/">Opening times</a></li>
                                                                         <li class="footer-item"><a class="text-link footer-link-tile" href="/contact/">Contact page</a></li>
-                                                                        <li class="footer-item"><a class="text-link" href="https://contact.apes.org.uk/" target="_blank" rel="noopener noreferrer">Contact centre</a></li>
+                                                                        <li class="footer-item"><a class="text-link footer-link-tile" href="https://contact.apes.org.uk/" target="_blank" rel="noopener noreferrer">Contact centre</a></li>
                                     </ul>
         </section>
               <section class="footer-card">
-          <h2>Support APES</h2>
+          <h2>Services, updates &amp; staff</h2>
+          <ul class="clean-list">
+                                                          <li class="footer-item"><a class="text-link footer-link-tile" href="/services/">Services hub</a></li>
+                                                                        <li class="footer-item"><a class="text-link footer-link-tile" href="/bookings/">Bookings</a></li>
+                                                                        <li class="footer-item"><a class="text-link footer-link-tile" href="https://www.apesnews.org.uk/" target="_blank" rel="noopener noreferrer">APES Newsroom</a></li>
+                                                                        <li class="footer-item"><a class="text-link footer-link-tile" href="/socials/">Socials</a></li>
+                                                                        <li class="footer-item"><a class="text-link footer-link-tile" href="/change-log-hub/">Change Log Hub</a></li>
+                                                                        <li class="footer-item"><a class="text-link footer-link-tile" href="https://intranet.apes.org.uk" target="_blank" rel="nofollow noopener noreferrer">Staff intranet</a></li>
+                                    </ul>
+        </section>
+              <section class="footer-card">
+          <h2>Support APES &amp; access</h2>
           <ul class="clean-list">
                                                           <li class="footer-item"><a class="text-link footer-link-tile" href="/donate/">Donate</a></li>
-                                                                        <li class="footer-item"><a class="text-link" href="/donating/fundraising/">Fundraising priorities</a></li>
-                                                                        <li class="footer-item"><a class="text-link" href="/volunteer/">Volunteer and placements</a></li>
-                                                                        <li class="footer-item"><a class="text-link" href="/sponsors/">Sponsors and partners</a></li>
-                                                                        <li class="footer-item"><a class="text-link" href="/help-us-move/">Help Us Move</a></li>
+                                                                        <li class="footer-item"><a class="text-link footer-link-tile" href="/donating/fundraising/">Fundraising priorities</a></li>
+                                                                        <li class="footer-item"><a class="text-link footer-link-tile" href="/volunteer/">Volunteer and placements</a></li>
+                                                                        <li class="footer-item"><a class="text-link footer-link-tile" href="/sponsors/">Sponsors and partners</a></li>
+                                                                        <li class="footer-item"><a class="text-link footer-link-tile" href="/help-us-move/">Help Us Move</a></li>
+                                                                        <li class="footer-item"><a class="text-link footer-link-tile" href="https://intranet.apes.org.uk" target="_blank" rel="nofollow noopener noreferrer">Volunteer intranet</a></li>
+                                                                        <li class="footer-item"><a class="text-link footer-link-tile" href="https://intranet.apes.org.uk" target="_blank" rel="nofollow noopener noreferrer">Student intranet</a></li>
                                     </ul>
         </section>
               <section class="footer-card">
-          <h2>Policies, updates &amp; staff</h2>
+          <h2>Policies &amp; legal</h2>
           <ul class="clean-list">
-                                          <li class="footer-item footer-item-subheading"><span class="footer-subheading">Animal welfare policies</span></li>
-                                                                        <li class="footer-item"><a class="text-link" href="/policies/adoption-policy/">Adoption Policy</a></li>
-                                                                        <li class="footer-item"><a class="text-link" href="/policies/re-homing-policy/">Re-Homing Policy</a></li>
-                                                                        <li class="footer-item"><a class="text-link" href="/policies/euthanasia-policy/">Euthanasia Policy</a></li>
-                                                                        <li class="footer-item"><a class="text-link footer-link-tile" href="/policies/">Policies hub</a></li>
-                                                        <li class="footer-item footer-item-subheading"><span class="footer-subheading">News and public updates</span></li>
-                                                                        <li class="footer-item"><a class="text-link" href="https://www.apesnews.org.uk/" target="_blank" rel="noopener noreferrer">APES Newsroom</a></li>
-                                                                        <li class="footer-item"><a class="text-link" href="/socials/">Socials</a></li>
-                                                                        <li class="footer-item"><a class="text-link" href="/change-log-hub/">Change Log Hub</a></li>
-                                                        <li class="footer-item footer-item-subheading"><span class="footer-subheading">Legal</span></li>
-                                                                        <li class="footer-item"><a class="text-link" href="/policies/privacy/">Privacy Policy</a></li>
-                                                                        <li class="footer-item"><a class="text-link" href="/policies/terms-of-service/">Terms of Service</a></li>
-                                                        <li class="footer-item footer-item-subheading"><span class="footer-subheading">Internal access</span></li>
-                                                                        <li class="footer-item"><a class="text-link" href="https://intranet.apes.org.uk" target="_blank" rel="nofollow noopener noreferrer">Staff intranet</a></li>
-                                                                        <li class="footer-item"><a class="text-link" href="https://intranet.apes.org.uk" target="_blank" rel="nofollow noopener noreferrer">Volunteer intranet</a></li>
-                                                                        <li class="footer-item"><a class="text-link" href="https://intranet.apes.org.uk" target="_blank" rel="nofollow noopener noreferrer">Student intranet</a></li>
+                                                          <li class="footer-item"><a class="text-link footer-link-tile" href="/policies/">Policies hub</a></li>
+                                                                        <li class="footer-item"><a class="text-link footer-link-tile" href="/policies/adoption-policy/">Adoption Policy</a></li>
+                                                                        <li class="footer-item"><a class="text-link footer-link-tile" href="/policies/re-homing-policy/">Re-Homing Policy</a></li>
+                                                                        <li class="footer-item"><a class="text-link footer-link-tile" href="/policies/euthanasia-policy/">Euthanasia Policy</a></li>
+                                                                        <li class="footer-item"><a class="text-link footer-link-tile" href="/policies/privacy/">Privacy Policy</a></li>
+                                                                        <li class="footer-item"><a class="text-link footer-link-tile" href="/policies/terms-of-service/">Terms of Service</a></li>
+                                                                        <li class="footer-item"><a class="text-link footer-link-tile" href="/policies/cookies/">Cookie guidance</a></li>
                                     </ul>
         </section>
           </div>
@@ -1271,10 +1326,36 @@
       </div>
       <p class="footer-bar__links">
                   <a class="footer-inline-link" href="/donate/">Donate</a><span aria-hidden="true"> &middot; </span>                  <a class="footer-inline-link" href="/policies/privacy/">Privacy Policy</a><span aria-hidden="true"> &middot; </span>                  <a class="footer-inline-link" href="/policies/terms-of-service/">Terms of Service</a><span aria-hidden="true"> &middot; </span>                  <a class="footer-inline-link" href="/change-log-hub/">Change Log Hub</a>              </p>
-      <p class="footer-bar__version">Website version: <a class="footer-inline-link" href="/change-log-hub/">APES CIC v2.6.4</a> &middot; Change Log Hub</p>
+      <p class="footer-bar__version">Website version: <a class="footer-inline-link" href="/change-log-hub/">APES CIC v2.7.0</a> &middot; Change Log Hub</p>
     </div>
   </div>
 </footer>
+
+  <div class="development-popup" data-development-popup data-session-key="apesDevelopmentNoticeDismissed" hidden>
+    <div class="development-popup__backdrop" data-development-popup-close tabindex="-1"></div>
+    <div
+      class="development-popup__dialog"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="development-popup-title"
+      aria-describedby="development-popup-message"
+      tabindex="-1"
+      data-development-popup-dialog
+    >
+      <button class="development-popup__close" type="button" aria-label="Close development notice" data-development-popup-close>&times;</button>
+      <p class="development-popup__eyebrow">Website update</p>
+      <h2 id="development-popup-title">Some parts of this website are still being built.</h2>
+      <p id="development-popup-message">Some links and features are still in development. We are working hard on this. If you need help, please use live chat for fast help.</p>
+      <div class="development-popup__actions">
+        <a
+          class="button button-primary"
+          href="/contact/"
+          data-live-chat-open
+        >Open live chat</a>
+        <button class="button button-secondary" type="button" data-development-popup-close>Continue to website</button>
+      </div>
+    </div>
+  </div>
 
 <div id="fb-root"></div>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v15.0&appId=670420541399530&autoLogAppEvents=1"></script>

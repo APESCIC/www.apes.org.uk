@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-const APES_FALLBACK_VERSION = 'v2.6.4';
+const APES_FALLBACK_VERSION = 'v2.7.0';
 const APES_SITE_NAME = 'Association of Protecting Exotic Species CIC';
 const APES_CIC_NUMBER = '16253848';
 const APES_CONTACT_EMAIL = 'info@apes.org.uk';
@@ -63,6 +63,14 @@ function apes_site_data(): array
         'registered_address' => 'Cross House, Unit 7, Sutton Road, St Helens, WA9 3YH',
         'year' => $year,
         'canonical_domain' => APES_PRIMARY_DOMAIN,
+        'development_notice' => [
+            'enabled' => true,
+            'header_message' => 'Some links and features are still in development. Need help now? Use live chat for fast help.',
+            'popup_message' => 'Some links and features are still in development. We are working hard on this. If you need help, please use live chat for fast help.',
+            'live_chat_label' => 'Open live chat',
+            'fallback_href' => '/contact/',
+            'session_key' => 'apesDevelopmentNoticeDismissed',
+        ],
         'brand' => [
             'logo_nav_png' => '/assets/logos/apes-logo-navbar-72h.png',
             'logo_nav_webp' => '/assets/logos/apes-logo-navbar-72h.webp',
@@ -366,53 +374,50 @@ function apes_site_data(): array
         ],
         'footer_columns' => [
             [
-                'title' => 'About APES',
+                'title' => 'About APES & visitor info',
                 'items' => [
                     ['label' => 'Association of Protecting Exotic Species CIC', 'href' => '/about-us/'],
                     ['label' => 'Mission statement and public benefit', 'href' => '/mission/our-main-mission-statement/'],
                     ['label' => 'Ethical rehabilitation', 'href' => '/mission/support-ethical-rehabilitation/'],
                     ['label' => 'Visit the centre', 'href' => '/the-center/'],
-                ],
-            ],
-            [
-                'title' => 'Find services',
-                'items' => [
-                    ['label' => 'Services hub', 'href' => '/services/', 'variant' => 'tile'],
-                    ['label' => 'Bookings', 'href' => '/bookings/'],
-                    ['label' => 'Opening times', 'href' => '/opening-times/', 'variant' => 'tile'],
-                    ['label' => 'Contact page', 'href' => '/contact/', 'variant' => 'tile'],
+                    ['label' => 'Opening times', 'href' => '/opening-times/'],
+                    ['label' => 'Contact page', 'href' => '/contact/'],
                     ['label' => 'Contact centre', 'href' => 'https://contact.apes.org.uk/', 'external' => true],
                 ],
             ],
             [
-                'title' => 'Support APES',
+                'title' => 'Services, updates & staff',
                 'items' => [
-                    ['label' => 'Donate', 'href' => '/donate/', 'variant' => 'tile'],
+                    ['label' => 'Services hub', 'href' => '/services/'],
+                    ['label' => 'Bookings', 'href' => '/bookings/'],
+                    ['label' => 'APES Newsroom', 'href' => APES_NEWSROOM_URL, 'external' => true],
+                    ['label' => 'Socials', 'href' => '/socials/'],
+                    ['label' => 'Change Log Hub', 'href' => '/change-log-hub/'],
+                    ['label' => 'Staff intranet', 'href' => 'https://intranet.apes.org.uk', 'external' => true, 'nofollow' => true],
+                ],
+            ],
+            [
+                'title' => 'Support APES & access',
+                'items' => [
+                    ['label' => 'Donate', 'href' => '/donate/'],
                     ['label' => 'Fundraising priorities', 'href' => '/donating/fundraising/'],
                     ['label' => 'Volunteer and placements', 'href' => '/volunteer/'],
                     ['label' => 'Sponsors and partners', 'href' => '/sponsors/'],
                     ['label' => 'Help Us Move', 'href' => '/help-us-move/'],
+                    ['label' => 'Volunteer intranet', 'href' => 'https://intranet.apes.org.uk', 'external' => true, 'nofollow' => true],
+                    ['label' => 'Student intranet', 'href' => 'https://intranet.apes.org.uk', 'external' => true, 'nofollow' => true],
                 ],
             ],
             [
-                'title' => 'Policies, updates & staff',
+                'title' => 'Policies & legal',
                 'items' => [
-                    ['type' => 'subheading', 'label' => 'Animal welfare policies'],
+                    ['label' => 'Policies hub', 'href' => '/policies/'],
                     ['label' => 'Adoption Policy', 'href' => '/policies/adoption-policy/'],
                     ['label' => 'Re-Homing Policy', 'href' => '/policies/re-homing-policy/'],
                     ['label' => 'Euthanasia Policy', 'href' => '/policies/euthanasia-policy/'],
-                    ['label' => 'Policies hub', 'href' => '/policies/', 'variant' => 'tile'],
-                    ['type' => 'subheading', 'label' => 'News and public updates'],
-                    ['label' => 'APES Newsroom', 'href' => APES_NEWSROOM_URL, 'external' => true],
-                    ['label' => 'Socials', 'href' => '/socials/'],
-                    ['label' => 'Change Log Hub', 'href' => '/change-log-hub/'],
-                    ['type' => 'subheading', 'label' => 'Legal'],
                     ['label' => 'Privacy Policy', 'href' => '/policies/privacy/'],
                     ['label' => 'Terms of Service', 'href' => '/policies/terms-of-service/'],
-                    ['type' => 'subheading', 'label' => 'Internal access'],
-                    ['label' => 'Staff intranet', 'href' => 'https://intranet.apes.org.uk', 'external' => true, 'nofollow' => true],
-                    ['label' => 'Volunteer intranet', 'href' => 'https://intranet.apes.org.uk', 'external' => true, 'nofollow' => true],
-                    ['label' => 'Student intranet', 'href' => 'https://intranet.apes.org.uk', 'external' => true, 'nofollow' => true],
+                    ['label' => 'Cookie guidance', 'href' => '/policies/cookies/'],
                 ],
             ],
         ],
@@ -2737,9 +2742,9 @@ HTML,
                 'hero_summary' => 'Track every major release for this website, including updates, fixes, compliance changes, and user-facing improvements.',
                 'hero_actions' => [
                     ['label' => 'Expand all releases', 'href' => '#release-list', 'variant' => 'primary'],
-                    ['label' => 'View current release', 'href' => '#release-v264', 'variant' => 'secondary'],
+                    ['label' => 'View current release', 'href' => '#release-v270', 'variant' => 'secondary'],
                 ],
-                'pills' => ['Current version ' . $siteVersion, 'Patch stable', 'Public-facing'],
+                'pills' => ['Current version ' . $siteVersion, 'Minor stable', 'Public-facing'],
                 'body_html' => <<<'HTML'
 <section class="section-shell">
   <div class="release-tools">
@@ -2767,7 +2772,55 @@ HTML,
 </section>
 
 <section class="section-shell" id="release-list">
-  <details class="release-card" data-release-card data-tags="current stable changed fixed public-facing" open id="release-v264">
+  <details class="release-card" data-release-card data-tags="current stable added changed fixed compliance accessibility public-facing" open id="release-v270">
+    <summary>
+      <span class="release-version">v2.7.0</span>
+      <span class="release-date">2026-06-04</span>
+    </summary>
+    <div class="release-body">
+      <div class="pill-row">
+        <span class="pill pill-version">Version v2.7.0</span>
+        <span class="pill pill-status">Stable</span>
+        <span class="pill pill-type">Added</span>
+        <span class="pill pill-type">Changed</span>
+        <span class="pill pill-fix">Fix</span>
+        <span class="pill pill-compliance">Compliance</span>
+      </div>
+      <h3>Summary</h3>
+      <p>Added a site-wide development notice popup and persistent header message, then rebalanced the shared APES footer so every footer-card link now renders as a clearer tile-style action.</p>
+      <h3>Detailed changes</h3>
+      <ul class="clean-list">
+        <li>Added a persistent development notice band near the top of the shared header and a first-open popup that explains some links and features are still in development while directing visitors to live chat for fast help.</li>
+        <li>Wired the notice actions into the existing Chatwoot widget with a safe contact-page fallback, session-based dismissal, keyboard-accessible dialog behaviour and focus return on close.</li>
+        <li>Redistributed the four APES footer cards into more balanced groups and made every footer-card link render as a visible tile without removing the required donation, Privacy Policy, Terms of Service, Change Log Hub or intranet routes.</li>
+        <li>Preserved APES Newsroom routing, APES CIC identity and footer compliance rules, then synchronised the canonical version plus release records to v2.7.0 before regenerating the static HTML snapshots.</li>
+      </ul>
+      <h3>Affected areas</h3>
+      <ul class="clean-list">
+        <li>Website: www.apes.org.uk</li>
+        <li>Page or route: shared header, shared footer, shared site data, shared CSS, shared JS, Change Log Hub, footer version display, root and public release records, and regenerated static HTML snapshots</li>
+        <li>Files changed: shared PHP rendering, shared site data, shared CSS, shared JS, VERSION, public VERSION, root CHANGELOG, public CHANGELOG, README and regenerated static HTML snapshots</li>
+        <li>User groups affected: supporters, donors, volunteers, staff, partners and general public visitors</li>
+        <li>Public impact: visitors now see a clear development notice, get a direct route into live chat, and can use a more balanced, button-led footer across the public site</li>
+        <li>Internal impact: the shared shell now holds the development-notice copy and behaviour in one place, and the footer grouping is easier to maintain without route-level edits</li>
+      </ul>
+      <h3>Version decision</h3>
+      <ul class="clean-list">
+        <li>Previous version: v2.6.4</li>
+        <li>New version: v2.7.0</li>
+        <li>Version type: minor stable</li>
+        <li>Reason for version bump: site-wide public messaging and shared-shell footer behaviour additions without a breaking route restructure</li>
+      </ul>
+      <h3>Validation</h3>
+      <ul class="clean-list">
+        <li>Checks run: local PHP syntax checks, shared CSS and JS review, static HTML export and generated HTML inspection</li>
+        <li>Manual checks completed: header notice review, popup/session behaviour review, footer required link and intranet attribute review, footer version alignment review, APES Newsroom route review and changelog/version synchronisation review</li>
+        <li>Known limitations: deployed FTP validation and live browser confirmation still require a post-push check outside this repo-only implementation pass</li>
+        <li>Rollback notes: restore the previous shared PHP, site data, CSS, JS, version files and release records, then re-export the static HTML snapshots if the notice or footer rollout needs to be reversed</li>
+      </ul>
+    </div>
+  </details>
+  <details class="release-card" data-release-card data-tags="stable changed fixed public-facing" id="release-v264">
     <summary>
       <span class="release-version">v2.6.4</span>
       <span class="release-date">2026-06-03</span>
