@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-const APES_FALLBACK_VERSION = 'v2.6.0';
+const APES_FALLBACK_VERSION = 'v2.6.1';
 const APES_SITE_NAME = 'Association of Protecting Exotic Species CIC';
 const APES_CIC_NUMBER = '16253848';
 const APES_CONTACT_EMAIL = 'info@apes.org.uk';
@@ -366,7 +366,7 @@ function apes_site_data(): array
         ],
         'footer_columns' => [
             [
-                'title' => 'About APES CIC',
+                'title' => 'About APES',
                 'items' => [
                     ['label' => 'Association of Protecting Exotic Species CIC', 'href' => '/about-us/'],
                     ['label' => 'Mission statement and public benefit', 'href' => '/mission/our-main-mission-statement/'],
@@ -375,19 +375,19 @@ function apes_site_data(): array
                 ],
             ],
             [
-                'title' => 'Find the right route',
+                'title' => 'Find services',
                 'items' => [
-                    ['label' => 'Services hub', 'href' => '/services/'],
+                    ['label' => 'Services hub', 'href' => '/services/', 'variant' => 'tile'],
                     ['label' => 'Bookings', 'href' => '/bookings/'],
-                    ['label' => 'Opening times', 'href' => '/opening-times/'],
-                    ['label' => 'Contact page', 'href' => '/contact/'],
+                    ['label' => 'Opening times', 'href' => '/opening-times/', 'variant' => 'tile'],
+                    ['label' => 'Contact page', 'href' => '/contact/', 'variant' => 'tile'],
                     ['label' => 'Contact centre', 'href' => 'https://contact.apes.org.uk/', 'external' => true],
                 ],
             ],
             [
-                'title' => 'Support',
+                'title' => 'Support APES',
                 'items' => [
-                    ['label' => 'Donate', 'href' => '/donate/'],
+                    ['label' => 'Donate', 'href' => '/donate/', 'variant' => 'tile'],
                     ['label' => 'Fundraising priorities', 'href' => '/donating/fundraising/'],
                     ['label' => 'Volunteer and placements', 'href' => '/volunteer/'],
                     ['label' => 'Sponsors and partners', 'href' => '/sponsors/'],
@@ -395,17 +395,21 @@ function apes_site_data(): array
                 ],
             ],
             [
-                'title' => 'Policies and updates',
+                'title' => 'Policies, updates & staff',
                 'items' => [
+                    ['type' => 'subheading', 'label' => 'Animal welfare policies'],
                     ['label' => 'Adoption Policy', 'href' => '/policies/adoption-policy/'],
                     ['label' => 'Re-Homing Policy', 'href' => '/policies/re-homing-policy/'],
                     ['label' => 'Euthanasia Policy', 'href' => '/policies/euthanasia-policy/'],
-                    ['label' => 'Policies hub', 'href' => '/policies/'],
+                    ['label' => 'Policies hub', 'href' => '/policies/', 'variant' => 'tile'],
+                    ['type' => 'subheading', 'label' => 'News and public updates'],
                     ['label' => 'APES Newsroom', 'href' => APES_NEWSROOM_URL, 'external' => true],
                     ['label' => 'Socials', 'href' => '/socials/'],
+                    ['label' => 'Change Log Hub', 'href' => '/change-log-hub/'],
+                    ['type' => 'subheading', 'label' => 'Legal'],
                     ['label' => 'Privacy Policy', 'href' => '/policies/privacy/'],
                     ['label' => 'Terms of Service', 'href' => '/policies/terms-of-service/'],
-                    ['label' => 'Change Log Hub', 'href' => '/change-log-hub/'],
+                    ['type' => 'subheading', 'label' => 'Internal access'],
                     ['label' => 'Staff intranet', 'href' => 'https://intranet.apes.org.uk', 'external' => true, 'nofollow' => true],
                     ['label' => 'Volunteer intranet', 'href' => 'https://intranet.apes.org.uk', 'external' => true, 'nofollow' => true],
                     ['label' => 'Student intranet', 'href' => 'https://intranet.apes.org.uk', 'external' => true, 'nofollow' => true],
@@ -1482,9 +1486,67 @@ HTML,
                 'body_html' => <<<'HTML'
 <section class="section-shell">
   <p>Bookings remains the narrower route for arranging visits, boarding and practical service conversations after the wider Services hub has helped you choose the right APES pathway.</p>
- </section>
+</section>
 
 [[FEATURE_MEDIA:bookings-care]]
+
+<section class="section-shell">
+  <div class="section-heading">
+    <p class="eyebrow">Booking chooser</p>
+    <h2>Choose the booking route that matches your service.</h2>
+  </div>
+  <p>Use these direct booking routes when you already know which APES service you need. Each option opens the external appointment form in a focused popup window, with a standard new-tab fallback if popup windows are blocked.</p>
+  <div class="card-grid card-grid-three booking-choice-grid">
+    <article class="info-card booking-choice-card">
+      <h3>APES Bookings</h3>
+      <p>Use the main APES booking route for general APES appointments, practical booking conversations and service visits handled through the core APES workspace.</p>
+      <div class="action-stack">
+        <a
+          class="button button-primary"
+          href="https://workspace.apes.org.uk/apps/appointments/pub/2Gw5w18rbDQ9C9A3/form"
+          target="_blank"
+          rel="noopener noreferrer"
+          data-popup-link
+          data-popup-name="apes-bookings"
+          data-popup-width="900"
+          data-popup-height="760"
+        >APES Bookings</a>
+      </div>
+    </article>
+    <article class="info-card booking-choice-card">
+      <h3>Shelter and Rescue Bookings</h3>
+      <p>Use this route for Shelter &amp; Rescue appointment needs where the booking belongs with rescue, handover, shelter or welfare-support activity.</p>
+      <div class="action-stack">
+        <a
+          class="button button-primary"
+          href="https://workspace.apes.org.uk/apps/appointments/pub/rlaztMEqccVqwBcc/form"
+          target="_blank"
+          rel="noopener noreferrer"
+          data-popup-link
+          data-popup-name="shelter-rescue-bookings"
+          data-popup-width="900"
+          data-popup-height="760"
+        >Shelter and Rescue Bookings</a>
+      </div>
+    </article>
+    <article class="info-card booking-choice-card">
+      <h3>Pet Care Clinic Bookings</h3>
+      <p>Use this route for Pet Care Clinic appointments where you need low-cost care support, clinic-led guidance or other pet-care booking follow-up.</p>
+      <div class="action-stack">
+        <a
+          class="button button-primary"
+          href="https://workspace.apes.org.uk/apps/appointments/pub/CybCqq5VG5EA3vBV/form"
+          target="_blank"
+          rel="noopener noreferrer"
+          data-popup-link
+          data-popup-name="pet-care-clinic-bookings"
+          data-popup-width="900"
+          data-popup-height="760"
+        >Pet Care Clinic Bookings</a>
+      </div>
+    </article>
+  </div>
+</section>
 
 <section class="section-shell">
   <div class="card-grid card-grid-three">
@@ -2629,9 +2691,9 @@ HTML,
                 'hero_summary' => 'Track every major release for this website, including updates, fixes, compliance changes, and user-facing improvements.',
                 'hero_actions' => [
                     ['label' => 'Expand all releases', 'href' => '#release-list', 'variant' => 'primary'],
-                    ['label' => 'View current release', 'href' => '#release-v260', 'variant' => 'secondary'],
+                    ['label' => 'View current release', 'href' => '#release-v261', 'variant' => 'secondary'],
                 ],
-                'pills' => ['Current version ' . $siteVersion, 'Minor stable', 'Public-facing'],
+                'pills' => ['Current version ' . $siteVersion, 'Patch stable', 'Public-facing'],
                 'body_html' => <<<'HTML'
 <section class="section-shell">
   <div class="release-tools">
@@ -2659,7 +2721,54 @@ HTML,
 </section>
 
 <section class="section-shell" id="release-list">
-  <details class="release-card" data-release-card data-tags="current stable changed accessibility compliance public-facing" open id="release-v260">
+  <details class="release-card" data-release-card data-tags="current stable changed fixed accessibility public-facing" open id="release-v261">
+    <summary>
+      <span class="release-version">v2.6.1</span>
+      <span class="release-date">2026-06-03</span>
+    </summary>
+    <div class="release-body">
+      <div class="pill-row">
+        <span class="pill pill-version">Version v2.6.1</span>
+        <span class="pill pill-status">Stable</span>
+        <span class="pill pill-type">Changed</span>
+        <span class="pill pill-fix">Fix</span>
+        <span class="pill pill-accessibility">Accessibility</span>
+      </div>
+      <h3>Summary</h3>
+      <p>Added three popup-enabled booking routes to the Bookings page and regrouped the shared footer so key public, legal and staff routes are easier to scan without changing the wider site architecture.</p>
+      <h3>Detailed changes</h3>
+      <ul class="clean-list">
+        <li>Added a dedicated three-option booking chooser to the Bookings page for APES Bookings, Shelter and Rescue Bookings, and Pet Care Clinic Bookings, each pointing to the requested workspace appointment form.</li>
+        <li>Added shared popup-window launch behaviour in the site JavaScript so the booking routes open in a centred external window when allowed, while preserving a normal new-tab fallback when popups are blocked or JavaScript is unavailable.</li>
+        <li>Extended the shared footer data model so footer items can render as standard links, highlighted route tiles or non-link subheadings, then regrouped the footer into clearer About, services, support and policy/update/staff sections.</li>
+        <li>Preserved the required donation, Privacy Policy, Terms of Service, Change Log Hub, APES Newsroom and intranet links, kept APES Newsroom routing unchanged, and synchronised the canonical version plus changelog records to v2.6.1.</li>
+      </ul>
+      <h3>Affected areas</h3>
+      <ul class="clean-list">
+        <li>Website: www.apes.org.uk</li>
+        <li>Page or route: Bookings, shared footer, Change Log Hub, footer version display, root and public release records, and regenerated static HTML snapshots</li>
+        <li>Files changed: shared PHP rendering, shared CSS, shared JS, shared site data, VERSION, public VERSION, root CHANGELOG, public CHANGELOG, README and regenerated static HTML snapshots</li>
+        <li>User groups affected: service users, supporters, volunteers, staff, partners and general public visitors</li>
+        <li>Public impact: visitors can now choose the correct external booking form directly from the Bookings page and scan the shared footer more quickly for core service, legal and intranet routes</li>
+        <li>Internal impact: footer presentation intent and popup booking behaviour are now managed centrally so future route and release updates stay aligned</li>
+      </ul>
+      <h3>Version decision</h3>
+      <ul class="clean-list">
+        <li>Previous version: v2.6.0</li>
+        <li>New version: v2.6.1</li>
+        <li>Version type: patch stable</li>
+        <li>Reason for version bump: small public-facing booking and footer usability improvements without a breaking restructure or URL change</li>
+      </ul>
+      <h3>Validation</h3>
+      <ul class="clean-list">
+        <li>Checks run: local PHP syntax checks, shared CSS/JS/PHP inspection, static HTML export and generated HTML inspection</li>
+        <li>Manual checks completed: Bookings chooser label and URL review, popup-launch fallback review, desktop and mobile footer grouping review, footer required link review, APES Newsroom route review and changelog/version alignment review</li>
+        <li>Known limitations: popup and responsive verification in this environment is based on source and generated-output inspection rather than a full deployed browser pass against Cloudron hosting</li>
+        <li>Rollback notes: restore the previous shared footer data, JS, CSS, bookings content, version files and changelog entries, then re-export the static HTML snapshots if the release needs to be reversed</li>
+      </ul>
+    </div>
+  </details>
+  <details class="release-card" data-release-card data-tags="stable changed accessibility compliance public-facing" id="release-v260">
     <summary>
       <span class="release-version">v2.6.0</span>
       <span class="release-date">2026-06-03</span>

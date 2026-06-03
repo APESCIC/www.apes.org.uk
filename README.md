@@ -1,3 +1,10 @@
+## Current release
+
+- Version: `v2.6.1`
+- Release date: `2026-06-03`
+- Release impact: added three popup-enabled booking routes on `/bookings/` and improved shared footer readability with clearer grouping and priority route tiles.
+- Operational note: shared PHP, CSS and JS sources remain the source of truth; regenerate the static HTML snapshots in `/public/` after shared-content changes.
+
 <p align="center">
   <a href="https://www.apes.org.uk/" target="_blank" rel="noopener noreferrer">
     <img src="https://www.apes.org.uk/APES_logo_3D_440x250.png" alt="APES CIC Logo" width="220">

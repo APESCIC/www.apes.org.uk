@@ -6,7 +6,12 @@
           <h2><?= htmlspecialchars($column['title'], ENT_QUOTES) ?></h2>
           <ul class="clean-list">
             <?php foreach ($column['items'] as $item): ?>
-              <li><?= apes_render_link($item) ?></li>
+              <?php if (($item['type'] ?? 'link') === 'subheading'): ?>
+                <li class="footer-item footer-item-subheading"><span class="footer-subheading"><?= htmlspecialchars($item['label'], ENT_QUOTES) ?></span></li>
+              <?php else: ?>
+                <?php $linkClass = ($item['variant'] ?? '') === 'tile' ? 'text-link footer-link-tile' : 'text-link'; ?>
+                <li class="footer-item"><?= apes_render_link($item, $linkClass) ?></li>
+              <?php endif; ?>
             <?php endforeach; ?>
           </ul>
         </section>
