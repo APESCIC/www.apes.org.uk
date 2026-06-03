@@ -1,3 +1,43 @@
+## [v2.6.4] - 2026-06-03
+
+<span class="pill pill-version">Version v2.6.4</span>
+<span class="pill pill-status">Stable</span>
+<span class="pill pill-type">Changed</span>
+<span class="pill pill-fix">Fix</span>
+
+### Summary
+
+Centred the shared APES sidebar logo card more explicitly through the shared stylesheet so the feature logo sits consistently within its support panel across the public website.
+
+### Detailed changes
+
+- Updated the shared `.brand-feature-panel` styling so the sidebar card, `<picture>` wrapper and logo image all centre explicitly without changing the shared sidebar markup.
+- Kept the existing responsive logo sizing and card spacing while preventing route-level drift for the logo card across all pages that inherit the shared sidebar.
+- Preserved the APES column-card footer, required donation, Privacy Policy, Terms of Service and Change Log Hub links, left APES Newsroom routing unchanged, and synchronised the canonical version plus release records to v2.6.4.
+
+### Affected areas
+
+- Website: www.apes.org.uk
+- Page or route: shared sidebar logo card, shared CSS, Change Log Hub, footer version display, root and public release records, and regenerated static HTML snapshots
+- Files changed: shared CSS, shared release data, VERSION, public VERSION, root CHANGELOG, public CHANGELOG, README and regenerated static HTML snapshots
+- User groups affected: supporters, donors, volunteers, staff, partners and general public visitors
+- Public impact: visitors now see the APES feature logo centred more cleanly within the shared sidebar card across the public site
+- Internal impact: the shared sidebar logo card now has clearer centring rules in the main stylesheet, reducing the chance of route-specific visual drift
+
+### Version decision
+
+- Previous version: v2.6.3
+- New version: v2.6.4
+- Version type: patch stable
+- Reason for version bump: low-risk public-facing layout fix to the shared sidebar logo presentation without a breaking restructure or route change
+
+### Validation
+
+- Checks run: shared CSS review, shared PHP data review, static HTML export and generated HTML inspection
+- Manual checks completed: homepage, inner-page, Change Log Hub and 404 sidebar logo review; footer required link review; APES Newsroom route review; and changelog/version alignment review
+- Known limitations: deployed FTP validation and live browser confirmation still require a post-push check outside this repo-only implementation pass
+- Rollback notes: restore the previous shared CSS, version files and release records, then re-export the static HTML snapshots if the logo-card alignment change needs to be reversed
+
 ## [v2.6.3] - 2026-06-03
 
 <span class="pill pill-version">Version v2.6.3</span>

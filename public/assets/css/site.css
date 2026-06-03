@@ -826,13 +826,22 @@ img {
   display: flex;
   justify-content: center;
   align-items: center;
+  text-align: center;
   background:
     radial-gradient(circle at top left, rgba(221, 243, 239, 0.8), transparent 14rem),
     rgba(255, 255, 255, 0.96);
 }
 
+.brand-feature-panel picture {
+  display: grid;
+  width: 100%;
+  justify-items: center;
+}
+
 .brand-feature-panel img {
+  display: block;
   width: min(100%, 18rem);
+  margin-inline: auto;
 }
 
 .eyebrow {

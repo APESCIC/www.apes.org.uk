@@ -1,9 +1,9 @@
 ## Current release
 
-- Version: `v2.6.3`
+- Version: `v2.6.4`
 - Release date: `2026-06-03`
-- Release impact: added site-wide OneSignal, Donorbox sticky donation, Hello Bar, Mastodon verification, Facebook SDK and Chatwoot embeds through the shared shell without changing APES footer structure or route layout.
-- Operational note: shared PHP shell files remain the source of truth; regenerate the static HTML snapshots in `/public/` after shared renderer, shared footer or release-record changes.
+- Release impact: centred the shared sidebar logo card through the main stylesheet so the APES feature logo sits consistently across public routes without changing the shared sidebar markup, footer structure or route layout.
+- Operational note: shared PHP and CSS files remain the source of truth; regenerate the static HTML snapshots in `/public/` after shared renderer, shared stylesheet or release-record changes.
 
 <p align="center">
   <a href="https://www.apes.org.uk/" target="_blank" rel="noopener noreferrer">

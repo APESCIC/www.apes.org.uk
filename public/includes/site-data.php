@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-const APES_FALLBACK_VERSION = 'v2.6.3';
+const APES_FALLBACK_VERSION = 'v2.6.4';
 const APES_SITE_NAME = 'Association of Protecting Exotic Species CIC';
 const APES_CIC_NUMBER = '16253848';
 const APES_CONTACT_EMAIL = 'info@apes.org.uk';
@@ -2737,7 +2737,7 @@ HTML,
                 'hero_summary' => 'Track every major release for this website, including updates, fixes, compliance changes, and user-facing improvements.',
                 'hero_actions' => [
                     ['label' => 'Expand all releases', 'href' => '#release-list', 'variant' => 'primary'],
-                    ['label' => 'View current release', 'href' => '#release-v261', 'variant' => 'secondary'],
+                    ['label' => 'View current release', 'href' => '#release-v264', 'variant' => 'secondary'],
                 ],
                 'pills' => ['Current version ' . $siteVersion, 'Patch stable', 'Public-facing'],
                 'body_html' => <<<'HTML'
@@ -2767,7 +2767,52 @@ HTML,
 </section>
 
 <section class="section-shell" id="release-list">
-  <details class="release-card" data-release-card data-tags="current stable added changed public-facing" open id="release-v263">
+  <details class="release-card" data-release-card data-tags="current stable changed fixed public-facing" open id="release-v264">
+    <summary>
+      <span class="release-version">v2.6.4</span>
+      <span class="release-date">2026-06-03</span>
+    </summary>
+    <div class="release-body">
+      <div class="pill-row">
+        <span class="pill pill-version">Version v2.6.4</span>
+        <span class="pill pill-status">Stable</span>
+        <span class="pill pill-type">Changed</span>
+        <span class="pill pill-fix">Fix</span>
+      </div>
+      <h3>Summary</h3>
+      <p>Centred the shared APES sidebar logo card more explicitly through the shared stylesheet so the feature logo sits consistently within its support panel across the public website.</p>
+      <h3>Detailed changes</h3>
+      <ul class="clean-list">
+        <li>Updated the shared <code>.brand-feature-panel</code> styling so the sidebar card, <code>&lt;picture&gt;</code> wrapper and logo image all centre explicitly without changing the shared sidebar markup.</li>
+        <li>Kept the existing responsive logo sizing and card spacing while preventing route-level drift for the logo card across all pages that inherit the shared sidebar.</li>
+        <li>Preserved the APES column-card footer, required donation, Privacy Policy, Terms of Service and Change Log Hub links, left APES Newsroom routing unchanged, and synchronised the canonical version plus release records to v2.6.4.</li>
+      </ul>
+      <h3>Affected areas</h3>
+      <ul class="clean-list">
+        <li>Website: www.apes.org.uk</li>
+        <li>Page or route: shared sidebar logo card, shared CSS, Change Log Hub, footer version display, root and public release records, and regenerated static HTML snapshots</li>
+        <li>Files changed: shared CSS, shared release data, VERSION, public VERSION, root CHANGELOG, public CHANGELOG, README and regenerated static HTML snapshots</li>
+        <li>User groups affected: supporters, donors, volunteers, staff, partners and general public visitors</li>
+        <li>Public impact: visitors now see the APES feature logo centred more cleanly within the shared sidebar card across the public site</li>
+        <li>Internal impact: the shared sidebar logo card now has clearer centring rules in the main stylesheet, reducing the chance of route-specific visual drift</li>
+      </ul>
+      <h3>Version decision</h3>
+      <ul class="clean-list">
+        <li>Previous version: v2.6.3</li>
+        <li>New version: v2.6.4</li>
+        <li>Version type: patch stable</li>
+        <li>Reason for version bump: low-risk public-facing layout fix to the shared sidebar logo presentation without a breaking restructure or route change</li>
+      </ul>
+      <h3>Validation</h3>
+      <ul class="clean-list">
+        <li>Checks run: shared CSS review, shared PHP data review, static HTML export and generated HTML inspection</li>
+        <li>Manual checks completed: homepage, inner-page, Change Log Hub and 404 sidebar logo review; footer required link review; APES Newsroom route review; and changelog/version alignment review</li>
+        <li>Known limitations: deployed FTP validation and live browser confirmation still require a post-push check outside this repo-only implementation pass</li>
+        <li>Rollback notes: restore the previous shared CSS, version files and release records, then re-export the static HTML snapshots if the logo-card alignment change needs to be reversed</li>
+      </ul>
+    </div>
+  </details>
+  <details class="release-card" data-release-card data-tags="stable added changed public-facing" id="release-v263">
     <summary>
       <span class="release-version">v2.6.3</span>
       <span class="release-date">2026-06-03</span>
