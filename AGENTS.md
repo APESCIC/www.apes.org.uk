@@ -4,8 +4,6 @@
 
 These instructions apply to all APES CIC website repositories, website exports, public web pages, intranet pages, microsites, static websites, documentation sites, portal front ends, and any related website code owned or maintained by the Association of Protecting Exotic Species CIC.
 
-For this repository, the website is located in the root-level `public/` folder.
-
 Codex and other AI coding agents must follow these instructions before, during, and after making any website change.
 
 ---
@@ -31,7 +29,17 @@ If there is any uncertainty, assume a changelog entry is required.
 
 ---
 
-## 2. APES website brand and feature standards
+## 2. Repository structure and website storage
+
+The website is stored in the root-level `/public/` folder.
+
+Agents must treat `/public/` as the website source and deployment content folder unless repository-specific documentation clearly states otherwise.
+
+Do not move website files out of `/public/` without explicit instruction.
+
+---
+
+## 3. APES website brand and feature standards
 
 Apply APES CIC website branding and feature standards to all APES websites and future website work.
 
@@ -113,63 +121,146 @@ Required usage:
 
 ---
 
-## 3. Universal website footer standard
+## 4. Universal website footer standard
 
 All APES websites, division websites, microsites, intranet pages and website templates must use a consistent green APES footer pattern. The footer is a brand, governance, compliance, donation and release-record component. It must not be treated as decorative or optional.
 
-This standard is based on the approved footer examples shown in the APES Intranet, APES Shelter & Rescue and APES Pet Care Clinic reference screenshots.
+This standard is based on the approved footer examples shown in the APES Contact Centre, APES Intranet, APES Shelter & Rescue and APES Pet Care Clinic reference screenshots.
 
 ### Footer layout requirement
 
+All APES website footers must use a column card footer format.
+
+The required visual pattern is:
+
+* A deep green or deep teal footer wrapper.
+* A visible grid of separate rounded cards inside the footer.
+* Each footer card must act as one column group with its own heading, spacing, border, internal content and links.
+* Cards must use APES-compatible green or teal tones with sufficient contrast against the outer footer background.
+* The card grid must be responsive: four columns on wide screens where space allows, two columns on medium screens, and one column on mobile.
+* The lower footer bar must sit below the card grid and contain copyright, CIC identity, website name, version and a visible Change Log Hub link.
+
+Do not use a plain unboxed multi-column footer, a single text block footer, a loose link list footer, or a generic platform footer unless it is restyled into the APES column card format.
+
 Use one of these approved footer layouts, depending on site size and audience:
 
-1. **Full footer layout** for large websites, portals, intranets and sites with multiple user journeys.
-2. **Compact footer layout** for smaller division websites, service websites and landing sites.
+1. **Full column card footer layout** for large websites, portals, intranets and sites with multiple user journeys.
+2. **Compact column card footer layout** for smaller division websites, service websites and landing sites.
 
 Both layouts must use a deep green or deep teal background and APES-compatible typography, spacing, link styling and contrast. Footer links must be keyboard accessible, visibly focusable and readable against the footer background.
 
-### Full footer layout
+### Required footer card styling
 
-Use the full footer where the website has enough routes or support pathways to justify multiple columns.
+Use this pattern unless the website already has equivalent APES footer variables:
 
-Required column structure:
+```css
+.apes-footer {
+  background: linear-gradient(180deg, #165F58 0%, #005F5F 100%);
+  color: #FFFFFF;
+  border-radius: 18px 18px 0 0;
+  padding: 1.5rem;
+}
 
-* **About column**
+.apes-footer__grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.apes-footer__card {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 12px;
+  padding: 1rem;
+}
+
+.apes-footer__card h2,
+.apes-footer__card h3 {
+  color: #FFFFFF;
+  margin-top: 0;
+}
+
+.apes-footer__card a,
+.apes-footer__bar a {
+  color: #FFFFFF;
+  font-weight: 700;
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+.apes-footer__card a:focus-visible,
+.apes-footer__bar a:focus-visible {
+  outline: 3px solid #DDF3EF;
+  outline-offset: 3px;
+}
+
+.apes-footer__bar {
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+  margin-top: 1rem;
+  padding-top: 1rem;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 1rem;
+  justify-content: space-between;
+}
+
+@media (max-width: 960px) {
+  .apes-footer__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .apes-footer__grid {
+    grid-template-columns: 1fr;
+  }
+}
+```
+
+Equivalent class names may be used where required by the website framework, but the rendered footer must match this column card pattern.
+
+### Full column card footer layout
+
+Use the full column card footer where the website has enough routes or support pathways to justify multiple cards.
+
+Required card structure:
+
+* **About card**
   * Website, organisation or division name.
   * Short plain-English summary of what the website supports.
   * Parent organisation name where relevant.
+  * Registered office or contact details where relevant.
   * Website version badge or text.
-* **Quick links column**
+* **Contact routes or quick links card**
   * Main user journey links.
-  * Dashboard, apps hub, forms hub, service hub or equivalent where relevant.
-  * Change Log Hub link.
-* **Forms and support column**
+  * Dashboard, apps hub, route finder, forms hub, service hub or equivalent where relevant.
+  * Change Log Hub link where it is not only shown in the lower footer bar.
+* **Connected APES websites, forms and support card**
   * Key support forms.
   * Incident, safeguarding, technical support, contact or escalation links where relevant.
-* **Legal and governance column**
+  * Connected APES website links where relevant.
+* **Legal and governance card**
+  * Donate link.
   * Privacy Policy link.
   * Terms of Service link.
   * Cookie Guidance or Cookie Policy link where relevant.
+  * Staff, volunteer and student intranet links where relevant.
   * Owner, review cycle and last reviewed information where relevant.
 
 A lower footer bar must then show copyright, legal identity, website name, version and Change Log Hub link where space allows.
 
-### Compact footer layout
+### Compact column card footer layout
 
-Use the compact footer where the website has fewer routes but still needs brand, legal, donation and release information.
+Use the compact column card footer where the website has fewer routes but still needs brand, legal, donation and release information.
 
-Required structure:
+Required card structure:
 
-* Website or division name.
-* Short description of the website purpose.
-* Physical address where relevant.
-* Contact details where relevant.
-* Partnership, sponsor or trusted organisation badges where relevant.
-* Essential help links such as Contact page, Open a ticket, Account or Support Hub where relevant.
-* Essential support links such as Donate, Sponsorship Hub or relevant fundraising route.
-* Essential connected links such as APES News, Policies or Search where relevant.
-* A final footer line containing copyright, organisation identity, CIC number, website name and current version.
-* A visible Change Log Hub link in the footer, preferably next to the website version.
+* **About card** containing website or division name, short description of the website purpose, physical address where relevant, contact details where relevant, partnership, sponsor or trusted organisation badges where relevant, and website version.
+* **Help and support card** containing essential help links such as Contact page, Open a ticket, Account or Support Hub where relevant.
+* **Support APES card** containing Donate, Sponsorship Hub or relevant fundraising route where relevant.
+* **Legal and governance card** containing Privacy Policy, Terms of Service, Cookie Policy or Cookie Guidance, staff access and Change Log Hub.
+
+The compact layout may use two, three or four cards depending on content volume, but it must still use the card-based column structure.
 
 ### Required footer identity format
 
@@ -204,6 +295,9 @@ Every APES website footer must always include working links to:
 * The Privacy Policy page.
 * The Terms of Service page.
 * The Change Log Hub page.
+* Staff, volunteer and student intranet links pointing to `https://intranet.apes.org.uk`.
+
+Staff, volunteer and student intranet footer links must open in a new tab and use nofollow rules. Use `target="_blank"` and `rel="nofollow noopener noreferrer"` on each intranet link.
 
 Where a site uses a policies hub, the footer may link to the policies hub as an additional route, but it must still provide direct footer access to Privacy Policy and Terms of Service unless there is a documented reason not to.
 
@@ -231,7 +325,6 @@ Accepted examples:
 v0.0.10 Beta
 v0.5.1b
 APES Pet Care Clinic v0.5.1b
-APES Intranet · v0.2.1b
 ```
 
 The displayed footer version must match the canonical version file and the current Change Log Hub entry.
@@ -249,6 +342,7 @@ Required checks:
 * Use the correct current website version.
 * Link the version or nearby text to the Change Log Hub where the design allows.
 * Include donation, Privacy Policy and Terms of Service links.
+* Include staff, volunteer and student intranet links with `target="_blank"` and `rel="nofollow noopener noreferrer"`.
 * Keep support and governance links accurate for that specific website.
 * Use UK English throughout.
 
@@ -259,7 +353,10 @@ Before completing any website change that touches the footer, navigation, legal 
 * Footer colour contrast is sufficient.
 * Footer links are keyboard reachable and have visible focus states.
 * Link text is descriptive without relying only on colour.
+* Footer card headings correctly describe their content groups.
+* Footer cards stack cleanly on mobile without clipped text, overflow or hidden links.
 * Donation, Privacy Policy, Terms of Service and Change Log Hub links return successful pages.
+* Staff, volunteer and student intranet links open in a new tab, use nofollow rules and point to `https://intranet.apes.org.uk`.
 * The displayed version matches the canonical version source of truth.
 * Copyright year is current.
 * The CIC number is present and accurate where required.
@@ -267,7 +364,7 @@ Before completing any website change that touches the footer, navigation, legal 
 
 ---
 
-## 4. Central Newsroom and news routing standard
+## 5. Central Newsroom and news routing standard
 
 APES Newsroom must be treated as the single public destination for news, announcements and updates from APES CIC and all operating divisions.
 
@@ -289,7 +386,7 @@ News and updates from APES CIC and our services are now published through APES N
 
 ---
 
-## 5. Planning requirement
+## 6. Planning requirement
 
 At the start of planning, confirm the type of update being worked on.
 
@@ -325,7 +422,7 @@ Default assumptions:
 
 ---
 
-## 6. Version numbering standard
+## 7. Version numbering standard
 
 All APES CIC website versions must start with `v`.
 
@@ -373,7 +470,7 @@ When a beta becomes stable, remove the trailing `b` without changing the version
 
 ---
 
-## 7. Change Log Hub and changelog system requirement
+## 8. Change Log Hub and changelog system requirement
 
 All APES websites must have both:
 
@@ -404,7 +501,7 @@ The website Change Log Hub page and root-level `CHANGELOG.md` must stay aligned.
 
 ---
 
-## 8. Change Log Hub page design and behaviour
+## 9. Change Log Hub page design and behaviour
 
 Build and maintain Change Log Hub pages using the APES green themed pattern:
 
@@ -430,7 +527,7 @@ Use accessible `<details>` and `<summary>` elements unless the framework has an 
 
 ---
 
-## 9. Change Log Hub entry format
+## 10. Change Log Hub entry format
 
 Use this structure for each release entry:
 
@@ -481,7 +578,7 @@ Use type pills for Added, Changed, Fixed, Removed, Security and Compliance. Use 
 
 ---
 
-## 10. GitHub Issues progress update requirement
+## 11. GitHub Issues progress update requirement
 
 Keep relevant GitHub Issues updated when:
 
@@ -600,7 +697,7 @@ Do not close issues unless explicitly instructed or repository workflow clearly 
 
 ---
 
-## 11. Required workflow
+## 12. Required workflow
 
 For every website task:
 
@@ -609,14 +706,15 @@ For every website task:
 3. Make only the required website change. Avoid bulk rewrites, formatting-only churn and unrelated generated-file changes.
 4. Update the canonical version file.
 5. Update the website Change Log Hub page and root-level `CHANGELOG.md`.
-6. Validate using available build, tests, linting, link checks, accessibility checks, manual page review, form validation and sitemap or robots checks.
-7. Confirm the footer includes donation, Privacy Policy, Terms of Service and Change Log Hub links.
-8. Confirm the footer shows the correct organisation or division name, parent organisation name where relevant, CIC number, website name and version.
-9. Post final GitHub Issue update where relevant, then provide a final response covering version, changelog, validation, brand compliance, footer compliance, Newsroom routing and unresolved risks.
+6. After commit and push to the server via FTP, validate the deployed website by manually uploading or using the project upload flow and checking the uploaded result.
+7. Remove all other test types from the completion requirement unless the user explicitly requests them for a specific task.
+8. Confirm the footer includes donation, Privacy Policy, Terms of Service and Change Log Hub links.
+9. Confirm the footer shows the correct organisation or division name, parent organisation name where relevant, CIC number, website name and version.
+10. Post final GitHub Issue update where relevant, then provide a final response covering version, changelog, deployed upload validation, brand compliance, footer compliance, Newsroom routing and unresolved risks.
 
 ---
 
-## 12. Generated website export rule
+## 13. Generated website export rule
 
 Generated files must be treated carefully.
 
@@ -634,7 +732,7 @@ Keep diffs narrow, prefer source files over generated output where the source ex
 
 ---
 
-## 13. Commit and pull request guidance
+## 14. Commit and pull request guidance
 
 Recommended PR checklist:
 
@@ -648,6 +746,7 @@ Recommended PR checklist:
 - [ ] Posted final related GitHub Issue update
 - [ ] Checked APES website brand and feature standards
 - [ ] Checked APES universal footer standard
+- [ ] Confirmed footer uses the APES column card format
 - [ ] Confirmed footer includes donation page, Privacy Policy, Terms of Service and Change Log Hub links
 - [ ] Confirmed footer displays organisation or division identity, APES CIC number, website name and version
 - [ ] Checked APES Newsroom routing where news, updates, newsletter, footer, or navigation is affected
@@ -656,7 +755,7 @@ Recommended PR checklist:
 - [ ] Created or updated root-level `CHANGELOG.md`
 - [ ] Added pill tags for change type and fixes
 - [ ] Listed affected website areas
-- [ ] Listed validation checks
+- [ ] Validated the deployed website after commit and push to the server via FTP by uploading or using the project upload flow and checking the uploaded result
 - [ ] Included rollback notes
 - [ ] Avoided unrelated generated-file rewrites
 - [ ] Confirmed no third-party/platform versions were changed accidentally
@@ -670,11 +769,12 @@ website: add volunteer page and bump to v0.2.0
 website: fix donation link and bump to v0.1.3
 website: add beta boarding form and bump to v0.3.0b
 website: update footer links and bump to v0.0.0
+website: apply APES column card footer layout
 ```
 
 ---
 
-## 14. Final self-check before completion
+## 15. Final self-check before completion
 
 Before finishing any website task, check:
 
@@ -687,24 +787,25 @@ Before finishing any website task, check:
 7. Version, status, type and fix pills added where relevant.
 8. Unrelated generated-file changes avoided.
 9. Third-party or platform version strings not changed accidentally.
-10. Validation run or limitations stated.
+10. Deployed website validated after commit and push to the server via FTP by uploading or using the project upload flow and checking the uploaded result.
 11. Rollback notes included.
 12. Changelog system created or corrected where missing or incorrect.
 13. APES website brand and feature standards checked.
 14. APES universal footer standard checked.
-15. Footer includes donation page, Privacy Policy, Terms of Service and Change Log Hub links.
-16. Footer displays the correct website or division name, APES CIC organisation identity, CIC number, current year and canonical version.
-17. APES Newsroom routing checked where relevant.
-18. Related GitHub Issue updated at start, meaningful progress and end where applicable.
+15. Footer uses the APES column card format.
+16. Footer includes donation page, Privacy Policy, Terms of Service and Change Log Hub links.
+17. Footer displays the correct website or division name, APES CIC organisation identity, CIC number, current year and canonical version.
+18. APES Newsroom routing checked where relevant.
+19. Related GitHub Issue updated at start, meaningful progress and end where applicable.
 
 ---
 
-## 15. Non-negotiable instruction
+## 16. Non-negotiable instruction
 
 Do not treat changelog, version updates, APES brand compliance, APES universal footer compliance, APES Newsroom routing or related GitHub Issue updates as optional for website work.
 
 If website files change, the website Change Log Hub page, root-level `CHANGELOG.md`, canonical version, APES brand and feature standards, APES universal footer standard, APES Newsroom routing where relevant and related GitHub Issue must be checked.
 
-Every APES website footer must include direct or clearly accessible links to the website donation page, Privacy Policy page, Terms of Service page and Change Log Hub.
+Every APES website footer must use the APES column card footer format and include direct or clearly accessible links to the website donation page, Privacy Policy page, Terms of Service page and Change Log Hub.
 
 Use UK English throughout website content, changelog entries, issue updates and release notes.

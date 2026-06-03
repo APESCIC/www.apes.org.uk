@@ -1,3 +1,46 @@
+## [v2.6.0] - 2026-06-03
+
+<span class="pill pill-version">Version v2.6.0</span>
+<span class="pill pill-status">Stable</span>
+<span class="pill pill-type">Changed</span>
+<span class="pill pill-accessibility">Accessibility</span>
+<span class="pill pill-compliance">Compliance</span>
+
+### Summary
+
+Added a shared APES image system across key public routes, bringing supportive photography and illustration into the homepage, route-finder, fundraising, bookings, educational and relocation journeys while keeping release, footer and Newsroom rules aligned.
+
+### Detailed changes
+
+- Added six deployable APES image assets plus WebP variants inside the public asset tree and wired them through shared PHP rendering with explicit dimensions, responsive picture markup and lazy loading for non-hero placements.
+- Extended the shared renderer and stylesheet so homepage hero media, route-finder illustrations and reusable feature-media sections can be enabled per page without changing public routes, footer links or form behaviour.
+- Placed the new visuals on the homepage, Services hub, Bookings, Educational visits, About APES, Fundraising priorities and Help Us Move routes using conservative descriptive copy that supports the public journeys without implying named animals or live case evidence.
+- Preserved APES Newsroom routing, the APES column-card footer, required donation, Privacy Policy, Terms of Service and Change Log Hub links, and synchronised the canonical version plus changelog records to v2.6.0.
+- Checked for a related GitHub issue and found no explicit linked issue in the current repo context, so issue-update templates were not posted during this implementation pass.
+
+### Affected areas
+
+- Website: www.apes.org.uk
+- Page or route: homepage hero and route finder, Services hub, Bookings, Educational visits, About APES, Fundraising priorities, Help Us Move, Change Log Hub, footer version display and regenerated static HTML snapshots
+- Files changed: shared PHP rendering, shared CSS, shared site data, VERSION, public VERSION, root CHANGELOG, public CHANGELOG and regenerated static HTML snapshots
+- User groups affected: supporters, adopters, service users, volunteers, partners, educators and general public visitors
+- Public impact: visitors now see warmer, route-relevant visuals across key public journeys with responsive image delivery and no route or footer-link changes
+- Internal impact: reusable image metadata and shared media rendering now support future APES visual placements from a central source of truth
+
+### Version decision
+
+- Previous version: v2.5.0
+- New version: v2.6.0
+- Version type: minor stable
+- Reason for version bump: new public-facing visual content and shared rendering capabilities added across multiple core routes without a breaking restructure
+
+### Validation
+
+- Checks run: local PHP syntax checks, shared CSS/PHP inspection, WebP asset generation, static HTML export and generated HTML inspection
+- Manual checks completed: homepage hero and compact route-finder layout review, Services hub route-finder and care-image review, Bookings and Educational visits image stacking review, Fundraising and Help Us Move image placement review, footer required link review, APES Newsroom route review and changelog/version alignment review
+- Known limitations: validation in this environment focused on generated output and local inspection rather than a full live-browser comparison on every published route
+- Rollback notes: restore the previous shared renderer, shared CSS, image references, version files and changelog entries, then re-export the static HTML snapshots if the image rollout needs to be reversed
+
 ## [v2.5.0] - 2026-06-03
 
 <span class="pill pill-version">Version v2.5.0</span>

@@ -499,6 +499,13 @@ img {
   padding: 2rem 0 1.5rem;
 }
 
+.hero-shell--media {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(20rem, 0.95fr);
+  gap: 1.5rem;
+  align-items: stretch;
+}
+
 .hero-panel,
 .page-body,
 .page-sidebar,
@@ -526,6 +533,18 @@ img {
     linear-gradient(150deg, rgba(0, 95, 95, 0.96), rgba(0, 140, 140, 0.92)),
     var(--apes-deep-teal);
   color: #fff;
+}
+
+.hero-panel--media {
+  height: 100%;
+}
+
+.hero-media-panel {
+  overflow: hidden;
+  border: 1px solid var(--apes-border);
+  border-radius: var(--radius-large);
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: var(--apes-shadow);
 }
 
 .hero-panel h1 {
@@ -638,6 +657,53 @@ img {
     linear-gradient(145deg, rgba(255, 255, 255, 0.96), rgba(221, 243, 239, 0.8)),
     #fff;
   box-shadow: var(--apes-shadow);
+}
+
+.feature-media {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(18rem, 0.95fr);
+  gap: 1.25rem;
+  align-items: center;
+}
+
+.feature-media--route-finder {
+  grid-template-columns: minmax(0, 1.1fr) minmax(16rem, 0.9fr);
+}
+
+.feature-media__content {
+  min-width: 0;
+}
+
+.feature-media__content h2 {
+  margin-top: 0;
+  color: var(--apes-deep-teal);
+}
+
+.feature-media__content p:last-child {
+  margin-bottom: 0;
+}
+
+.feature-media__visual {
+  min-width: 0;
+}
+
+.feature-media__visual picture {
+  display: block;
+}
+
+.feature-media__image {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1672 / 941;
+  object-fit: cover;
+  border-radius: 1.15rem;
+  border: 1px solid rgba(0, 95, 95, 0.12);
+  box-shadow: 0 18px 44px rgba(14, 39, 39, 0.12);
+}
+
+.hero-media__image {
+  height: 100%;
+  min-height: 100%;
 }
 
 .route-finder__intro h2,
@@ -1190,6 +1256,10 @@ input:focus-visible {
     grid-template-columns: 1fr;
   }
 
+  .hero-shell--media {
+    grid-template-columns: 1fr;
+  }
+
   .hero-panel h1 {
     max-width: none;
   }
@@ -1200,6 +1270,7 @@ input:focus-visible {
   .split-panel,
   .card-grid-two,
   .card-grid-three,
+  .feature-media,
   .metrics-grid,
   .mega-links,
   .sponsor-grid,

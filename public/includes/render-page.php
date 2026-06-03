@@ -42,6 +42,67 @@ if (!function_exists('apes_current_page')) {
         return '/assets/' . ltrim($path, '/');
     }
 
+    function apes_image_by_key(array $site, string $key): ?array
+    {
+        return $site['feature_media'][$key] ?? null;
+    }
+
+    function apes_render_picture(array $media, string $imgClass = '', bool $lazy = true, bool $highPriority = false): string
+    {
+        $imgClass = trim($imgClass);
+        $classAttr = $imgClass === '' ? '' : ' class="' . htmlspecialchars($imgClass, ENT_QUOTES) . '"';
+        $loadingAttr = $lazy ? ' loading="lazy"' : '';
+        $fetchPriorityAttr = $highPriority ? ' fetchpriority="high"' : '';
+
+        return sprintf(
+            '<picture><source srcset="%s" type="image/webp" /><img%s src="%s" alt="%s" width="%d" height="%d"%s decoding="async"%s /></picture>',
+            htmlspecialchars((string) $media['webp'], ENT_QUOTES),
+            $classAttr,
+            htmlspecialchars((string) $media['png'], ENT_QUOTES),
+            htmlspecialchars((string) $media['alt'], ENT_QUOTES),
+            (int) $media['width'],
+            (int) $media['height'],
+            $loadingAttr,
+            $fetchPriorityAttr
+        );
+    }
+
+    function apes_render_feature_media(array $feature, array $site): string
+    {
+        $media = apes_image_by_key($site, (string) $feature['image']);
+
+        if ($media === null) {
+            return '';
+        }
+
+        $sectionClass = trim('section-shell feature-media ' . (string) ($feature['class_name'] ?? ''));
+        $eyebrow = trim((string) ($feature['eyebrow'] ?? ''));
+        $title = trim((string) ($feature['title'] ?? ''));
+        $summary = trim((string) ($feature['summary'] ?? ''));
+
+        ob_start();
+        ?>
+<section class="<?= htmlspecialchars($sectionClass, ENT_QUOTES) ?>">
+  <div class="feature-media__content">
+    <?php if ($eyebrow !== ''): ?>
+      <p class="eyebrow"><?= htmlspecialchars($eyebrow, ENT_QUOTES) ?></p>
+    <?php endif; ?>
+    <?php if ($title !== ''): ?>
+      <h2><?= htmlspecialchars($title, ENT_QUOTES) ?></h2>
+    <?php endif; ?>
+    <?php if ($summary !== ''): ?>
+      <p><?= htmlspecialchars($summary, ENT_QUOTES) ?></p>
+    <?php endif; ?>
+  </div>
+  <div class="feature-media__visual">
+    <?= apes_render_picture($media, 'feature-media__image') ?>
+  </div>
+</section>
+        <?php
+
+        return (string) ob_get_clean();
+    }
+
     function apes_page_url(array $page): string
     {
         return rtrim(APES_PRIMARY_DOMAIN, '/') . $page['route'];
@@ -178,7 +239,7 @@ if (!function_exists('apes_current_page')) {
         return '<a class="' . $class . '" href="' . $href . '"' . $rel . ' aria-label="' . $label . '"><span class="social-icon" aria-hidden="true">' . $icon . '</span><span class="sr-only">' . $label . '</span></a>';
     }
 
-    function apes_render_route_finder(array $items, string $mode = 'compact'): string
+    function apes_render_route_finder(array $items, string $mode = 'compact', ?array $media = null): string
     {
         $isExpanded = $mode === 'expanded';
         $wrapperClass = $isExpanded ? 'route-finder route-finder-expanded' : 'route-finder route-finder-compact';
@@ -199,10 +260,17 @@ if (!function_exists('apes_current_page')) {
         ob_start();
         ?>
 <section class="<?= $wrapperClass ?>" data-route-finder data-route-mode="<?= htmlspecialchars($mode, ENT_QUOTES) ?>">
-  <div class="route-finder__intro">
-    <p class="eyebrow"><?= $isExpanded ? 'Services hub' : 'Fast route finder' ?></p>
-    <h2><?= $isExpanded ? 'Find the right APES route before you contact us.' : 'Find the right APES route in under a minute.' ?></h2>
-    <p><?= $isExpanded ? 'Search, filter or choose a common situation to see the most likely APES route, alternative routes and any safety-first guidance.' : 'Choose the situation that best matches what you need. APES will point you to the most appropriate public route without asking for case details here.' ?></p>
+  <div class="<?= $media !== null ? 'feature-media feature-media--route-finder' : '' ?>">
+    <div class="route-finder__intro<?= $media !== null ? ' feature-media__content' : '' ?>">
+      <p class="eyebrow"><?= $isExpanded ? 'Services hub' : 'Fast route finder' ?></p>
+      <h2><?= $isExpanded ? 'Find the right APES route before you contact us.' : 'Find the right APES route in under a minute.' ?></h2>
+      <p><?= $isExpanded ? 'Search, filter or choose a common situation to see the most likely APES route, alternative routes and any safety-first guidance.' : 'Choose the situation that best matches what you need. APES will point you to the most appropriate public route without asking for case details here.' ?></p>
+    </div>
+    <?php if ($media !== null): ?>
+      <div class="feature-media__visual route-finder__visual">
+        <?= apes_render_picture($media, 'feature-media__image') ?>
+      </div>
+    <?php endif; ?>
   </div>
   <?php if ($isExpanded): ?>
     <div class="route-finder__tools">
@@ -318,14 +386,34 @@ if (!function_exists('apes_current_page')) {
         return (string) ob_get_clean();
     }
 
-    function apes_render_page_body(string $bodyHtml, array $site): string
+    function apes_render_page_body(string $bodyHtml, array $site, array $page): string
     {
-        return strtr($bodyHtml, [
-            '[[ROUTE_FINDER_COMPACT]]' => apes_render_route_finder($site['route_finder_items'] ?? [], 'compact'),
-            '[[ROUTE_FINDER_EXPANDED]]' => apes_render_route_finder($site['route_finder_items'] ?? [], 'expanded'),
+        $replacements = [
+            '[[ROUTE_FINDER_COMPACT]]' => apes_render_route_finder(
+                $site['route_finder_items'] ?? [],
+                'compact',
+                !empty($page['route_finder_media']) ? apes_image_by_key($site, (string) $page['route_finder_media']) : null
+            ),
+            '[[ROUTE_FINDER_EXPANDED]]' => apes_render_route_finder(
+                $site['route_finder_items'] ?? [],
+                'expanded',
+                !empty($page['route_finder_media']) ? apes_image_by_key($site, (string) $page['route_finder_media']) : null
+            ),
             '[[SOCIAL_PRIMARY_GRID]]' => apes_render_social_cards(apes_social_links_for_placement($site['social_profiles'] ?? [], 'socials-primary')),
             '[[SOCIAL_COMMUNITY_GRID]]' => apes_render_social_cards(apes_social_links_for_placement($site['social_profiles'] ?? [], 'socials-community')),
-        ]);
+        ];
+
+        if (preg_match_all('/\[\[FEATURE_MEDIA:([a-z0-9\-]+)\]\]/i', $bodyHtml, $matches)) {
+            foreach (array_unique($matches[1]) as $featureKey) {
+                $feature = $site['feature_sections'][$featureKey] ?? null;
+
+                if ($feature !== null) {
+                    $replacements['[[FEATURE_MEDIA:' . $featureKey . ']]'] = apes_render_feature_media($feature, $site);
+                }
+            }
+        }
+
+        return strtr($bodyHtml, $replacements);
     }
 
     function apes_social_icon_markup(string $icon): string
@@ -430,8 +518,8 @@ $breadcrumbs = apes_breadcrumbs_for_page($page, isset($page_key) ? (string) $pag
       </nav>
     <?php endif; ?>
 
-    <section class="hero-shell">
-      <div class="hero-panel">
+    <section class="hero-shell<?= !empty($page['hero_media']) ? ' hero-shell--media' : '' ?>">
+      <div class="hero-panel<?= !empty($page['hero_media']) ? ' hero-panel--media' : '' ?>">
         <p class="eyebrow"><?= htmlspecialchars($page['hero_kicker'], ENT_QUOTES) ?></p>
         <h1><?= htmlspecialchars($page['hero_title'], ENT_QUOTES) ?></h1>
         <p class="hero-summary"><?= htmlspecialchars($page['hero_summary'], ENT_QUOTES) ?></p>
@@ -451,11 +539,19 @@ $breadcrumbs = apes_breadcrumbs_for_page($page, isset($page_key) ? (string) $pag
           </div>
         <?php endif; ?>
       </div>
+      <?php if (!empty($page['hero_media'])): ?>
+        <?php $heroMedia = apes_image_by_key($site, (string) $page['hero_media']); ?>
+        <?php if ($heroMedia !== null): ?>
+          <div class="hero-media-panel">
+            <?= apes_render_picture($heroMedia, 'feature-media__image hero-media__image', false, true) ?>
+          </div>
+        <?php endif; ?>
+      <?php endif; ?>
     </section>
 
     <section class="page-shell">
       <article class="page-body">
-        <?= apes_render_page_body($page['body_html'], $site) ?>
+        <?= apes_render_page_body($page['body_html'], $site, $page) ?>
 
         <?php if ($is_search_page): ?>
           <section class="section-shell">

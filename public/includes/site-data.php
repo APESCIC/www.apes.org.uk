@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-const APES_FALLBACK_VERSION = 'v2.5.0';
+const APES_FALLBACK_VERSION = 'v2.6.0';
 const APES_SITE_NAME = 'Association of Protecting Exotic Species CIC';
 const APES_CIC_NUMBER = '16253848';
 const APES_CONTACT_EMAIL = 'info@apes.org.uk';
@@ -71,6 +71,88 @@ function apes_site_data(): array
             'og_image' => '/assets/logos/apes-og-image-1200x630.jpg',
             'twitter_image' => '/assets/logos/apes-twitter-card-1200x600.jpg',
             'subtitle' => 'Rescue, rehabilitation, rehoming and public support across the APES network.',
+        ],
+        'feature_media' => [
+            'homepage-hero' => [
+                'png' => '/assets/images/apes/apes-homepage-hero.png',
+                'webp' => '/assets/images/apes/apes-homepage-hero.webp',
+                'alt' => 'APES staff member preparing a reptile habitat while a family speaks with a team member in a calm learning space.',
+                'width' => 1672,
+                'height' => 941,
+            ],
+            'route-finder-illustration' => [
+                'png' => '/assets/images/apes/apes-route-finder-illustration.png',
+                'webp' => '/assets/images/apes/apes-route-finder-illustration.webp',
+                'alt' => 'Illustrated service-routing diagram showing APES support journeys from first contact through practical welfare outcomes.',
+                'width' => 1672,
+                'height' => 941,
+            ],
+            'rescue-rehab-rehome' => [
+                'png' => '/assets/images/apes/apes-rescue-rehab-rehome.png',
+                'webp' => '/assets/images/apes/apes-rescue-rehab-rehome.webp',
+                'alt' => 'APES team members handling reptile-care equipment and speaking through a welfare handover in a calm indoor setting.',
+                'width' => 1672,
+                'height' => 941,
+            ],
+            'education-care' => [
+                'png' => '/assets/images/apes/apes-education-care.png',
+                'webp' => '/assets/images/apes/apes-education-care.webp',
+                'alt' => 'Educator guiding a reptile-care session around a habitat while attendees observe from a respectful distance.',
+                'width' => 1672,
+                'height' => 941,
+            ],
+            'fundraising-priorities' => [
+                'png' => '/assets/images/apes/apes-fundraising-priorities.png',
+                'webp' => '/assets/images/apes/apes-fundraising-priorities.webp',
+                'alt' => 'Operational table showing scales, tablet, payment device, food containers, tools and care items that support daily APES welfare work.',
+                'width' => 1672,
+                'height' => 941,
+            ],
+            'relocation-continuity' => [
+                'png' => '/assets/images/apes/apes-relocation-continuity.png',
+                'webp' => '/assets/images/apes/apes-relocation-continuity.webp',
+                'alt' => 'APES team members moving covered habitats and care containers between a vehicle and an indoor setup space.',
+                'width' => 1672,
+                'height' => 941,
+            ],
+        ],
+        'feature_sections' => [
+            'about-three-rs' => [
+                'image' => 'rescue-rehab-rehome',
+                'eyebrow' => 'Three Rs in practice',
+                'title' => 'Rescue, rehabilitation and rehoming depend on calm, welfare-first handling.',
+                'summary' => 'This supporting image reinforces the public explanation of the three Rs without implying a specific current APES case or outcome.',
+            ],
+            'services-care-education' => [
+                'image' => 'education-care',
+                'eyebrow' => 'Care and education routes',
+                'title' => 'Care, learning and public support sit alongside the route finder.',
+                'summary' => 'Use the Services hub when you need the right mix of care guidance, educational support, bookings and connected APES service routes.',
+            ],
+            'bookings-care' => [
+                'image' => 'education-care',
+                'eyebrow' => 'Booking support',
+                'title' => 'Bookings work best when visitors understand the care setting behind the route.',
+                'summary' => 'This image supports the bookings page by showing a calm welfare-led environment rather than implying a confirmed appointment or named service user.',
+            ],
+            'educational-visits-care' => [
+                'image' => 'education-care',
+                'eyebrow' => 'Welfare-led outreach',
+                'title' => 'Educational visits should feel practical, calm and respectful of animal welfare.',
+                'summary' => 'The image supports APES learning sessions and guided care conversations without claiming to document a specific public event.',
+            ],
+            'fundraising-priorities-visual' => [
+                'image' => 'fundraising-priorities',
+                'eyebrow' => 'Operational priorities',
+                'title' => 'Practical tools and systems keep daily APES welfare work moving.',
+                'summary' => 'This supporting visual aligns with the published fundraising priorities around equipment, software, monitoring and day-to-day operational readiness.',
+            ],
+            'relocation-continuity-visual' => [
+                'image' => 'relocation-continuity',
+                'eyebrow' => 'Continuity of care',
+                'title' => 'Relocation planning is about keeping animals safe while operations move.',
+                'summary' => 'The image supports the appeal tone by focusing on organised welfare continuity rather than presenting an active emergency scene.',
+            ],
         ],
         'newsroom_copy' => $newsroom_copy,
         'social_profiles' => [
@@ -353,6 +435,8 @@ function apes_site_data(): array
                 'meta_title' => 'APES CIC | Protecting exotic species across rescue, care and education',
                 'title' => 'Association of Protecting Exotic Species CIC',
                 'description' => 'APES CIC supports exotic animal welfare through rescue, rehabilitation, rehoming, education, pet care and practical public support.',
+                'hero_media' => 'homepage-hero',
+                'route_finder_media' => 'route-finder-illustration',
                 'hero_kicker' => 'APES CIC',
                 'hero_title' => 'Protect exotic species through rescue, care and practical public support.',
                 'hero_summary' => 'APES CIC brings together rescue, rehabilitation, rehoming, education and day-to-day support so animals, keepers and communities can get help quickly.',
@@ -531,6 +615,7 @@ HTML,
                 'meta_title' => 'Services | Find the right APES support route',
                 'title' => 'Services',
                 'description' => 'Search, filter and compare APES public service routes across rescue, support, care, education and connected services.',
+                'route_finder_media' => 'route-finder-illustration',
                 'hero_kicker' => 'Services hub',
                 'hero_title' => 'Find the right APES route before you contact us.',
                 'hero_summary' => 'Use the APES Services hub to compare rescue, lost-and-found, care, boarding, education, donation and support routes without guessing which service to approach first.',
@@ -541,6 +626,8 @@ HTML,
                 'pills' => ['Service routing', 'Search and filters', 'Safety-first guidance'],
                 'body_html' => <<<'HTML'
 [[ROUTE_FINDER_EXPANDED]]
+
+[[FEATURE_MEDIA:services-care-education]]
 
 <section class="section-shell">
   <div class="section-heading">
@@ -591,6 +678,8 @@ HTML,
                 ],
                 'pills' => ['Relocation appeal', 'Continuity of care', 'Support needed'],
                 'body_html' => <<<'HTML'
+[[FEATURE_MEDIA:relocation-continuity-visual]]
+
 <section class="section-shell">
   <p>The public appeal explains that APES was asked to vacate its previous premises with limited time to relocate while continuing to care for animals already depending on the organisation.</p>
   <div class="card-grid card-grid-three">
@@ -908,6 +997,8 @@ HTML,
   <p>Through hands-on encounters and interactive questions, the aim is to build appreciation for animal welfare, highlight the risks of the illegal wildlife trade and encourage conservation-minded care.</p>
 </section>
 
+[[FEATURE_MEDIA:educational-visits-care]]
+
 <section class="section-shell">
   <div class="card-grid card-grid-three">
     <article class="info-card">
@@ -1003,6 +1094,8 @@ HTML,
                 ],
                 'pills' => ['Equipment needs', 'Operational tools', 'Supporter services'],
                 'body_html' => <<<'HTML'
+[[FEATURE_MEDIA:fundraising-priorities-visual]]
+
 <section class="section-shell">
   <p>The legacy page says that from time to time things break down, new technology is needed, and practical equipment has to be replaced quickly to keep services moving.</p>
   <div class="card-grid card-grid-two">
@@ -1389,6 +1482,11 @@ HTML,
                 'body_html' => <<<'HTML'
 <section class="section-shell">
   <p>Bookings remains the narrower route for arranging visits, boarding and practical service conversations after the wider Services hub has helped you choose the right APES pathway.</p>
+ </section>
+
+[[FEATURE_MEDIA:bookings-care]]
+
+<section class="section-shell">
   <div class="card-grid card-grid-three">
     <article class="info-card">
       <h3>Boarding</h3>
@@ -1577,6 +1675,8 @@ HTML,
   </div>
   <p>The live page describes APES as a small shelter and rescue service supporting people with specialist exotic pets. It explains rescue as responding when animals are in need, rehabilitation as helping them recover with proper care, and rehoming as finding suitable adoptive homes.</p>
 </section>
+
+[[FEATURE_MEDIA:about-three-rs]]
 
 <section class="section-shell">
   <div class="card-grid card-grid-three">
@@ -2529,7 +2629,7 @@ HTML,
                 'hero_summary' => 'Track every major release for this website, including updates, fixes, compliance changes, and user-facing improvements.',
                 'hero_actions' => [
                     ['label' => 'Expand all releases', 'href' => '#release-list', 'variant' => 'primary'],
-                    ['label' => 'View current release', 'href' => '#release-v250', 'variant' => 'secondary'],
+                    ['label' => 'View current release', 'href' => '#release-v260', 'variant' => 'secondary'],
                 ],
                 'pills' => ['Current version ' . $siteVersion, 'Minor stable', 'Public-facing'],
                 'body_html' => <<<'HTML'
@@ -2559,7 +2659,55 @@ HTML,
 </section>
 
 <section class="section-shell" id="release-list">
-  <details class="release-card" data-release-card data-tags="current stable changed accessibility compliance public-facing" open id="release-v250">
+  <details class="release-card" data-release-card data-tags="current stable changed accessibility compliance public-facing" open id="release-v260">
+    <summary>
+      <span class="release-version">v2.6.0</span>
+      <span class="release-date">2026-06-03</span>
+    </summary>
+    <div class="release-body">
+      <div class="pill-row">
+        <span class="pill pill-version">Version v2.6.0</span>
+        <span class="pill pill-status">Stable</span>
+        <span class="pill pill-type">Changed</span>
+        <span class="pill pill-accessibility">Accessibility</span>
+        <span class="pill pill-compliance">Compliance</span>
+      </div>
+      <h3>Summary</h3>
+      <p>Added a shared APES image system across key public routes, bringing supportive photography and illustration into the homepage, route-finder, fundraising, bookings, educational and relocation journeys while keeping release, footer and Newsroom rules aligned.</p>
+      <h3>Detailed changes</h3>
+      <ul class="clean-list">
+        <li>Added six deployable APES image assets plus WebP variants inside the public asset tree and wired them through shared PHP rendering with explicit dimensions, responsive picture markup and lazy loading for non-hero placements.</li>
+        <li>Extended the shared renderer and stylesheet so homepage hero media, route-finder illustrations and reusable feature-media sections can be enabled per page without changing public routes, footer links or form behaviour.</li>
+        <li>Placed the new visuals on the homepage, Services hub, Bookings, Educational visits, About APES, Fundraising priorities and Help Us Move routes using conservative descriptive copy that supports the public journeys without implying named animals or live case evidence.</li>
+        <li>Preserved APES Newsroom routing, the APES column-card footer, required donation, Privacy Policy, Terms of Service and Change Log Hub links, and synchronised the canonical version plus changelog records to v2.6.0.</li>
+        <li>Checked for a related GitHub issue and found no explicit linked issue in the current repo context, so issue-update templates were not posted during this implementation pass.</li>
+      </ul>
+      <h3>Affected areas</h3>
+      <ul class="clean-list">
+        <li>Website: www.apes.org.uk</li>
+        <li>Page or route: homepage hero and route finder, Services hub, Bookings, Educational visits, About APES, Fundraising priorities, Help Us Move, Change Log Hub, footer version display and regenerated static HTML snapshots</li>
+        <li>Files changed: shared PHP rendering, shared CSS, shared site data, VERSION, public VERSION, root CHANGELOG, public CHANGELOG and regenerated static HTML snapshots</li>
+        <li>User groups affected: supporters, adopters, service users, volunteers, partners, educators and general public visitors</li>
+        <li>Public impact: visitors now see warmer, route-relevant visuals across key public journeys with responsive image delivery and no route or footer-link changes</li>
+        <li>Internal impact: reusable image metadata and shared media rendering now support future APES visual placements from a central source of truth</li>
+      </ul>
+      <h3>Version decision</h3>
+      <ul class="clean-list">
+        <li>Previous version: v2.5.0</li>
+        <li>New version: v2.6.0</li>
+        <li>Version type: minor stable</li>
+        <li>Reason for version bump: new public-facing visual content and shared rendering capabilities added across multiple core routes without a breaking restructure</li>
+      </ul>
+      <h3>Validation</h3>
+      <ul class="clean-list">
+        <li>Checks run: local PHP syntax checks, shared CSS/PHP inspection, WebP asset generation, static HTML export and generated HTML inspection</li>
+        <li>Manual checks completed: homepage hero and compact route-finder layout review, Services hub route-finder and care-image review, Bookings and Educational visits image stacking review, Fundraising and Help Us Move image placement review, footer required link review, APES Newsroom route review and changelog/version alignment review</li>
+        <li>Known limitations: validation in this environment focused on generated output and local inspection rather than a full live-browser comparison on every published route</li>
+        <li>Rollback notes: restore the previous shared renderer, shared CSS, image references, version files and changelog entries, then re-export the static HTML snapshots if the image rollout needs to be reversed</li>
+      </ul>
+    </div>
+  </details>
+  <details class="release-card" data-release-card data-tags="stable changed accessibility compliance public-facing" id="release-v250">
     <summary>
       <span class="release-version">v2.5.0</span>
       <span class="release-date">2026-06-03</span>
