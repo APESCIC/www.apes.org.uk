@@ -1661,3 +1661,213 @@ body {
     z-index: 120;
   }
 }
+
+/* Homepage and navigation responsive sizing refinements */
+:root {
+  --site-width: min(88vw, 96rem);
+}
+
+.nav-shell {
+  gap: 0.85rem;
+  padding: 0.85rem 0 0.95rem;
+}
+
+.brand-logo-wrap {
+  min-width: 4.75rem;
+}
+
+.brand-logo {
+  width: 82px;
+  height: 64px;
+}
+
+.brand-copy strong {
+  font-size: 1.05rem;
+}
+
+.brand-copy span {
+  max-width: 38rem;
+  font-size: 0.9rem;
+}
+
+.primary-nav > ul {
+  gap: 0.55rem;
+}
+
+.nav-link,
+.mega-summary {
+  padding: 0.65rem 0.9rem;
+  font-size: 0.94rem;
+}
+
+.nav-cta-link {
+  min-width: 7.2rem;
+}
+
+.mega-panel {
+  min-width: min(44rem, calc(100vw - 2rem));
+  width: min(52rem, calc(100vw - 2rem));
+  padding: 1rem;
+}
+
+.mega-panel-header {
+  gap: 0.6rem;
+  margin-bottom: 0.85rem;
+}
+
+.mega-eyebrow {
+  padding: 0.42rem 0.8rem;
+  font-size: 0.68rem;
+  letter-spacing: 0.08em;
+}
+
+.mega-heading {
+  font-size: clamp(1.35rem, 1.35vw, 1.65rem);
+  line-height: 1.12;
+}
+
+.mega-description {
+  max-width: 32rem;
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
+.mega-panel-pills {
+  gap: 0.5rem;
+}
+
+.mega-panel-pill {
+  min-height: 2rem;
+  padding: 0.35rem 0.7rem;
+  font-size: 0.86rem;
+}
+
+.mega-links {
+  gap: 0.6rem;
+}
+
+.mega-link {
+  gap: 0.75rem;
+  padding: 0.62rem 0.75rem;
+  border-radius: 0.85rem;
+}
+
+.mega-link-badge {
+  width: 2.35rem;
+  min-width: 2.35rem;
+  height: 2.35rem;
+  border-radius: 0.75rem;
+  font-size: 0.82rem;
+}
+
+.mega-link-title {
+  font-size: 0.9rem;
+}
+
+.mega-link-description {
+  font-size: 0.84rem;
+  line-height: 1.38;
+}
+
+.mega-link-arrow {
+  font-size: 1rem;
+}
+
+.hero-shell {
+  grid-template-columns: minmax(0, 2.2fr) minmax(17rem, 0.95fr);
+  gap: 1.25rem;
+  padding: 1.4rem 0 1.25rem;
+}
+
+.hero-panel h1 {
+  font-size: clamp(2.1rem, 3.2vw, 3.45rem);
+  line-height: 1.08;
+}
+
+.hero-summary {
+  font-size: 0.98rem;
+}
+
+@media (max-width: 1100px) {
+  .hero-panel h1 {
+    font-size: clamp(2.05rem, 6vw, 3.2rem);
+  }
+}
+
+@media (max-width: 980px) {
+  .mega-heading {
+    font-size: clamp(1.28rem, 3vw, 1.55rem);
+  }
+
+  .mega-description {
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .topbar-inner {
+    gap: 0.65rem;
+    padding: 0.55rem 0;
+    font-size: 0.9rem;
+  }
+
+  .social-icon-link {
+    width: 2.2rem;
+    height: 2.2rem;
+  }
+
+  .nav-shell {
+    padding: 0.7rem 0;
+  }
+
+  .brand-mark {
+    gap: 0.7rem;
+  }
+
+  .brand-logo-wrap {
+    min-width: 3.9rem;
+  }
+
+  .brand-logo {
+    width: 66px;
+    height: 52px;
+  }
+
+  .brand-copy strong {
+    font-size: 1rem;
+  }
+
+  .brand-copy span {
+    font-size: 0.84rem;
+    line-height: 1.35;
+  }
+
+  .menu-toggle {
+    padding: 0.65rem 0.85rem;
+  }
+
+  .hero-shell {
+    padding: 1rem 0;
+  }
+
+  .hero-panel {
+    padding: 1.15rem;
+  }
+
+  .hero-panel h1 {
+    font-size: clamp(1.85rem, 9vw, 2.45rem);
+    line-height: 1.12;
+  }
+
+  .hero-summary {
+    font-size: 0.94rem;
+  }
+}
+
+@media (min-width: 981px) {
+  .mega-menu[open] > .mega-panel {
+    top: var(--mega-panel-top, 7rem);
+    width: min(52rem, calc(100vw - 2rem));
+    max-height: calc(100vh - var(--mega-panel-top, 7rem) - 1.25rem);
+  }
+}

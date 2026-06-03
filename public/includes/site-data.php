@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-const APES_FALLBACK_VERSION = 'v2.4.3';
+const APES_FALLBACK_VERSION = 'v2.4.4b';
 const APES_SITE_NAME = 'Association of Protecting Exotic Species CIC';
 const APES_CIC_NUMBER = '16253848';
 const APES_CONTACT_EMAIL = 'info@apes.org.uk';
@@ -2529,9 +2529,9 @@ HTML,
                 'hero_summary' => 'Track every major release for this website, including updates, fixes, compliance changes, and user-facing improvements.',
                 'hero_actions' => [
                     ['label' => 'Expand all releases', 'href' => '#release-list', 'variant' => 'primary'],
-                    ['label' => 'View current release', 'href' => '#release-v243', 'variant' => 'secondary'],
+                    ['label' => 'View current release', 'href' => '#release-v244b', 'variant' => 'secondary'],
                 ],
-                'pills' => ['Current version ' . $siteVersion, 'Patch stable', 'Public-facing'],
+                'pills' => ['Current version ' . $siteVersion, 'Patch beta', 'Public-facing'],
                 'body_html' => <<<'HTML'
 <section class="section-shell">
   <div class="release-tools">
@@ -2559,51 +2559,51 @@ HTML,
 </section>
 
 <section class="section-shell" id="release-list">
-  <details class="release-card" data-release-card data-tags="current stable changed fixed accessibility public-facing" open id="release-v243">
+  <details class="release-card" data-release-card data-tags="current beta changed fixed accessibility public-facing" open id="release-v244b">
     <summary>
-      <span class="release-version">v2.4.3</span>
+      <span class="release-version">v2.4.4b</span>
       <span class="release-date">2026-06-03</span>
     </summary>
     <div class="release-body">
       <div class="pill-row">
-        <span class="pill pill-version">Version v2.4.3</span>
-        <span class="pill pill-status">Stable</span>
+        <span class="pill pill-version">Version v2.4.4b</span>
+        <span class="pill pill-status">Beta</span>
         <span class="pill pill-type">Changed</span>
         <span class="pill pill-fix">Fix</span>
         <span class="pill pill-accessibility">Accessibility</span>
       </div>
       <h3>Summary</h3>
-      <p>Widened the shared APES desktop mega menus and removed horizontal panel scrolling so navigation cards fit more comfortably on normal desktop viewports.</p>
+      <p>Refined the shared homepage hero and mega-menu responsive sizing so desktop layouts feel less oversized while tablet and mobile headers fit more cleanly.</p>
       <h3>Detailed changes</h3>
       <ul class="clean-list">
-        <li>Increased the shared mega-menu desktop width cap so Services, Support APES and Information open as wider centred panels without changing routes, labels or menu structure.</li>
-        <li>Added shared <code>border-box</code> sizing to the mega-menu panel so panel padding stays inside the declared width and no longer triggers avoidable horizontal overflow.</li>
-        <li>Kept the existing fixed-position desktop behaviour, mobile full-width panel behaviour and vertical overflow fallback while restricting desktop panel scrolling to the y-axis.</li>
-        <li>Left APES Newsroom routing, footer structure and the required donation, Privacy Policy, Terms of Service and Change Log Hub links unchanged.</li>
+        <li>Appended a shared CSS override layer that reduces homepage hero headline scale, desktop navigation spacing, logo sizing and mega-menu density without changing PHP templates, routes or menu copy.</li>
+        <li>Narrowed the desktop mega-menu panel width and reduced the heading, description, pill, badge and link typography so Information, Services and Support APES feel more compact on large viewports.</li>
+        <li>Added tighter tablet and mobile refinements for the top bar, social icons, branding block, menu button and hero copy so smaller screens fit cleanly without overlap.</li>
+        <li>Left APES Newsroom routing, footer structure, required donation, Privacy Policy, Terms of Service and Change Log Hub links, and intranet link rules unchanged.</li>
         <li>Regenerated the exported static HTML snapshots and synchronised the canonical version, website Change Log Hub and root changelog.</li>
       </ul>
       <h3>Affected areas</h3>
       <ul class="clean-list">
         <li>Website: www.apes.org.uk</li>
-        <li>Page or route: shared header navigation, homepage, content routes, Change Log Hub and regenerated static HTML snapshots</li>
+        <li>Page or route: shared homepage hero, shared header navigation, Change Log Hub and regenerated static HTML snapshots</li>
         <li>Files changed: shared CSS, shared site data, VERSION, root CHANGELOG and regenerated static HTML snapshots</li>
         <li>User groups affected: supporters, adopters, service users, volunteers, partners and general public visitors</li>
-        <li>Public impact: visitors now get wider desktop mega menus with no horizontal scrolling requirement for the shared navigation panels</li>
-        <li>Internal impact: shared menu sizing and overflow behaviour now come from a single central CSS rule set</li>
+        <li>Public impact: visitors now see a smaller homepage hero and denser shared mega menus across desktop, tablet and mobile widths</li>
+        <li>Internal impact: responsive hero and navigation sizing now come from a final shared CSS override layer</li>
       </ul>
       <h3>Version decision</h3>
       <ul class="clean-list">
-        <li>Previous version: v2.4.2</li>
-        <li>New version: v2.4.3</li>
-        <li>Version type: patch stable</li>
-        <li>Reason for version bump: small public-facing navigation layout correction with no route, content or taxonomy change</li>
+        <li>Previous version: v2.4.3</li>
+        <li>New version: v2.4.4b</li>
+        <li>Version type: patch beta</li>
+        <li>Reason for version bump: small public-facing responsive sizing refinement released as a beta patch without route, template or content restructuring</li>
       </ul>
       <h3>Validation</h3>
       <ul class="clean-list">
-        <li>Checks run: shared CSS inspection, local PHP syntax checks, static HTML export and generated HTML inspection</li>
-        <li>Manual checks completed: Services, Support APES and Information menu width review, footer required link review, APES Newsroom route review and changelog/version alignment review</li>
-        <li>Known limitations: validation in this environment is based on generated output and code inspection rather than a full interactive browser comparison for every route</li>
-        <li>Rollback notes: restore the previous shared CSS, release metadata and version files, then re-export the static HTML snapshots if needed</li>
+        <li>Checks run: shared CSS inspection, local PHP syntax checks, static HTML export, generated HTML inspection and local browser responsive verification</li>
+        <li>Manual checks completed: homepage hero review, Information/Services/Support APES mega-menu review at 1920px, 1440px, 1024px, 768px and 390px, footer required link review, APES Newsroom route review and changelog/version alignment review</li>
+        <li>Known limitations: staged Cloudron deployment and asset-cache verification were out of scope for this repo-only implementation pass</li>
+        <li>Rollback notes: restore the previous shared CSS and release metadata, then re-export the static HTML snapshots if needed</li>
       </ul>
     </div>
   </details>

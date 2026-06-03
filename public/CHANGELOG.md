@@ -1,3 +1,46 @@
+## [v2.4.4b] - 2026-06-03
+
+<span class="pill pill-version">Version v2.4.4b</span>
+<span class="pill pill-status">Beta</span>
+<span class="pill pill-type">Changed</span>
+<span class="pill pill-fix">Fix</span>
+<span class="pill pill-accessibility">Accessibility</span>
+
+### Summary
+
+Refined the shared homepage hero and mega-menu responsive sizing so desktop layouts feel less oversized while tablet and mobile headers fit more cleanly.
+
+### Detailed changes
+
+- Appended a shared CSS override layer that reduces homepage hero headline scale, desktop navigation spacing, logo sizing and mega-menu density without changing PHP templates, routes or menu copy.
+- Narrowed the desktop mega-menu panel width and reduced the heading, description, pill, badge and link typography so Information, Services and Support APES feel more compact on large viewports.
+- Added tighter tablet and mobile refinements for the top bar, social icons, branding block, menu button and hero copy so smaller screens fit cleanly without overlap.
+- Left APES Newsroom routing, footer structure, required donation, Privacy Policy, Terms of Service and Change Log Hub links, and intranet link rules unchanged.
+- Regenerated the exported static HTML snapshots and synchronised the canonical version, website Change Log Hub and root changelog.
+
+### Affected areas
+
+- Website: www.apes.org.uk
+- Page or route: shared homepage hero, shared header navigation, Change Log Hub and regenerated static HTML snapshots
+- Files changed: shared CSS, shared site data, VERSION, root CHANGELOG and regenerated static HTML snapshots
+- User groups affected: supporters, adopters, service users, volunteers, partners and general public visitors
+- Public impact: visitors now see a smaller homepage hero and denser shared mega menus across desktop, tablet and mobile widths
+- Internal impact: responsive hero and navigation sizing now come from a final shared CSS override layer
+
+### Version decision
+
+- Previous version: v2.4.3
+- New version: v2.4.4b
+- Version type: patch beta
+- Reason for version bump: small public-facing responsive sizing refinement released as a beta patch without route, template or content restructuring
+
+### Validation
+
+- Checks run: shared CSS inspection, local PHP syntax checks, static HTML export, generated HTML inspection and local browser responsive verification
+- Manual checks completed: homepage hero review, Information/Services/Support APES mega-menu review at 1920px, 1440px, 1024px, 768px and 390px, footer required link review, APES Newsroom route review and changelog/version alignment review
+- Known limitations: staged Cloudron deployment and asset-cache verification were out of scope for this repo-only implementation pass
+- Rollback notes: restore the previous shared CSS and release metadata, then re-export the static HTML snapshots if needed
+
 ## [v2.4.3] - 2026-06-03
 
 <span class="pill pill-version">Version v2.4.3</span>
