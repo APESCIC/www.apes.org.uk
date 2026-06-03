@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-const APES_FALLBACK_VERSION = 'v2.3.1';
+const APES_FALLBACK_VERSION = 'v2.3.2';
 const APES_SITE_NAME = 'Association of Protecting Exotic Species CIC';
 const APES_CIC_NUMBER = '16253848';
 const APES_CONTACT_EMAIL = 'info@apes.org.uk';
@@ -115,7 +115,7 @@ function apes_site_data(): array
                 'label' => 'Information',
                 'panel_heading' => 'About, policies, updates and APES Newsroom',
                 'children' => [
-                    ['label' => 'About APES', 'description' => 'Learn about APES CIC, the three Rs and the organisation’s welfare-first operating model.', 'href' => '/about-us/'],
+                    ['label' => 'About APES', 'description' => 'Learn about APES CIC, the three Rs and the organisation\'s welfare-first operating model.', 'href' => '/about-us/'],
                     ['label' => 'APES Newsroom', 'description' => 'Read organisation updates, service notices, appeals and cross-division stories in APES Newsroom.', 'href' => APES_NEWSROOM_URL, 'external' => true],
                     ['label' => 'Change Log Hub', 'description' => 'Track public website releases, fixes, compliance changes and layout improvements.', 'href' => '/change-log-hub/'],
                     ['label' => 'Privacy Policy', 'description' => 'Review how APES handles personal data, communications and public website information.', 'href' => '/policies/privacy/'],
@@ -516,7 +516,7 @@ HTML,
   <div>
     <p class="eyebrow">Boarding portal</p>
     <h2>Manage stays through the approved external system.</h2>
-    <p>The public page states that the boarding portal lets owners manage a pet’s stay, add packages and handle related booking details.</p>
+    <p>The public page states that the boarding portal lets owners manage a pet's stay, add packages and handle related booking details.</p>
   </div>
   <div class="action-stack">
     <a class="button button-primary" href="https://petmanager.app/" target="_blank" rel="noreferrer">Book now</a>
@@ -639,7 +639,7 @@ HTML,
 <section class="section-shell">
   <p>The live page describes therapy animals as a calming presence for some service users experiencing stress, anxiety or low mood. It explains that people may benefit from holding, stroking, grooming or simply sitting with an animal when appropriate and supervised.</p>
   <blockquote class="quote-card">
-    <p>Animals are a great icebreaker in both one-to-one and group therapy sessions. They lift people’s spirits, and just petting or stroking an animal can do wonders for blood pressure and stress levels.</p>
+    <p>Animals are a great icebreaker in both one-to-one and group therapy sessions. They lift people's spirits, and just petting or stroking an animal can do wonders for blood pressure and stress levels.</p>
   </blockquote>
   <blockquote class="quote-card">
     <p>The reason animals make such an impact is because people do not feel judged by them. Animals offer unconditional acceptance, which helps service users feel more confident in confronting their issues.</p>
@@ -1049,7 +1049,7 @@ HTML,
 
 <section class="note-panel">
   <h2>Content review note</h2>
-  <p>The current public page includes unfinished captions and a “currently developing” message. Those issues are logged in the content audit rather than silently overwritten.</p>
+  <p>The current public page includes unfinished captions and a "currently developing" message. Those issues are logged in the content audit rather than silently overwritten.</p>
 </section>
 HTML,
                 'related_links' => [
@@ -1112,7 +1112,7 @@ HTML,
   <div class="note-panel">
     <h2>Public opening hours</h2>
     <p><strong>Monday to Sunday:</strong> 10:00 AM to 5:00 PM</p>
-    <p>The legacy site also contains inconsistent wording such as “Centre” and “Center”. The rebuilt page keeps the hours clear and records those copy inconsistencies in the audit.</p>
+    <p>The legacy site also contains inconsistent wording such as "Centre" and "Center". The rebuilt page keeps the hours clear and records those copy inconsistencies in the audit.</p>
   </div>
   <div class="note-panel">
     <h2>Out-of-hours note</h2>
@@ -1324,7 +1324,7 @@ HTML,
 </section>
 <section class="note-panel">
   <h2>Live-site review note</h2>
-  <p>The current public APES Communities page contains obvious placeholder copy such as “The face of the moon was in shadow”. The rebuild replaces that with a neutral community-route overview and records the placeholder issue in the content audit.</p>
+  <p>The current public APES Communities page contains obvious placeholder copy such as "The face of the moon was in shadow". The rebuild replaces that with a neutral community-route overview and records the placeholder issue in the content audit.</p>
 </section>
 HTML,
                 'related_links' => [
@@ -1340,7 +1340,7 @@ HTML,
                 'description' => 'Public information about the volunteer-led APES CIC team and how the organisation frames its staffing model.',
                 'hero_kicker' => 'Team overview',
                 'hero_title' => 'A volunteer-led organisation with public-facing transparency notes.',
-                'hero_summary' => 'Read the public overview of APES staff and volunteer roles, with the organisation’s emphasis on respect, transparency and welfare-first service.',
+                'hero_summary' => 'Read the public overview of APES staff and volunteer roles, with the organisation\'s emphasis on respect, transparency and welfare-first service.',
                 'hero_actions' => [
                     ['label' => 'Contact APES', 'href' => '/contact/', 'variant' => 'primary'],
                     ['label' => 'Volunteer with APES', 'href' => '/volunteer/', 'variant' => 'secondary'],
@@ -1369,7 +1369,7 @@ HTML,
 </section>
 <section class="note-panel">
   <h2>Content review note</h2>
-  <p>The live staff page uses “Book Appointment” calls to action for listed people. The rebuild preserves the public team structure but does not recreate personal booking flows locally.</p>
+  <p>The live staff page uses "Book Appointment" calls to action for listed people. The rebuild preserves the public team structure but does not recreate personal booking flows locally.</p>
 </section>
 HTML,
                 'related_links' => [
@@ -1531,7 +1531,7 @@ HTML,
   </article>
   <article class="policy-block">
     <h2>10. International data transfers</h2>
-    <p>The public policy notes that information may be transferred to or maintained on systems outside the user’s local jurisdiction.</p>
+    <p>The public policy notes that information may be transferred to or maintained on systems outside the user's local jurisdiction.</p>
   </article>
   <article class="policy-block">
     <h2>11. Changes to the policy</h2>
@@ -1574,7 +1574,7 @@ HTML,
   </article>
   <article class="policy-block">
     <h2>Health and treatment note</h2>
-    <p>The visible public condition says the animal is deemed to be in normal health when leaving the facility unless specific conditions are noted on the Animal Adoption Form. Future veterinary or treatment costs become the adopter’s responsibility except where another clause states otherwise.</p>
+    <p>The visible public condition says the animal is deemed to be in normal health when leaving the facility unless specific conditions are noted on the Animal Adoption Form. Future veterinary or treatment costs become the adopter's responsibility except where another clause states otherwise.</p>
   </article>
   <article class="policy-block">
     <h2>Review note</h2>
@@ -2084,7 +2084,7 @@ HTML,
                 'hero_summary' => 'Track every major release for this website, including updates, fixes, compliance changes, and user-facing improvements.',
                 'hero_actions' => [
                     ['label' => 'Expand all releases', 'href' => '#release-list', 'variant' => 'primary'],
-                    ['label' => 'View current release', 'href' => '#release-v231', 'variant' => 'secondary'],
+                    ['label' => 'View current release', 'href' => '#release-v232', 'variant' => 'secondary'],
                 ],
                 'pills' => ['Current version ' . $siteVersion, 'Patch stable', 'Public-facing'],
                 'body_html' => <<<'HTML'
@@ -2114,7 +2114,53 @@ HTML,
 </section>
 
 <section class="section-shell" id="release-list">
-  <details class="release-card" data-release-card data-tags="current stable changed fixed accessibility public-facing" open id="release-v231">
+  <details class="release-card" data-release-card data-tags="current stable changed fixed accessibility public-facing" open id="release-v232">
+    <summary>
+      <span class="release-version">v2.3.2</span>
+      <span class="release-date">2026-06-03</span>
+    </summary>
+    <div class="release-body">
+      <div class="pill-row">
+        <span class="pill pill-version">Version v2.3.2</span>
+        <span class="pill pill-status">Stable</span>
+        <span class="pill pill-type">Changed</span>
+        <span class="pill pill-fix">Fix</span>
+      </div>
+      <h3>Summary</h3>
+      <p>Corrected broken apostrophe rendering in shared navigation and affected page copy so public text displays cleanly across the exported site.</p>
+      <h3>Detailed changes</h3>
+      <ul class="clean-list">
+        <li>Replaced corrupted mojibake apostrophes in shared APES content source strings, including the About APES mega-menu description used across the site header.</li>
+        <li>Corrected affected public page copy in the pet boarding, animal therapy and staff routes so the same text issue no longer appears in exported page bodies.</li>
+        <li>Kept APES branding, footer structure, required legal links and APES Newsroom routing unchanged while applying the text-only fix.</li>
+        <li>Regenerated the exported static HTML snapshots and synchronised the canonical version, Change Log Hub and root changelog.</li>
+      </ul>
+      <h3>Affected areas</h3>
+      <ul class="clean-list">
+        <li>Website: www.apes.org.uk</li>
+        <li>Page or route: shared header navigation, homepage, pet boarding, animal therapy, staff, Change Log Hub and regenerated static HTML snapshots</li>
+        <li>Files changed: shared site data, VERSION, root CHANGELOG and regenerated static HTML snapshots</li>
+        <li>User groups affected: supporters, adopters, service users, volunteers, partners and general public visitors</li>
+        <li>Public impact: broken apostrophes now render correctly in shared navigation and affected page copy</li>
+        <li>Internal impact: the PHP content source is now clean, so future exports inherit the corrected text consistently</li>
+      </ul>
+      <h3>Version decision</h3>
+      <ul class="clean-list">
+        <li>Previous version: v2.3.1</li>
+        <li>New version: v2.3.2</li>
+        <li>Version type: patch stable</li>
+        <li>Reason for version bump: small public-facing text correction across shared content with no structural or URL change</li>
+      </ul>
+      <h3>Validation</h3>
+      <ul class="clean-list">
+        <li>Checks run: local PHP syntax checks, static HTML export, source text scan and generated HTML inspection</li>
+        <li>Manual checks completed: homepage, pet boarding, animal therapy, staff and Change Log Hub output review plus footer version/link alignment review</li>
+        <li>Known limitations: browser-based visual QA was unavailable in this session, so validation relied on source inspection and regenerated HTML review</li>
+        <li>Rollback notes: restore the previous shared site data, version and changelog entries, then re-export the static HTML snapshots if needed</li>
+      </ul>
+    </div>
+  </details>
+  <details class="release-card" data-release-card data-tags="stable changed fixed accessibility public-facing" id="release-v231">
     <summary>
       <span class="release-version">v2.3.1</span>
       <span class="release-date">2026-06-03</span>
@@ -2418,4 +2464,5 @@ function apes_breadcrumbs_for_page(array $page, ?string $pageKey = null): array
 
     return $crumbs;
 }
+
 

@@ -1,3 +1,44 @@
+## [v2.3.2] - 2026-06-03
+
+<span class="pill pill-version">Version v2.3.2</span>
+<span class="pill pill-status">Stable</span>
+<span class="pill pill-type">Changed</span>
+<span class="pill pill-fix">Fix</span>
+
+### Summary
+
+Corrected broken apostrophe rendering in shared navigation and affected page copy so public text displays cleanly across the exported site.
+
+### Detailed changes
+
+- Replaced corrupted mojibake apostrophes in shared APES content source strings, including the About APES mega-menu description used across the site header.
+- Corrected affected public page copy in the pet boarding, animal therapy and staff routes so the same text issue no longer appears in exported page bodies.
+- Kept APES branding, footer structure, required legal links and APES Newsroom routing unchanged while applying the text-only fix.
+- Regenerated the exported static HTML snapshots and synchronised the canonical version, Change Log Hub and root changelog.
+
+### Affected areas
+
+- Website: www.apes.org.uk
+- Page or route: shared header navigation, homepage, pet boarding, animal therapy, staff, Change Log Hub and regenerated static HTML snapshots
+- Files changed: shared site data, VERSION, root CHANGELOG and regenerated static HTML snapshots
+- User groups affected: supporters, adopters, service users, volunteers, partners and general public visitors
+- Public impact: broken apostrophes now render correctly in shared navigation and affected page copy
+- Internal impact: the PHP content source is now clean, so future exports inherit the corrected text consistently
+
+### Version decision
+
+- Previous version: v2.3.1
+- New version: v2.3.2
+- Version type: patch stable
+- Reason for version bump: small public-facing text correction across shared content with no structural or URL change
+
+### Validation
+
+- Checks run: local PHP syntax checks, static HTML export, source text scan and generated HTML inspection
+- Manual checks completed: homepage, pet boarding, animal therapy, staff and Change Log Hub output review plus footer version/link alignment review
+- Known limitations: browser-based visual QA was unavailable in this session, so validation relied on source inspection and regenerated HTML review
+- Rollback notes: restore the previous shared site data, version and changelog entries, then re-export the static HTML snapshots if needed
+
 ## [v2.3.1] - 2026-06-03
 
 <span class="pill pill-version">Version v2.3.1</span>
