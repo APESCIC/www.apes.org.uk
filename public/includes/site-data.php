@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-const APES_FALLBACK_VERSION = 'v2.4.0';
+const APES_FALLBACK_VERSION = 'v2.4.1';
 const APES_SITE_NAME = 'Association of Protecting Exotic Species CIC';
 const APES_CIC_NUMBER = '16253848';
 const APES_CONTACT_EMAIL = 'info@apes.org.uk';
@@ -2517,9 +2517,9 @@ HTML,
                 'hero_summary' => 'Track every major release for this website, including updates, fixes, compliance changes, and user-facing improvements.',
                 'hero_actions' => [
                     ['label' => 'Expand all releases', 'href' => '#release-list', 'variant' => 'primary'],
-                    ['label' => 'View current release', 'href' => '#release-v240', 'variant' => 'secondary'],
+                    ['label' => 'View current release', 'href' => '#release-v241', 'variant' => 'secondary'],
                 ],
-                'pills' => ['Current version ' . $siteVersion, 'Minor stable', 'Public-facing'],
+                'pills' => ['Current version ' . $siteVersion, 'Patch stable', 'Public-facing'],
                 'body_html' => <<<'HTML'
 <section class="section-shell">
   <div class="release-tools">
@@ -2547,7 +2547,54 @@ HTML,
 </section>
 
 <section class="section-shell" id="release-list">
-  <details class="release-card" data-release-card data-tags="current stable added changed compliance accessibility public-facing" open id="release-v240">
+  <details class="release-card" data-release-card data-tags="current stable changed fixed accessibility public-facing" open id="release-v241">
+    <summary>
+      <span class="release-version">v2.4.1</span>
+      <span class="release-date">2026-06-03</span>
+    </summary>
+    <div class="release-body">
+      <div class="pill-row">
+        <span class="pill pill-version">Version v2.4.1</span>
+        <span class="pill pill-status">Stable</span>
+        <span class="pill pill-type">Changed</span>
+        <span class="pill pill-fix">Fix</span>
+        <span class="pill pill-accessibility">Accessibility</span>
+      </div>
+      <h3>Summary</h3>
+      <p>Restyled the shared APES mega menu to use a stronger teal-led panel design and capped desktop layouts at a maximum of three columns without changing any menu destinations.</p>
+      <h3>Detailed changes</h3>
+      <ul class="clean-list">
+        <li>Updated the shared mega-menu panel styling so desktop navigation better reflects the requested reference direction while staying inside APES teal, mint and off-white brand colours.</li>
+        <li>Added shared column logic in the central header so shorter menus render in one or two columns and larger menus expand to no more than three columns.</li>
+        <li>Kept the existing <code>details</code> / <code>summary</code> navigation pattern, APES Newsroom routing, footer structure and required donation, Privacy Policy, Terms of Service and Change Log Hub links unchanged.</li>
+        <li>Regenerated the exported static HTML snapshots and synchronised the canonical version, website Change Log Hub and root changelog.</li>
+      </ul>
+      <h3>Affected areas</h3>
+      <ul class="clean-list">
+        <li>Website: www.apes.org.uk</li>
+        <li>Page or route: shared header navigation, homepage, content routes, Change Log Hub and regenerated static HTML snapshots</li>
+        <li>Files changed: shared header PHP, shared CSS, shared site data, VERSION, root CHANGELOG and regenerated static HTML snapshots</li>
+        <li>User groups affected: supporters, adopters, service users, volunteers, partners and general public visitors</li>
+        <li>Public impact: visitors now see a more structured APES-branded mega menu with clearer card spacing and no desktop panel exceeding three columns</li>
+        <li>Internal impact: shared navigation layout rules now scale by menu size from a single source of truth</li>
+      </ul>
+      <h3>Version decision</h3>
+      <ul class="clean-list">
+        <li>Previous version: v2.4.0</li>
+        <li>New version: v2.4.1</li>
+        <li>Version type: patch stable</li>
+        <li>Reason for version bump: small public-facing navigation layout and styling improvement with no route or content change</li>
+      </ul>
+      <h3>Validation</h3>
+      <ul class="clean-list">
+        <li>Checks run: shared CSS and PHP inspection, local PHP syntax checks, static HTML export and generated HTML inspection</li>
+        <li>Manual checks completed: Services, Support APES and Information menu column review, mobile single-column navigation review, footer required link review, APES Newsroom route review and changelog/version alignment review</li>
+        <li>Known limitations: final pixel-level comparison against the unavailable reference screenshot was not possible in this environment, so the implementation follows the requested direction rather than an exact visual clone</li>
+        <li>Rollback notes: restore the previous shared header, CSS, release metadata and version files, then re-export the static HTML snapshots if needed</li>
+      </ul>
+    </div>
+  </details>
+  <details class="release-card" data-release-card data-tags="stable added changed compliance accessibility public-facing" id="release-v240">
     <summary>
       <span class="release-version">v2.4.0</span>
       <span class="release-date">2026-06-03</span>

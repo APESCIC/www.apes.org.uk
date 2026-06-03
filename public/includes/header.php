@@ -45,11 +45,15 @@
           ?>
           <li class="<?= isset($item['children']) ? 'has-children' : '' ?><?= !empty($item['cta']) ? ' nav-cta-item' : '' ?>">
             <?php if (isset($item['children'])): ?>
+              <?php
+                $childCount = count($item['children']);
+                $megaColumns = $childCount >= 9 ? 3 : ($childCount >= 5 ? 2 : 1);
+              ?>
               <details class="mega-menu<?= $isActive ? ' is-active' : '' ?>">
                 <summary class="mega-summary"><?= htmlspecialchars($item['label'], ENT_QUOTES) ?></summary>
                 <div class="mega-panel">
                   <p class="mega-heading"><?= htmlspecialchars($item['panel_heading'] ?? $item['label'], ENT_QUOTES) ?></p>
-                  <ul class="mega-links">
+                  <ul class="mega-links" style="--mega-columns: <?= $megaColumns ?>;">
                     <?php foreach ($item['children'] as $child): ?>
                       <li>
                         <a class="mega-link" href="<?= htmlspecialchars($child['href'], ENT_QUOTES) ?>"<?php if (!empty($child['external'])): ?> target="_blank" rel="noopener noreferrer"<?php endif; ?>>

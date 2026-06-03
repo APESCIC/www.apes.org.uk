@@ -1,3 +1,45 @@
+## [v2.4.1] - 2026-06-03
+
+<span class="pill pill-version">Version v2.4.1</span>
+<span class="pill pill-status">Stable</span>
+<span class="pill pill-type">Changed</span>
+<span class="pill pill-fix">Fix</span>
+<span class="pill pill-accessibility">Accessibility</span>
+
+### Summary
+
+Restyled the shared APES mega menu to use a stronger teal-led panel design and capped desktop layouts at a maximum of three columns without changing any menu destinations.
+
+### Detailed changes
+
+- Updated the shared mega-menu panel styling so desktop navigation better reflects the requested reference direction while staying inside APES teal, mint and off-white brand colours.
+- Added shared column logic in the central header so shorter menus render in one or two columns and larger menus expand to no more than three columns.
+- Kept the existing `details` / `summary` navigation pattern, APES Newsroom routing, footer structure and required donation, Privacy Policy, Terms of Service and Change Log Hub links unchanged.
+- Regenerated the exported static HTML snapshots and synchronised the canonical version, website Change Log Hub and root changelog.
+
+### Affected areas
+
+- Website: www.apes.org.uk
+- Page or route: shared header navigation, homepage, content routes, Change Log Hub and regenerated static HTML snapshots
+- Files changed: shared header PHP, shared CSS, shared site data, VERSION, root CHANGELOG and regenerated static HTML snapshots
+- User groups affected: supporters, adopters, service users, volunteers, partners and general public visitors
+- Public impact: visitors now see a more structured APES-branded mega menu with clearer card spacing and no desktop panel exceeding three columns
+- Internal impact: shared navigation layout rules now scale by menu size from a single source of truth
+
+### Version decision
+
+- Previous version: v2.4.0
+- New version: v2.4.1
+- Version type: patch stable
+- Reason for version bump: small public-facing navigation layout and styling improvement with no route or content change
+
+### Validation
+
+- Checks run: shared CSS and PHP inspection, local PHP syntax checks, static HTML export and generated HTML inspection
+- Manual checks completed: Services, Support APES and Information menu column review, mobile single-column navigation review, footer required link review, APES Newsroom route review and changelog/version alignment review
+- Known limitations: final pixel-level comparison against the unavailable reference screenshot was not possible in this environment, so the implementation follows the requested direction rather than an exact visual clone
+- Rollback notes: restore the previous shared header, CSS, release metadata and version files, then re-export the static HTML snapshots if needed
+
 ## [v2.4.0] - 2026-06-03
 
 <span class="pill pill-version">Version v2.4.0</span>
