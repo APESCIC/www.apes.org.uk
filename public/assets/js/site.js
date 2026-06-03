@@ -1,5 +1,6 @@
 const navButton = document.querySelector(".menu-toggle");
 const primaryNav = document.querySelector(".primary-nav");
+const megaMenus = [...document.querySelectorAll(".mega-menu")];
 
 if (navButton && primaryNav) {
   navButton.addEventListener("click", () => {
@@ -7,6 +8,32 @@ if (navButton && primaryNav) {
     navButton.setAttribute("aria-expanded", String(open));
   });
 }
+
+megaMenus.forEach((menu) => {
+  menu.addEventListener("toggle", () => {
+    if (!menu.open || window.innerWidth <= 980) {
+      return;
+    }
+
+    megaMenus.forEach((otherMenu) => {
+      if (otherMenu !== menu) {
+        otherMenu.open = false;
+      }
+    });
+  });
+});
+
+document.addEventListener("click", (event) => {
+  if (window.innerWidth <= 980) {
+    return;
+  }
+
+  megaMenus.forEach((menu) => {
+    if (!menu.contains(event.target)) {
+      menu.open = false;
+    }
+  });
+});
 
 const releaseCards = [...document.querySelectorAll("[data-release-card]")];
 const releaseSearch = document.querySelector("[data-release-search]");
@@ -19,7 +46,8 @@ function filterReleaseCards() {
     return;
   }
 
-  const activeFilter = document.querySelector("[data-release-filter].is-active")?.dataset.releaseFilter ?? "all";
+  const activeFilter =
+    document.querySelector("[data-release-filter].is-active")?.dataset.releaseFilter ?? "all";
   const searchValue = releaseSearch ? releaseSearch.value.trim().toLowerCase() : "";
 
   releaseCards.forEach((card) => {
@@ -60,4 +88,3 @@ if (collapseAllButton) {
     });
   });
 }
-

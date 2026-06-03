@@ -1,13 +1,38 @@
 <?php
 declare(strict_types=1);
 
-const APES_VERSION = 'v1.0.0b';
+const APES_FALLBACK_VERSION = 'v1.0.0b';
 const APES_SITE_NAME = 'Association of Protecting Exotic Species CIC';
 const APES_CIC_NUMBER = '16253848';
 const APES_CONTACT_EMAIL = 'info@apes.org.uk';
 const APES_CONTACT_PHONE = '0300 302 0998';
 const APES_PRIMARY_DOMAIN = 'https://www.apes.org.uk';
 const APES_NEWSROOM_URL = 'https://www.apesnews.org.uk/';
+
+function apes_version(): string
+{
+    static $version;
+
+    if ($version !== null) {
+        return $version;
+    }
+
+    $versionFile = dirname(__DIR__) . '/VERSION';
+
+    if (is_file($versionFile)) {
+        $fileVersion = trim((string) file_get_contents($versionFile));
+
+        if ($fileVersion !== '') {
+            $version = $fileVersion;
+
+            return $version;
+        }
+    }
+
+    $version = APES_FALLBACK_VERSION;
+
+    return $version;
+}
 
 function apes_site_data(): array
 {
@@ -18,10 +43,11 @@ function apes_site_data(): array
     }
 
     $year = (int) date('Y');
+    $siteVersion = apes_version();
     $newsroom_copy = 'News and updates from APES CIC and our services are now published through APES Newsroom. Visit APES Newsroom to read the latest organisation updates, Shelter & Rescue news, Pet Care Clinic updates, service notices, appeals and guidance from across the APES network.';
 
     $data = [
-        'version' => APES_VERSION,
+        'version' => $siteVersion,
         'site_name' => APES_SITE_NAME,
         'site_short_name' => 'APES CIC',
         'cic_number' => APES_CIC_NUMBER,
@@ -37,6 +63,15 @@ function apes_site_data(): array
         'registered_address' => 'Cross House, Unit 7, Sutton Road, St Helens, WA9 3YH',
         'year' => $year,
         'canonical_domain' => APES_PRIMARY_DOMAIN,
+        'brand' => [
+            'logo_nav_png' => '/assets/logos/apes-logo-navbar-72h.png',
+            'logo_nav_webp' => '/assets/logos/apes-logo-navbar-72h.webp',
+            'logo_feature_png' => '/assets/logos/apes-logo-primary-trimmed-640w.png',
+            'logo_feature_webp' => '/assets/logos/apes-logo-primary-trimmed-640w.webp',
+            'og_image' => '/assets/logos/apes-og-image-1200x630.jpg',
+            'twitter_image' => '/assets/logos/apes-twitter-card-1200x600.jpg',
+            'subtitle' => 'Rescue, rehabilitation, rehoming and public support across the APES network.',
+        ],
         'newsroom_copy' => $newsroom_copy,
         'social_links' => [
             ['label' => 'APES Newsroom', 'href' => APES_NEWSROOM_URL],
@@ -51,36 +86,51 @@ function apes_site_data(): array
             ],
             [
                 'label' => 'Services',
+                'panel_heading' => 'Services across the APES network',
                 'children' => [
-                    ['label' => 'Shelter, rescue and adoptions', 'href' => 'https://www.apesshelter.org.uk/', 'external' => true],
-                    ['label' => 'Pet care clinic', 'href' => 'https://www.apespetcare.org.uk/', 'external' => true],
-                    ['label' => 'Pet shop', 'href' => '/apes-pet-shop/'],
-                    ['label' => 'Pet boarding', 'href' => '/pet-boarding/'],
-                    ['label' => 'Lost and found pets', 'href' => '/services/lost-n-found-pets/'],
-                    ['label' => '24/7 support services', 'href' => '/24-7-services/'],
-                    ['label' => 'Animal therapy', 'href' => '/services/animal-therapy/'],
-                    ['label' => 'Educational visits', 'href' => '/educational-visits/'],
+                    ['label' => 'Services overview', 'description' => 'Start with the public-facing routes for rescue, care, support, education and connected services.', 'href' => '/'],
+                    ['label' => 'Shelter, rescue and adoptions', 'description' => 'Open the APES Shelter & Rescue website for rehoming, surrender guidance and welfare support.', 'href' => 'https://www.apesshelter.org.uk/', 'external' => true],
+                    ['label' => 'Pet care clinic', 'description' => 'Visit APES Pet Care Clinic for low-cost support, care plans, bookings and pet health guidance.', 'href' => 'https://www.apespetcare.org.uk/', 'external' => true],
+                    ['label' => 'Pet shop', 'description' => 'Browse APES pet-shop information and connected shopping routes that help fund welfare work.', 'href' => '/apes-pet-shop/'],
+                    ['label' => 'Pet boarding', 'description' => 'Find reptile boarding information and the approved external booking journey.', 'href' => '/pet-boarding/'],
+                    ['label' => 'Lost and found pets', 'description' => 'Use APES support routes to report a lost pet or help reconnect a found animal.', 'href' => '/services/lost-n-found-pets/'],
+                    ['label' => '24/7 support services', 'description' => 'See around-the-clock support and welfare routes for urgent practical help.', 'href' => '/24-7-services/'],
+                    ['label' => 'Animal therapy', 'description' => 'Learn about animal-therapy support and public benefit activity delivered through APES.', 'href' => '/services/animal-therapy/'],
+                    ['label' => 'Educational visits', 'description' => 'Book educational visits and species-focused public learning experiences.', 'href' => '/educational-visits/'],
                 ],
             ],
             [
-                'label' => 'Donate',
-                'href' => '/donate/',
+                'label' => 'Support APES',
+                'panel_heading' => 'Fundraising, volunteering and sponsorship',
+                'children' => [
+                    ['label' => 'Donate', 'description' => 'Support daily welfare work, relocation needs and rescue operations through the main donation route.', 'href' => '/donate/'],
+                    ['label' => 'Fundraising priorities', 'description' => 'See the equipment, software and operational priorities APES is currently raising funds for.', 'href' => '/donating/fundraising/'],
+                    ['label' => 'Volunteer', 'description' => 'Find out how volunteer-led work keeps APES services running with care and accountability.', 'href' => '/volunteer/'],
+                    ['label' => 'Sponsors', 'description' => 'Meet the organisations helping APES with software, infrastructure and practical services.', 'href' => '/sponsors/'],
+                    ['label' => 'Enterprise mailing list', 'description' => 'Register interest for business, partner, grant and social-enterprise communications.', 'href' => '/enterprise-mailing-list/'],
+                    ['label' => 'Help Us Move', 'description' => 'Read the relocation appeal and the practical support still needed to protect continuity of care.', 'href' => '/help-us-move/'],
+                ],
             ],
             [
-                'label' => 'Volunteer',
-                'href' => '/volunteer/',
-            ],
-            [
-                'label' => 'News',
-                'href' => '/news/',
-            ],
-            [
-                'label' => 'About',
-                'href' => '/about-us/',
+                'label' => 'Information',
+                'panel_heading' => 'About, policies, updates and APES Newsroom',
+                'children' => [
+                    ['label' => 'About APES', 'description' => 'Learn about APES CIC, the three Rs and the organisation’s welfare-first operating model.', 'href' => '/about-us/'],
+                    ['label' => 'APES Newsroom', 'description' => 'Read organisation updates, service notices, appeals and cross-division stories in APES Newsroom.', 'href' => APES_NEWSROOM_URL, 'external' => true],
+                    ['label' => 'Change Log Hub', 'description' => 'Track public website releases, fixes, compliance changes and layout improvements.', 'href' => '/change-log-hub/'],
+                    ['label' => 'Privacy Policy', 'description' => 'Review how APES handles personal data, communications and public website information.', 'href' => '/policies/privacy/'],
+                    ['label' => 'Terms of Service', 'description' => 'Read the public terms that govern use of APES services, routes and website content.', 'href' => '/policies/terms-of-service/'],
+                    ['label' => 'Cookie guidance', 'description' => 'See the current APES cookie guidance and website preference information.', 'href' => '/policies/cookies/'],
+                ],
             ],
             [
                 'label' => 'Contact',
                 'href' => '/contact/',
+            ],
+            [
+                'label' => 'Donate',
+                'href' => '/donate/',
+                'cta' => true,
             ],
         ],
         'footer_columns' => [
@@ -88,37 +138,54 @@ function apes_site_data(): array
                 'title' => 'About APES CIC',
                 'items' => [
                     ['label' => 'Association of Protecting Exotic Species CIC', 'href' => '/about-us/'],
-                    ['label' => 'Rescue, rehabilitation, rehoming, education and support', 'href' => '/mission/our-main-mission-statement/'],
-                    ['label' => 'Website version: APES CIC ' . APES_VERSION, 'href' => '/change-log-hub/'],
+                    ['label' => 'Rescue, rehabilitation, rehoming and education across exotic animal welfare.', 'href' => '/mission/our-main-mission-statement/'],
+                    ['label' => 'Support urgent welfare work, long-term residents and the next stage of the APES move.', 'href' => '/help-us-move/'],
                 ],
             ],
             [
-                'title' => 'Quick links',
+                'title' => 'Get help',
+                'items' => [
+                    ['label' => 'Contact page', 'href' => '/contact/'],
+                    ['label' => 'Contact centre', 'href' => 'https://contact.apes.org.uk/', 'external' => true],
+                    ['label' => 'Help Centre', 'href' => 'https://help.apes.org.uk/', 'external' => true],
+                    ['label' => '40 Morris Street, St Helens, WA9 3EN', 'href' => '/contact/'],
+                ],
+            ],
+            [
+                'title' => 'Support',
                 'items' => [
                     ['label' => 'Donate', 'href' => '/donate/'],
-                    ['label' => 'Fundraising', 'href' => '/donating/fundraising/'],
-                    ['label' => 'Volunteer', 'href' => '/volunteer/'],
-                    ['label' => 'Change Log Hub', 'href' => '/change-log-hub/'],
+                    ['label' => 'Fundraising priorities', 'href' => '/donating/fundraising/'],
+                    ['label' => 'Who sponsors us', 'href' => '/sponsors/'],
+                    ['label' => 'Enterprise mailing list', 'href' => '/enterprise-mailing-list/'],
                 ],
             ],
             [
-                'title' => 'Forms and support',
+                'title' => 'Stay connected',
                 'items' => [
-                    ['label' => 'Contact centre', 'href' => 'https://contact.apes.org.uk/', 'external' => true],
-                    ['label' => 'Help centre', 'href' => 'https://help.apes.org.uk/', 'external' => true],
-                    ['label' => 'Lost pet questionnaire', 'href' => 'https://service.sheltermanager.com/', 'external' => true],
-                    ['label' => 'Educational visit enquiries', 'href' => '/educational-visits/'],
-                ],
-            ],
-            [
-                'title' => 'Legal and governance',
-                'items' => [
+                    ['label' => 'APES Newsroom', 'href' => APES_NEWSROOM_URL, 'external' => true],
                     ['label' => 'Privacy Policy', 'href' => '/policies/privacy/'],
                     ['label' => 'Terms of Service', 'href' => '/policies/terms-of-service/'],
-                    ['label' => 'Cookie guidance', 'href' => '/policies/cookies/'],
                     ['label' => 'Change Log Hub', 'href' => '/change-log-hub/'],
                 ],
             ],
+        ],
+        'footer_partners' => [
+            ['label' => 'British Arachnological Society', 'href' => 'https://britishspiders.org.uk/', 'logo' => '/assets/logos/partners/bas-logo.png', 'logo_alt' => 'British Arachnological Society logo'],
+            ['label' => 'FBH', 'href' => 'https://www.thefbh.org/', 'logo' => '/assets/logos/partners/fbh-logo.webp', 'logo_alt' => 'Federation of British Herpetologists logo'],
+            ['label' => 'Merseyside Police', 'href' => 'https://www.merseyside.police.uk/', 'logo' => '/assets/logos/partners/merseyside-police-logo.png', 'logo_alt' => 'Merseyside Police logo'],
+        ],
+        'footer_required_links' => [
+            ['label' => 'Donate', 'href' => '/donate/'],
+            ['label' => 'Privacy Policy', 'href' => '/policies/privacy/'],
+            ['label' => 'Terms of Service', 'href' => '/policies/terms-of-service/'],
+            ['label' => 'Change Log Hub', 'href' => '/change-log-hub/'],
+        ],
+        'sponsors' => [
+            ['label' => 'Zoho', 'href' => 'https://www.zoho.com/', 'logo' => '/assets/logos/sponsors/zoho-logo.png', 'logo_alt' => 'Zoho logo'],
+            ['label' => 'Shopify', 'href' => 'https://www.shopify.com/', 'logo' => '/assets/logos/sponsors/shopify-logo.jpg', 'logo_alt' => 'Shopify logo'],
+            ['label' => 'Akamai', 'href' => 'https://www.akamai.com/', 'logo' => '/assets/logos/sponsors/akamai-logo.png', 'logo_alt' => 'Akamai logo'],
+            ['label' => 'cPanel', 'href' => 'https://www.cpanel.net/', 'logo' => '/assets/logos/sponsors/cpanel-logo.png', 'logo_alt' => 'cPanel logo'],
         ],
         'pages' => [
             'home' => [
@@ -1036,25 +1103,68 @@ HTML,
                 'title' => 'Sponsors',
                 'description' => 'APES recognises the role of supporters, sponsors and partner organisations in sustaining welfare services.',
                 'hero_kicker' => 'Partners and sponsors',
-                'hero_title' => 'Support from partners helps APES do more good.',
-                'hero_summary' => 'The current public site highlights partnership and sponsor support across footers and related pages.',
+                'hero_title' => 'Support from sponsors helps APES do more good.',
+                'hero_summary' => 'APES works with technology, commerce and infrastructure partners whose software and services strengthen public support, operations and digital resilience.',
                 'hero_actions' => [
                     ['label' => 'Enterprise mailing list', 'href' => '/enterprise-mailing-list/', 'variant' => 'primary'],
                     ['label' => 'Fundraising priorities', 'href' => '/donating/fundraising/', 'variant' => 'secondary'],
                 ],
-                'pills' => ['Partnership route', 'Connected services remain external'],
+                'pills' => ['Public-facing', 'Sponsor recognition', 'Software and service support'],
                 'body_html' => <<<'HTML'
 <section class="section-shell">
-  <p>APES thanks the organisations, supporters and community partners that help increase impact across rescue, rehabilitation, education and public support.</p>
-  <div class="card-grid card-grid-two">
-    <article class="info-card">
-      <h3>Why sponsorship matters</h3>
-      <p>Sponsorship can help cover equipment, welfare resources, public services and operational resilience work.</p>
+  <div class="section-heading">
+    <p class="eyebrow">Technology and service support</p>
+    <h2>Software and infrastructure support helps APES stay responsive.</h2>
+  </div>
+  <p>APES thanks the organisations helping strengthen digital services, supporter journeys, operations and online resilience across the wider APES network.</p>
+  <div class="card-grid card-grid-two sponsor-grid">
+    <article class="sponsor-card">
+      <div class="sponsor-card-logo-wrap">
+        <img class="sponsor-card-logo" src="/assets/logos/sponsors/zoho-logo.png" alt="Zoho logo">
+      </div>
+      <h3>Zoho</h3>
+      <p>Zoho provides APES-friendly software routes for forms, website services, CRM-style workflows and supporter communications.</p>
+      <p><strong>How they help APES:</strong> Supports forms, operational workflows and connected digital services used across the organisation.</p>
+      <a class="button button-secondary" href="https://www.zoho.com/" target="_blank" rel="noreferrer">Visit Zoho</a>
     </article>
-    <article class="info-card">
-      <h3>How to express interest</h3>
-      <p>Use the enterprise mailing-list route or the APES contact route for business, grant and partnership conversations.</p>
+    <article class="sponsor-card">
+      <div class="sponsor-card-logo-wrap sponsor-card-logo-dark">
+        <img class="sponsor-card-logo" src="/assets/logos/sponsors/shopify-logo.jpg" alt="Shopify logo">
+      </div>
+      <h3>Shopify</h3>
+      <p>Shopify powers connected ecommerce routes that help APES sell products and build supporter-facing retail journeys.</p>
+      <p><strong>How they help APES:</strong> Helps APES run online shop experiences that can contribute funds toward welfare and operational work.</p>
+      <a class="button button-secondary" href="https://www.shopify.com/" target="_blank" rel="noreferrer">Visit Shopify</a>
     </article>
+    <article class="sponsor-card">
+      <div class="sponsor-card-logo-wrap">
+        <img class="sponsor-card-logo" src="/assets/logos/sponsors/akamai-logo.png" alt="Akamai logo">
+      </div>
+      <h3>Akamai</h3>
+      <p>Akamai is recognised for cloud delivery, performance and security services that help organisations protect digital experiences.</p>
+      <p><strong>How they help APES:</strong> Strengthens website performance, content delivery and online resilience for public-facing services.</p>
+      <a class="button button-secondary" href="https://www.akamai.com/" target="_blank" rel="noreferrer">Visit Akamai</a>
+    </article>
+    <article class="sponsor-card">
+      <div class="sponsor-card-logo-wrap">
+        <img class="sponsor-card-logo" src="/assets/logos/sponsors/cpanel-logo.png" alt="cPanel logo">
+      </div>
+      <h3>cPanel</h3>
+      <p>cPanel is widely used for website and hosting management, helping teams look after domains, files, email and server-side administration.</p>
+      <p><strong>How they help APES:</strong> Supports hosting management and practical website administration for connected APES services.</p>
+      <a class="button button-secondary" href="https://www.cpanel.net/" target="_blank" rel="noreferrer">Visit cPanel</a>
+    </article>
+  </div>
+</section>
+
+<section class="section-shell split-panel">
+  <div class="note-panel">
+    <h2>Why sponsorship matters</h2>
+    <p>Sponsorship helps APES cover software, website infrastructure, communications tooling and operational systems that keep welfare services visible and usable.</p>
+  </div>
+  <div class="note-panel">
+    <h2>How to express interest</h2>
+    <p>Use the enterprise mailing-list route or the APES contact page for sponsorship, grant, software support or wider partnership conversations.</p>
   </div>
 </section>
 HTML,
@@ -1943,9 +2053,9 @@ HTML,
                 'hero_summary' => 'Track every major release for this website, including updates, fixes, compliance changes, and user-facing improvements.',
                 'hero_actions' => [
                     ['label' => 'Expand all releases', 'href' => '#release-list', 'variant' => 'primary'],
-                    ['label' => 'View current release', 'href' => '#release-v100b', 'variant' => 'secondary'],
+                    ['label' => 'View current release', 'href' => '#release-v110b', 'variant' => 'secondary'],
                 ],
-                'pills' => ['Current version ' . APES_VERSION, 'Major beta', 'Public-facing'],
+                'pills' => ['Current version ' . $siteVersion, 'Minor beta', 'Public-facing'],
                 'body_html' => <<<'HTML'
 <section class="section-shell">
   <div class="release-tools">
@@ -1969,50 +2079,50 @@ HTML,
 </section>
 
 <section class="section-shell" id="release-list">
-  <details class="release-card" data-release-card data-tags="current beta changed fixed compliance accessibility public-facing" open id="release-v100b">
+  <details class="release-card" data-release-card data-tags="current beta changed fixed compliance accessibility public-facing" open id="release-v110b">
     <summary>
-      <span class="release-version">v1.0.0b</span>
+      <span class="release-version">v1.1.0b</span>
       <span class="release-date">2026-06-03</span>
     </summary>
     <div class="release-body">
       <div class="pill-row">
-        <span class="pill pill-version">Version v1.0.0b</span>
+        <span class="pill pill-version">Version v1.1.0b</span>
         <span class="pill pill-status">Beta</span>
         <span class="pill pill-type">Changed</span>
         <span class="pill pill-fix">Fix</span>
         <span class="pill pill-compliance">Compliance</span>
       </div>
       <h3>Summary</h3>
-      <p>Completed the first governed rebuild of the APES CIC website for Cloudron LAMP using shared PHP templates, a unified APES design system, preserved route families, a compliant footer, and APES Newsroom-aligned news routing.</p>
+      <p>Updated the APES CIC website to use the approved logo pack, shelter-style footer, wider 90%-screen layout, descriptive mega menus, and a sponsor page that recognises software and service support.</p>
       <h3>Detailed changes</h3>
       <ul class="clean-list">
-        <li>Rebuilt public routes under a shared PHP template system with consistent APES branding and accessible layouts.</li>
-        <li>Added a compliant universal footer with donation, Privacy Policy, Terms of Service and Change Log Hub links plus version display.</li>
-        <li>Preserved public page families for services, fundraising, policy routes, mission content, contact, search and legacy news bridges.</li>
-        <li>Routed primary news and newsletter journeys to APES Newsroom while retaining legacy `news/post` paths as bridge pages.</li>
-        <li>Corrected user-visible presentation issues such as the euthanasia policy heading while documenting content-review items that need APES approval.</li>
+        <li>Replaced the text-only brand mark with the approved APES logo pack, including favicon, manifest and social-sharing assets.</li>
+        <li>Expanded the shared desktop layout to approximately 90% of the viewport width while preserving comfortable padding and responsive mobile collapse rules.</li>
+        <li>Reworked the global navigation into descriptive mega menus for Services, Support APES and Information, while keeping APES Newsroom as the primary news destination.</li>
+        <li>Redesigned the footer to follow the APES Shelter full-footer pattern with four columns, direct governance links, a visible Change Log Hub reference and a partnership strip.</li>
+        <li>Upgraded the Sponsors page to feature Zoho, Shopify, Akamai and cPanel with logos, descriptions, external links and plain-English summaries of how they help APES.</li>
       </ul>
       <h3>Affected areas</h3>
       <ul class="clean-list">
         <li>Website: www.apes.org.uk</li>
-        <li>Page or route: public site-wide rebuild under `public/`</li>
-        <li>Files changed: shared templates, route stubs, CSS, JS, public changelog route, robots, sitemap and deployment docs</li>
+        <li>Page or route: shared site-wide header, footer, sponsors page, change-log page and release metadata</li>
+        <li>Files changed: shared PHP templates, shared site data, CSS, JS, root VERSION, root CHANGELOG, favicons and sponsor or partner logo assets</li>
         <li>User groups affected: supporters, adopters, service users, volunteers, partners and general public visitors</li>
-        <li>Public impact: improved navigation, clearer support journeys, consistent footer and APES Newsroom routing</li>
-        <li>Internal impact: easier Cloudron deployment, clearer route inventory and documented migration assumptions</li>
+        <li>Public impact: clearer navigation, stronger branding, improved sponsor visibility, and a more connected footer and partnership presentation</li>
+        <li>Internal impact: canonical versioning now lives in a root VERSION file and release records are synchronised across public and repository changelogs</li>
       </ul>
       <h3>Version decision</h3>
       <ul class="clean-list">
-        <li>Previous version: none governed in repository</li>
-        <li>New version: v1.0.0b</li>
-        <li>Version type: major beta</li>
-        <li>Reason for version bump: first major rebuilt public release structure for Cloudron LAMP</li>
+        <li>Previous version: v1.0.0b</li>
+        <li>New version: v1.1.0b</li>
+        <li>Version type: minor beta</li>
+        <li>Reason for version bump: public-facing feature additions across branding, layout, footer, sponsor content and navigation</li>
       </ul>
       <h3>Validation</h3>
       <ul class="clean-list">
-        <li>Checks run: local PHP smoke checks, footer link review, route inventory review, manual accessibility and navigation review, secrets scan</li>
-        <li>Manual checks completed: navigation, footer, Newsroom routing, policy availability, contact routes, legacy bridge pages</li>
-        <li>Known limitations: some source pages contain placeholders or incomplete wording that still require APES editorial review</li>
+        <li>Checks run: local PHP syntax checks, footer-link review, navigation review, sponsor-route review, and manual brand and layout checks</li>
+        <li>Manual checks completed: header logo usage, mega-menu descriptions, footer required links, partnership strip, sponsor page content, APES Newsroom routing and version display alignment</li>
+        <li>Known limitations: sponsor descriptions are based on the supplied logo set and may need later editorial expansion if APES wants fuller recognition copy</li>
         <li>Rollback notes: redeploy previous public bundle or restore prior Cloudron backup before cutover</li>
       </ul>
     </div>

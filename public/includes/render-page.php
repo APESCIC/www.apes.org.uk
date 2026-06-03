@@ -82,10 +82,24 @@ function apes_search_results(array $pages): array
     return [$query, $results];
 }
 
+function apes_primary_nav_group(string $pageKey): string
+{
+    return match ($pageKey) {
+        'about-us', 'news', 'change-log-hub', 'search' => 'information',
+        'sponsors', 'volunteer', 'donate', 'enterprise-mailing-list', 'help-us-move' => 'support',
+        'contact' => 'contact',
+        'home' => 'home',
+        default => 'services',
+    };
+}
+
 [$site, $page] = apes_current_page();
 $canonical_url = apes_page_url($page);
 $is_search_page = ($page_key ?? '') === 'search';
 [$search_query, $search_results] = $is_search_page ? apes_search_results($site['pages']) : ['', []];
+$active_nav_group = apes_primary_nav_group((string) ($page_key ?? ''));
+$absolute_og_image = rtrim(APES_PRIMARY_DOMAIN, '/') . $site['brand']['og_image'];
+$absolute_twitter_image = rtrim(APES_PRIMARY_DOMAIN, '/') . $site['brand']['twitter_image'];
 ?><!DOCTYPE html>
 <html lang="en-GB">
 <head>
@@ -98,7 +112,17 @@ $is_search_page = ($page_key ?? '') === 'search';
   <meta property="og:description" content="<?= htmlspecialchars($page['description'], ENT_QUOTES) ?>" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="<?= htmlspecialchars($canonical_url, ENT_QUOTES) ?>" />
+  <meta property="og:image" content="<?= htmlspecialchars($absolute_og_image, ENT_QUOTES) ?>" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="<?= htmlspecialchars($page['meta_title'], ENT_QUOTES) ?>" />
+  <meta name="twitter:description" content="<?= htmlspecialchars($page['description'], ENT_QUOTES) ?>" />
+  <meta name="twitter:image" content="<?= htmlspecialchars($absolute_twitter_image, ENT_QUOTES) ?>" />
   <meta name="theme-color" content="#008C8C" />
+  <link rel="icon" href="/assets/favicons/favicon.ico" sizes="any" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicons/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicons/favicon-16x16.png" />
+  <link rel="apple-touch-icon" href="/assets/favicons/apple-touch-icon.png" />
+  <link rel="manifest" href="/site.webmanifest" />
   <link rel="stylesheet" href="<?= htmlspecialchars(apes_asset('css/site.css'), ENT_QUOTES) ?>" />
 </head>
 <body data-page-key="<?= htmlspecialchars((string) ($page_key ?? 'unknown'), ENT_QUOTES) ?>">
@@ -113,10 +137,13 @@ $is_search_page = ($page_key ?? '') === 'search';
     <div class="nav-shell">
       <div class="brand-block">
         <a class="brand-mark" href="/">
-          <span class="brand-initials">APES</span>
+          <picture class="brand-logo-wrap">
+            <source srcset="<?= htmlspecialchars($site['brand']['logo_nav_webp'], ENT_QUOTES) ?>" type="image/webp" />
+            <img class="brand-logo" src="<?= htmlspecialchars($site['brand']['logo_nav_png'], ENT_QUOTES) ?>" alt="Association of Protecting Exotic Species CIC logo" width="92" height="72" />
+          </picture>
           <span class="brand-copy">
             <strong><?= htmlspecialchars($site['site_short_name'], ENT_QUOTES) ?></strong>
-            <span>Shelter, rescue, pet care and support services.</span>
+            <span><?= htmlspecialchars($site['brand']['subtitle'], ENT_QUOTES) ?></span>
           </span>
         </a>
         <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">Menu</button>
@@ -124,18 +151,37 @@ $is_search_page = ($page_key ?? '') === 'search';
       <nav id="primary-nav" class="primary-nav" aria-label="Primary">
         <ul>
           <?php foreach ($site['nav'] as $item): ?>
-            <li class="<?= isset($item['children']) ? 'has-children' : '' ?>">
+            <?php
+              $groupKey = match ($item['label']) {
+                  'Home' => 'home',
+                  'Services' => 'services',
+                  'Support APES' => 'support',
+                  'Information' => 'information',
+                  'Contact' => 'contact',
+                  default => '',
+              };
+              $isActive = $groupKey !== '' && $active_nav_group === $groupKey;
+            ?>
+            <li class="<?= isset($item['children']) ? 'has-children' : '' ?><?= !empty($item['cta']) ? ' nav-cta-item' : '' ?>">
               <?php if (isset($item['children'])): ?>
-                <details>
-                  <summary><?= htmlspecialchars($item['label'], ENT_QUOTES) ?></summary>
-                  <ul class="subnav">
-                    <?php foreach ($item['children'] as $child): ?>
-                      <li><?= apes_render_link($child, 'nav-link') ?></li>
-                    <?php endforeach; ?>
-                  </ul>
+                <details class="mega-menu"<?= $isActive ? ' open' : '' ?>>
+                  <summary class="mega-summary"><?= htmlspecialchars($item['label'], ENT_QUOTES) ?></summary>
+                  <div class="mega-panel">
+                    <p class="mega-heading"><?= htmlspecialchars($item['panel_heading'] ?? $item['label'], ENT_QUOTES) ?></p>
+                    <ul class="mega-links">
+                      <?php foreach ($item['children'] as $child): ?>
+                        <li>
+                          <a class="mega-link" href="<?= htmlspecialchars($child['href'], ENT_QUOTES) ?>"<?php if (!empty($child['external'])): ?> target="_blank" rel="noreferrer"<?php endif; ?>>
+                            <span class="mega-link-title"><?= htmlspecialchars($child['label'], ENT_QUOTES) ?></span>
+                            <span class="mega-link-description"><?= htmlspecialchars($child['description'] ?? '', ENT_QUOTES) ?></span>
+                          </a>
+                        </li>
+                      <?php endforeach; ?>
+                    </ul>
+                  </div>
                 </details>
               <?php else: ?>
-                <?= apes_render_link($item, 'nav-link') ?>
+                <a class="<?= !empty($item['cta']) ? 'button button-primary nav-cta-link' : 'nav-link' ?>" href="<?= htmlspecialchars($item['href'], ENT_QUOTES) ?>"<?= $isActive ? ' aria-current="page"' : '' ?>><?= htmlspecialchars($item['label'], ENT_QUOTES) ?></a>
               <?php endif; ?>
             </li>
           <?php endforeach; ?>
@@ -167,6 +213,12 @@ $is_search_page = ($page_key ?? '') === 'search';
         <?php endif; ?>
       </div>
       <aside class="hero-aside">
+        <div class="mini-panel brand-feature-panel">
+          <picture>
+            <source srcset="<?= htmlspecialchars($site['brand']['logo_feature_webp'], ENT_QUOTES) ?>" type="image/webp" />
+            <img src="<?= htmlspecialchars($site['brand']['logo_feature_png'], ENT_QUOTES) ?>" alt="Association of Protecting Exotic Species CIC logo" width="320" height="277" />
+          </picture>
+        </div>
         <div class="mini-panel">
           <p class="eyebrow">Contact APES</p>
           <ul class="clean-list">
@@ -250,10 +302,26 @@ $is_search_page = ($page_key ?? '') === 'search';
         </section>
       <?php endforeach; ?>
     </div>
+    <div class="footer-partners">
+      <span class="footer-partners-label">Working in partnership with:</span>
+      <div class="footer-partner-list">
+        <?php foreach ($site['footer_partners'] as $partner): ?>
+          <a class="partner-chip" href="<?= htmlspecialchars($partner['href'], ENT_QUOTES) ?>" target="_blank" rel="noreferrer">
+            <img src="<?= htmlspecialchars($partner['logo'], ENT_QUOTES) ?>" alt="<?= htmlspecialchars($partner['logo_alt'], ENT_QUOTES) ?>" />
+            <span><?= htmlspecialchars($partner['label'], ENT_QUOTES) ?></span>
+          </a>
+        <?php endforeach; ?>
+      </div>
+    </div>
     <div class="footer-meta">
       <p>Part of <?= htmlspecialchars(APES_SITE_NAME, ENT_QUOTES) ?>.</p>
-      <p>Website version: <a href="/change-log-hub/">APES CIC <?= htmlspecialchars(APES_VERSION, ENT_QUOTES) ?></a> · Change Log Hub</p>
-      <p>&copy; <?= htmlspecialchars((string) $site['year'], ENT_QUOTES) ?> <?= htmlspecialchars(APES_SITE_NAME, ENT_QUOTES) ?> · CIC No: <?= htmlspecialchars(APES_CIC_NUMBER, ENT_QUOTES) ?> · APES CIC website · <?= htmlspecialchars(APES_VERSION, ENT_QUOTES) ?></p>
+      <p class="footer-required-links">
+        <?php foreach ($site['footer_required_links'] as $index => $link): ?>
+          <?= apes_render_link($link, 'footer-inline-link') ?><?= $index < count($site['footer_required_links']) - 1 ? '<span aria-hidden="true"> · </span>' : '' ?>
+        <?php endforeach; ?>
+      </p>
+      <p>Website version: <a href="/change-log-hub/">APES CIC <?= htmlspecialchars($site['version'], ENT_QUOTES) ?></a> · Change Log Hub</p>
+      <p>&copy; <?= htmlspecialchars((string) $site['year'], ENT_QUOTES) ?> <?= htmlspecialchars(APES_SITE_NAME, ENT_QUOTES) ?> · CIC No: <?= htmlspecialchars(APES_CIC_NUMBER, ENT_QUOTES) ?> · APES CIC website · <?= htmlspecialchars($site['version'], ENT_QUOTES) ?></p>
     </div>
   </footer>
 
