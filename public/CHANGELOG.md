@@ -1,3 +1,45 @@
+## [v2.2.0b] - 2026-06-03
+
+<span class="pill pill-version">Version v2.2.0b</span>
+<span class="pill pill-status">Beta</span>
+<span class="pill pill-type">Changed</span>
+<span class="pill pill-fix">Fix</span>
+<span class="pill pill-compliance">Compliance</span>
+
+### Summary
+
+Refreshed site-wide hero copy and page calls to action so each public route now leads with clearer, service-specific guidance instead of release or rebuild messaging.
+
+### Detailed changes
+
+- Rewrote the homepage hero and spotlight section around APES CIC public purpose, support journeys and welfare services.
+- Updated shared hero summaries and pill labels across service, support, policy, contact, news and archive pages to make them more page-specific and user-facing.
+- Adjusted hero buttons so each page points to the most relevant next action, including donation, booking, contact, policy and APES Newsroom routes.
+- Kept the shared footer structure and required links intact while synchronising the canonical version, Change Log Hub and root changelog.
+
+### Affected areas
+
+- Website: www.apes.org.uk
+- Page or route: homepage, service pages, support pages, policy pages, contact routes, news bridges, legacy archives and release metadata
+- Files changed: shared site data, VERSION, root CHANGELOG and regenerated static HTML snapshots
+- User groups affected: supporters, adopters, service users, volunteers, partners and general public visitors
+- Public impact: page introductions and top-level actions are now clearer, more relevant to each route and less technical in tone
+- Internal impact: shared hero content is now more consistent across the full exported site
+
+### Version decision
+
+- Previous version: v2.1.2b
+- New version: v2.2.0b
+- Version type: minor beta
+- Reason for version bump: broad public-facing content and CTA refresh across many shared routes without a structural or URL-breaking change
+
+### Validation
+
+- Checks run: local PHP syntax checks, static HTML export and generated HTML inspection
+- Manual checks completed: homepage copy review, representative service and policy page review, news bridge review, footer link presence and release display alignment
+- Known limitations: validation focused on source-driven export and spot-checking rather than exhaustive browser testing of every route
+- Rollback notes: restore the previous shared copy, version and changelog entries, then re-export the static HTML snapshots if needed
+
 ## [v2.1.2b] - 2026-06-03
 
 <span class="pill pill-version">Version v2.1.2b</span>
