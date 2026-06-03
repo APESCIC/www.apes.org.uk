@@ -1,3 +1,44 @@
+## [v2.3.1] - 2026-06-03
+
+<span class="pill pill-version">Version v2.3.1</span>
+<span class="pill pill-status">Stable</span>
+<span class="pill pill-type">Changed</span>
+<span class="pill pill-fix">Fix</span>
+
+### Summary
+
+Adjusted the homepage spotlight component spacing so the nested mission cards sit in from the parent panel edges and read more clearly across desktop, tablet and mobile layouts.
+
+### Detailed changes
+
+- Updated the shared spotlight grid CSS so nested spotlight cards keep visible inner gutter spacing instead of reading edge-to-edge inside the parent mission panel.
+- Kept the existing homepage spotlight markup unchanged and applied the fix through the reusable component classes so any future page using the same pattern inherits the corrected spacing.
+- Preserved the existing responsive layout behaviour while keeping the APES teal-led branding, footer structure and APES Newsroom routing unchanged.
+- Regenerated the exported static HTML snapshots and synchronised the canonical version, Change Log Hub and root changelog.
+
+### Affected areas
+
+- Website: www.apes.org.uk
+- Page or route: homepage spotlight mission panel, shared spotlight component styling, Change Log Hub and release metadata
+- Files changed: shared CSS, shared site data, VERSION, root CHANGELOG and regenerated static HTML snapshots
+- User groups affected: supporters, adopters, service users, volunteers, partners and general public visitors
+- Public impact: spotlight sub-cards now keep clearer spacing from the parent panel edges, improving readability and visual polish
+- Internal impact: shared spotlight component styling now applies the inset consistently wherever the pattern is reused
+
+### Version decision
+
+- Previous version: v2.3.0
+- New version: v2.3.1
+- Version type: patch stable
+- Reason for version bump: small public-facing layout and accessibility polish with no structural or URL change
+
+### Validation
+
+- Checks run: shared CSS inspection, static HTML export and generated HTML inspection
+- Manual checks completed: spotlight component usage search, footer required link review, footer version alignment review and Change Log Hub synchronisation review
+- Known limitations: in-app browser validation was unavailable in this session, so final verification relied on source inspection and regenerated output review rather than a rendered browser screenshot
+- Rollback notes: restore the previous shared CSS, version and changelog entries, then re-export the static HTML snapshots if needed
+
 ## [v2.3.0] - 2026-06-03
 
 <span class="pill pill-version">Version v2.3.0</span>
