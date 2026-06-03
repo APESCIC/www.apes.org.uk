@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-const APES_FALLBACK_VERSION = 'v2.4.2';
+const APES_FALLBACK_VERSION = 'v2.4.3';
 const APES_SITE_NAME = 'Association of Protecting Exotic Species CIC';
 const APES_CIC_NUMBER = '16253848';
 const APES_CONTACT_EMAIL = 'info@apes.org.uk';
@@ -2529,7 +2529,7 @@ HTML,
                 'hero_summary' => 'Track every major release for this website, including updates, fixes, compliance changes, and user-facing improvements.',
                 'hero_actions' => [
                     ['label' => 'Expand all releases', 'href' => '#release-list', 'variant' => 'primary'],
-                    ['label' => 'View current release', 'href' => '#release-v242', 'variant' => 'secondary'],
+                    ['label' => 'View current release', 'href' => '#release-v243', 'variant' => 'secondary'],
                 ],
                 'pills' => ['Current version ' . $siteVersion, 'Patch stable', 'Public-facing'],
                 'body_html' => <<<'HTML'
@@ -2559,51 +2559,51 @@ HTML,
 </section>
 
 <section class="section-shell" id="release-list">
-  <details class="release-card" data-release-card data-tags="current stable changed fixed accessibility public-facing" open id="release-v242">
+  <details class="release-card" data-release-card data-tags="current stable changed fixed accessibility public-facing" open id="release-v243">
     <summary>
-      <span class="release-version">v2.4.2</span>
+      <span class="release-version">v2.4.3</span>
       <span class="release-date">2026-06-03</span>
     </summary>
     <div class="release-body">
       <div class="pill-row">
-        <span class="pill pill-version">Version v2.4.2</span>
+        <span class="pill pill-version">Version v2.4.3</span>
         <span class="pill pill-status">Stable</span>
         <span class="pill pill-type">Changed</span>
         <span class="pill pill-fix">Fix</span>
         <span class="pill pill-accessibility">Accessibility</span>
       </div>
       <h3>Summary</h3>
-      <p>Refreshed the shared APES mega menus to use patterned light panels, per-section colour themes, descriptive headers, quick-topic pills and richer destination cards without changing any routes.</p>
+      <p>Widened the shared APES desktop mega menus and removed horizontal panel scrolling so navigation cards fit more comfortably on normal desktop viewports.</p>
       <h3>Detailed changes</h3>
       <ul class="clean-list">
-        <li>Extended the shared navigation data so Services, Support APES and Information each define their own eyebrow text, heading, supporting description, quick-topic pills, colour theme and destination badge labels.</li>
-        <li>Rebuilt the shared mega-menu markup so each panel now shows a richer header area and destination cards with left-hand badge blocks, clearer copy hierarchy and a stronger directional arrow affordance.</li>
-        <li>Replaced the old dark tray styling with lighter patterned panels and section-specific APES colour treatments for service routes, supporter journeys and guidance content while keeping responsive single-column behaviour.</li>
-        <li>Kept the existing <code>details</code> / <code>summary</code> navigation pattern, APES Newsroom routing, footer structure and required donation, Privacy Policy, Terms of Service and Change Log Hub links unchanged.</li>
+        <li>Increased the shared mega-menu desktop width cap so Services, Support APES and Information open as wider centred panels without changing routes, labels or menu structure.</li>
+        <li>Added shared <code>border-box</code> sizing to the mega-menu panel so panel padding stays inside the declared width and no longer triggers avoidable horizontal overflow.</li>
+        <li>Kept the existing fixed-position desktop behaviour, mobile full-width panel behaviour and vertical overflow fallback while restricting desktop panel scrolling to the y-axis.</li>
+        <li>Left APES Newsroom routing, footer structure and the required donation, Privacy Policy, Terms of Service and Change Log Hub links unchanged.</li>
         <li>Regenerated the exported static HTML snapshots and synchronised the canonical version, website Change Log Hub and root changelog.</li>
       </ul>
       <h3>Affected areas</h3>
       <ul class="clean-list">
         <li>Website: www.apes.org.uk</li>
         <li>Page or route: shared header navigation, homepage, content routes, Change Log Hub and regenerated static HTML snapshots</li>
-        <li>Files changed: shared header PHP, shared CSS, shared site data, VERSION, root CHANGELOG and regenerated static HTML snapshots</li>
+        <li>Files changed: shared CSS, shared site data, VERSION, root CHANGELOG and regenerated static HTML snapshots</li>
         <li>User groups affected: supporters, adopters, service users, volunteers, partners and general public visitors</li>
-        <li>Public impact: visitors now see more descriptive APES-branded mega menus with clearer route grouping, stronger visual hierarchy and section-specific styling</li>
-        <li>Internal impact: shared menu presentation now comes from one central data structure and one shared header pattern</li>
+        <li>Public impact: visitors now get wider desktop mega menus with no horizontal scrolling requirement for the shared navigation panels</li>
+        <li>Internal impact: shared menu sizing and overflow behaviour now come from a single central CSS rule set</li>
       </ul>
       <h3>Version decision</h3>
       <ul class="clean-list">
-        <li>Previous version: v2.4.1</li>
-        <li>New version: v2.4.2</li>
+        <li>Previous version: v2.4.2</li>
+        <li>New version: v2.4.3</li>
         <li>Version type: patch stable</li>
-        <li>Reason for version bump: small public-facing navigation redesign with no route or taxonomy change</li>
+        <li>Reason for version bump: small public-facing navigation layout correction with no route, content or taxonomy change</li>
       </ul>
       <h3>Validation</h3>
       <ul class="clean-list">
-        <li>Checks run: shared CSS and PHP inspection, local PHP syntax checks, static HTML export and generated HTML inspection</li>
-        <li>Manual checks completed: Services, Support APES and Information menu review, panel theme comparison, mobile single-column navigation review, footer required link review, APES Newsroom route review and changelog/version alignment review</li>
-        <li>Known limitations: validation in this environment is based on generated output and code inspection rather than an interactive browser comparison against the supplied screenshot</li>
-        <li>Rollback notes: restore the previous shared header, CSS, navigation data, release metadata and version files, then re-export the static HTML snapshots if needed</li>
+        <li>Checks run: shared CSS inspection, local PHP syntax checks, static HTML export and generated HTML inspection</li>
+        <li>Manual checks completed: Services, Support APES and Information menu width review, footer required link review, APES Newsroom route review and changelog/version alignment review</li>
+        <li>Known limitations: validation in this environment is based on generated output and code inspection rather than a full interactive browser comparison for every route</li>
+        <li>Rollback notes: restore the previous shared CSS, release metadata and version files, then re-export the static HTML snapshots if needed</li>
       </ul>
     </div>
   </details>

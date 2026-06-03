@@ -1,3 +1,46 @@
+## [v2.4.3] - 2026-06-03
+
+<span class="pill pill-version">Version v2.4.3</span>
+<span class="pill pill-status">Stable</span>
+<span class="pill pill-type">Changed</span>
+<span class="pill pill-fix">Fix</span>
+<span class="pill pill-accessibility">Accessibility</span>
+
+### Summary
+
+Widened the shared APES desktop mega menus and removed horizontal panel scrolling so navigation cards fit more comfortably on normal desktop viewports.
+
+### Detailed changes
+
+- Increased the shared mega-menu desktop width cap so Services, Support APES and Information open as wider centred panels without changing routes, labels or menu structure.
+- Added shared `border-box` sizing to the mega-menu panel so panel padding stays inside the declared width and no longer triggers avoidable horizontal overflow.
+- Kept the existing fixed-position desktop behaviour, mobile full-width panel behaviour and vertical overflow fallback while restricting desktop panel scrolling to the y-axis.
+- Left APES Newsroom routing, footer structure and the required donation, Privacy Policy, Terms of Service and Change Log Hub links unchanged.
+- Regenerated the exported static HTML snapshots and synchronised the canonical version, website Change Log Hub and root changelog.
+
+### Affected areas
+
+- Website: www.apes.org.uk
+- Page or route: shared header navigation, homepage, content routes, Change Log Hub and regenerated static HTML snapshots
+- Files changed: shared CSS, shared site data, VERSION, root CHANGELOG and regenerated static HTML snapshots
+- User groups affected: supporters, adopters, service users, volunteers, partners and general public visitors
+- Public impact: visitors now get wider desktop mega menus with no horizontal scrolling requirement for the shared navigation panels
+- Internal impact: shared menu sizing and overflow behaviour now come from a single central CSS rule set
+
+### Version decision
+
+- Previous version: v2.4.2
+- New version: v2.4.3
+- Version type: patch stable
+- Reason for version bump: small public-facing navigation layout correction with no route, content or taxonomy change
+
+### Validation
+
+- Checks run: shared CSS inspection, local PHP syntax checks, static HTML export and generated HTML inspection
+- Manual checks completed: Services, Support APES and Information menu width review, footer required link review, APES Newsroom route review and changelog/version alignment review
+- Known limitations: validation in this environment is based on generated output and code inspection rather than a full interactive browser comparison for every route
+- Rollback notes: restore the previous shared CSS, release metadata and version files, then re-export the static HTML snapshots if needed
+
 ## [v2.4.2] - 2026-06-03
 
 <span class="pill pill-version">Version v2.4.2</span>
