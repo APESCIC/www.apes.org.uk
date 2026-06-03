@@ -4,6 +4,8 @@
 
 These instructions apply to all APES CIC website repositories, website exports, public web pages, intranet pages, microsites, static websites, documentation sites, portal front ends, and any related website code owned or maintained by the Association of Protecting Exotic Species CIC.
 
+For this repository, the website is located in the root-level `public/` folder.
+
 Codex and other AI coding agents must follow these instructions before, during, and after making any website change.
 
 ---
