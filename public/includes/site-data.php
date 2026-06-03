@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-const APES_FALLBACK_VERSION = 'v2.1.1b';
+const APES_FALLBACK_VERSION = 'v2.1.2b';
 const APES_SITE_NAME = 'Association of Protecting Exotic Species CIC';
 const APES_CIC_NUMBER = '16253848';
 const APES_CONTACT_EMAIL = 'info@apes.org.uk';
@@ -2081,9 +2081,9 @@ HTML,
                 'hero_summary' => 'Track every major release for this website, including updates, fixes, compliance changes, and user-facing improvements.',
                 'hero_actions' => [
                     ['label' => 'Expand all releases', 'href' => '#release-list', 'variant' => 'primary'],
-                    ['label' => 'View current release', 'href' => '#release-v211b', 'variant' => 'secondary'],
+                    ['label' => 'View current release', 'href' => '#release-v212b', 'variant' => 'secondary'],
                 ],
-                'pills' => ['Current version ' . $siteVersion, 'Minor beta', 'Public-facing'],
+                'pills' => ['Current version ' . $siteVersion, 'Patch beta', 'Public-facing'],
                 'body_html' => <<<'HTML'
 <section class="section-shell">
   <div class="release-tools">
@@ -2111,52 +2111,50 @@ HTML,
 </section>
 
 <section class="section-shell" id="release-list">
-  <details class="release-card" data-release-card data-tags="current beta changed fixed compliance accessibility public-facing" open id="release-v211b">
+  <details class="release-card" data-release-card data-tags="current beta changed fixed compliance accessibility public-facing" open id="release-v212b">
     <summary>
-      <span class="release-version">v2.1.1b</span>
+      <span class="release-version">v2.1.2b</span>
       <span class="release-date">2026-06-03</span>
     </summary>
     <div class="release-body">
       <div class="pill-row">
-        <span class="pill pill-version">Version v2.1.1b</span>
+        <span class="pill pill-version">Version v2.1.2b</span>
         <span class="pill pill-status">Beta</span>
         <span class="pill pill-type">Changed</span>
         <span class="pill pill-fix">Fix</span>
         <span class="pill pill-compliance">Compliance</span>
       </div>
       <h3>Summary</h3>
-      <p>Split the shared APES site shell into reusable header and footer partials, added social icon links in the top bar, tightened the mobile menu behaviour and centered the desktop mega menus while keeping the HTML5-first delivery model intact.</p>
+      <p>Updated the shared navigation script so the mobile menu closes when visitors activate any primary navigation link or open a new page, including back-forward cache restores, while keeping the shared header and footer shell intact.</p>
       <h3>Detailed changes</h3>
       <ul class="clean-list">
-        <li>Split the shared site shell into `includes/header.php` and `includes/footer.php` so the menu, footer and social links can be updated once and flow to every page.</li>
-        <li>Added a top-bar social icon strip for APES Social, Discord and YouTube using icon-style SVG marks and accessible labels.</li>
-        <li>Tightened the JavaScript navigation behaviour so opening a page or clicking a menu item closes the menu, including back-forward cache restores.</li>
-        <li>Kept the Services mega menu centered in the viewport on desktop and constrained it so it does not drift off-screen.</li>
-        <li>Regenerated the static HTML snapshots so the exported site mirrors the new shared partials and menu behaviour.</li>
+        <li>Updated the shared navigation script so any primary navigation link activation closes the mobile menu immediately.</li>
+        <li>Added page transition guards so the menu state resets on navigation and back-forward cache restores, preventing stale open menus after moving to a new page.</li>
+        <li>Kept the existing shared header and footer structure intact so the fix applies site-wide without per-page markup changes.</li>
         <li>Bumped the canonical website version and synchronised the release record across the website Change Log Hub and root changelog.</li>
       </ul>
       <h3>Affected areas</h3>
       <ul class="clean-list">
         <li>Website: www.apes.org.uk</li>
-        <li>Page or route: shared site-wide header, footer, navigation, homepage, change-log hub and release metadata</li>
-        <li>Files changed: shared PHP partials, shared site data, CSS, JS, static HTML snapshots, root VERSION and root CHANGELOG</li>
+        <li>Page or route: shared site-wide navigation, homepage, content pages, change-log hub and release metadata</li>
+        <li>Files changed: shared JS, shared site data, VERSION, root CHANGELOG and regenerated static HTML snapshots</li>
         <li>User groups affected: supporters, adopters, service users, volunteers, partners and general public visitors</li>
-        <li>Public impact: clearer navigation, improved header social access, better mobile behaviour and a more polished first-impression experience</li>
-        <li>Internal impact: shared shell components are now easier to update without touching every page</li>
+        <li>Public impact: the mobile menu now closes reliably when visitors move to a new page, reducing confusion and accidental obstruction of content</li>
+        <li>Internal impact: the shared navigation behaviour now stays consistent across all rendered pages</li>
       </ul>
       <h3>Version decision</h3>
       <ul class="clean-list">
-        <li>Previous version: v2.1.0b</li>
-        <li>New version: v2.1.1b</li>
+        <li>Previous version: v2.1.1b</li>
+        <li>New version: v2.1.2b</li>
         <li>Version type: patch beta</li>
-        <li>Reason for version bump: structural shared-shell refactor and user-visible navigation polish without a breaking URL or content restructure</li>
+        <li>Reason for version bump: small shared-behaviour fix with no breaking URL or content restructure</li>
       </ul>
       <h3>Validation</h3>
       <ul class="clean-list">
-        <li>Checks run: local PHP syntax checks, Node syntax check, static HTML export, generated HTML inspection and browser interaction verification</li>
-        <li>Manual checks completed: top-bar social icon strip, footer links, mobile menu close-on-click, Services mega menu centering and release display alignment</li>
-        <li>Known limitations: the browser test used a local Chrome executable and the site still relies on the PHP renderer as the source of truth for future exports</li>
-        <li>Rollback notes: remove the regenerated snapshots, restore the previous partials and JS if needed, and redeploy the prior bundle</li>
+        <li>Checks run: local PHP syntax checks, static HTML export, generated HTML inspection and browser interaction verification</li>
+        <li>Manual checks completed: mobile menu close-on-link activation, new-page navigation reset and back-forward cache restore</li>
+        <li>Known limitations: the browser test used the local development renderer and the static HTML export is regenerated from the PHP source of truth</li>
+        <li>Rollback notes: restore the previous JS and version/changelog entries, then re-export the static HTML snapshots if needed</li>
       </ul>
     </div>
   </details>

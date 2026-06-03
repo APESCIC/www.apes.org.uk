@@ -1,3 +1,45 @@
+## [v2.1.2b] - 2026-06-03
+
+<span class="pill pill-version">Version v2.1.2b</span>
+<span class="pill pill-status">Beta</span>
+<span class="pill pill-type">Changed</span>
+<span class="pill pill-fix">Fix</span>
+<span class="pill pill-compliance">Compliance</span>
+
+### Summary
+
+Updated the shared navigation script so the mobile menu closes when visitors activate any primary navigation link or open a new page, including back-forward cache restores, while keeping the shared header and footer shell intact.
+
+### Detailed changes
+
+- Updated the shared navigation script so any primary navigation link activation closes the mobile menu immediately.
+- Added page transition guards so the menu state resets on navigation and back-forward cache restores, preventing stale open menus after moving to a new page.
+- Kept the existing shared header and footer structure intact so the fix applies site-wide without per-page markup changes.
+- Bumped the canonical website version and synchronised the release record across the website Change Log Hub and root changelog.
+
+### Affected areas
+
+- Website: www.apes.org.uk
+- Page or route: shared site-wide navigation, homepage, content pages, change-log hub and release metadata
+- Files changed: shared JS, shared site data, VERSION, root CHANGELOG and regenerated static HTML snapshots
+- User groups affected: supporters, adopters, service users, volunteers, partners and general public visitors
+- Public impact: the mobile menu now closes reliably when visitors move to a new page, reducing confusion and accidental obstruction of content
+- Internal impact: the shared navigation behaviour now stays consistent across all rendered pages
+
+### Version decision
+
+- Previous version: v2.1.1b
+- New version: v2.1.2b
+- Version type: patch beta
+- Reason for version bump: small shared-behaviour fix with no breaking URL or content restructure
+
+### Validation
+
+- Checks run: local PHP syntax checks, static HTML export, generated HTML inspection and browser interaction verification
+- Manual checks completed: mobile menu close-on-link activation, new-page navigation reset and back-forward cache restore
+- Known limitations: the browser test used the local development renderer and the static HTML export is regenerated from the PHP source of truth
+- Rollback notes: restore the previous JS and version/changelog entries, then re-export the static HTML snapshots if needed
+
 ## [v2.1.1b] - 2026-06-03
 
 <span class="pill pill-version">Version v2.1.1b</span>

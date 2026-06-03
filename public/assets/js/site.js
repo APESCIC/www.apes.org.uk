@@ -96,6 +96,9 @@ if (primaryNav) {
   });
 }
 
+window.addEventListener("pagehide", closeMainNavigation);
+window.addEventListener("beforeunload", closeMainNavigation);
+
 document.addEventListener("click", (event) => {
   if (window.innerWidth <= 980) {
     return;
