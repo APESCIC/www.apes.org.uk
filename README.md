@@ -1,380 +1,356 @@
-# APES CIC Website
+<p align="center">
+  <a href="https://www.apes.org.uk/" target="_blank" rel="noopener noreferrer">
+    <img src="https://www.apes.org.uk/APES_logo_3D_440x250.png" alt="APES CIC Logo" width="220">
+  </a>
+</p>
 
-Official development repository for **[www.apes.org.uk](http://www.apes.org.uk)**, the main organisational website for the **Association of Protecting Exotic Species CIC**.
+<h1 align="center">APES CIC Website Repository</h1>
 
-This repository is used to support the development, maintenance, improvement and issue tracking of the APES CIC website.
+<p align="center">
+  <strong>Official development and maintenance repository for the APES CIC public website at https://www.apes.org.uk.</strong>
+</p>
 
-## About APES CIC
+<p align="center">
+  <img alt="Repository" src="https://img.shields.io/badge/repository-www.apes.org.uk-2E7D32">
+  <img alt="Theme" src="https://img.shields.io/badge/theme-APES_Habitat-43A047">
+  <img alt="Accessibility" src="https://img.shields.io/badge/accessibility-WCAG_AA_target-00796B">
+  <img alt="Language" src="https://img.shields.io/badge/language-UK_English-00695C">
+  <img alt="Governance" src="https://img.shields.io/badge/governance-change_log_required-005F5F">
+</p>
 
-**Association of Protecting Exotic Species CIC**, also known as **APES CIC**, is a UK Community Interest Company focused on the welfare, protection, rescue, rehabilitation and responsible rehoming of exotic species.
+---
 
-APES CIC works to support exotic animals, their keepers and the wider public through welfare-led services, education, advice, rescue pathways and responsible ownership support.
+## 🌿 Purpose
 
-The organisation’s work includes:
+This repository supports the development, maintenance and governance of the APES CIC public website at <https://www.apes.org.uk/>. It provides a consistent baseline for public pages, service routing, organisational information, donation routes, welfare guidance, contact pathways and related front-end development owned or maintained by the Association of Protecting Exotic Species CIC.
 
-* Exotic animal rescue
-* Rehabilitation and rehoming
-* Responsible ownership education
-* Welfare guidance
-* Shelter and rescue services
-* Pet care support
-* Adoption and fostering pathways
-* Public information and advice
-* Conservation and welfare awareness
-* Community-focused animal welfare services
+Use this README as the working standard for this repository so that website work remains aligned with:
 
-## Repository Purpose
+* APES CIC website working instructions in `AGENTS.md`.
+* A predictable repository structure.
+* GitHub Issue Forms for bugs and feature updates.
+* APES Habitat design direction and brand expectations.
+* UK English, accessibility, governance, security and data protection expectations.
+* Changelog, versioning and release-record expectations for website work.
 
-This repository helps APES CIC manage the ongoing development and improvement of the main APES website.
+---
 
-It is used for:
+## 🐾 Intended website scope
 
-* Tracking website bugs and faults
-* Planning new website features
-* Recording required content updates
-* Managing policy and governance-related website changes
-* Improving public access to APES services
-* Supporting accessibility and usability improvements
-* Coordinating website development work across APES Workspace
-* Tracking changes to pages, forms, service information and public guidance
-* Improving the reliability, structure and performance of the website
+This repository may cover:
 
-## Website
+| Website area | Examples |
+|---|---|
+| Parent organisation site | APES CIC organisation gateway, governance pages and public service routing. |
+| Public service information | Rescue, surrender, adoption, fostering, pet care, support and contact pathways. |
+| Campaign or fundraising content | Fundraising appeals, education campaigns, relocation projects or public information campaigns. |
+| Documentation or help routing | CareBase, knowledge bases, support centres, policy hubs and user guidance routes. |
+| Connected APES platforms | Links and signposting to APES Newsroom, MyAPES, service portals and support systems. |
 
-Live website:
+---
 
-```text
-https://www.apes.org.uk
+## 🎨 APES Habitat design direction
+
+APES websites should feel like one connected ecosystem: green led, teal-led, accessible, welfare focused and operationally competent.
+
+### Core principles
+
+* **Recognisable APES identity:** every site should clearly belong to the APES CIC family.
+* **Welfare before sales:** booking, adoption, donation, sponsorship and service journeys must still communicate trust, accountability and animal welfare.
+* **Plain English:** headings, CTAs, form guidance and service copy should be practical, direct and written in UK English.
+* **Accessible by default:** colour contrast, keyboard navigation, readable typography and clear focus states are core requirements.
+* **Reusable components:** buttons, cards, hubs, filters, alerts, forms, footers, policy links, help routes and CTAs should follow shared patterns.
+
+### Recommended colour tokens
+
+```css
+:root {
+  --apes-primary-teal: #008C8C;
+  --apes-deep-teal: #005F5F;
+  --apes-soft-mint: #DDF3EF;
+  --apes-leaf-green: #2E7D32;
+  --apes-rescue-sage: #A7C957;
+  --apes-petcare-aqua: #26B6C8;
+  --apes-warm-sand: #F2E9D8;
+  --apes-charcoal: #263238;
+  --apes-off-white: #F7FAF9;
+  --apes-alert-amber: #F9A825;
+  --apes-donation-coral: #E76F51;
+}
 ```
 
-## Main Website Areas
+Use teal as the master APES colour. Service accents may support the user journey, but they must not overpower the shared APES identity.
 
-This repository may include development work across website areas such as:
+---
 
-* Home page
-* About APES CIC
-* Mission and values
-* Rescue, rehabilitate and rehome information
-* Shelter and rescue information
-* Adoption and fostering information
-* Pet care services
-* Public advice and guidance
-* APES communities
-* News and updates
-* Donations and fundraising
-* Volunteering information
-* Policies and terms
-* Contact information
-* Support pathways
-* Service user access routes
-* Links to APES platforms and connected services
+## 🧩 Recommended repository structure
 
-## Connected APES Services
-
-The APES CIC website may link to or support access to wider APES services and platforms, including:
-
-* APES Shelter and Rescue
-* APES Pet Care Clinic
-* APES CareBase
-* APES News
-* MyAPES Portal
-* APES Workspace
-* APES Network Status
-* APES support and helpdesk systems
-
-Any change affecting linked services should be checked carefully to ensure users are directed to the correct platform.
-
-## Issue Tracking
-
-GitHub Issues should be used to record and manage:
-
-* Bugs
-* Broken links
-* Incorrect page content
-* Missing information
-* Outdated service details
-* Form errors
-* Accessibility concerns
-* Mobile display issues
-* Performance issues
-* Security concerns
-* SEO improvements
-* Content update requests
-* New feature requests
-* Policy or compliance updates
-* Urgent website fixes
-
-When creating an issue, include as much detail as possible.
-
-Useful information includes:
-
-* Page URL
-* Description of the issue
-* Steps to reproduce the issue
-* Expected behaviour
-* Actual behaviour
-* Screenshots or screen recordings
-* Device type
-* Browser
-* Operating system
-* Urgency level
-* Affected department, service or website area
-* Whether the issue affects service users, adopters, volunteers, supporters or staff
-
-## Development Priorities
-
-Website development should support APES CIC’s organisational aims and public benefit objectives.
-
-Priority should be given to changes that improve:
-
-* Animal welfare outcomes
-* Public access to APES services
-* Clear rescue and support pathways
-* Responsible exotic animal ownership education
-* Adoption, fostering and rehoming information
-* Service user safety and clarity
-* Accessibility
-* Website reliability
-* Data protection and privacy
-* Legal and policy compliance
-* Mobile usability
-* Clear navigation between APES platforms
-
-## Branching Guidance
-
-Suggested branch naming:
+Adapt this structure to the confirmed framework, but keep the repository predictable.
 
 ```text
-fix/short-description
-feature/short-description
-content/short-description
-policy/short-description
-accessibility/short-description
-security/short-description
-seo/short-description
+.
+├── .github/
+│   ├── ISSUE_TEMPLATE/
+│   │   ├── bug_report.yml
+│   │   ├── feature_update.yml
+│   │   └── config.yml
+│   ├── workflows/
+│   │   ├── ci.yml
+│   │   └── deploy.yml
+│   ├── pull_request_template.md
+│   └── dependabot.yml
+├── docs/
+│   ├── accessibility/
+│   ├── architecture/
+│   ├── brand/
+│   ├── compliance/
+│   ├── content/
+│   └── decisions/
+├── public/
+│   └── assets/
+│       ├── images/
+│       └── logo/
+├── src/
+│   ├── components/
+│   ├── config/
+│   ├── content/
+│   ├── features/
+│   ├── layouts/
+│   ├── pages/
+│   ├── services/
+│   ├── styles/
+│   └── utils/
+├── tests/
+│   ├── accessibility/
+│   ├── integration/
+│   └── unit/
+├── AGENTS.md
+├── CHANGELOG.md
+├── CODE_OF_CONDUCT.md
+├── CONTRIBUTING.md
+├── LICENSE
+├── README.md
+├── SECURITY.md
+└── VERSION
 ```
 
-Examples:
+---
+
+## 🚀 Getting started
+
+Replace these commands with the confirmed production stack if the implementation changes.
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/APESCIC/www.apes.org.uk.git
+cd www.apes.org.uk
+```
+
+### 2. Install dependencies
+
+```bash
+npm install
+```
+
+### 3. Create the local environment file
+
+```bash
+cp .env.example .env.local
+```
+
+### 4. Start the development server
+
+```bash
+npm run dev
+```
+
+### 5. Run checks before committing
+
+```bash
+npm run lint
+npm run test
+npm run build
+```
+
+---
+
+## 🔐 Environment variables
+
+Do not commit secrets, credentials, API tokens, payment keys, booking credentials, CRM credentials or live service keys.
+
+Document required variables in `.env.example` using safe placeholder values only.
+
+| Variable | Purpose | Required | Example |
+|---|---|---:|---|
+| `APP_ENV` | Application environment. | Yes | `local` |
+| `APP_URL` | Local or deployed application URL. | Yes | `http://localhost:3000` |
+| `PUBLIC_SITE_URL` | Public website URL. | Yes | `https://www.apes.org.uk` |
+| `NEWSLETTER_SIGNUP_URL` | Newsletter signup route or external provider URL. | If used | `https://www.apesnews.org.uk/` |
+| `CONTACT_EMAIL` | Public contact email. | Yes | `info@apes.org.uk` |
+| `CONTACT_PHONE` | Public contact number. | Yes | `0300 302 0998` |
+
+---
+
+## 🛠 GitHub workflow
+
+### Branch naming
+
+Use short, descriptive branch names.
 
 ```text
-fix/broken-contact-link
-feature-new-donation-section
-content-update-about-page
-policy-privacy-page-update
-accessibility-main-navigation
-security-remove-exposed-data
-seo-update-homepage-metadata
+feature/service-card-layout
+feature/change-log-hub
+feature/booking-flow-update
+fix/mobile-navigation-overflow
+fix/accessibility-focus-state
+docs/update-policy-links
+hotfix/contact-details
 ```
 
-## Commit Message Guidance
+### Commit style
 
-Commit messages should be clear, specific and easy to understand.
-
-Examples:
+Use clear commit messages that explain the change and the reason.
 
 ```text
-Fix broken link on contact page
-Update APES mission statement wording
-Improve mobile layout on home page
-Add new volunteering information
-Correct CIC details in footer
-Update donation call-to-action
-Improve accessibility of navigation menu
+website: add service landing page
+website: update booking policy links
+website: fix mobile header navigation
+website: improve contrast on service cards
+website: document website content model
 ```
 
-## Pull Requests
+### Issues
 
-Pull requests should clearly explain:
+Use GitHub Issues for planned changes, bugs, content work, accessibility improvements, governance tasks and maintenance items.
 
-* What has changed
-* Why the change is needed
-* Which page, service or section is affected
-* Whether the change has been tested
-* Any risks or follow-up actions
-* Whether content, policy, legal or senior review is required
-
-Before requesting review, check:
-
-* The affected page loads correctly
-* Links work as expected
-* Forms behave correctly
-* Content is accurate
-* Mobile layout has been checked
-* Accessibility has been considered
-* No personal data has been committed
-* No internal-only information has been published
-* No credentials, tokens or API keys are included
-* Any legal, policy or service wording has been reviewed where required
-
-## Content Standards
-
-Website content should be:
-
-* Clear
-* Accurate
-* Professional
-* Welfare-focused
-* Accessible
-* Suitable for the public
-* Written in British English
-* Consistent with APES CIC policies
-* Appropriate for a UK Community Interest Company
-* Suitable for animal owners, adopters, supporters, volunteers and service users
-
-Content should avoid:
-
-* Unverified claims
-* Outdated service information
-* Ambiguous animal welfare advice
-* Unapproved legal wording
-* Unapproved policy wording
-* Personal data
-* Internal-only operational details
-* Confidential animal case information
-* Sensitive safeguarding or security details
-* Anything that may mislead the public about services, availability or eligibility
-
-## Compliance and Data Protection
-
-Do not commit:
-
-* Personal data
-* Private service user information
-* Adoption records
-* Volunteer records
-* Staff records
-* Internal case notes
-* Animal surrender records containing identifiable details
-* Passwords
-* API keys
-* Credentials
-* Private documents
-* Sensitive operational information
-* Internal-only security information
-
-Any website change involving policies, forms, service user information, privacy wording, legal statements, donations, complaints, safeguarding, adoption terms, surrender terms or public-facing commitments should be reviewed by the appropriate APES lead before publication.
-
-## Accessibility
-
-Website updates should consider accessibility for all users.
-
-Where possible, changes should support:
-
-* Clear headings
-* Readable text
-* Descriptive links
-* Keyboard-friendly navigation
-* Mobile-friendly layouts
-* Sufficient colour contrast
-* Alternative text for meaningful images
-* Plain English content
-* Logical page structure
-* Clear calls to action
-* Simple and understandable user journeys
-
-## Security
-
-Security issues should not be posted publicly if they expose sensitive systems, credentials, private data, service user information or operational vulnerabilities.
-
-If a security issue is found, report it internally to the APES website or systems lead as soon as possible.
-
-## Suggested GitHub Labels
-
-Useful issue labels may include:
+Issue templates live in:
 
 ```text
-bug
-content
-accessibility
-adoptions
-rescues
-surrenders
-pet-care
-donations
-volunteering
-forms
-policy
-compliance
-security
-urgent
-enhancement
-mobile
-seo
-performance
-needs-review
-governance
-data-protection
+.github/ISSUE_TEMPLATE/
 ```
 
-## Suggested Issue Types
+Included issue forms:
 
-Issues may be grouped as:
+| Template | Use when |
+|---|---|
+| `bug_report.yml` | A defect, regression, unexpected behaviour or operational fault needs triage. |
+| `feature_update.yml` | A new feature, enhancement, workflow change, documentation update or governance requirement is needed. |
+| `config.yml` | Disables blank issues and routes urgent or sensitive matters away from public issue text. |
 
-```text
-Bug report
-Content update
-Feature request
-Accessibility issue
-Policy update
-Security concern
-SEO improvement
-Performance issue
-Design improvement
-Form issue
-Navigation issue
-Compliance review
-```
+### Pull requests
 
-## Review Requirements
+Every pull request should include:
 
-Some changes may need additional review before publication.
+* Summary of the change.
+* Linked issue, using closing keywords only where closure is intended.
+* Reason for the change.
+* Screenshots or screen recordings for user interface changes.
+* Accessibility considerations.
+* Security and data protection considerations.
+* Testing completed.
+* Deployment and rollback notes.
+* Changelog and version details for website changes.
 
-Review should be considered where changes affect:
+---
 
-* Legal wording
-* Policy wording
-* Privacy information
-* Donation wording
-* Public service descriptions
-* Adoption or fostering terms
-* Surrender or rescue guidance
-* Animal welfare advice
-* Safeguarding information
-* Data protection notices
-* Complaints information
-* Financial or fundraising information
-* Organisational governance information
+## ✅ Definition of done
 
-## Maintainers
+A website change is not ready to merge until it meets the relevant checklist.
 
-This repository is maintained by APES CIC for the ongoing development and improvement of the main APES organisational website.
+### Functional quality
 
-## Organisation
+* [ ] Feature meets the agreed acceptance criteria.
+* [ ] User-facing copy is clear, accurate and written in UK English.
+* [ ] Empty, loading, success and error states are handled.
+* [ ] Mobile, tablet and desktop layouts have been checked.
+* [ ] Links, buttons, forms and routes behave as expected.
+* [ ] Public contact details are accurate.
 
-**Association of Protecting Exotic Species CIC**
-CIC Number: **16253848**
+### Accessibility
 
-Main website:
+* [ ] Normal text meets at least **4.5:1** contrast.
+* [ ] Large text and meaningful graphical elements meet at least **3:1** contrast where applicable.
+* [ ] Colour is not the only method used to show meaning, status or urgency.
+* [ ] Keyboard focus is visible and logical.
+* [ ] Form fields have labels, helper text and error messages.
+* [ ] Images and icons have suitable accessible names or alternative text.
+* [ ] Motion is minimal and respects reduced motion preferences.
+* [ ] Pages use one clear `h1` and logical `h2` and `h3` sections.
 
-```text
-https://www.apes.org.uk
-```
+### Data protection and security
 
-Registered office:
+* [ ] No secrets, credentials, payment keys, personal data or confidential records are committed.
+* [ ] Form submissions collect only necessary information.
+* [ ] Personal data is handled in line with UK GDPR and the Data Protection Act 2018.
+* [ ] Client, supporter, staff, volunteer, welfare, safeguarding, HR, finance and governance data are treated as sensitive by default.
+* [ ] Logs do not expose personal data, booking details or confidential case information.
+* [ ] External links use safe attributes where applicable.
 
-```text
-40 Morris Street
-St Helens
-WA9 3EN
-United Kingdom
-```
+### Governance and release records
 
-## Licence and Use
+* [ ] Update type has been confirmed or inferred: major, minor or patch.
+* [ ] Beta status has been confirmed where relevant.
+* [ ] Canonical version file has been updated.
+* [ ] Website Change Log Hub page has been created or updated.
+* [ ] Root `CHANGELOG.md` has been created or updated.
+* [ ] Related GitHub Issue has been updated at start, progress and completion points where applicable.
+* [ ] APES Newsroom routing has been checked for news, updates, newsletter prompts, footer links or navigation changes.
 
-This repository is for APES CIC website development and operational use.
+---
 
-Unless a separate licence is added, all website content, branding, written materials, graphics and assets remain the property of the Association of Protecting Exotic Species CIC or their respective rights holders.
+## 🧪 Testing expectations
 
-## Disclaimer
+Use the strongest practical test coverage for the change.
 
-This repository supports the development of the APES CIC website. It should not be used as a substitute for approved APES policies, internal procedures, legal guidance, veterinary advice, safeguarding advice or formal animal welfare decision-making.
+| Change type | Expected checks |
+|---|---|
+| UI component | Unit tests, keyboard check, responsive check and contrast check. |
+| Service page | Content accuracy review, mobile review, link check and metadata check. |
+| Form or booking workflow | Validation tests, error state tests, success state tests and data minimisation review. |
+| Content update | Link check, spelling check, owner check and review date check. |
+| Policy update | Legal or governance review, version check and publication date check. |
+| Payment or billing link | Security review, test mode check and confirmation that no secret key is exposed. |
+| Data handling | Input validation, output escaping, logging review and retention considerations. |
+
+---
+
+## 🧯 Sensitive information rule
+
+Do not open public issues, commits or pull requests containing:
+
+* Credentials, API keys or tokens.
+* Personal data.
+* Safeguarding details.
+* Animal welfare case details.
+* Client booking records.
+* Payment or billing details.
+* Vulnerability exploit steps that could create immediate risk.
+* HR, finance, governance or legal correspondence.
+
+Use approved internal escalation routes for urgent operational, safeguarding, welfare or security matters.
+
+---
+
+## 🏢 Organisation
+
+**Association of Protecting Exotic Species CIC (APES CIC)**  
+CIC No: `16253848`  
+Registered Office: `40 Morris Street, St Helens, WA9 3EN`  
+Main Website: <https://www.apes.org.uk/>  
+Newsroom: <https://www.apesnews.org.uk/>  
+Telephone: `0300 302 0998`
+
+---
+
+## 📄 Licence and reuse
+
+This template and its contents are maintained for APES CIC website development, public service delivery and authorised operational purposes.
+
+Unless a separate licence file states otherwise, do not reuse APES CIC branding, public service materials, internal documents, source code, operational workflows or service materials outside authorised APES CIC purposes.
+
+---
+
+<p align="center">
+  <strong>Built to keep APES websites clear, compliant, accessible and welfare focused.</strong>
+</p>
