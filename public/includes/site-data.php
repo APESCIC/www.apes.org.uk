@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-const APES_FALLBACK_VERSION = 'v2.4.4b';
+const APES_FALLBACK_VERSION = 'v2.4.5';
 const APES_SITE_NAME = 'Association of Protecting Exotic Species CIC';
 const APES_CIC_NUMBER = '16253848';
 const APES_CONTACT_EMAIL = 'info@apes.org.uk';
@@ -2529,9 +2529,9 @@ HTML,
                 'hero_summary' => 'Track every major release for this website, including updates, fixes, compliance changes, and user-facing improvements.',
                 'hero_actions' => [
                     ['label' => 'Expand all releases', 'href' => '#release-list', 'variant' => 'primary'],
-                    ['label' => 'View current release', 'href' => '#release-v244b', 'variant' => 'secondary'],
+                    ['label' => 'View current release', 'href' => '#release-v245', 'variant' => 'secondary'],
                 ],
-                'pills' => ['Current version ' . $siteVersion, 'Patch beta', 'Public-facing'],
+                'pills' => ['Current version ' . $siteVersion, 'Patch stable', 'Operational'],
                 'body_html' => <<<'HTML'
 <section class="section-shell">
   <div class="release-tools">
@@ -2559,51 +2559,51 @@ HTML,
 </section>
 
 <section class="section-shell" id="release-list">
-  <details class="release-card" data-release-card data-tags="current beta changed fixed accessibility public-facing" open id="release-v244b">
+  <details class="release-card" data-release-card data-tags="current stable changed removed compliance" open id="release-v245">
     <summary>
-      <span class="release-version">v2.4.4b</span>
+      <span class="release-version">v2.4.5</span>
       <span class="release-date">2026-06-03</span>
     </summary>
     <div class="release-body">
       <div class="pill-row">
-        <span class="pill pill-version">Version v2.4.4b</span>
-        <span class="pill pill-status">Beta</span>
+        <span class="pill pill-version">Version v2.4.5</span>
+        <span class="pill pill-status">Stable</span>
         <span class="pill pill-type">Changed</span>
-        <span class="pill pill-fix">Fix</span>
-        <span class="pill pill-accessibility">Accessibility</span>
+        <span class="pill pill-type">Removed</span>
+        <span class="pill pill-compliance">Compliance</span>
       </div>
       <h3>Summary</h3>
-      <p>Refined the shared homepage hero and mega-menu responsive sizing so desktop layouts feel less oversized while tablet and mobile headers fit more cleanly.</p>
+      <p>Removed unused plugin-generated export artefacts from the repository, confirmed there were no remaining video-plugin dependencies to remove, and synchronised the stable release record across the website.</p>
       <h3>Detailed changes</h3>
       <ul class="clean-list">
-        <li>Appended a shared CSS override layer that reduces homepage hero headline scale, desktop navigation spacing, logo sizing and mega-menu density without changing PHP templates, routes or menu copy.</li>
-        <li>Narrowed the desktop mega-menu panel width and reduced the heading, description, pill, badge and link typography so Information, Services and Support APES feel more compact on large viewports.</li>
-        <li>Added tighter tablet and mobile refinements for the top bar, social icons, branding block, menu button and hero copy so smaller screens fit cleanly without overlap.</li>
-        <li>Left APES Newsroom routing, footer structure, required donation, Privacy Policy, Terms of Service and Change Log Hub links, and intranet link rules unchanged.</li>
+        <li>Deleted the unreferenced <code>outputs/moodboards/apes-rebuild</code> bundle, including generated board assets, runtime configuration, logs and plugin-authored metadata.</li>
+        <li>Re-ran repository searches for the removed plugin identifiers and plugin URI patterns to confirm no remaining website references exist.</li>
+        <li>Confirmed no live HTML, PHP, CSS or JS routes depended on the removed artefacts before deletion, so no public page structure, navigation, forms or calls to action changed.</li>
+        <li>Left APES Newsroom routing, footer structure, required donation, Privacy Policy, Terms of Service and Change Log Hub links, and intranet link rules unchanged while promoting the site back to a stable patch release.</li>
         <li>Regenerated the exported static HTML snapshots and synchronised the canonical version, website Change Log Hub and root changelog.</li>
       </ul>
       <h3>Affected areas</h3>
       <ul class="clean-list">
         <li>Website: www.apes.org.uk</li>
-        <li>Page or route: shared homepage hero, shared header navigation, Change Log Hub and regenerated static HTML snapshots</li>
-        <li>Files changed: shared CSS, shared site data, VERSION, root CHANGELOG and regenerated static HTML snapshots</li>
+        <li>Page or route: Change Log Hub, shared footer version display, release metadata and removed unused repository artefacts</li>
+        <li>Files changed: shared site data, VERSION, root CHANGELOG, regenerated static HTML snapshots and deleted unused plugin export files</li>
         <li>User groups affected: supporters, adopters, service users, volunteers, partners and general public visitors</li>
-        <li>Public impact: visitors now see a smaller homepage hero and denser shared mega menus across desktop, tablet and mobile widths</li>
-        <li>Internal impact: responsive hero and navigation sizing now come from a final shared CSS override layer</li>
+        <li>Public impact: no intended visitor-facing behaviour change; public pages now display the stable v2.4.5 release record and matching footer version</li>
+        <li>Internal impact: unused plugin export output has been removed and release metadata no longer points at the previous beta version</li>
       </ul>
       <h3>Version decision</h3>
       <ul class="clean-list">
-        <li>Previous version: v2.4.3</li>
-        <li>New version: v2.4.4b</li>
-        <li>Version type: patch beta</li>
-        <li>Reason for version bump: small public-facing responsive sizing refinement released as a beta patch without route, template or content restructuring</li>
+        <li>Previous version: v2.4.4b</li>
+        <li>New version: v2.4.5</li>
+        <li>Version type: patch stable</li>
+        <li>Reason for version bump: repository cleanup and release-record synchronisation after removing unused plugin-generated artefacts without changing live route behaviour</li>
       </ul>
       <h3>Validation</h3>
       <ul class="clean-list">
-        <li>Checks run: shared CSS inspection, local PHP syntax checks, static HTML export, generated HTML inspection and local browser responsive verification</li>
-        <li>Manual checks completed: homepage hero review, Information/Services/Support APES mega-menu review at 1920px, 1440px, 1024px, 768px and 390px, footer required link review, APES Newsroom route review and changelog/version alignment review</li>
-        <li>Known limitations: staged Cloudron deployment and asset-cache verification were out of scope for this repo-only implementation pass</li>
-        <li>Rollback notes: restore the previous shared CSS and release metadata, then re-export the static HTML snapshots if needed</li>
+        <li>Checks run: repository reference search, live-site dependency search, local PHP syntax checks, static HTML export and generated HTML inspection</li>
+        <li>Manual checks completed: Change Log Hub review, representative footer required link review, APES Newsroom route review and changelog/version alignment review</li>
+        <li>Known limitations: staged deployment, remote cache verification and external link monitoring were out of scope for this repo-only implementation pass</li>
+        <li>Rollback notes: restore the deleted <code>outputs/moodboards/apes-rebuild</code> bundle plus the previous version and changelog entries, then re-export the static HTML snapshots if needed</li>
       </ul>
     </div>
   </details>

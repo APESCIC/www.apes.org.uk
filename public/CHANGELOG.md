@@ -1,3 +1,46 @@
+## [v2.4.5] - 2026-06-03
+
+<span class="pill pill-version">Version v2.4.5</span>
+<span class="pill pill-status">Stable</span>
+<span class="pill pill-type">Changed</span>
+<span class="pill pill-type">Removed</span>
+<span class="pill pill-compliance">Compliance</span>
+
+### Summary
+
+Removed unused plugin-generated export artefacts from the repository, confirmed there were no remaining video-plugin dependencies to remove, and synchronised the stable release record across the website.
+
+### Detailed changes
+
+- Deleted the unreferenced `outputs/moodboards/apes-rebuild` bundle, including generated board assets, runtime configuration, logs and plugin-authored metadata.
+- Re-ran repository searches for the removed plugin identifiers and plugin URI patterns to confirm no remaining website references exist.
+- Confirmed no live HTML, PHP, CSS or JS routes depended on the removed artefacts before deletion, so no public page structure, navigation, forms or calls to action changed.
+- Left APES Newsroom routing, footer structure, required donation, Privacy Policy, Terms of Service and Change Log Hub links, and intranet link rules unchanged while promoting the site back to a stable patch release.
+- Regenerated the exported static HTML snapshots and synchronised the canonical version, website Change Log Hub and root changelog.
+
+### Affected areas
+
+- Website: www.apes.org.uk
+- Page or route: Change Log Hub, shared footer version display, release metadata and removed unused repository artefacts
+- Files changed: shared site data, VERSION, root CHANGELOG, regenerated static HTML snapshots and deleted unused plugin export files
+- User groups affected: supporters, adopters, service users, volunteers, partners and general public visitors
+- Public impact: no intended visitor-facing behaviour change; public pages now display the stable v2.4.5 release record and matching footer version
+- Internal impact: unused plugin export output has been removed and release metadata no longer points at the previous beta version
+
+### Version decision
+
+- Previous version: v2.4.4b
+- New version: v2.4.5
+- Version type: patch stable
+- Reason for version bump: repository cleanup and release-record synchronisation after removing unused plugin-generated artefacts without changing live route behaviour
+
+### Validation
+
+- Checks run: repository reference search, live-site dependency search, local PHP syntax checks, static HTML export and generated HTML inspection
+- Manual checks completed: Change Log Hub review, representative footer required link review, APES Newsroom route review and changelog/version alignment review
+- Known limitations: staged deployment, remote cache verification and external link monitoring were out of scope for this repo-only implementation pass
+- Rollback notes: restore the deleted `outputs/moodboards/apes-rebuild` bundle plus the previous version and changelog entries, then re-export the static HTML snapshots if needed
+
 ## [v2.4.4b] - 2026-06-03
 
 <span class="pill pill-version">Version v2.4.4b</span>
