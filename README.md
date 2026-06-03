@@ -10,7 +10,7 @@ This repository is used to support the development, maintenance, improvement and
 
 APES CIC works to support exotic animals, their keepers and the wider public through welfare-led services, education, advice, rescue pathways and responsible ownership support.
 
-The organisation’s work includes:
+The organisation's work includes:
 
 * Exotic animal rescue
 * Rehabilitation and rehoming
@@ -123,7 +123,7 @@ Useful information includes:
 
 ## Development Priorities
 
-Website development should support APES CIC’s organisational aims and public benefit objectives.
+Website development should support APES CIC's organisational aims and public benefit objectives.
 
 Priority should be given to changes that improve:
 

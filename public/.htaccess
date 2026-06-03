@@ -1,0 +1,25 @@
+DirectoryIndex index.php index.html
+Options -Indexes
+
+RewriteEngine On
+
+# Keep the public document root focused on rendered pages only.
+RewriteRule ^includes/ - [F,L]
+RewriteRule ^outputs/ - [F,L]
+
+# Normalise the old /index route to the homepage.
+RewriteRule ^index/?$ / [R=301,L]
+
+# Legacy mission aliases still seen on the live site.
+RewriteRule ^missions/our-main-mission-statement/?$ /mission/our-main-mission-statement/ [R=301,L]
+RewriteRule ^missions/support-ethical-rehabilitation/?$ /mission/support-ethical-rehabilitation/ [R=301,L]
+
+# Legacy short changelog aliases.
+RewriteRule ^changelog/?$ /change-log-hub/ [R=301,L]
+RewriteRule ^change-log/?$ /change-log-hub/ [R=301,L]
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.php [L]
+
+ErrorDocument 404 /index.php

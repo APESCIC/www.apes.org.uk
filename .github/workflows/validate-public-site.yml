@@ -1,0 +1,22 @@
+name: Validate Public Site
+
+on:
+  workflow_dispatch:
+
+jobs:
+  validate-public-site:
+    runs-on: windows-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.2"
+
+      - name: Run public-site validation
+        shell: pwsh
+        run: |
+          ./scripts/validate-public-site.ps1

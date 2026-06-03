@@ -1,0 +1,127 @@
+{
+  "meta": {
+    "title": "APES CIC website rebuild mood board",
+    "summary": "Eight single-image visual territories for the APES Cloudron LAMP rebuild.",
+    "brief": "Association of Protecting Exotic Species CIC public website rebuild",
+    "goal": "Unify APES branding across the rebuilt Cloudron LAMP site.",
+    "audience": [
+      "supporters",
+      "adopters",
+      "service users",
+      "volunteers",
+      "partners"
+    ]
+  },
+  "signals": {
+    "palette": [
+      "Primary teal",
+      "Deep teal",
+      "Soft mint",
+      "Warm sand",
+      "Donation coral accents"
+    ],
+    "tone": [
+      "Compassionate",
+      "Trustworthy",
+      "Practical",
+      "Plain-language",
+      "Welfare-first"
+    ],
+    "visualLanguage": [
+      "Editorial hero panels",
+      "Rounded trust cards",
+      "Accessible data points",
+      "Soft gradients",
+      "Structured callouts"
+    ],
+    "avoid": [
+      "Purple bias",
+      "Overcrowded hero banners",
+      "Tiny body text",
+      "Decorative-only footer",
+      "Sales-first messaging"
+    ]
+  },
+  "items": [
+    {
+      "id": "rescue-threshold",
+      "title": "Rescue threshold at first light",
+      "caption": "A calm arrival moment that suggests urgency without panic.",
+      "source": "APES public rescue and continuity brief",
+      "tone": "Compassionate, practical",
+      "motif": "threshold, safety, continuity of care",
+      "palette": ["#005f5f", "#008c8c", "#ddf3ef", "#f2e9d8", "#263238"],
+      "prompt": "Single editorial photograph of a modest community-animal rescue entrance at first light, ramp access, clean teal-painted doorway, soft mint reflections on wet pavement, one secure animal carrier near the door, warm interior glow, calm overcast British morning, trustworthy non-profit atmosphere, no readable text, no logos, no collage, no people facing camera."
+    },
+    {
+      "id": "reception-trust",
+      "title": "Reception desk with quiet authority",
+      "caption": "A humane front-of-house mood for contact, guidance and triage.",
+      "source": "APES contact and centre routes",
+      "tone": "Trustworthy, plain-language",
+      "motif": "welcome desk, support route, human clarity",
+      "palette": ["#008c8c", "#ddf3ef", "#f7faf9", "#f2e9d8", "#263238"],
+      "prompt": "Single visual reference image of a welfare organisation reception desk in natural window light, rounded oak counter, teal ceramic mug, soft mint paperwork trays, one analogue desk bell, calm organised atmosphere, warm sand wall tone, practical non-corporate styling, shallow depth of field, no readable text, no logos, no UI, not a collage."
+    },
+    {
+      "id": "care-prep-station",
+      "title": "Care preparation station",
+      "caption": "A clean, capable care setup that feels gentle rather than clinical.",
+      "source": "APES pet care, rehabilitation and boarding content",
+      "tone": "Practical, welfare-first",
+      "motif": "prep surface, hygiene, species-appropriate care",
+      "palette": ["#ddf3ef", "#26b6c8", "#f7faf9", "#a7c957", "#263238"],
+      "prompt": "Single editorial photograph of a tidy exotic-animal care preparation station, stainless steel table, folded soft mint towels, teal nitrile gloves, glass terrarium edge, neatly arranged care tools, diffuse daylight, crisp but humane atmosphere, restrained aqua accents, no readable labels, no logos, no collage, no split panels."
+    },
+    {
+      "id": "donation-urgency-still-life",
+      "title": "Donation urgency still life",
+      "caption": "Warm appeal energy without sales-first charity cliches.",
+      "source": "APES donation and relocation appeal routes",
+      "tone": "Compassionate, urgent, trustworthy",
+      "motif": "appeal, support, continuity",
+      "palette": ["#e76f51", "#005f5f", "#f2e9d8", "#f7faf9", "#263238"],
+      "prompt": "Single composed still life for a non-profit donation appeal, coral-toned transport crate edge, folded blanket, teal clipboard, small stack of care receipts turned away from camera, warm sand tabletop, soft directional light, subtle urgency, emotionally direct but professional, no readable text, no logos, no money cliches, not a mood board layout."
+    },
+    {
+      "id": "rounded-trust-materials",
+      "title": "Rounded trust materials",
+      "caption": "A tactile material study for cards, metrics and structured callouts.",
+      "source": "APES design system direction",
+      "tone": "Accessible, modern, calm",
+      "motif": "rounded cards, tokens, information hierarchy",
+      "palette": ["#008c8c", "#ddf3ef", "#f7faf9", "#f2e9d8", "#e76f51"],
+      "prompt": "Single top-down material study of rounded paper cards, teal acrylic tokens, soft mint note sheets, warm sand backing board, one coral accent object, elegant spacing, crisp editorial lighting, tactile interface inspiration for a charity website, no readable text, no icons, no UI labels, no collage or grid."
+    },
+    {
+      "id": "education-visit-setup",
+      "title": "Educational visit setup",
+      "caption": "Community learning with warmth, safety and curiosity.",
+      "source": "APES educational visits service page",
+      "tone": "Plain-language, welcoming, welfare-first",
+      "motif": "outreach, learning, community trust",
+      "palette": ["#005f5f", "#26b6c8", "#f2e9d8", "#ddf3ef", "#263238"],
+      "prompt": "Single editorial photograph of an educational outreach room prepared for an exotic-animal visit, semicircle of chairs, one closed terrarium on a sturdy table, warm community hall light, teal and mint learning props, calm anticipation, no visible faces, no readable signage, no logos, no collage, one coherent scene."
+    },
+    {
+      "id": "habitat-texture-study",
+      "title": "Habitat texture and restraint",
+      "caption": "A close tactile mood for welfare, conservation and species respect.",
+      "source": "APES conservation and rehabilitation themes",
+      "tone": "Welfare-first, grounded",
+      "motif": "scales, foliage, substrate, quiet detail",
+      "palette": ["#a7c957", "#f2e9d8", "#008c8c", "#263238", "#f7faf9"],
+      "prompt": "Single macro-style visual reference image of exotic-animal habitat textures, soft sage foliage, warm sand substrate, hint of reptile scale texture at edge of frame, dew-like highlights, teal shadow tones, highly tactile but calm, conservation-minded atmosphere, no visible injury, no readable text, no collage."
+    },
+    {
+      "id": "community-dusk-credibility",
+      "title": "Community building at dusk",
+      "caption": "A credible public-facing mood for footer, governance and continuity.",
+      "source": "APES footer, contact and governance requirements",
+      "tone": "Trustworthy, stable, compassionate",
+      "motif": "community site, evening light, public trust",
+      "palette": ["#005f5f", "#008c8c", "#f7faf9", "#f2e9d8", "#263238"],
+      "prompt": "Single exterior evening photograph of a modest British community building with softly lit windows, deep teal doorway, clean pavement after rain, reassuring non-profit atmosphere, subtle warm interior glow, believable and humble, no readable street signs, no logos, no people posing, not a collage."
+    }
+  ]
+}
