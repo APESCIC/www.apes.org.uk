@@ -38,14 +38,14 @@
 | `/policies/cookies` | `/policies/cookies/` | Preserved | Public cookie route |
 | `/contact` | `/contact/` | Preserved | Required support route |
 | `/search` | `/search/` | Preserved | Public search route |
-| `/news/` | `/news/` | Preserved | Local bridge page to APES Newsroom |
-| `/news/post/Introducing-the-new-APES-CareBase/` | same path | Preserved | Legacy article bridge |
-| `/news/post/Urgent-APES-Must-Relocate-by-3-March-2026/` | same path | Preserved | Legacy article bridge |
-| `/news/post/APES-Partners-with-Double-the-Donation-to-Double-Your-Donation-Impact/` | same path | Preserved | Legacy article bridge |
-| `/news/post/important-update-temporary-move-what-it-means-for-you/` | same path | Preserved | Legacy article bridge |
-| `/news/post/fundraising-appeal-help-apes-invest-in-essential-welfare-management-software/` | same path | Preserved | Legacy fundraising article bridge |
-| `/news/tag/moving-properties/` | same path | Preserved | Legacy relocation tag archive |
-| `/news/tag/funds/` | same path | Preserved | Legacy fundraising tag archive |
+| `/news/` | `/news/` | Preserved | Main-site handoff page to APES Newsroom |
+| `/news/post/Introducing-the-new-APES-CareBase/` | `https://www.apesnews.org.uk/introducing-the-new-myapes-manage-your-details-online/` | Redirected | APES Newsroom successor page for the platform/account-management journey |
+| `/news/post/Urgent-APES-Must-Relocate-by-3-March-2026/` | `https://www.apesnews.org.uk/tag/apes-cic/` | Redirected | APES Newsroom successor landing page for organisation updates and appeals |
+| `/news/post/APES-Partners-with-Double-the-Donation-to-Double-Your-Donation-Impact/` | `https://www.apesnews.org.uk/tag/apes-donor-community/` | Redirected | APES Newsroom successor landing page for donor and fundraising updates |
+| `/news/post/important-update-temporary-move-what-it-means-for-you/` | `https://www.apesnews.org.uk/tag/apes-cic/` | Redirected | APES Newsroom successor landing page for organisation continuity updates |
+| `/news/post/fundraising-appeal-help-apes-invest-in-essential-welfare-management-software/` | `https://www.apesnews.org.uk/tag/apes-donor-community/` | Redirected | APES Newsroom successor landing page for donor and fundraising updates |
+| `/news/tag/moving-properties/` | `https://www.apesnews.org.uk/tag/apes-cic/` | Redirected | APES Newsroom successor landing page for organisation and premises updates |
+| `/news/tag/funds/` | `https://www.apesnews.org.uk/tag/apes-donor-community/` | Redirected | APES Newsroom successor landing page for donor and fundraising updates |
 | `/change-log-hub/` | `/change-log-hub/` | Added | APES-required governance route added in rebuild |
 | `/changelog` | `/change-log-hub/` | Redirected | Short legacy alias |
 | `/change-log` | `/change-log-hub/` | Redirected | Short legacy alias |

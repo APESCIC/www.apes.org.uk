@@ -1,13 +1,123 @@
 <?php
 declare(strict_types=1);
 
-const APES_FALLBACK_VERSION = 'v2.7.0';
+const APES_FALLBACK_VERSION = 'v2.8.0';
 const APES_SITE_NAME = 'Association of Protecting Exotic Species CIC';
 const APES_CIC_NUMBER = '16253848';
 const APES_CONTACT_EMAIL = 'info@apes.org.uk';
 const APES_CONTACT_PHONE = '0300 302 0998';
 const APES_PRIMARY_DOMAIN = 'https://www.apes.org.uk';
 const APES_NEWSROOM_URL = 'https://www.apesnews.org.uk/';
+
+function apes_newsroom_redirects(): array
+{
+    return [
+        '/news/post/Introducing-the-new-APES-CareBase/' => 'https://www.apesnews.org.uk/introducing-the-new-myapes-manage-your-details-online/',
+        '/news/post/Urgent-APES-Must-Relocate-by-3-March-2026/' => 'https://www.apesnews.org.uk/tag/apes-cic/',
+        '/news/post/APES-Partners-with-Double-the-Donation-to-Double-Your-Donation-Impact/' => 'https://www.apesnews.org.uk/tag/apes-donor-community/',
+        '/news/post/important-update-temporary-move-what-it-means-for-you/' => 'https://www.apesnews.org.uk/tag/apes-cic/',
+        '/news/post/fundraising-appeal-help-apes-invest-in-essential-welfare-management-software/' => 'https://www.apesnews.org.uk/tag/apes-donor-community/',
+        '/news/tag/moving-properties/' => 'https://www.apesnews.org.uk/tag/apes-cic/',
+        '/news/tag/funds/' => 'https://www.apesnews.org.uk/tag/apes-donor-community/',
+    ];
+}
+
+function apes_error_pages(): array
+{
+    return [
+        'error-403' => [
+            'route' => '/403.html',
+            'meta_title' => 'Access denied | APES CIC',
+            'title' => 'Access denied',
+            'description' => 'You do not have permission to open that APES page.',
+            'robots' => 'noindex, nofollow',
+            'http_status' => 403,
+            'hero_kicker' => '403',
+            'hero_title' => 'You do not have access to that page.',
+            'hero_summary' => 'If you expected this page to be public, please return to the main website or contact APES for help.',
+            'hero_actions' => [
+                ['label' => 'Go to homepage', 'href' => '/', 'variant' => 'primary'],
+                ['label' => 'Contact APES', 'href' => '/contact/', 'variant' => 'secondary'],
+            ],
+            'pills' => ['Access denied', 'Noindex'],
+            'body_html' => <<<'HTML'
+<section class="section-shell">
+  <p>This route is not available to the public. Use the main navigation, site search or the APES contact routes if you need help finding a public page.</p>
+</section>
+HTML,
+            'related_links' => [
+                ['label' => 'Homepage', 'href' => '/'],
+                ['label' => 'Search the site', 'href' => '/search/'],
+            ],
+            'exclude_from_search' => true,
+        ],
+        'error-404' => [
+            'route' => '/404.html',
+            'meta_title' => 'Page not found | APES CIC',
+            'title' => 'Page not found',
+            'description' => 'The APES page you tried to reach could not be found.',
+            'robots' => 'noindex, nofollow',
+            'http_status' => 404,
+            'hero_kicker' => '404',
+            'hero_title' => 'The page you requested could not be found.',
+            'hero_summary' => 'Please use the main navigation, site search or contact route to continue.',
+            'hero_actions' => [
+                ['label' => 'Go to homepage', 'href' => '/', 'variant' => 'primary'],
+                ['label' => 'Search the site', 'href' => '/search/', 'variant' => 'secondary'],
+            ],
+            'pills' => ['Not found', 'Noindex'],
+            'body_html' => <<<'HTML'
+<section class="section-shell">
+  <p>The requested page may have moved as part of the APES website launch. Legacy routes are being redirected intentionally where possible.</p>
+</section>
+HTML,
+            'related_links' => [
+                ['label' => 'Homepage', 'href' => '/'],
+                ['label' => 'Contact APES', 'href' => '/contact/'],
+            ],
+            'exclude_from_search' => true,
+        ],
+        'error-500' => [
+            'route' => '/500.html',
+            'meta_title' => 'Temporary website problem | APES CIC',
+            'title' => 'Temporary website problem',
+            'description' => 'APES is having trouble loading that page right now.',
+            'robots' => 'noindex, nofollow',
+            'http_status' => 500,
+            'hero_kicker' => '500',
+            'hero_title' => 'Something went wrong while loading this page.',
+            'hero_summary' => 'Please try again shortly. If the problem continues, use the APES contact routes so the team can help.',
+            'hero_actions' => [
+                ['label' => 'Return to homepage', 'href' => '/', 'variant' => 'primary'],
+                ['label' => 'Contact APES', 'href' => '/contact/', 'variant' => 'secondary'],
+            ],
+            'pills' => ['Temporary problem', 'Noindex'],
+            'body_html' => <<<'HTML'
+<section class="section-shell">
+  <p>This is a temporary website problem rather than a missing page. Please try again shortly or contact APES if you need urgent support.</p>
+</section>
+HTML,
+            'related_links' => [
+                ['label' => 'Homepage', 'href' => '/'],
+                ['label' => 'Help Centre', 'href' => 'https://help.apes.org.uk/', 'external' => true],
+            ],
+            'exclude_from_search' => true,
+        ],
+    ];
+}
+
+function apes_page_robots(array $page): string
+{
+    return trim((string) ($page['robots'] ?? 'index, follow, max-image-preview:large'));
+}
+
+function apes_page_is_indexable(array $page): bool
+{
+    $robots = strtolower(apes_page_robots($page));
+    $httpStatus = (int) ($page['http_status'] ?? 200);
+
+    return !str_contains($robots, 'noindex') && $httpStatus < 400;
+}
 
 function apes_version(): string
 {
@@ -64,7 +174,7 @@ function apes_site_data(): array
         'year' => $year,
         'canonical_domain' => APES_PRIMARY_DOMAIN,
         'development_notice' => [
-            'enabled' => true,
+            'enabled' => false,
             'header_message' => 'Some links and features are still in development. Need help now? Use live chat for fast help.',
             'popup_message' => 'Some links and features are still in development. We are working hard on this. If you need help, please use live chat for fast help.',
             'live_chat_label' => 'Open live chat',
@@ -441,9 +551,9 @@ function apes_site_data(): array
         'pages' => [
             'home' => [
                 'route' => '/',
-                'meta_title' => 'APES CIC | Protecting exotic species across rescue, care and education',
+                'meta_title' => 'APES CIC | Rescue, rehabilitation, rehoming and exotic animal support',
                 'title' => 'Association of Protecting Exotic Species CIC',
-                'description' => 'APES CIC supports exotic animal welfare through rescue, rehabilitation, rehoming, education, pet care and practical public support.',
+                'description' => 'APES CIC provides exotic animal rescue, rehabilitation, rehoming, welfare guidance, education and public support across the APES network.',
                 'hero_media' => 'homepage-hero',
                 'route_finder_media' => 'route-finder-illustration',
                 'hero_kicker' => 'APES CIC',
@@ -2456,12 +2566,12 @@ HTML,
             ],
             'search' => [
                 'route' => '/search/',
-                'meta_title' => 'Search | Find APES CIC pages and guidance',
+                'meta_title' => 'Search the APES CIC website | Services, policies and support routes',
                 'title' => 'Search',
-                'description' => 'Search the rebuilt APES CIC public website by page title, route or content.',
+                'description' => 'Search the APES CIC website for services, policies, support routes and public guidance.',
                 'hero_kicker' => 'Site search',
                 'hero_title' => 'Find pages, routes and guidance quickly.',
-                'hero_summary' => 'Search the APES website by service, policy, support route or key topic to find the page you need more quickly.',
+                'hero_summary' => 'Search the APES website by service, policy, support route or key topic to find the public page you need more quickly.',
                 'hero_actions' => [
                     ['label' => 'Start searching', 'href' => '#site-search', 'variant' => 'primary'],
                     ['label' => 'Contact APES', 'href' => '/contact/', 'variant' => 'secondary'],
@@ -2469,6 +2579,7 @@ HTML,
                 'pills' => ['Site search', 'Services and policies', 'Quick access'],
                 'body_html' => <<<'HTML'
 <section class="section-shell">
+  <p>Use the public site search to reach services, policies, donation routes, volunteer information and other key APES guidance pages.</p>
   <form class="search-form" action="/search/" method="get">
     <label for="site-search" class="search-label">Search the APES CIC website</label>
     <div class="search-row">
@@ -2486,250 +2597,38 @@ HTML,
             ],
             'news' => [
                 'route' => '/news/',
-                'meta_title' => 'News | APES Newsroom and legacy archive routes',
+                'meta_title' => 'News | APES Newsroom',
                 'title' => 'News',
-                'description' => 'APES Newsroom is the central public destination for updates, with legacy archive routes preserved here for continuity.',
+                'description' => 'APES Newsroom is the central public destination for APES updates, service notices, appeals and organisational news.',
                 'hero_kicker' => 'APES Newsroom',
                 'hero_title' => 'Public news now lives in APES Newsroom.',
-                'hero_summary' => 'Use APES Newsroom for current public updates and keep this page for preserved legacy news routes that still need to remain reachable.',
-                'hero_actions' => [
-                    ['label' => 'Open APES Newsroom', 'href' => APES_NEWSROOM_URL, 'external' => true, 'variant' => 'primary'],
-                    ['label' => 'Browse legacy news cards', 'href' => '#legacy-news', 'variant' => 'secondary'],
-                ],
-                'pills' => ['Public news', 'Legacy archive', 'APES Newsroom'],
-                'body_html' => <<<'HTML'
-<section class="section-shell">
-  <p>The rebuilt site follows the APES Newsroom standard. Main public news navigation, newsletter prompts and update calls to action now direct people to APES Newsroom for current information.</p>
-</section>
-
-<section class="section-shell" id="legacy-news">
-  <div class="section-heading">
-    <p class="eyebrow">Legacy archive bridges</p>
-    <h2>Current preserved legacy news routes</h2>
-  </div>
-  <div class="card-grid card-grid-two">
-    <article class="info-card">
-      <h3>Introducing APES CareBase</h3>
-      <p>APES shared the move from NED to APES CareBase and directed people to the new welfare data platform.</p>
-      <a class="text-link" href="/news/post/Introducing-the-new-APES-CareBase/">Open legacy route</a>
-    </article>
-    <article class="info-card">
-      <h3>Urgent: APES must relocate by 3 March 2026</h3>
-      <p>A relocation appeal explaining the need for support, time pressure and continuity of care.</p>
-      <a class="text-link" href="/news/post/Urgent-APES-Must-Relocate-by-3-March-2026/">Open legacy route</a>
-    </article>
-    <article class="info-card">
-      <h3>Double the Donation partnership</h3>
-      <p>APES announced a matching-gifts partnership intended to increase the impact of supporter donations.</p>
-      <a class="text-link" href="/news/post/APES-Partners-with-Double-the-Donation-to-Double-Your-Donation-Impact/">Open legacy route</a>
-    </article>
-    <article class="info-card">
-      <h3>Temporary move update</h3>
-      <p>Supporters were updated on interim arrangements while APES continued to search for a permanent base.</p>
-      <a class="text-link" href="/news/post/important-update-temporary-move-what-it-means-for-you/">Open legacy route</a>
-    </article>
-  </div>
-</section>
-HTML,
-                'related_links' => [
-                    ['label' => 'APES Newsroom', 'href' => APES_NEWSROOM_URL, 'external' => true],
-                    ['label' => 'Help Us Move', 'href' => '/help-us-move/'],
-                ],
-            ],
-            'news-carebase' => [
-                'route' => '/news/post/Introducing-the-new-APES-CareBase/',
-                'meta_title' => 'Introducing APES CareBase | Legacy APES news route',
-                'title' => 'Introducing APES CareBase: a new home for animal welfare data',
-                'description' => 'Legacy APES news route covering the move from NED to APES CareBase.',
-                'hero_kicker' => 'Legacy news bridge',
-                'hero_title' => 'Introducing APES CareBase: a new home for animal welfare data.',
-                'hero_summary' => 'This legacy article keeps the APES CareBase announcement reachable while directing readers to APES Newsroom for current updates.',
-                'hero_actions' => [
-                    ['label' => 'Open APES Newsroom', 'href' => APES_NEWSROOM_URL, 'external' => true, 'variant' => 'primary'],
-                    ['label' => 'Visit APES CareBase', 'href' => 'https://carebase.apes.org.uk/', 'external' => true, 'variant' => 'secondary'],
-                ],
-                'pills' => ['Legacy article', 'APES CareBase', 'APES Newsroom'],
-                'body_html' => <<<'HTML'
-<section class="section-shell">
-  <p>APES announced that the long-standing database previously known as NED had evolved into APES CareBase, broadening its focus from exotic species only to animal welfare data across species, settings and care environments.</p>
-  <p>The public story emphasised consistent welfare records, evidence-based decision making, transparency and collaboration. It also stated that registration had opened for the platform.</p>
-</section>
-HTML,
-                'related_links' => [
-                    ['label' => 'APES Newsroom', 'href' => APES_NEWSROOM_URL, 'external' => true],
-                    ['label' => 'APES CareBase', 'href' => 'https://carebase.apes.org.uk/', 'external' => true],
-                ],
-            ],
-            'news-move-appeal' => [
-                'route' => '/news/post/Urgent-APES-Must-Relocate-by-3-March-2026/',
-                'meta_title' => 'Urgent relocation appeal | Legacy APES news route',
-                'title' => 'Urgent: APES must relocate by 3 March 2026',
-                'description' => 'Legacy APES appeal route about premises relocation and continuity of animal care.',
-                'hero_kicker' => 'Legacy news bridge',
-                'hero_title' => 'Urgent: APES must relocate by 3 March 2026.',
-                'hero_summary' => 'This legacy appeal remains available for continuity while current relocation updates continue through APES Newsroom and the donation route.',
-                'hero_actions' => [
-                    ['label' => 'Donate', 'href' => '/donate/', 'variant' => 'primary'],
-                    ['label' => 'Read APES Newsroom', 'href' => APES_NEWSROOM_URL, 'external' => true, 'variant' => 'secondary'],
-                ],
-                'pills' => ['Legacy appeal', 'Relocation update', 'APES Newsroom'],
-                'body_html' => <<<'HTML'
-<section class="section-shell">
-  <p>The public appeal stated that the landlord had requested APES vacate its premises, giving the organisation limited time to relocate while continuing to care for animals already depending on its services.</p>
-  <ul class="tick-list">
-    <li>Very limited time to relocate.</li>
-    <li>No confirmed new premises at that point.</li>
-    <li>Many animals depending on daily care.</li>
-  </ul>
-  <p>The original article asked supporters to donate, share the appeal and help protect the work APES does.</p>
-</section>
-HTML,
-                'related_links' => [
-                    ['label' => 'Help Us Move', 'href' => '/help-us-move/'],
-                    ['label' => 'Donate', 'href' => '/donate/'],
-                ],
-            ],
-            'news-double-donation' => [
-                'route' => '/news/post/APES-Partners-with-Double-the-Donation-to-Double-Your-Donation-Impact/',
-                'meta_title' => 'Double the Donation partnership | Legacy APES news route',
-                'title' => 'APES partners with Double the Donation to increase supporter impact',
-                'description' => 'Legacy APES news route summarising the matching-gifts partnership announcement.',
-                'hero_kicker' => 'Legacy news bridge',
-                'hero_title' => 'Double the Donation matching-gift partnership.',
-                'hero_summary' => 'This legacy article keeps the matching-gifts announcement visible while APES Newsroom handles current public updates.',
-                'hero_actions' => [
-                    ['label' => 'Donate', 'href' => '/donate/', 'variant' => 'primary'],
-                    ['label' => 'Open APES Newsroom', 'href' => APES_NEWSROOM_URL, 'external' => true, 'variant' => 'secondary'],
-                ],
-                'pills' => ['Legacy article', 'Matching gifts', 'Supporter donations'],
-                'body_html' => <<<'HTML'
-<section class="section-shell">
-  <p>APES announced a partnership with Double the Donation to help supporters unlock matching gifts through employer programmes. The public article framed this as a way to increase the impact of every pound donated without extra cost to the donor.</p>
-</section>
-HTML,
-                'related_links' => [
-                    ['label' => 'Donate', 'href' => '/donate/'],
-                    ['label' => 'Fundraising', 'href' => '/donating/fundraising/'],
-                ],
-            ],
-            'news-temporary-move' => [
-                'route' => '/news/post/important-update-temporary-move-what-it-means-for-you/',
-                'meta_title' => 'Temporary move update | Legacy APES news route',
-                'title' => 'Important update: temporary move and what it means for you',
-                'description' => 'Legacy APES news route about interim premises arrangements and service continuity.',
-                'hero_kicker' => 'Legacy news bridge',
-                'hero_title' => 'Temporary move update and service continuity.',
-                'hero_summary' => 'This legacy update preserves the temporary move summary while APES Newsroom remains the main route for current public news.',
-                'hero_actions' => [
-                    ['label' => 'Read APES Newsroom', 'href' => APES_NEWSROOM_URL, 'external' => true, 'variant' => 'primary'],
-                    ['label' => 'Contact APES', 'href' => '/contact/', 'variant' => 'secondary'],
-                ],
-                'pills' => ['Legacy update', 'Service continuity', 'APES Newsroom'],
-                'body_html' => <<<'HTML'
-<section class="section-shell">
-  <p>APES updated supporters to explain that, while a permanent premises had not yet been secured, interim arrangements were allowing the organisation to continue operating while the search for a longer-term home continued.</p>
-  <p>The public update emphasised continuity of care, communication with supporters and careful management of service changes during the interim period.</p>
-</section>
-HTML,
-                'related_links' => [
-                    ['label' => 'Help Us Move', 'href' => '/help-us-move/'],
-                    ['label' => 'Contact APES', 'href' => '/contact/'],
-                ],
-            ],
-            'news-fundraising-software' => [
-                'route' => '/news/post/fundraising-appeal-help-apes-invest-in-essential-welfare-management-software/',
-                'meta_title' => 'Fundraising appeal for APES welfare software | Legacy APES news route',
-                'title' => 'Fundraising appeal: help APES secure membership software for adoption and public members',
-                'description' => 'Legacy APES fundraising news route about securing welfare management software and supporter infrastructure.',
-                'hero_kicker' => 'Legacy news bridge',
-                'hero_title' => 'Fundraising appeal for welfare management software.',
-                'hero_summary' => 'This legacy article keeps the fundraising software appeal visible while APES Newsroom carries current public updates.',
-                'hero_actions' => [
-                    ['label' => 'Open fundraising page', 'href' => '/donating/fundraising/', 'variant' => 'primary'],
-                    ['label' => 'Read APES Newsroom', 'href' => APES_NEWSROOM_URL, 'external' => true, 'variant' => 'secondary'],
-                ],
-                'pills' => ['Legacy article', 'Fundraising appeal', 'Operational systems'],
-                'body_html' => <<<'HTML'
-<section class="section-shell">
-  <p>The public article explains that APES wants to invest in structured welfare-management and membership-support software to improve transparent governance, secure record keeping and responsible supporter handling.</p>
-  <ul class="tick-list">
-    <li>Structured welfare oversight and tracking.</li>
-    <li>Clearer communication and governance support.</li>
-    <li>Infrastructure investment framed as part of best-practice animal welfare.</li>
-  </ul>
-</section>
-HTML,
-                'related_links' => [
-                    ['label' => 'Fundraising priorities', 'href' => '/donating/fundraising/'],
-                    ['label' => 'Donate', 'href' => '/donate/'],
-                ],
-            ],
-            'news-moving-properties-tag' => [
-                'route' => '/news/tag/moving-properties/',
-                'meta_title' => 'Moving Properties tag | Legacy APES news archive',
-                'title' => 'Moving Properties',
-                'description' => 'Legacy APES tag archive for relocation and premises-related updates.',
-                'hero_kicker' => 'Legacy news archive',
-                'hero_title' => 'Relocation and premises updates.',
-                'hero_summary' => 'Browse preserved relocation-related stories here, then use APES Newsroom for the latest public updates and notices.',
+                'hero_summary' => 'Use APES Newsroom for current public updates, service notices, appeals and organisation-wide announcements.',
                 'hero_actions' => [
                     ['label' => 'Open APES Newsroom', 'href' => APES_NEWSROOM_URL, 'external' => true, 'variant' => 'primary'],
                     ['label' => 'Read Help Us Move', 'href' => '/help-us-move/', 'variant' => 'secondary'],
                 ],
-                'pills' => ['Legacy archive', 'Relocation stories', 'APES Newsroom'],
+                'pills' => ['Public news', 'Current updates', 'APES Newsroom'],
                 'body_html' => <<<'HTML'
 <section class="section-shell">
-  <div class="card-grid card-grid-two">
-    <article class="info-card">
-      <h3>Urgent relocation appeal</h3>
-      <p>The archive groups stories about the loss of premises, temporary relocation and continuity of care.</p>
-      <a class="text-link" href="/news/post/Urgent-APES-Must-Relocate-by-3-March-2026/">Open relocation appeal</a>
-    </article>
-    <article class="info-card">
-      <h3>Temporary move update</h3>
-      <p>Later updates explain interim arrangements while APES searches for a longer-term site.</p>
-      <a class="text-link" href="/news/post/important-update-temporary-move-what-it-means-for-you/">Open temporary move update</a>
-    </article>
+  <p>The rebuilt APES website follows the APES Newsroom standard. Main public news navigation, newsletter prompts and update calls to action now direct people to APES Newsroom for current information.</p>
+  <p>Legacy main-site news post and tag URLs are being redirected to APES Newsroom successor pages so the public site no longer duplicates article archives locally.</p>
+</section>
+
+<section class="section-shell">
+  <div class="section-heading">
+    <p class="eyebrow">What moved</p>
+    <h2>Use APES Newsroom for current and archived update content.</h2>
   </div>
+  <ul class="clean-list">
+    <li>Organisation updates and campaign notices now route through APES Newsroom.</li>
+    <li>Legacy article and tag URLs from the rebuilt main site now redirect to current APES Newsroom successor pages.</li>
+    <li>The main website keeps support routes, policy pages, services and donation pathways separate from the newsroom archive.</li>
+  </ul>
 </section>
 HTML,
                 'related_links' => [
-                    ['label' => 'News', 'href' => '/news/'],
+                    ['label' => 'APES Newsroom', 'href' => APES_NEWSROOM_URL, 'external' => true],
                     ['label' => 'Help Us Move', 'href' => '/help-us-move/'],
-                ],
-            ],
-            'news-funds-tag' => [
-                'route' => '/news/tag/funds/',
-                'meta_title' => 'Funds tag | Legacy APES news archive',
-                'title' => 'Funds',
-                'description' => 'Legacy APES tag archive for appeals, fundraising and relocation funding updates.',
-                'hero_kicker' => 'Legacy news archive',
-                'hero_title' => 'Fundraising and support archives.',
-                'hero_summary' => 'Browse preserved fundraising stories here, then use APES Newsroom for the latest public updates and appeals.',
-                'hero_actions' => [
-                    ['label' => 'Open fundraising page', 'href' => '/donating/fundraising/', 'variant' => 'primary'],
-                    ['label' => 'Read APES Newsroom', 'href' => APES_NEWSROOM_URL, 'external' => true, 'variant' => 'secondary'],
-                ],
-                'pills' => ['Legacy archive', 'Fundraising stories', 'APES Newsroom'],
-                'body_html' => <<<'HTML'
-<section class="section-shell">
-  <div class="card-grid card-grid-two">
-    <article class="info-card">
-      <h3>Urgent appeal</h3>
-      <p>This archive includes the relocation appeal and related funding updates.</p>
-      <a class="text-link" href="/news/post/Urgent-APES-Must-Relocate-by-3-March-2026/">Open relocation appeal</a>
-    </article>
-    <article class="info-card">
-      <h3>Software funding appeal</h3>
-      <p>The archive also includes infrastructure and membership-software fundraising updates.</p>
-      <a class="text-link" href="/news/post/fundraising-appeal-help-apes-invest-in-essential-welfare-management-software/">Open fundraising software appeal</a>
-    </article>
-  </div>
-</section>
-HTML,
-                'related_links' => [
-                    ['label' => 'Fundraising priorities', 'href' => '/donating/fundraising/'],
-                    ['label' => 'Donate', 'href' => '/donate/'],
                 ],
             ],
             'change-log-hub' => [
@@ -2742,7 +2641,7 @@ HTML,
                 'hero_summary' => 'Track every major release for this website, including updates, fixes, compliance changes, and user-facing improvements.',
                 'hero_actions' => [
                     ['label' => 'Expand all releases', 'href' => '#release-list', 'variant' => 'primary'],
-                    ['label' => 'View current release', 'href' => '#release-v270', 'variant' => 'secondary'],
+                    ['label' => 'View current release', 'href' => '#release-v280', 'variant' => 'secondary'],
                 ],
                 'pills' => ['Current version ' . $siteVersion, 'Minor stable', 'Public-facing'],
                 'body_html' => <<<'HTML'
@@ -2772,7 +2671,56 @@ HTML,
 </section>
 
 <section class="section-shell" id="release-list">
-  <details class="release-card" data-release-card data-tags="current stable added changed fixed compliance accessibility public-facing" open id="release-v270">
+  <details class="release-card" data-release-card data-tags="current stable added changed fixed compliance accessibility public-facing" open id="release-v280">
+    <summary>
+      <span class="release-version">v2.8.0</span>
+      <span class="release-date">2026-06-04</span>
+    </summary>
+    <div class="release-body">
+      <div class="pill-row">
+        <span class="pill pill-version">Version v2.8.0</span>
+        <span class="pill pill-status">Stable</span>
+        <span class="pill pill-type">Added</span>
+        <span class="pill pill-type">Changed</span>
+        <span class="pill pill-fix">Fix</span>
+        <span class="pill pill-compliance">Compliance</span>
+        <span class="pill pill-accessibility">Accessibility</span>
+      </div>
+      <h3>Summary</h3>
+      <p>Completed the APES launch SEO and production-cutover pass by tightening shared metadata and JSON-LD, redirecting legacy main-site news URLs into APES Newsroom, and hardening robots, sitemap and error-page handling for Cloudron LAMP.</p>
+      <h3>Detailed changes</h3>
+      <ul class="clean-list">
+        <li>Added shared robots-meta support plus Organization, WebSite and breadcrumb JSON-LD through the PHP renderer while keeping <code>https://www.apes.org.uk</code> as the only canonical host in shared metadata output.</li>
+        <li>Reworked the <code>/news/</code> page into a pure APES Newsroom handoff, removed local news-post and tag pages from the shared page model, and mapped each legacy <code>/news/post/...</code> and <code>/news/tag/...</code> route to an exact one-hop APES Newsroom successor URL in Apache.</li>
+        <li>Disabled the production development notice, blocked public access to technical <code>/includes/</code>, <code>/outputs/</code> and <code>/scripts/</code> paths, and added branded <code>403.html</code> and <code>500.html</code> companions alongside the updated <code>404.html</code> experience.</li>
+        <li>Regenerated the static HTML snapshots, refreshed <code>robots.txt</code> and <code>sitemap.xml</code>, synchronised the canonical version to <code>v2.8.0</code>, and updated the APES release, inventory, content-audit and redirect records for launch.</li>
+      </ul>
+      <h3>Affected areas</h3>
+      <ul class="clean-list">
+        <li>Website: www.apes.org.uk</li>
+        <li>Page or route: shared PHP rendering, <code>/news/</code>, <code>/search/</code>, error pages, Apache routing, <code>robots.txt</code>, <code>sitemap.xml</code>, Change Log Hub, root and public release records, and regenerated static HTML snapshots</li>
+        <li>Files changed: shared PHP rendering, shared site data, <code>.htaccess</code>, <code>robots.txt</code>, <code>sitemap.xml</code>, VERSION files, README, changelog records, documentation records and regenerated static HTML snapshots</li>
+        <li>User groups affected: supporters, donors, volunteers, staff, partners and general public visitors</li>
+        <li>Public impact: visitors now get cleaner canonical metadata, proper APES Newsroom routing for legacy news URLs, production-ready search indexing, and branded error handling with clearer recovery routes</li>
+        <li>Internal impact: launch SEO rules, redirect mappings, sitemap truth and error-page handling now live in the shared source of truth and Cloudron-facing Apache configuration</li>
+      </ul>
+      <h3>Version decision</h3>
+      <ul class="clean-list">
+        <li>Previous version: v2.7.0</li>
+        <li>New version: v2.8.0</li>
+        <li>Version type: minor stable</li>
+        <li>Reason for version bump: site-wide SEO, routing, error-handling and production-launch behaviour changes without a breaking public-domain move</li>
+      </ul>
+      <h3>Validation</h3>
+      <ul class="clean-list">
+        <li>Checks run: local PHP syntax checks, static HTML export, sitemap regeneration, generated HTML inspection and redirect/error-route review</li>
+        <li>Manual checks completed: canonical metadata review, APES Newsroom redirect review, footer required-link review, search indexability review, robots/sitemap review, error-page review and changelog/version synchronisation review</li>
+        <li>Known limitations: live Cloudron staging verification, Apache status-code confirmation in the deployed app and Google Search Console submission still require post-deploy checks outside this repo-only implementation pass</li>
+        <li>Rollback notes: restore the previous shared PHP, site data, Apache config, robots/sitemap files, version files and release records, then re-export the static HTML snapshots if the launch SEO cutover needs to be reversed</li>
+      </ul>
+    </div>
+  </details>
+  <details class="release-card" data-release-card data-tags="stable added changed fixed compliance public-facing" id="release-v270">
     <summary>
       <span class="release-version">v2.7.0</span>
       <span class="release-date">2026-06-04</span>
@@ -3458,6 +3406,11 @@ function apes_route_map(): array
         }
     }
 
+    foreach (apes_error_pages() as $key => $page) {
+        $route = $page['route'];
+        $map[$route] = $key;
+    }
+
     return $map;
 }
 
@@ -3476,7 +3429,9 @@ function apes_page_key_from_request(string $requestUri): ?string
 
 function apes_canonical_route_for_key(string $pageKey): ?string
 {
-    return apes_site_data()['pages'][$pageKey]['route'] ?? null;
+    return apes_site_data()['pages'][$pageKey]['route']
+        ?? apes_error_pages()[$pageKey]['route']
+        ?? null;
 }
 
 function apes_public_routes(): array
@@ -3484,7 +3439,9 @@ function apes_public_routes(): array
     $routes = [];
 
     foreach (apes_site_data()['pages'] as $page) {
-        $routes[] = $page['route'];
+        if (apes_page_is_indexable($page)) {
+            $routes[] = $page['route'];
+        }
     }
 
     return $routes;

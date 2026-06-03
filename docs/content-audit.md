@@ -43,14 +43,14 @@
 | `/policies/cookies` | Cookie and browser guidance | Read policy | Preserve but review | Source route not cleanly recoverable during crawl | High |
 | `/contact` | Main support route | Open contact centre | Preserve and rebuild | Contact information preserved; external support tooling retained | High |
 | `/search` | Public site search | Search routes and content | Preserve and rebuild | Rebuilt as local search utility | Low |
-| `/news/` | Legacy local news bridge | Open APES Newsroom | Preserve as bridge | Main news journey should route to APES Newsroom | Medium |
-| `/news/post/Introducing-the-new-APES-CareBase/` | Legacy news bridge | Open APES Newsroom or CareBase | Preserve as bridge | External CareBase journey retained | Low |
-| `/news/post/Urgent-APES-Must-Relocate-by-3-March-2026/` | Legacy relocation article | Donate, open APES Newsroom | Preserve as bridge | Time-sensitive appeal archive retained | Medium |
-| `/news/post/APES-Partners-with-Double-the-Donation-to-Double-Your-Donation-Impact/` | Legacy fundraising article | Donate | Preserve as bridge | Fundraising archive retained | Medium |
-| `/news/post/important-update-temporary-move-what-it-means-for-you/` | Legacy continuity update | Open APES Newsroom, Contact APES | Preserve as bridge | Interim move archive retained | Medium |
-| `/news/post/fundraising-appeal-help-apes-invest-in-essential-welfare-management-software/` | Legacy fundraising article | Open fundraising page | Preserve as bridge | Infrastructure-funding archive retained | Medium |
-| `/news/tag/moving-properties/` | Legacy relocation archive | Open relocation stories | Preserve as bridge | Archive route retained for continuity | Low |
-| `/news/tag/funds/` | Legacy fundraising archive | Open fundraising stories | Preserve as bridge | Archive route retained for continuity | Low |
+| `/news/` | Main-site APES Newsroom handoff | Open APES Newsroom | Preserve and simplify | Main news journey should route to APES Newsroom only | Medium |
+| `/news/post/Introducing-the-new-APES-CareBase/` | Legacy news route | Redirect to APES Newsroom successor page | Redirect | Local duplicate removed from main-site page model | Medium |
+| `/news/post/Urgent-APES-Must-Relocate-by-3-March-2026/` | Legacy relocation article | Redirect to APES Newsroom successor page | Redirect | Local duplicate removed from main-site page model | Medium |
+| `/news/post/APES-Partners-with-Double-the-Donation-to-Double-Your-Donation-Impact/` | Legacy fundraising article | Redirect to APES Newsroom successor page | Redirect | Local duplicate removed from main-site page model | Medium |
+| `/news/post/important-update-temporary-move-what-it-means-for-you/` | Legacy continuity update | Redirect to APES Newsroom successor page | Redirect | Local duplicate removed from main-site page model | Medium |
+| `/news/post/fundraising-appeal-help-apes-invest-in-essential-welfare-management-software/` | Legacy fundraising article | Redirect to APES Newsroom successor page | Redirect | Local duplicate removed from main-site page model | Medium |
+| `/news/tag/moving-properties/` | Legacy relocation archive | Redirect to APES Newsroom successor page | Redirect | Local duplicate removed from main-site page model | Low |
+| `/news/tag/funds/` | Legacy fundraising archive | Redirect to APES Newsroom successor page | Redirect | Local duplicate removed from main-site page model | Low |
 | `/change-log-hub/` | Public release record | Review website changes | Added in rebuild | Required by AGENTS.md | Low |
 
 ## Preserve as-is in substance

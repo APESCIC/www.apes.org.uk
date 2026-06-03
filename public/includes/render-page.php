@@ -7,31 +7,28 @@ if (!function_exists('apes_current_page')) {
     function apes_current_page(): array
     {
         global $page_key;
+        global $apes_override_page;
 
         $site = apes_site_data();
-        $page = $site['pages'][$page_key] ?? null;
+        $errorPages = apes_error_pages();
+
+        if (is_array($apes_override_page ?? null)) {
+            $page = $apes_override_page;
+
+            if (isset($page['http_status'])) {
+                http_response_code((int) $page['http_status']);
+            }
+
+            return [$site, $page];
+        }
+
+        $page = $site['pages'][$page_key] ?? $errorPages[$page_key] ?? null;
 
         if ($page === null) {
             http_response_code(404);
-            $page = [
-                'route' => '/404/',
-                'meta_title' => 'Page not found | APES CIC',
-                'title' => 'Page not found',
-                'description' => 'The page you tried to reach could not be found.',
-                'hero_kicker' => '404',
-                'hero_title' => 'The page you requested could not be found.',
-                'hero_summary' => 'Please use the main navigation, site search or contact route to continue.',
-                'hero_actions' => [
-                    ['label' => 'Go to homepage', 'href' => '/', 'variant' => 'primary'],
-                    ['label' => 'Search the site', 'href' => '/search/', 'variant' => 'secondary'],
-                ],
-                'pills' => ['Not found'],
-                'body_html' => '<section class="section-shell"><p>The requested page may have moved as part of the rebuild. Legacy routes are being preserved or redirected intentionally where possible.</p></section>',
-                'related_links' => [
-                    ['label' => 'Homepage', 'href' => '/'],
-                    ['label' => 'Contact APES', 'href' => '/contact/'],
-                ],
-            ];
+            $page = $errorPages['error-404'];
+        } elseif (isset($page['http_status'])) {
+            http_response_code((int) $page['http_status']);
         }
 
         return [$site, $page];
@@ -195,6 +192,10 @@ if (!function_exists('apes_current_page')) {
         $results = [];
 
         foreach ($pages as $key => $page) {
+            if (!apes_page_is_indexable($page) || !empty($page['exclude_from_search'])) {
+                continue;
+            }
+
             $haystack = mb_strtolower(
                 $page['title'] . ' ' .
                 $page['description'] . ' ' .
@@ -468,16 +469,106 @@ SVG,
             default => '',
         };
     }
+
+    function apes_absolute_url(string $path): string
+    {
+        if (preg_match('/^https?:\/\//i', $path) === 1) {
+            return $path;
+        }
+
+        return rtrim(APES_PRIMARY_DOMAIN, '/') . '/' . ltrim($path, '/');
+    }
+
+    function apes_organization_schema(array $site): array
+    {
+        return [
+            '@context' => 'https://schema.org',
+            '@type' => 'Organization',
+            'name' => $site['site_name'],
+            'url' => APES_PRIMARY_DOMAIN . '/',
+            'logo' => apes_absolute_url((string) $site['brand']['logo_feature_png']),
+            'email' => 'mailto:' . APES_CONTACT_EMAIL,
+            'telephone' => APES_CONTACT_PHONE,
+            'identifier' => APES_CIC_NUMBER,
+            'sameAs' => array_values(array_map(
+                static fn (array $profile): string => (string) $profile['href'],
+                array_filter(
+                    $site['social_profiles'] ?? [],
+                    static fn (array $profile): bool => !empty($profile['external'])
+                )
+            )),
+        ];
+    }
+
+    function apes_website_schema(array $page, array $site): array
+    {
+        $schema = [
+            '@context' => 'https://schema.org',
+            '@type' => 'WebSite',
+            'name' => $site['site_short_name'],
+            'url' => APES_PRIMARY_DOMAIN . '/',
+            'inLanguage' => 'en-GB',
+        ];
+
+        if (($page['route'] ?? '') === '/search/') {
+            $schema['potentialAction'] = [
+                '@type' => 'SearchAction',
+                'target' => APES_PRIMARY_DOMAIN . '/search/?q={search_term_string}',
+                'query-input' => 'required name=search_term_string',
+            ];
+        }
+
+        return $schema;
+    }
+
+    function apes_breadcrumb_schema(array $breadcrumbs): ?array
+    {
+        if ($breadcrumbs === []) {
+            return null;
+        }
+
+        $items = [];
+
+        foreach ($breadcrumbs as $index => $crumb) {
+            $item = [
+                '@type' => 'ListItem',
+                'position' => $index + 1,
+                'name' => (string) ($crumb['label'] ?? ''),
+            ];
+
+            if (!empty($crumb['href'])) {
+                $item['item'] = apes_absolute_url((string) $crumb['href']);
+            }
+
+            $items[] = $item;
+        }
+
+        return [
+            '@context' => 'https://schema.org',
+            '@type' => 'BreadcrumbList',
+            'itemListElement' => $items,
+        ];
+    }
 }
 
 [$site, $page] = apes_current_page();
 $canonical_url = apes_page_url($page);
+$robots_directive = apes_page_robots($page);
 $is_search_page = ($page_key ?? '') === 'search';
 [$search_query, $search_results] = $is_search_page ? apes_search_results($site['pages']) : ['', []];
 $active_nav_group = apes_primary_nav_group((string) ($page_key ?? ''));
 $absolute_og_image = rtrim(APES_PRIMARY_DOMAIN, '/') . $site['brand']['og_image'];
 $absolute_twitter_image = rtrim(APES_PRIMARY_DOMAIN, '/') . $site['brand']['twitter_image'];
 $breadcrumbs = apes_breadcrumbs_for_page($page, isset($page_key) ? (string) $page_key : null);
+$schema_graph = [
+    apes_organization_schema($site),
+    apes_website_schema($page, $site),
+];
+$breadcrumb_schema = apes_breadcrumb_schema($breadcrumbs);
+
+if ($breadcrumb_schema !== null) {
+    $schema_graph[] = $breadcrumb_schema;
+}
 ?><!DOCTYPE html>
 <html lang="en-GB">
 <head>
@@ -485,6 +576,7 @@ $breadcrumbs = apes_breadcrumbs_for_page($page, isset($page_key) ? (string) $pag
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title><?= htmlspecialchars($page['meta_title'], ENT_QUOTES) ?></title>
   <meta name="description" content="<?= htmlspecialchars($page['description'], ENT_QUOTES) ?>" />
+  <meta name="robots" content="<?= htmlspecialchars($robots_directive, ENT_QUOTES) ?>" />
   <link rel="canonical" href="<?= htmlspecialchars($canonical_url, ENT_QUOTES) ?>" />
   <meta property="og:title" content="<?= htmlspecialchars($page['meta_title'], ENT_QUOTES) ?>" />
   <meta property="og:description" content="<?= htmlspecialchars($page['description'], ENT_QUOTES) ?>" />
@@ -505,6 +597,7 @@ $breadcrumbs = apes_breadcrumbs_for_page($page, isset($page_key) ? (string) $pag
   <link rel="apple-touch-icon" href="/assets/favicons/apple-touch-icon.png" />
   <link rel="manifest" href="/site.webmanifest" />
   <link rel="stylesheet" href="<?= htmlspecialchars(apes_asset('css/site.css'), ENT_QUOTES) ?>" />
+  <script type="application/ld+json"><?= json_encode($schema_graph, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) ?></script>
   <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" defer></script>
   <script>
     window.OneSignal = window.OneSignal || [];

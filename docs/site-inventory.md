@@ -43,14 +43,14 @@
 | `/policies/cookies` | Cookie guidance | Cookie and browser guidance | Read policy | None | Rebuilt, source wording review needed |
 | `/contact` | Contact APES | Main support route | Open contact centre | Contact centre, Help centre | Rebuilt |
 | `/search` | Search | Public site search | Search routes and content | None | Rebuilt |
-| `/news/` | News | Legacy local news bridge to APES Newsroom | Open APES Newsroom | APES Newsroom | Rebuilt as bridge |
-| `/news/post/Introducing-the-new-APES-CareBase/` | Introducing APES CareBase | Legacy news bridge | Open APES Newsroom or CareBase | APES CareBase | Rebuilt |
-| `/news/post/Urgent-APES-Must-Relocate-by-3-March-2026/` | Urgent: APES must relocate by 3 March 2026 | Legacy appeal bridge | Donate, open APES Newsroom | APES Newsroom | Rebuilt |
-| `/news/post/APES-Partners-with-Double-the-Donation-to-Double-Your-Donation-Impact/` | Double the Donation partnership | Legacy fundraising news bridge | Donate | APES donor route | Rebuilt |
-| `/news/post/important-update-temporary-move-what-it-means-for-you/` | Temporary move update | Legacy continuity update bridge | Open APES Newsroom, Contact APES | APES Newsroom | Rebuilt |
-| `/news/post/fundraising-appeal-help-apes-invest-in-essential-welfare-management-software/` | Fundraising software appeal | Legacy fundraising bridge | Open fundraising page | APES donor route | Rebuilt |
-| `/news/tag/moving-properties/` | Moving Properties | Legacy relocation archive | Open relocation-related stories | APES Newsroom | Rebuilt |
-| `/news/tag/funds/` | Funds | Legacy fundraising archive | Open fundraising-related stories | APES donor route | Rebuilt |
+| `/news/` | News | Main-site APES Newsroom handoff | Open APES Newsroom | APES Newsroom | Rebuilt as handoff page |
+| `/news/post/Introducing-the-new-APES-CareBase/` | Legacy APES CareBase route | Redirect to APES Newsroom successor page | Redirect only | APES Newsroom | Redirected |
+| `/news/post/Urgent-APES-Must-Relocate-by-3-March-2026/` | Legacy relocation route | Redirect to APES Newsroom successor page | Redirect only | APES Newsroom | Redirected |
+| `/news/post/APES-Partners-with-Double-the-Donation-to-Double-Your-Donation-Impact/` | Legacy donor-route news | Redirect to APES Newsroom successor page | Redirect only | APES Newsroom | Redirected |
+| `/news/post/important-update-temporary-move-what-it-means-for-you/` | Legacy continuity route | Redirect to APES Newsroom successor page | Redirect only | APES Newsroom | Redirected |
+| `/news/post/fundraising-appeal-help-apes-invest-in-essential-welfare-management-software/` | Legacy fundraising software route | Redirect to APES Newsroom successor page | Redirect only | APES Newsroom | Redirected |
+| `/news/tag/moving-properties/` | Legacy moving-properties tag | Redirect to APES Newsroom successor page | Redirect only | APES Newsroom | Redirected |
+| `/news/tag/funds/` | Legacy funds tag | Redirect to APES Newsroom successor page | Redirect only | APES Newsroom | Redirected |
 
 ## Rebuild-only governance route
 
@@ -89,7 +89,7 @@
 
 - Legacy generated navigation/auth clutter such as Sign In, Sign Up and Sign Out links
 - External-form and external-service journeys rather than locally hosted transactional tools
-- Legacy news cards and article routing that do not yet fully align with APES Newsroom
+- Legacy main-site news cards and article routing removed from the shared page model in favour of APES Newsroom redirects
 
 ## Pages requiring APES review before stable launch
 

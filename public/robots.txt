@@ -1,4 +1,7 @@
 User-agent: *
 Allow: /
+Disallow: /includes/
+Disallow: /outputs/
+Disallow: /scripts/
 
 Sitemap: https://www.apes.org.uk/sitemap.xml

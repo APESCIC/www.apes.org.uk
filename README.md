@@ -1,9 +1,9 @@
 ## Current release
 
-- Version: `v2.7.0`
+- Version: `v2.8.0`
 - Release date: `2026-06-04`
-- Release impact: added a site-wide development notice popup and persistent header message, rebalanced the shared APES footer columns, and converted all footer-card links to tile-style actions while keeping required legal, donation, Newsroom and intranet routes intact.
-- Operational note: shared PHP, CSS and JS files remain the source of truth; regenerate the static HTML snapshots in `/public/` after shared renderer, shared asset or release-record changes.
+- Release impact: tightened launch SEO metadata and structured data, moved legacy main-site news URLs onto exact APES Newsroom successor redirects, added branded 403/404/500 pages, and aligned robots, sitemap and Apache launch behaviour for Cloudron LAMP.
+- Operational note: shared PHP, CSS and JS files remain the source of truth; regenerate the static HTML snapshots in `/public/` after shared renderer, shared asset, routing or release-record changes.
 
 <p align="center">
   <a href="https://www.apes.org.uk/" target="_blank" rel="noopener noreferrer">
