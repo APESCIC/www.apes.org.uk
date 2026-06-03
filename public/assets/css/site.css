@@ -377,6 +377,7 @@ img {
   display: grid;
   gap: 1rem;
   align-content: start;
+  padding: clamp(0.75rem, 1.6vw, 1rem);
 }
 
 .page-shell {

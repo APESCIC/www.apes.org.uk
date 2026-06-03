@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-const APES_FALLBACK_VERSION = 'v2.3.2';
+const APES_FALLBACK_VERSION = 'v2.3.3';
 const APES_SITE_NAME = 'Association of Protecting Exotic Species CIC';
 const APES_CIC_NUMBER = '16253848';
 const APES_CONTACT_EMAIL = 'info@apes.org.uk';
@@ -2084,7 +2084,7 @@ HTML,
                 'hero_summary' => 'Track every major release for this website, including updates, fixes, compliance changes, and user-facing improvements.',
                 'hero_actions' => [
                     ['label' => 'Expand all releases', 'href' => '#release-list', 'variant' => 'primary'],
-                    ['label' => 'View current release', 'href' => '#release-v232', 'variant' => 'secondary'],
+                    ['label' => 'View current release', 'href' => '#release-v233', 'variant' => 'secondary'],
                 ],
                 'pills' => ['Current version ' . $siteVersion, 'Patch stable', 'Public-facing'],
                 'body_html' => <<<'HTML'
@@ -2114,7 +2114,53 @@ HTML,
 </section>
 
 <section class="section-shell" id="release-list">
-  <details class="release-card" data-release-card data-tags="current stable changed fixed accessibility public-facing" open id="release-v232">
+  <details class="release-card" data-release-card data-tags="current stable changed fixed accessibility public-facing" open id="release-v233">
+    <summary>
+      <span class="release-version">v2.3.3</span>
+      <span class="release-date">2026-06-03</span>
+    </summary>
+    <div class="release-body">
+      <div class="pill-row">
+        <span class="pill pill-version">Version v2.3.3</span>
+        <span class="pill pill-status">Stable</span>
+        <span class="pill pill-type">Changed</span>
+        <span class="pill pill-fix">Fix</span>
+      </div>
+      <h3>Summary</h3>
+      <p>Adjusted the Change Log Hub hero-side card container so the nested contact and connected service cards sit in from the parent panel edges instead of running flush to the outer shell.</p>
+      <h3>Detailed changes</h3>
+      <ul class="clean-list">
+        <li>Added internal padding to the shared hero aside and page sidebar container styles so stacked mini-panels keep a visible gutter from the enclosing background card.</li>
+        <li>Kept the existing mini-panel markup, APES teal-led branding, footer structure, required legal links and APES Newsroom routing unchanged while applying the spacing fix through shared CSS.</li>
+        <li>Bumped the canonical website version and synchronised the release record across the website Change Log Hub and root changelog.</li>
+        <li>Regenerated the exported static HTML snapshots so the corrected spacing and footer version display stay aligned across the published site.</li>
+      </ul>
+      <h3>Affected areas</h3>
+      <ul class="clean-list">
+        <li>Website: www.apes.org.uk</li>
+        <li>Page or route: Change Log Hub hero aside, homepage shared hero aside pattern, page sidebar pattern and regenerated static HTML snapshots</li>
+        <li>Files changed: shared CSS, shared site data, VERSION, root CHANGELOG and regenerated static HTML snapshots</li>
+        <li>User groups affected: supporters, adopters, service users, volunteers, partners and general public visitors</li>
+        <li>Public impact: aside mini-panels now keep a clearer inset from the parent card edges, improving layout balance and readability</li>
+        <li>Internal impact: shared aside container spacing is now consistent anywhere the mini-panel stack pattern is reused</li>
+      </ul>
+      <h3>Version decision</h3>
+      <ul class="clean-list">
+        <li>Previous version: v2.3.2</li>
+        <li>New version: v2.3.3</li>
+        <li>Version type: patch stable</li>
+        <li>Reason for version bump: small public-facing layout correction with no structural, content or URL change</li>
+      </ul>
+      <h3>Validation</h3>
+      <ul class="clean-list">
+        <li>Checks run: shared CSS inspection, local PHP syntax checks, static HTML export and generated HTML inspection</li>
+        <li>Manual checks completed: Change Log Hub hero aside spacing review, footer required link review, footer version alignment review and changelog synchronisation review</li>
+        <li>Known limitations: final visual confirmation in the in-app browser depends on the local rendered route rather than every exported page being opened individually</li>
+        <li>Rollback notes: restore the previous shared CSS, version and changelog entries, then re-export the static HTML snapshots if needed</li>
+      </ul>
+    </div>
+  </details>
+  <details class="release-card" data-release-card data-tags="stable changed fixed accessibility public-facing" id="release-v232">
     <summary>
       <span class="release-version">v2.3.2</span>
       <span class="release-date">2026-06-03</span>

@@ -1,3 +1,44 @@
+## [v2.3.3] - 2026-06-03
+
+<span class="pill pill-version">Version v2.3.3</span>
+<span class="pill pill-status">Stable</span>
+<span class="pill pill-type">Changed</span>
+<span class="pill pill-fix">Fix</span>
+
+### Summary
+
+Adjusted the Change Log Hub hero-side card container so the nested contact and connected service cards sit in from the parent panel edges instead of running flush to the outer shell.
+
+### Detailed changes
+
+- Added internal padding to the shared hero aside and page sidebar container styles so stacked mini-panels keep a visible gutter from the enclosing background card.
+- Kept the existing mini-panel markup, APES teal-led branding, footer structure, required legal links and APES Newsroom routing unchanged while applying the spacing fix through shared CSS.
+- Bumped the canonical website version and synchronised the release record across the website Change Log Hub and root changelog.
+- Regenerated the exported static HTML snapshots so the corrected spacing and footer version display stay aligned across the published site.
+
+### Affected areas
+
+- Website: www.apes.org.uk
+- Page or route: Change Log Hub hero aside, homepage shared hero aside pattern, page sidebar pattern and regenerated static HTML snapshots
+- Files changed: shared CSS, shared site data, VERSION, root CHANGELOG and regenerated static HTML snapshots
+- User groups affected: supporters, adopters, service users, volunteers, partners and general public visitors
+- Public impact: aside mini-panels now keep a clearer inset from the parent card edges, improving layout balance and readability
+- Internal impact: shared aside container spacing is now consistent anywhere the mini-panel stack pattern is reused
+
+### Version decision
+
+- Previous version: v2.3.2
+- New version: v2.3.3
+- Version type: patch stable
+- Reason for version bump: small public-facing layout correction with no structural, content or URL change
+
+### Validation
+
+- Checks run: shared CSS inspection, local PHP syntax checks, static HTML export and generated HTML inspection
+- Manual checks completed: Change Log Hub hero aside spacing review, footer required link review, footer version alignment review and changelog synchronisation review
+- Known limitations: final visual confirmation in the in-app browser depends on the local rendered route rather than every exported page being opened individually
+- Rollback notes: restore the previous shared CSS, version and changelog entries, then re-export the static HTML snapshots if needed
+
 ## [v2.3.2] - 2026-06-03
 
 <span class="pill pill-version">Version v2.3.2</span>
