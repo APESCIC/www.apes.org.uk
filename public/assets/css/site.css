@@ -1633,6 +1633,73 @@ body {
   z-index: 1;
 }
 
+.donorbox-section,
+.donorbox-wall-section {
+  display: grid;
+  gap: 1.25rem;
+}
+
+.donorbox-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1rem;
+}
+
+.donorbox-popup-button {
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: fit-content;
+  padding: 0.8rem 1.5rem;
+  border-radius: 999px;
+  background: var(--apes-leaf-green);
+  color: #fff;
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 800;
+  line-height: 1.4;
+  text-decoration: none;
+  box-shadow: 0 18px 40px rgba(25, 79, 26, 0.22);
+}
+
+.donorbox-popup-button:hover,
+.donorbox-popup-button:focus-visible {
+  background: #256b28;
+  color: #fff;
+}
+
+.donorbox-popup-button img {
+  width: 1.2rem;
+  height: 1.2rem;
+  flex: 0 0 auto;
+}
+
+.donorbox-note {
+  margin: 0;
+  color: var(--muted);
+}
+
+.donorbox-wall-embed {
+  max-width: 31.25rem;
+  padding: 1rem;
+  border: 1px solid rgba(0, 95, 95, 0.14);
+  border-radius: 1.25rem;
+  background: linear-gradient(180deg, rgba(221, 243, 239, 0.7), rgba(247, 250, 249, 0.98));
+  box-shadow: 0 18px 44px rgba(11, 35, 35, 0.08);
+}
+
+.donorbox-wall-embed iframe {
+  display: block;
+  width: 100%;
+  max-width: 500px;
+  min-width: 0;
+  min-height: 345px;
+  height: 345px;
+  margin: 0 auto;
+  border: 0;
+}
+
 .footer-shell {
   width: var(--site-width);
   margin: 0 auto;

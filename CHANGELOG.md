@@ -2,6 +2,47 @@
 
 Track every major release for this website, including updates, fixes, compliance changes, and user-facing improvements.
 
+## [v2.6.2] - 2026-06-03
+
+<span class="pill pill-version">Version v2.6.2</span>
+<span class="pill pill-status">Stable</span>
+<span class="pill pill-type">Added</span>
+<span class="pill pill-type">Changed</span>
+
+### Summary
+
+Refreshed the Donate page with stronger area-of-greatest-need messaging, added a Donorbox popup donation button and donor wall, and synchronised the shared release records to the new stable patch version.
+
+### Detailed changes
+
+- Rewrote the Donate page body copy to explain how flexible donations support rescue, rehabilitation, housing, daily welfare costs, education and public support across APES.
+- Added the requested Donorbox popup button installer and secure donation button for the approved area-of-greatest-need route, while keeping a standard link fallback if JavaScript or popups are unavailable.
+- Added the requested Donorbox donor wall embed inside an APES-styled supporter section so the page shows visible community backing without changing the wider site architecture.
+- Added shared styling for the Donorbox donation section and embed, preserved the required footer links and version display, kept APES Newsroom routing unchanged, and synchronised the canonical version plus changelog records to v2.6.2.
+
+### Affected areas
+
+- Website: www.apes.org.uk
+- Page or route: Donate page, shared CSS, Change Log Hub, footer version display and regenerated static HTML snapshots
+- Files changed: shared site data, shared CSS, VERSION, public VERSION, root CHANGELOG, public CHANGELOG, README and regenerated static HTML snapshots
+- User groups affected: supporters, donors, volunteers, staff, partners and general public visitors
+- Public impact: visitors now get clearer donation messaging, a popup donation flow and visible donor-wall engagement on the main Donate page
+- Internal impact: the APES donation journey now has a clearer shared content source and release record for future fundraising updates
+
+### Version decision
+
+- Previous version: v2.6.1
+- New version: v2.6.2
+- Version type: patch stable
+- Reason for version bump: public-facing donation content and embed improvements without a breaking restructure or route change
+
+### Validation
+
+- Checks run: shared PHP and CSS inspection, local PHP syntax checks, static HTML export and generated HTML inspection
+- Manual checks completed: Donate page copy review, Donorbox popup button presence review, donor wall embed review, footer required link review, APES Newsroom route review and changelog/version alignment review
+- Known limitations: popup, external embed behaviour and deployed FTP validation still require a live browser and post-push deployment check outside this repo-only implementation pass
+- Rollback notes: restore the previous donate copy, shared CSS, version files and changelog entries, then re-export the static HTML snapshots if the release needs to be reversed
+
 ## [v2.6.1] - 2026-06-03
 
 <span class="pill pill-version">Version v2.6.1</span>

@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-const APES_FALLBACK_VERSION = 'v2.6.1';
+const APES_FALLBACK_VERSION = 'v2.6.2';
 const APES_SITE_NAME = 'Association of Protecting Exotic Species CIC';
 const APES_CIC_NUMBER = '16253848';
 const APES_CONTACT_EMAIL = 'info@apes.org.uk';
@@ -1045,37 +1045,83 @@ HTML,
                 'hero_title' => 'Donate today and help keep more animals safe.',
                 'hero_summary' => 'Give through the approved APES donation route to support rescue work, rehabilitation, relocation needs and day-to-day animal care.',
                 'hero_actions' => [
-                    ['label' => 'Open donation route', 'href' => 'https://www.apesdonor.social/', 'external' => true, 'variant' => 'primary'],
+                    ['label' => 'Open donation popup', 'href' => '#donate-now', 'variant' => 'primary'],
                     ['label' => 'See fundraising priorities', 'href' => '/donating/fundraising/', 'variant' => 'secondary'],
                 ],
                 'pills' => ['Rescue support', 'Secure donation route', 'Public fundraising'],
                 'body_html' => <<<'HTML'
 <section class="section-shell">
-  <p>The live page asks supporters to donate today and help the animals while allowing APES to keep up the work it does. In the rebuilt version, the donation journey remains visible in navigation, footer links and fundraising support panels.</p>
+  <div class="section-heading">
+    <p class="eyebrow">Area of greatest need</p>
+    <h2>Your donation helps APES respond where animals and carers need support most.</h2>
+  </div>
+  <p>Every donation helps APES cover the practical costs that keep rescue, rehabilitation, safe housing and public support moving. Flexible donations are especially valuable because they let the team direct funds to the most urgent welfare, care and continuity needs at the right time.</p>
   <div class="card-grid card-grid-three">
     <article class="info-card">
       <h3>Rescue and rehabilitation</h3>
-      <p>Support species-appropriate housing, transport, recovery and daily welfare costs.</p>
+      <p>Help fund urgent intake support, transport, veterinary coordination, recovery supplies and species-appropriate rehabilitation planning for animals entering APES care.</p>
     </article>
     <article class="info-card">
-      <h3>Relocation and continuity</h3>
-      <p>Help APES maintain safe operations during periods of premises change and service pressure.</p>
+      <h3>Housing and daily care</h3>
+      <p>Support food, heating, enclosure upkeep, monitoring equipment, cleaning materials and the everyday welfare costs that keep animals safe and settled.</p>
     </article>
     <article class="info-card">
       <h3>Education and public support</h3>
-      <p>Fund guidance, outreach, volunteer coordination and practical public-facing services.</p>
+      <p>Fund guidance, volunteer coordination, welfare-led public advice and the practical supporter services that help people find the right APES route quickly.</p>
     </article>
   </div>
+</section>
+
+<section id="donate-now" class="section-shell donorbox-section">
+  <div class="section-heading">
+    <p class="eyebrow">Approved donation route</p>
+    <h2>Give through the APES Donorbox popup form.</h2>
+  </div>
+  <p>Use the secure popup form below to donate to the APES area of greatest need. This route helps APES respond to welfare priorities, continuity costs and day-to-day care pressures without delaying support for animals already depending on the organisation.</p>
+  <div class="donorbox-actions">
+    <script id="donorbox-popup-button-installer" type="text/javascript" defer src="https://donorbox.org/install-popup-button.js"></script>
+    <a
+      id="preview_inline_popup_button"
+      class="dbox-donation-button donorbox-popup-button"
+      href="https://donorbox.org/donations-909664?designation=Area+of+greatest+need&amount=30"
+      data-reminder-widget-enabled="true"
+    >
+      <img role="presentation" src="https://donorbox.org/images/white_logo.svg" alt="" />
+      <span>Donate Now!</span>
+    </a>
+  </div>
+  <p class="donorbox-note">If the popup does not open, the button still works as a standard donation link and will take you directly to the secure Donorbox page.</p>
 </section>
 
 <section class="cta-band">
   <div>
     <p class="eyebrow">Give with confidence</p>
-    <h2>APES routes supporters to approved external donation and supporter services.</h2>
+    <h2>Your support helps APES protect welfare, maintain continuity and keep public help routes open.</h2>
+    <p>Donations help cover both immediate care needs and the less visible operational costs that make safe rescue, rehabilitation and responsible support possible.</p>
   </div>
   <div class="action-row">
-    <a class="button button-primary" href="https://www.apesdonor.social/" target="_blank" rel="noreferrer">Donate through APES</a>
+    <a class="button button-primary" href="#donate-now">Donate now</a>
     <a class="button button-secondary" href="/donating/fundraising/">View fundraising items</a>
+  </div>
+</section>
+
+<section class="section-shell donorbox-wall-section">
+  <div class="section-heading">
+    <p class="eyebrow">Supporter momentum</p>
+    <h2>See the donor wall and join the people backing APES.</h2>
+  </div>
+  <p>The donor wall shows visible supporter activity and helps reassure visitors that they are joining a wider community committed to welfare-first support for exotic species and the people caring for them.</p>
+  <div class="donorbox-wall-embed">
+    <script src="https://donorbox.org/widget.js" paypalExpress="false"></script>
+    <iframe
+      title="APES Donorbox donor wall"
+      src="https://donorbox.org/embed/donations-909664?donor_wall_color=%23128aed&only_donor_wall=true"
+      seamless="seamless"
+      name="donorbox"
+      frameborder="0"
+      scrolling="no"
+    >
+    </iframe>
   </div>
 </section>
 HTML,
@@ -2721,7 +2767,53 @@ HTML,
 </section>
 
 <section class="section-shell" id="release-list">
-  <details class="release-card" data-release-card data-tags="current stable changed fixed accessibility public-facing" open id="release-v261">
+  <details class="release-card" data-release-card data-tags="current stable added changed public-facing" open id="release-v262">
+    <summary>
+      <span class="release-version">v2.6.2</span>
+      <span class="release-date">2026-06-03</span>
+    </summary>
+    <div class="release-body">
+      <div class="pill-row">
+        <span class="pill pill-version">Version v2.6.2</span>
+        <span class="pill pill-status">Stable</span>
+        <span class="pill pill-type">Added</span>
+        <span class="pill pill-type">Changed</span>
+      </div>
+      <h3>Summary</h3>
+      <p>Refreshed the Donate page with stronger area-of-greatest-need messaging, added a Donorbox popup donation button and donor wall, and synchronised the shared release records to the new stable patch version.</p>
+      <h3>Detailed changes</h3>
+      <ul class="clean-list">
+        <li>Rewrote the Donate page body copy to explain how flexible donations support rescue, rehabilitation, housing, daily welfare costs, education and public support across APES.</li>
+        <li>Added the requested Donorbox popup button installer and secure donation button for the approved area-of-greatest-need route, while keeping a standard link fallback if JavaScript or popups are unavailable.</li>
+        <li>Added the requested Donorbox donor wall embed inside an APES-styled supporter section so the page shows visible community backing without changing the wider site architecture.</li>
+        <li>Added shared styling for the Donorbox donation section and embed, preserved the required footer links and version display, kept APES Newsroom routing unchanged, and synchronised the canonical version plus changelog records to v2.6.2.</li>
+      </ul>
+      <h3>Affected areas</h3>
+      <ul class="clean-list">
+        <li>Website: www.apes.org.uk</li>
+        <li>Page or route: Donate page, shared CSS, Change Log Hub, footer version display, root and public release records, and regenerated static HTML snapshots</li>
+        <li>Files changed: shared site data, shared CSS, VERSION, public VERSION, root CHANGELOG, public CHANGELOG, README and regenerated static HTML snapshots</li>
+        <li>User groups affected: supporters, donors, volunteers, staff, partners and general public visitors</li>
+        <li>Public impact: visitors now get clearer donation messaging, a popup donation flow and visible donor-wall engagement on the main Donate page</li>
+        <li>Internal impact: the APES donation journey now has a clearer shared content source and release record for future fundraising updates</li>
+      </ul>
+      <h3>Version decision</h3>
+      <ul class="clean-list">
+        <li>Previous version: v2.6.1</li>
+        <li>New version: v2.6.2</li>
+        <li>Version type: patch stable</li>
+        <li>Reason for version bump: public-facing donation content and embed improvements without a breaking restructure or route change</li>
+      </ul>
+      <h3>Validation</h3>
+      <ul class="clean-list">
+        <li>Checks run: shared PHP and CSS inspection, local PHP syntax checks, static HTML export and generated HTML inspection</li>
+        <li>Manual checks completed: Donate page copy review, Donorbox popup button presence review, donor wall embed review, footer required link review, APES Newsroom route review and changelog/version alignment review</li>
+        <li>Known limitations: popup, external embed behaviour and deployed FTP validation still require a live browser and post-push deployment check outside this repo-only implementation pass</li>
+        <li>Rollback notes: restore the previous donate copy, shared CSS, version files and changelog entries, then re-export the static HTML snapshots if the release needs to be reversed</li>
+      </ul>
+    </div>
+  </details>
+  <details class="release-card" data-release-card data-tags="stable changed fixed accessibility public-facing" id="release-v261">
     <summary>
       <span class="release-version">v2.6.1</span>
       <span class="release-date">2026-06-03</span>
