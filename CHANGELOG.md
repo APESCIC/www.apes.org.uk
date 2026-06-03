@@ -2,55 +2,45 @@
 
 Track every major release for this website, including updates, fixes, compliance changes, and user-facing improvements.
 
-## [v1.0.0b] - 2026-06-03
+## [v2.4.6] - 2026-06-03
 
-<span class="pill pill-version">Version v1.0.0b</span>
-<span class="pill pill-status">Beta</span>
+<span class="pill pill-version">Version v2.4.6</span>
+<span class="pill pill-status">Stable</span>
 <span class="pill pill-type">Changed</span>
 <span class="pill pill-fix">Fix</span>
-<span class="pill pill-type">Compliance</span>
+<span class="pill pill-compliance">Compliance</span>
+<span class="pill pill-accessibility">Accessibility</span>
 
 ### Summary
 
-Completed the first governed rebuild of the APES CIC website for Cloudron LAMP using shared PHP templates, a unified APES design system, preserved route families, a compliant footer, and APES Newsroom-aligned news routing.
+Tightened the shared hero layout so the primary content panel no longer leaves an oversized gap below the call-to-action buttons, and synchronised the release metadata back to the canonical site version.
 
 ### Detailed changes
 
-- Rebuilt the public route set under a shared PHP template system with consistent APES branding and accessible layouts.
-- Added a compliant universal footer with donation, Privacy Policy, Terms of Service and Change Log Hub links plus version display.
-- Preserved public page families for services, fundraising, policy routes, mission content, contact, search and legacy news bridge pages.
-- Routed primary news and newsletter journeys to APES Newsroom while retaining legacy `news/post` paths as bridge pages.
-- Corrected user-visible presentation issues such as the euthanasia policy heading while documenting content-review items that still need APES approval.
-- Added Cloudron-ready public support files including `.htaccess`, `robots.txt`, `sitemap.xml`, route normalization and output protection.
-- Added root governance and migration documentation covering information architecture, public inventory, redirects, deployment, rollback, validation and third-party services.
-- Stored the Creative Production mood-board reference pack inside repository documentation and added a reusable Cloudron staging script for deployment handoff.
-- Added a Cloudron packaging helper and expanded the site inventory, redirect map and third-party-service evidence to align the repository more closely with the issue #2 migration brief.
-- Added an optional GitHub Actions workflow that builds the deployable Cloudron public-bundle artifact without storing secrets in the repository.
-- Added a reusable public-site validation script, a CI validation workflow scaffold, and a fuller page-by-page content audit to strengthen acceptance evidence.
-- Added rebuilt public routes for `socials`, `apes-communities`, `staff` and `contact-centre`, plus legacy `missions/*` redirects discovered during the stricter live-site audit.
-- Added legacy fundraising and tag archive bridges discovered during the stricter live-site audit, and improved the fidelity of social, staff and contact-centre content.
-- Expanded the validator so it now lint-checks public PHP, verifies key smoke routes, checks Apache rewrite rules and renders the full rebuilt route set for footer and version compliance.
-- Added optional Remotion source files for an APES branded hero-loop motion pack that can be rendered later without becoming a runtime dependency.
+- Updated the shared hero grid so the hero panel aligns to its content instead of stretching to match the taller hero aside, which removes the empty space beneath the hero buttons on the homepage and all shared inner-page hero variants.
+- Applied the change in the shared stylesheet only, leaving route content, hero copy, buttons, footer structure and APES Newsroom destinations untouched.
+- Re-synchronised the canonical version, website Change Log Hub and root changelog after correcting the existing mismatch between the repository `VERSION` file and the rendered site release metadata.
+- Regenerated the exported static HTML snapshots and synchronised the canonical version, website Change Log Hub and root changelog.
 
 ### Affected areas
 
-- Website: `www.apes.org.uk`
-- Page or route: site-wide rebuild under `public/`
-- Files changed: shared templates, route handling, CSS, JS, public Change Log Hub, robots, sitemap, governance files and deployment docs
+- Website: www.apes.org.uk
+- Page or route: homepage shared hero, inner-page shared hero pattern, Change Log Hub, footer version display and regenerated static HTML snapshots
+- Files changed: shared CSS, shared site data, VERSION, root CHANGELOG and regenerated static HTML snapshots
 - User groups affected: supporters, adopters, service users, volunteers, partners and general public visitors
-- Public impact: improved navigation, clearer support journeys, consistent footer and APES Newsroom routing
-- Internal impact: easier Cloudron deployment, clearer route inventory and documented migration assumptions
+- Public impact: visitors now see a tighter hero layout with less empty space beneath hero actions, while footer version text and release records now consistently show v2.4.6
+- Internal impact: shared hero sizing now behaves consistently across rendered routes and the repository release metadata matches the generated site output again
 
 ### Version decision
 
-- Previous version: none governed in repository
-- New version: `v1.0.0b`
-- Version type: major beta
-- Reason for version bump: first major rebuilt public release structure for Cloudron LAMP
+- Previous version: v2.4.5
+- New version: v2.4.6
+- Version type: patch stable
+- Reason for version bump: small public-facing layout fix across the shared hero component with no route or content restructure
 
 ### Validation
 
-- Checks run: local PHP smoke checks, footer link review, route inventory review, manual accessibility and navigation review, secrets scan
-- Manual checks completed: navigation, footer, Newsroom routing, policy availability, contact routes, legacy bridge pages and search flow
-- Known limitations: some source pages still contain placeholders or incomplete wording that require APES editorial review before a stable launch
-- Rollback notes: redeploy the previous public bundle or restore the prior Cloudron backup before cutover
+- Checks run: shared CSS inspection, local PHP syntax checks, static HTML export and generated HTML inspection
+- Manual checks completed: homepage and representative inner-page hero spacing review, footer required link review, footer version alignment review, APES Newsroom route review and changelog synchronisation review
+- Known limitations: final browser QA depends on local rendered output spot checks rather than opening every exported route individually
+- Rollback notes: restore the previous shared CSS and release metadata, then re-export the static HTML snapshots if needed

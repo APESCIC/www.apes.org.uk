@@ -497,6 +497,7 @@ img {
 .hero-shell {
   display: grid;
   grid-template-columns: minmax(0, 2.5fr) minmax(18rem, 1fr);
+  align-items: start;
   gap: 1.6rem;
   padding: 2rem 0 1.5rem;
 }
@@ -523,6 +524,7 @@ img {
 }
 
 .hero-panel {
+  align-self: start;
   padding: clamp(1.6rem, 3vw, 2.6rem);
   background:
     linear-gradient(150deg, rgba(0, 95, 95, 0.96), rgba(0, 140, 140, 0.92)),
