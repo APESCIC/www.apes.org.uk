@@ -1,9 +1,9 @@
 ## Current release
 
-- Version: `v2.6.2`
+- Version: `v2.6.3`
 - Release date: `2026-06-03`
-- Release impact: refreshed `/donate/` with stronger area-of-greatest-need fundraising copy, a Donorbox popup donation button and a supporter-facing donor wall embed.
-- Operational note: shared PHP and CSS sources remain the source of truth; regenerate the static HTML snapshots in `/public/` after shared-content or release-record changes.
+- Release impact: added site-wide OneSignal, Donorbox sticky donation, Hello Bar, Mastodon verification, Facebook SDK and Chatwoot embeds through the shared shell without changing APES footer structure or route layout.
+- Operational note: shared PHP shell files remain the source of truth; regenerate the static HTML snapshots in `/public/` after shared renderer, shared footer or release-record changes.
 
 <p align="center">
   <a href="https://www.apes.org.uk/" target="_blank" rel="noopener noreferrer">

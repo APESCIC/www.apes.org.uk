@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-const APES_FALLBACK_VERSION = 'v2.6.2';
+const APES_FALLBACK_VERSION = 'v2.6.3';
 const APES_SITE_NAME = 'Association of Protecting Exotic Species CIC';
 const APES_CIC_NUMBER = '16253848';
 const APES_CONTACT_EMAIL = 'info@apes.org.uk';
@@ -2767,7 +2767,53 @@ HTML,
 </section>
 
 <section class="section-shell" id="release-list">
-  <details class="release-card" data-release-card data-tags="current stable added changed public-facing" open id="release-v262">
+  <details class="release-card" data-release-card data-tags="current stable added changed public-facing" open id="release-v263">
+    <summary>
+      <span class="release-version">v2.6.3</span>
+      <span class="release-date">2026-06-03</span>
+    </summary>
+    <div class="release-body">
+      <div class="pill-row">
+        <span class="pill pill-version">Version v2.6.3</span>
+        <span class="pill pill-status">Stable</span>
+        <span class="pill pill-type">Added</span>
+        <span class="pill pill-type">Changed</span>
+      </div>
+      <h3>Summary</h3>
+      <p>Added the requested site-wide messaging, donation and support embeds through the shared shell, while keeping the APES footer layout, required footer links and release records aligned to a new stable patch version.</p>
+      <h3>Detailed changes</h3>
+      <ul class="clean-list">
+        <li>Added OneSignal, Hello Bar and Mastodon <code>rel="me"</code> verification links through the shared document shell so the integrations load centrally across the public website.</li>
+        <li>Added a site-wide Donorbox sticky popup widget through the shared body shell, keeping the existing Donate page content and support routes unchanged.</li>
+        <li>Consolidated the footer-side third-party integrations into one Facebook SDK loader with app ID <code>670420541399530</code> and one Chatwoot loader for the APES workspace, avoiding the duplicated legacy Facebook snippets from the supplied markup.</li>
+        <li>Preserved the APES column-card footer, required donation, Privacy Policy, Terms of Service and Change Log Hub links, left APES Newsroom routing unchanged, and synchronised the canonical version plus release records to v2.6.3.</li>
+      </ul>
+      <h3>Affected areas</h3>
+      <ul class="clean-list">
+        <li>Website: www.apes.org.uk</li>
+        <li>Page or route: shared document head, shared body shell, shared footer, Change Log Hub, footer version display, root and public release records, and regenerated static HTML snapshots</li>
+        <li>Files changed: shared PHP rendering, shared footer output, VERSION, public VERSION, root CHANGELOG, public CHANGELOG, README and regenerated static HTML snapshots</li>
+        <li>User groups affected: supporters, donors, volunteers, staff, partners and general public visitors</li>
+        <li>Public impact: visitors now receive the requested site-wide notification, donation, social-verification and support-widget integrations without a visible footer redesign or route change</li>
+        <li>Internal impact: shared shell integrations are now centralised in one maintained source of truth, reducing duplication and keeping future release management simpler</li>
+      </ul>
+      <h3>Version decision</h3>
+      <ul class="clean-list">
+        <li>Previous version: v2.6.2</li>
+        <li>New version: v2.6.3</li>
+        <li>Version type: patch stable</li>
+        <li>Reason for version bump: small site-wide public integration additions and shared-shell maintenance improvements without a breaking restructure or URL change</li>
+      </ul>
+      <h3>Validation</h3>
+      <ul class="clean-list">
+        <li>Checks run: shared PHP renderer review, local PHP syntax checks, static HTML export and generated HTML inspection</li>
+        <li>Manual checks completed: shared head/body/footer embed review, footer required link review, intranet link attribute review, APES Newsroom route review and changelog/version alignment review</li>
+        <li>Known limitations: external widget runtime behaviour, live browser confirmation and deployed FTP validation still require a post-push check outside this repo-only implementation pass</li>
+        <li>Rollback notes: restore the previous shared renderer, shared footer output, version files and changelog entries, then re-export the static HTML snapshots if the integration rollout needs to be reversed</li>
+      </ul>
+    </div>
+  </details>
+  <details class="release-card" data-release-card data-tags="stable added changed public-facing" id="release-v262">
     <summary>
       <span class="release-version">v2.6.2</span>
       <span class="release-date">2026-06-03</span>

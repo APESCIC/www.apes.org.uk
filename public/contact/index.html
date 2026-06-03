@@ -16,15 +16,30 @@
   <meta name="twitter:description" content="Contact APES through the public contact centre, telephone, address and connected support routes." />
   <meta name="twitter:image" content="https://www.apes.org.uk/assets/logos/apes-twitter-card-1200x600.jpg" />
   <meta name="theme-color" content="#008C8C" />
+  <link rel="me" href="https://social.apes.org.uk/@apes" />
+  <link rel="me" href="https://exoticsatlarge.apes.org.uk/@apesorguk" />
+  <link rel="me" href="https://mastodon.social/@apescic" />
   <link rel="icon" href="/assets/favicons/favicon.ico" sizes="any" />
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicons/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicons/favicon-16x16.png" />
   <link rel="apple-touch-icon" href="/assets/favicons/apple-touch-icon.png" />
   <link rel="manifest" href="/site.webmanifest" />
   <link rel="stylesheet" href="/assets/css/site.css" />
+  <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" defer></script>
+  <script>
+    window.OneSignal = window.OneSignal || [];
+    OneSignal.push(function () {
+      OneSignal.init({
+        appId: "9455eb99-6098-4d96-84fb-451af5a1a029"
+      });
+    });
+  </script>
+  <script type="module" src="https://donorbox.org/widgets.js" async></script>
+  <script src="https://my.hellobar.com/490bbce54e19d5a3b741cba696ca0ca2a6575bfa.js" type="text/javascript" charset="utf-8" async></script>
 </head>
 <body data-page-key="contact">
   <a class="skip-link" href="#main-content">Skip to main content</a>
+  <dbox-widget interval="1 M" campaign="donations-909664" type="popup" button-label="Donate Now!" button-type="sticky" button-color="#008000" button-size="medium" sticky-position="left" show-icon=""></dbox-widget>
   <header class="site-header">
   <div class="topbar">
     <div class="topbar-inner">
@@ -659,11 +674,29 @@
       </div>
       <p class="footer-bar__links">
                   <a class="footer-inline-link" href="/donate/">Donate</a><span aria-hidden="true"> &middot; </span>                  <a class="footer-inline-link" href="/policies/privacy/">Privacy Policy</a><span aria-hidden="true"> &middot; </span>                  <a class="footer-inline-link" href="/policies/terms-of-service/">Terms of Service</a><span aria-hidden="true"> &middot; </span>                  <a class="footer-inline-link" href="/change-log-hub/">Change Log Hub</a>              </p>
-      <p class="footer-bar__version">Website version: <a class="footer-inline-link" href="/change-log-hub/">APES CIC v2.6.2</a> &middot; Change Log Hub</p>
+      <p class="footer-bar__version">Website version: <a class="footer-inline-link" href="/change-log-hub/">APES CIC v2.6.3</a> &middot; Change Log Hub</p>
     </div>
   </div>
 </footer>
 
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v15.0&appId=670420541399530&autoLogAppEvents=1"></script>
+<script>
+  window.chatwootSettings = {"position":"right","type":"expanded_bubble","launcherTitle":"Talk to an advisor"};
+  (function(d, t) {
+    var BASE_URL = "https://chatwoot.workspace.apes.org.uk";
+    var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
+    g.src = BASE_URL + "/packs/js/sdk.js";
+    g.async = true;
+    s.parentNode.insertBefore(g, s);
+    g.onload = function() {
+      window.chatwootSDK.run({
+        websiteToken: "J6xS2UVkJZf8EebizBvGYBxV",
+        baseUrl: BASE_URL
+      });
+    };
+  })(document, "script");
+</script>
 <script src="/assets/js/site.js" defer></script>
 </body>
 </html>

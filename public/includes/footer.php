@@ -56,4 +56,22 @@
   </div>
 </footer>
 
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v15.0&appId=670420541399530&autoLogAppEvents=1"></script>
+<script>
+  window.chatwootSettings = {"position":"right","type":"expanded_bubble","launcherTitle":"Talk to an advisor"};
+  (function(d, t) {
+    var BASE_URL = "https://chatwoot.workspace.apes.org.uk";
+    var g = d.createElement(t), s = d.getElementsByTagName(t)[0];
+    g.src = BASE_URL + "/packs/js/sdk.js";
+    g.async = true;
+    s.parentNode.insertBefore(g, s);
+    g.onload = function() {
+      window.chatwootSDK.run({
+        websiteToken: "J6xS2UVkJZf8EebizBvGYBxV",
+        baseUrl: BASE_URL
+      });
+    };
+  })(document, "script");
+</script>
 <script src="<?= htmlspecialchars(apes_asset('js/site.js'), ENT_QUOTES) ?>" defer></script>

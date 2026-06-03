@@ -2,6 +2,47 @@
 
 Track every major release for this website, including updates, fixes, compliance changes, and user-facing improvements.
 
+## [v2.6.3] - 2026-06-03
+
+<span class="pill pill-version">Version v2.6.3</span>
+<span class="pill pill-status">Stable</span>
+<span class="pill pill-type">Added</span>
+<span class="pill pill-type">Changed</span>
+
+### Summary
+
+Added the requested site-wide messaging, donation and support embeds through the shared shell, while keeping the APES footer layout, required footer links and release records aligned to a new stable patch version.
+
+### Detailed changes
+
+- Added OneSignal, Hello Bar and Mastodon `rel="me"` verification links through the shared document shell so the integrations load centrally across the public website.
+- Added a site-wide Donorbox sticky popup widget through the shared body shell, keeping the existing Donate page content and support routes unchanged.
+- Consolidated the footer-side third-party integrations into one Facebook SDK loader with app ID `670420541399530` and one Chatwoot loader for the APES workspace, avoiding the duplicated legacy Facebook snippets from the supplied markup.
+- Preserved the APES column-card footer, required donation, Privacy Policy, Terms of Service and Change Log Hub links, left APES Newsroom routing unchanged, and synchronised the canonical version plus release records to v2.6.3.
+
+### Affected areas
+
+- Website: www.apes.org.uk
+- Page or route: shared document head, shared body shell, shared footer, Change Log Hub, footer version display, root and public release records, and regenerated static HTML snapshots
+- Files changed: shared PHP rendering, shared footer output, VERSION, public VERSION, root CHANGELOG, public CHANGELOG, README and regenerated static HTML snapshots
+- User groups affected: supporters, donors, volunteers, staff, partners and general public visitors
+- Public impact: visitors now receive the requested site-wide notification, donation, social-verification and support-widget integrations without a visible footer redesign or route change
+- Internal impact: shared shell integrations are now centralised in one maintained source of truth, reducing duplication and keeping future release management simpler
+
+### Version decision
+
+- Previous version: v2.6.2
+- New version: v2.6.3
+- Version type: patch stable
+- Reason for version bump: small site-wide public integration additions and shared-shell maintenance improvements without a breaking restructure or URL change
+
+### Validation
+
+- Checks run: shared PHP renderer review, local PHP syntax checks, static HTML export and generated HTML inspection
+- Manual checks completed: shared head/body/footer embed review, footer required link review, intranet link attribute review, APES Newsroom route review and changelog/version alignment review
+- Known limitations: external widget runtime behaviour, live browser confirmation and deployed FTP validation still require a post-push check outside this repo-only implementation pass
+- Rollback notes: restore the previous shared renderer, shared footer output, version files and changelog entries, then re-export the static HTML snapshots if the integration rollout needs to be reversed
+
 ## [v2.6.2] - 2026-06-03
 
 <span class="pill pill-version">Version v2.6.2</span>

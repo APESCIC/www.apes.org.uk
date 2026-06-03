@@ -496,15 +496,30 @@ $breadcrumbs = apes_breadcrumbs_for_page($page, isset($page_key) ? (string) $pag
   <meta name="twitter:description" content="<?= htmlspecialchars($page['description'], ENT_QUOTES) ?>" />
   <meta name="twitter:image" content="<?= htmlspecialchars($absolute_twitter_image, ENT_QUOTES) ?>" />
   <meta name="theme-color" content="#008C8C" />
+  <link rel="me" href="https://social.apes.org.uk/@apes" />
+  <link rel="me" href="https://exoticsatlarge.apes.org.uk/@apesorguk" />
+  <link rel="me" href="https://mastodon.social/@apescic" />
   <link rel="icon" href="/assets/favicons/favicon.ico" sizes="any" />
   <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicons/favicon-32x32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicons/favicon-16x16.png" />
   <link rel="apple-touch-icon" href="/assets/favicons/apple-touch-icon.png" />
   <link rel="manifest" href="/site.webmanifest" />
   <link rel="stylesheet" href="<?= htmlspecialchars(apes_asset('css/site.css'), ENT_QUOTES) ?>" />
+  <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" defer></script>
+  <script>
+    window.OneSignal = window.OneSignal || [];
+    OneSignal.push(function () {
+      OneSignal.init({
+        appId: "9455eb99-6098-4d96-84fb-451af5a1a029"
+      });
+    });
+  </script>
+  <script type="module" src="https://donorbox.org/widgets.js" async></script>
+  <script src="https://my.hellobar.com/490bbce54e19d5a3b741cba696ca0ca2a6575bfa.js" type="text/javascript" charset="utf-8" async></script>
 </head>
 <body data-page-key="<?= htmlspecialchars((string) ($page_key ?? 'unknown'), ENT_QUOTES) ?>">
   <a class="skip-link" href="#main-content">Skip to main content</a>
+  <dbox-widget interval="1 M" campaign="donations-909664" type="popup" button-label="Donate Now!" button-type="sticky" button-color="#008000" button-size="medium" sticky-position="left" show-icon=""></dbox-widget>
   <?php require __DIR__ . '/header.php'; ?>
 
   <main id="main-content" class="site-main">
