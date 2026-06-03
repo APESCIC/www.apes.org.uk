@@ -22,6 +22,8 @@ Agents must not complete website work without checking whether the following are
 6. An APES Newsroom routing check for any news, update, announcement, newsletter, footer, navigation, or article-related change.
 7. An APES universal footer compliance check.
 8. A footer link check for the website donation page, Privacy Policy page, Terms of Service page and Change Log Hub.
+9. A root-level `README.md` update describing the change, release impact and any operational notes.
+10. A `/public/CHANGELOG.md` update where the repository has a `/public/` folder, so public website release records match the root changelog.
 
 A changelog entry is required when the work changes public website content, intranet website content, page structure, forms, buttons, links, menus, navigation, CTAs, styling, layout, themes, branding, visual assets, accessibility, SEO, analytics, tracking, CRM, automation, embedded tools, third-party integrations, scripts, widgets, site configuration, build configuration, deployment configuration, generated website output, security, privacy, safeguarding, legal, compliance, finance, governance, HR, animal welfare content, or any user-visible bug fix.
 
@@ -327,7 +329,7 @@ v0.5.1b
 APES Pet Care Clinic v0.5.1b
 ```
 
-The displayed footer version must match the canonical version file and the current Change Log Hub entry.
+The displayed footer version must match the root repository canonical version file and the current Change Log Hub entry.
 
 ### Footer content rules
 
@@ -404,6 +406,8 @@ Determine:
 10. Are donation, Privacy Policy, Terms of Service and Change Log Hub links present in the footer?
 11. Is there a related GitHub Issue?
 12. Should the GitHub Issue be updated at the start, during progress and at completion?
+13. Does the root `README.md` need updating to describe the change and release impact?
+14. Does `/public/CHANGELOG.md` need creating or updating to mirror the root changelog for deployed website records?
 
 If the user has not confirmed the update type, ask:
 
@@ -449,16 +453,18 @@ Unsupported formats include `1.4.2`, `1.4.2b`, `v1.4.2-beta`, `v1.4.2.beta`, `v1
 
 ### Version source of truth
 
-Identify the canonical website version before changing it. Look in this order:
+Identify the canonical website version before changing it. Look in this order at the root of the repository only:
 
 1. `VERSION`
 2. `version.txt`
 3. `version.json`
 4. `package.json`
 5. `CHANGELOG.md`
-6. Any documented website release metadata file
+6. Any documented website release metadata file stored at the root of the repository
 
-If no version file exists, create a root-level `VERSION` file. The `VERSION` file must contain only the version number, including the mandatory `v` prefix.
+If no version file exists at the root of the repository, create a root-level `VERSION` file. The `VERSION` file must contain only the version number, including the mandatory `v` prefix.
+
+Do not treat version files inside `/public/` or nested website export folders as the canonical version source. If deployed website files also contain a visible or exported version, update those copies so they match the root canonical version, but the root repository version remains the source of truth.
 
 ### Version bump rules
 
@@ -476,8 +482,10 @@ All APES websites must have both:
 
 1. A Change Log Hub page on the website being worked on.
 2. A root-level `CHANGELOG.md` file in the repository.
+3. A `/public/CHANGELOG.md` file where the repository has a `/public/` folder.
+4. A root-level `README.md` file that is kept current with the latest material changes, version, release notes or operational update notes.
 
-These are separate requirements and both must be maintained.
+These are separate requirements and all must be maintained where applicable.
 
 ### Website Change Log Hub page
 
@@ -495,9 +503,21 @@ If no page exists, create one using the website's routing conventions. Link it f
 
 Create or update a root-level `CHANGELOG.md` file. It must contain the same release version, date, type pills, summary, detailed changes, affected areas, validation notes and rollback notes as the website Change Log Hub page.
 
+### Public website export `CHANGELOG.md`
+
+Where a repository has a `/public/` folder, create or update `/public/CHANGELOG.md` as well as the root-level `CHANGELOG.md`. The `/public/CHANGELOG.md` file must mirror the current root-level release entry so deployed/exported website files carry the same release record.
+
+If `/public/CHANGELOG.md` intentionally contains additional deployment-specific notes, preserve those notes, but the latest release version, release date, summary, detailed changes and validation notes must still match the root-level `CHANGELOG.md`.
+
+### Repository `README.md`
+
+Create or update the root-level `README.md` whenever website work changes repository behaviour, public content, deployment output, operational notes, release records, versioning, setup steps, user journeys, compliance notes, known limitations or validation requirements.
+
+The README update must be narrow and relevant. It should record the current version or release where appropriate, summarise material changes, update affected usage or deployment notes, and remove outdated instructions that conflict with the completed work.
+
 ### Synchronisation rule
 
-The website Change Log Hub page and root-level `CHANGELOG.md` must stay aligned. The final response must confirm both records show the same version number and release date.
+The website Change Log Hub page, root-level `CHANGELOG.md`, `/public/CHANGELOG.md` where present, root-level `README.md` where release details are recorded, rendered footer version and canonical root version file must stay aligned. The final response must confirm all applicable records show the same version number and release date.
 
 ---
 
@@ -604,6 +624,8 @@ Codex has started work on this issue.
 - Expected version:
 - Change Log Hub update required: yes / no
 - Root `CHANGELOG.md` update required: yes / no
+- `/public/CHANGELOG.md` update required: yes / no
+- Root `README.md` update required: yes / no
 - `VERSION` update required: yes / no
 - Universal footer compliance check required: yes / no
 - Required footer links present: donation / Privacy Policy / Terms of Service / Change Log Hub
@@ -637,6 +659,8 @@ Codex has started work on this issue.
 - Version:
 - Change Log Hub page:
 - Root `CHANGELOG.md`:
+- `/public/CHANGELOG.md`:
+- Root `README.md`:
 - `VERSION` file:
 - Footer compliance:
 - Footer required links:
@@ -661,6 +685,8 @@ Codex has started work on this issue.
 
 - Change Log Hub page:
 - Root `CHANGELOG.md`:
+- `/public/CHANGELOG.md`:
+- Root `README.md`:
 - `VERSION` file:
 
 ### Footer, brand and routing records
@@ -704,13 +730,14 @@ For every website task:
 1. Understand the change and identify website, files, user-visible impact, technical impact, risk level, version bump, beta status, Change Log Hub location, brand impact, footer impact, Newsroom routing impact and related GitHub Issue.
 2. Confirm or infer update type and beta status.
 3. Make only the required website change. Avoid bulk rewrites, formatting-only churn and unrelated generated-file changes.
-4. Update the canonical version file.
-5. Update the website Change Log Hub page and root-level `CHANGELOG.md`.
+4. Update the canonical version file at the root of the repository.
+5. Update the website Change Log Hub page, root-level `CHANGELOG.md`, `/public/CHANGELOG.md` where `/public/` exists, and root-level `README.md`.
 6. After commit and push to the server via FTP, validate the deployed website by manually uploading or using the project upload flow and checking the uploaded result.
 7. Remove all other test types from the completion requirement unless the user explicitly requests them for a specific task.
 8. Confirm the footer includes donation, Privacy Policy, Terms of Service and Change Log Hub links.
 9. Confirm the footer shows the correct organisation or division name, parent organisation name where relevant, CIC number, website name and version.
-10. Post final GitHub Issue update where relevant, then provide a final response covering version, changelog, deployed upload validation, brand compliance, footer compliance, Newsroom routing and unresolved risks.
+10. Confirm the rendered footer version, Change Log Hub, root `CHANGELOG.md`, `/public/CHANGELOG.md`, root `README.md` release details and root canonical version file all align.
+11. Post final GitHub Issue update where relevant, then provide a final response covering version, changelog, README, deployed upload validation, brand compliance, footer compliance, Newsroom routing and unresolved risks.
 
 ---
 
@@ -750,9 +777,11 @@ Recommended PR checklist:
 - [ ] Confirmed footer includes donation page, Privacy Policy, Terms of Service and Change Log Hub links
 - [ ] Confirmed footer displays organisation or division identity, APES CIC number, website name and version
 - [ ] Checked APES Newsroom routing where news, updates, newsletter, footer, or navigation is affected
-- [ ] Updated canonical version file
+- [ ] Updated root canonical version file
 - [ ] Created or updated website Change Log Hub page
 - [ ] Created or updated root-level `CHANGELOG.md`
+- [ ] Created or updated `/public/CHANGELOG.md` where `/public/` exists
+- [ ] Updated root-level `README.md` with relevant changes and updates
 - [ ] Added pill tags for change type and fixes
 - [ ] Listed affected website areas
 - [ ] Validated the deployed website after commit and push to the server via FTP by uploading or using the project upload flow and checking the uploaded result
@@ -780,31 +809,34 @@ Before finishing any website task, check:
 
 1. Update type identified.
 2. Beta status confirmed or inferred.
-3. Canonical version updated.
+3. Root canonical version updated.
 4. Website Change Log Hub page updated.
 5. Root-level `CHANGELOG.md` updated.
-6. Detailed change notes added.
-7. Version, status, type and fix pills added where relevant.
-8. Unrelated generated-file changes avoided.
-9. Third-party or platform version strings not changed accidentally.
-10. Deployed website validated after commit and push to the server via FTP by uploading or using the project upload flow and checking the uploaded result.
-11. Rollback notes included.
-12. Changelog system created or corrected where missing or incorrect.
-13. APES website brand and feature standards checked.
-14. APES universal footer standard checked.
-15. Footer uses the APES column card format.
-16. Footer includes donation page, Privacy Policy, Terms of Service and Change Log Hub links.
-17. Footer displays the correct website or division name, APES CIC organisation identity, CIC number, current year and canonical version.
-18. APES Newsroom routing checked where relevant.
-19. Related GitHub Issue updated at start, meaningful progress and end where applicable.
+6. `/public/CHANGELOG.md` updated where `/public/` exists.
+7. Root-level `README.md` updated with relevant changes and updates.
+8. Detailed change notes added.
+9. Version, status, type and fix pills added where relevant.
+10. Unrelated generated-file changes avoided.
+11. Third-party or platform version strings not changed accidentally.
+12. Deployed website validated after commit and push to the server via FTP by uploading or using the project upload flow and checking the uploaded result.
+13. Rollback notes included.
+14. Changelog system created or corrected where missing or incorrect.
+15. APES website brand and feature standards checked.
+16. APES universal footer standard checked.
+17. Footer uses the APES column card format.
+18. Footer includes donation page, Privacy Policy, Terms of Service and Change Log Hub links.
+19. Footer displays the correct website or division name, APES CIC organisation identity, CIC number, current year and canonical version.
+20. APES Newsroom routing checked where relevant.
+21. Related GitHub Issue updated at start, meaningful progress and end where applicable.
+22. Root version, footer version, Change Log Hub, root `CHANGELOG.md`, `/public/CHANGELOG.md` and README release details all align.
 
 ---
 
 ## 16. Non-negotiable instruction
 
-Do not treat changelog, version updates, APES brand compliance, APES universal footer compliance, APES Newsroom routing or related GitHub Issue updates as optional for website work.
+Do not treat changelog, version updates, APES brand compliance, APES universal footer compliance, APES Newsroom routing, README updates or related GitHub Issue updates as optional for website work.
 
-If website files change, the website Change Log Hub page, root-level `CHANGELOG.md`, canonical version, APES brand and feature standards, APES universal footer standard, APES Newsroom routing where relevant and related GitHub Issue must be checked.
+If website files change, the website Change Log Hub page, root-level `CHANGELOG.md`, `/public/CHANGELOG.md` where `/public/` exists, root-level `README.md`, root canonical version, APES brand and feature standards, APES universal footer standard, APES Newsroom routing where relevant and related GitHub Issue must be checked.
 
 Every APES website footer must use the APES column card footer format and include direct or clearly accessible links to the website donation page, Privacy Policy page, Terms of Service page and Change Log Hub.
 
