@@ -361,11 +361,11 @@ img {
   margin: 0 0 1rem;
   font-size: clamp(2.4rem, 4.7vw, 4.5rem);
   line-height: 1.05;
-  max-width: 14ch;
+  max-width: none;
 }
 
 .hero-summary {
-  max-width: 62ch;
+  max-width: none;
   margin: 0;
   font-size: 1.06rem;
   color: rgba(255, 255, 255, 0.92);
