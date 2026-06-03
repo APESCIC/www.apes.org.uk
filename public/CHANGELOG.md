@@ -1,3 +1,46 @@
+## [v2.4.2] - 2026-06-03
+
+<span class="pill pill-version">Version v2.4.2</span>
+<span class="pill pill-status">Stable</span>
+<span class="pill pill-type">Changed</span>
+<span class="pill pill-fix">Fix</span>
+<span class="pill pill-accessibility">Accessibility</span>
+
+### Summary
+
+Refreshed the shared APES mega menus to use patterned light panels, per-section colour themes, descriptive headers, quick-topic pills and richer destination cards without changing any routes.
+
+### Detailed changes
+
+- Extended the shared navigation data so Services, Support APES and Information each define their own eyebrow text, heading, supporting description, quick-topic pills, colour theme and destination badge labels.
+- Rebuilt the shared mega-menu markup so each panel now shows a richer header area and destination cards with left-hand badge blocks, clearer copy hierarchy and a stronger directional arrow affordance.
+- Replaced the old dark tray styling with lighter patterned panels and section-specific APES colour treatments for service routes, supporter journeys and guidance content while keeping responsive single-column behaviour.
+- Kept the existing `details` / `summary` navigation pattern, APES Newsroom routing, footer structure and required donation, Privacy Policy, Terms of Service and Change Log Hub links unchanged.
+- Regenerated the exported static HTML snapshots and synchronised the canonical version, website Change Log Hub and root changelog.
+
+### Affected areas
+
+- Website: www.apes.org.uk
+- Page or route: shared header navigation, homepage, content routes, Change Log Hub and regenerated static HTML snapshots
+- Files changed: shared header PHP, shared CSS, shared site data, VERSION, root CHANGELOG and regenerated static HTML snapshots
+- User groups affected: supporters, adopters, service users, volunteers, partners and general public visitors
+- Public impact: visitors now see more descriptive APES-branded mega menus with clearer route grouping, stronger visual hierarchy and section-specific styling
+- Internal impact: shared menu presentation now comes from one central data structure and one shared header pattern
+
+### Version decision
+
+- Previous version: v2.4.1
+- New version: v2.4.2
+- Version type: patch stable
+- Reason for version bump: small public-facing navigation redesign with no route or taxonomy change
+
+### Validation
+
+- Checks run: shared CSS and PHP inspection, local PHP syntax checks, static HTML export and generated HTML inspection
+- Manual checks completed: Services, Support APES and Information menu review, panel theme comparison, mobile single-column navigation review, footer required link review, APES Newsroom route review and changelog/version alignment review
+- Known limitations: validation in this environment is based on generated output and code inspection rather than an interactive browser comparison against the supplied screenshot
+- Rollback notes: restore the previous shared header, CSS, navigation data, release metadata and version files, then re-export the static HTML snapshots if needed
+
 ## [v2.4.1] - 2026-06-03
 
 <span class="pill pill-version">Version v2.4.1</span>

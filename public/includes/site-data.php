@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-const APES_FALLBACK_VERSION = 'v2.4.1';
+const APES_FALLBACK_VERSION = 'v2.4.2';
 const APES_SITE_NAME = 'Association of Protecting Exotic Species CIC';
 const APES_CIC_NUMBER = '16253848';
 const APES_CONTACT_EMAIL = 'info@apes.org.uk';
@@ -213,51 +213,63 @@ function apes_site_data(): array
             ],
             [
                 'label' => 'Services',
+                'panel_theme' => 'services',
+                'panel_eyebrow' => 'APES service routes',
                 'panel_heading' => 'Services across the APES network',
+                'panel_description' => 'Find the right welfare, booking, rescue, care and public-support route without guessing which APES service to use first.',
+                'panel_pills' => ['Rescue', 'Care', 'Bookings', 'Education'],
                 'children' => [
-                    ['label' => 'Services hub', 'description' => 'Search, filter and compare the main APES public service routes before choosing where to go next.', 'href' => '/services/'],
-                    ['label' => 'Bookings', 'description' => 'Use the narrower bookings route for visits, boarding and practical booking guidance.', 'href' => '/bookings/'],
-                    ['label' => 'Shelter, rescue and adoptions', 'description' => 'Open the APES Shelter & Rescue website for rehoming, surrender guidance and welfare support.', 'href' => 'https://www.apesshelter.org.uk/', 'external' => true],
-                    ['label' => 'Pet care clinic', 'description' => 'Visit APES Pet Care Clinic for low-cost support, care plans, bookings and pet health guidance.', 'href' => 'https://www.apespetcare.org.uk/', 'external' => true],
-                    ['label' => 'Pet shop', 'description' => 'Browse APES pet-shop information and connected shopping routes that help fund welfare work.', 'href' => '/apes-pet-shop/'],
-                    ['label' => 'Pet boarding', 'description' => 'Find reptile boarding information and the approved external booking journey.', 'href' => '/pet-boarding/'],
-                    ['label' => 'Lost and found pets', 'description' => 'Use APES support routes to report a lost pet or help reconnect a found animal.', 'href' => '/services/lost-n-found-pets/'],
-                    ['label' => '24/7 support services', 'description' => 'See around-the-clock support and welfare routes for urgent practical help.', 'href' => '/24-7-services/'],
-                    ['label' => 'Animal therapy', 'description' => 'Learn about animal-therapy support and public benefit activity delivered through APES.', 'href' => '/services/animal-therapy/'],
-                    ['label' => 'Educational visits', 'description' => 'Book educational visits and species-focused public learning experiences.', 'href' => '/educational-visits/'],
+                    ['label' => 'Services hub', 'badge' => 'SV', 'description' => 'Search, filter and compare the main APES public service routes before choosing where to go next.', 'href' => '/services/'],
+                    ['label' => 'Bookings', 'badge' => 'BK', 'description' => 'Use the narrower bookings route for visits, boarding and practical booking guidance.', 'href' => '/bookings/'],
+                    ['label' => 'Shelter, rescue and adoptions', 'badge' => 'SR', 'description' => 'Open the APES Shelter & Rescue website for rehoming, surrender guidance and welfare support.', 'href' => 'https://www.apesshelter.org.uk/', 'external' => true],
+                    ['label' => 'Pet care clinic', 'badge' => 'PC', 'description' => 'Visit APES Pet Care Clinic for low-cost support, care plans, bookings and pet health guidance.', 'href' => 'https://www.apespetcare.org.uk/', 'external' => true],
+                    ['label' => 'Pet shop', 'badge' => 'PS', 'description' => 'Browse APES pet-shop information and connected shopping routes that help fund welfare work.', 'href' => '/apes-pet-shop/'],
+                    ['label' => 'Pet boarding', 'badge' => 'PB', 'description' => 'Find reptile boarding information and the approved external booking journey.', 'href' => '/pet-boarding/'],
+                    ['label' => 'Lost and found pets', 'badge' => 'LF', 'description' => 'Use APES support routes to report a lost pet or help reconnect a found animal.', 'href' => '/services/lost-n-found-pets/'],
+                    ['label' => '24/7 support services', 'badge' => '24', 'description' => 'See around-the-clock support and welfare routes for urgent practical help.', 'href' => '/24-7-services/'],
+                    ['label' => 'Animal therapy', 'badge' => 'AT', 'description' => 'Learn about animal-therapy support and public benefit activity delivered through APES.', 'href' => '/services/animal-therapy/'],
+                    ['label' => 'Educational visits', 'badge' => 'EV', 'description' => 'Book educational visits and species-focused public learning experiences.', 'href' => '/educational-visits/'],
                 ],
             ],
             [
                 'label' => 'Support APES',
+                'panel_theme' => 'support',
+                'panel_eyebrow' => 'Funding animal welfare',
                 'panel_heading' => 'Fundraising, volunteering and sponsorship',
+                'panel_description' => 'Every contribution helps fund food, treatment, safe housing, enrichment and practical support across the APES network.',
+                'panel_pills' => ['Donate', 'Sponsor', 'Volunteer', 'Updates'],
                 'children' => [
-                    ['label' => 'Donate', 'description' => 'Support daily welfare work, relocation needs and rescue operations through the main donation route.', 'href' => '/donate/'],
-                    ['label' => 'Fundraising priorities', 'description' => 'See the equipment, software and operational priorities APES is currently raising funds for.', 'href' => '/donating/fundraising/'],
-                    ['label' => 'Volunteer', 'description' => 'Find out how volunteer-led work keeps APES services running with care and accountability.', 'href' => '/volunteer/'],
-                    ['label' => 'Sponsors', 'description' => 'Meet the organisations helping APES with software, infrastructure and practical services.', 'href' => '/sponsors/'],
-                    ['label' => 'Enterprise mailing list', 'description' => 'Register interest for business, partner, grant and social-enterprise communications.', 'href' => '/enterprise-mailing-list/'],
-                    ['label' => 'Help Us Move', 'description' => 'Read the relocation appeal and the practical support still needed to protect continuity of care.', 'href' => '/help-us-move/'],
+                    ['label' => 'Donate', 'badge' => 'DN', 'description' => 'Support daily welfare work, relocation needs and rescue operations through the main donation route.', 'href' => '/donate/'],
+                    ['label' => 'Fundraising priorities', 'badge' => 'FP', 'description' => 'See the equipment, software and operational priorities APES is currently raising funds for.', 'href' => '/donating/fundraising/'],
+                    ['label' => 'Volunteer', 'badge' => 'VO', 'description' => 'Find out how volunteer-led work keeps APES services running with care and accountability.', 'href' => '/volunteer/'],
+                    ['label' => 'Sponsors', 'badge' => 'SP', 'description' => 'Meet the organisations helping APES with software, infrastructure and practical services.', 'href' => '/sponsors/'],
+                    ['label' => 'Enterprise mailing list', 'badge' => 'EM', 'description' => 'Register interest for business, partner, grant and social-enterprise communications.', 'href' => '/enterprise-mailing-list/'],
+                    ['label' => 'Help Us Move', 'badge' => 'HM', 'description' => 'Read the relocation appeal and the practical support still needed to protect continuity of care.', 'href' => '/help-us-move/'],
                 ],
             ],
             [
                 'label' => 'Information',
+                'panel_theme' => 'information',
+                'panel_eyebrow' => 'Guidance and updates',
                 'panel_heading' => 'About, policies, updates and APES Newsroom',
+                'panel_description' => 'Read practical welfare guidance, policy information, organisation updates and trusted APES communication routes.',
+                'panel_pills' => ['Education', 'News', 'Policies', 'Contact'],
                 'children' => [
-                    ['label' => 'About APES', 'description' => 'Learn about APES CIC, the three Rs and the organisation\'s welfare-first operating model.', 'href' => '/about-us/'],
-                    ['label' => 'Mission statement', 'description' => 'Read the APES mission, owner-support focus, public benefit role and the three Rs in more detail.', 'href' => '/mission/our-main-mission-statement/'],
-                    ['label' => 'Ethical rehabilitation', 'description' => 'See how APES frames rehabilitation, recovery planning and welfare-first outcomes.', 'href' => '/mission/support-ethical-rehabilitation/'],
-                    ['label' => 'Visit the centre', 'description' => 'Check visitor access, parking, appointment and accessibility notes before attending.', 'href' => '/the-center/'],
-                    ['label' => 'Opening times', 'description' => 'Use the canonical public opening-hours page and out-of-hours guidance.', 'href' => '/opening-times/'],
-                    ['label' => 'Policies hub', 'description' => 'Browse welfare policies, legal website policies and the main APES public policy routes in one place.', 'href' => '/policies/'],
-                    ['label' => 'Adoption Policy', 'description' => 'Review APES public adoption conditions and related welfare-policy guidance.', 'href' => '/policies/adoption-policy/'],
-                    ['label' => 'Re-Homing Policy', 'description' => 'Read the public re-homing checks and welfare safeguards used by APES.', 'href' => '/policies/re-homing-policy/'],
-                    ['label' => 'Euthanasia Policy', 'description' => 'Read the public welfare-threshold guidance for individual euthanasia decisions.', 'href' => '/policies/euthanasia-policy/'],
-                    ['label' => 'APES Newsroom', 'description' => 'Read organisation updates, service notices, appeals and cross-division stories in APES Newsroom.', 'href' => APES_NEWSROOM_URL, 'external' => true],
-                    ['label' => 'Socials', 'description' => 'Find the verified public APES social channels and connected community routes.', 'href' => '/socials/'],
-                    ['label' => 'Change Log Hub', 'description' => 'Track public website releases, fixes, compliance changes and layout improvements.', 'href' => '/change-log-hub/'],
-                    ['label' => 'Privacy Policy', 'description' => 'Review how APES handles personal data, communications and public website information.', 'href' => '/policies/privacy/'],
-                    ['label' => 'Terms of Service', 'description' => 'Read the public terms that govern use of APES services, routes and website content.', 'href' => '/policies/terms-of-service/'],
-                    ['label' => 'Cookie guidance', 'description' => 'See the current APES cookie guidance and website preference information.', 'href' => '/policies/cookies/'],
+                    ['label' => 'About APES', 'badge' => 'AP', 'description' => 'Learn about APES CIC, the three Rs and the organisation\'s welfare-first operating model.', 'href' => '/about-us/'],
+                    ['label' => 'Mission statement', 'badge' => 'MS', 'description' => 'Read the APES mission, owner-support focus, public benefit role and the three Rs in more detail.', 'href' => '/mission/our-main-mission-statement/'],
+                    ['label' => 'Ethical rehabilitation', 'badge' => 'ER', 'description' => 'See how APES frames rehabilitation, recovery planning and welfare-first outcomes.', 'href' => '/mission/support-ethical-rehabilitation/'],
+                    ['label' => 'Visit the centre', 'badge' => 'VC', 'description' => 'Check visitor access, parking, appointment and accessibility notes before attending.', 'href' => '/the-center/'],
+                    ['label' => 'Opening times', 'badge' => 'OT', 'description' => 'Use the canonical public opening-hours page and out-of-hours guidance.', 'href' => '/opening-times/'],
+                    ['label' => 'Policies hub', 'badge' => 'PH', 'description' => 'Browse welfare policies, legal website policies and the main APES public policy routes in one place.', 'href' => '/policies/'],
+                    ['label' => 'Adoption Policy', 'badge' => 'AD', 'description' => 'Review APES public adoption conditions and related welfare-policy guidance.', 'href' => '/policies/adoption-policy/'],
+                    ['label' => 'Re-Homing Policy', 'badge' => 'RH', 'description' => 'Read the public re-homing checks and welfare safeguards used by APES.', 'href' => '/policies/re-homing-policy/'],
+                    ['label' => 'Euthanasia Policy', 'badge' => 'EU', 'description' => 'Read the public welfare-threshold guidance for individual euthanasia decisions.', 'href' => '/policies/euthanasia-policy/'],
+                    ['label' => 'APES Newsroom', 'badge' => 'NW', 'description' => 'Read organisation updates, service notices, appeals and cross-division stories in APES Newsroom.', 'href' => APES_NEWSROOM_URL, 'external' => true],
+                    ['label' => 'Socials', 'badge' => 'SO', 'description' => 'Find the verified public APES social channels and connected community routes.', 'href' => '/socials/'],
+                    ['label' => 'Change Log Hub', 'badge' => 'CL', 'description' => 'Track public website releases, fixes, compliance changes and layout improvements.', 'href' => '/change-log-hub/'],
+                    ['label' => 'Privacy Policy', 'badge' => 'PP', 'description' => 'Review how APES handles personal data, communications and public website information.', 'href' => '/policies/privacy/'],
+                    ['label' => 'Terms of Service', 'badge' => 'TS', 'description' => 'Read the public terms that govern use of APES services, routes and website content.', 'href' => '/policies/terms-of-service/'],
+                    ['label' => 'Cookie guidance', 'badge' => 'CK', 'description' => 'See the current APES cookie guidance and website preference information.', 'href' => '/policies/cookies/'],
                 ],
             ],
             [
@@ -2517,7 +2529,7 @@ HTML,
                 'hero_summary' => 'Track every major release for this website, including updates, fixes, compliance changes, and user-facing improvements.',
                 'hero_actions' => [
                     ['label' => 'Expand all releases', 'href' => '#release-list', 'variant' => 'primary'],
-                    ['label' => 'View current release', 'href' => '#release-v241', 'variant' => 'secondary'],
+                    ['label' => 'View current release', 'href' => '#release-v242', 'variant' => 'secondary'],
                 ],
                 'pills' => ['Current version ' . $siteVersion, 'Patch stable', 'Public-facing'],
                 'body_html' => <<<'HTML'
@@ -2547,25 +2559,26 @@ HTML,
 </section>
 
 <section class="section-shell" id="release-list">
-  <details class="release-card" data-release-card data-tags="current stable changed fixed accessibility public-facing" open id="release-v241">
+  <details class="release-card" data-release-card data-tags="current stable changed fixed accessibility public-facing" open id="release-v242">
     <summary>
-      <span class="release-version">v2.4.1</span>
+      <span class="release-version">v2.4.2</span>
       <span class="release-date">2026-06-03</span>
     </summary>
     <div class="release-body">
       <div class="pill-row">
-        <span class="pill pill-version">Version v2.4.1</span>
+        <span class="pill pill-version">Version v2.4.2</span>
         <span class="pill pill-status">Stable</span>
         <span class="pill pill-type">Changed</span>
         <span class="pill pill-fix">Fix</span>
         <span class="pill pill-accessibility">Accessibility</span>
       </div>
       <h3>Summary</h3>
-      <p>Restyled the shared APES mega menu to use a stronger teal-led panel design and capped desktop layouts at a maximum of three columns without changing any menu destinations.</p>
+      <p>Refreshed the shared APES mega menus to use patterned light panels, per-section colour themes, descriptive headers, quick-topic pills and richer destination cards without changing any routes.</p>
       <h3>Detailed changes</h3>
       <ul class="clean-list">
-        <li>Updated the shared mega-menu panel styling so desktop navigation better reflects the requested reference direction while staying inside APES teal, mint and off-white brand colours.</li>
-        <li>Added shared column logic in the central header so shorter menus render in one or two columns and larger menus expand to no more than three columns.</li>
+        <li>Extended the shared navigation data so Services, Support APES and Information each define their own eyebrow text, heading, supporting description, quick-topic pills, colour theme and destination badge labels.</li>
+        <li>Rebuilt the shared mega-menu markup so each panel now shows a richer header area and destination cards with left-hand badge blocks, clearer copy hierarchy and a stronger directional arrow affordance.</li>
+        <li>Replaced the old dark tray styling with lighter patterned panels and section-specific APES colour treatments for service routes, supporter journeys and guidance content while keeping responsive single-column behaviour.</li>
         <li>Kept the existing <code>details</code> / <code>summary</code> navigation pattern, APES Newsroom routing, footer structure and required donation, Privacy Policy, Terms of Service and Change Log Hub links unchanged.</li>
         <li>Regenerated the exported static HTML snapshots and synchronised the canonical version, website Change Log Hub and root changelog.</li>
       </ul>
@@ -2575,22 +2588,22 @@ HTML,
         <li>Page or route: shared header navigation, homepage, content routes, Change Log Hub and regenerated static HTML snapshots</li>
         <li>Files changed: shared header PHP, shared CSS, shared site data, VERSION, root CHANGELOG and regenerated static HTML snapshots</li>
         <li>User groups affected: supporters, adopters, service users, volunteers, partners and general public visitors</li>
-        <li>Public impact: visitors now see a more structured APES-branded mega menu with clearer card spacing and no desktop panel exceeding three columns</li>
-        <li>Internal impact: shared navigation layout rules now scale by menu size from a single source of truth</li>
+        <li>Public impact: visitors now see more descriptive APES-branded mega menus with clearer route grouping, stronger visual hierarchy and section-specific styling</li>
+        <li>Internal impact: shared menu presentation now comes from one central data structure and one shared header pattern</li>
       </ul>
       <h3>Version decision</h3>
       <ul class="clean-list">
-        <li>Previous version: v2.4.0</li>
-        <li>New version: v2.4.1</li>
+        <li>Previous version: v2.4.1</li>
+        <li>New version: v2.4.2</li>
         <li>Version type: patch stable</li>
-        <li>Reason for version bump: small public-facing navigation layout and styling improvement with no route or content change</li>
+        <li>Reason for version bump: small public-facing navigation redesign with no route or taxonomy change</li>
       </ul>
       <h3>Validation</h3>
       <ul class="clean-list">
         <li>Checks run: shared CSS and PHP inspection, local PHP syntax checks, static HTML export and generated HTML inspection</li>
-        <li>Manual checks completed: Services, Support APES and Information menu column review, mobile single-column navigation review, footer required link review, APES Newsroom route review and changelog/version alignment review</li>
-        <li>Known limitations: final pixel-level comparison against the unavailable reference screenshot was not possible in this environment, so the implementation follows the requested direction rather than an exact visual clone</li>
-        <li>Rollback notes: restore the previous shared header, CSS, release metadata and version files, then re-export the static HTML snapshots if needed</li>
+        <li>Manual checks completed: Services, Support APES and Information menu review, panel theme comparison, mobile single-column navigation review, footer required link review, APES Newsroom route review and changelog/version alignment review</li>
+        <li>Known limitations: validation in this environment is based on generated output and code inspection rather than an interactive browser comparison against the supplied screenshot</li>
+        <li>Rollback notes: restore the previous shared header, CSS, navigation data, release metadata and version files, then re-export the static HTML snapshots if needed</li>
       </ul>
     </div>
   </details>

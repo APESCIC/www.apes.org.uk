@@ -48,17 +48,39 @@
               <?php
                 $childCount = count($item['children']);
                 $megaColumns = $childCount >= 9 ? 3 : ($childCount >= 5 ? 2 : 1);
+                $panelTheme = $item['panel_theme'] ?? 'default';
               ?>
               <details class="mega-menu<?= $isActive ? ' is-active' : '' ?>">
                 <summary class="mega-summary"><?= htmlspecialchars($item['label'], ENT_QUOTES) ?></summary>
-                <div class="mega-panel">
-                  <p class="mega-heading"><?= htmlspecialchars($item['panel_heading'] ?? $item['label'], ENT_QUOTES) ?></p>
+                <div class="mega-panel mega-panel--<?= htmlspecialchars($panelTheme, ENT_QUOTES) ?>">
+                  <div class="mega-panel-header">
+                    <?php if (!empty($item['panel_eyebrow'])): ?>
+                      <p class="mega-eyebrow"><?= htmlspecialchars($item['panel_eyebrow'], ENT_QUOTES) ?></p>
+                    <?php endif; ?>
+                    <p class="mega-heading"><?= htmlspecialchars($item['panel_heading'] ?? $item['label'], ENT_QUOTES) ?></p>
+                    <?php if (!empty($item['panel_description'])): ?>
+                      <p class="mega-description"><?= htmlspecialchars($item['panel_description'], ENT_QUOTES) ?></p>
+                    <?php endif; ?>
+                    <?php if (!empty($item['panel_pills'])): ?>
+                      <ul class="mega-panel-pills" aria-label="<?= htmlspecialchars(($item['label'] ?? 'Menu') . ' quick topics', ENT_QUOTES) ?>">
+                        <?php foreach ($item['panel_pills'] as $pill): ?>
+                          <li><span class="mega-panel-pill"><?= htmlspecialchars($pill, ENT_QUOTES) ?></span></li>
+                        <?php endforeach; ?>
+                      </ul>
+                    <?php endif; ?>
+                  </div>
                   <ul class="mega-links" style="--mega-columns: <?= $megaColumns ?>;">
                     <?php foreach ($item['children'] as $child): ?>
                       <li>
                         <a class="mega-link" href="<?= htmlspecialchars($child['href'], ENT_QUOTES) ?>"<?php if (!empty($child['external'])): ?> target="_blank" rel="noopener noreferrer"<?php endif; ?>>
-                          <span class="mega-link-title"><?= htmlspecialchars($child['label'], ENT_QUOTES) ?></span>
-                          <span class="mega-link-description"><?= htmlspecialchars($child['description'] ?? '', ENT_QUOTES) ?></span>
+                          <?php if (!empty($child['badge'])): ?>
+                            <span class="mega-link-badge" aria-hidden="true"><?= htmlspecialchars($child['badge'], ENT_QUOTES) ?></span>
+                          <?php endif; ?>
+                          <span class="mega-link-copy">
+                            <span class="mega-link-title"><?= htmlspecialchars($child['label'], ENT_QUOTES) ?></span>
+                            <span class="mega-link-description"><?= htmlspecialchars($child['description'] ?? '', ENT_QUOTES) ?></span>
+                          </span>
+                          <span class="mega-link-arrow" aria-hidden="true">&rarr;</span>
                         </a>
                       </li>
                     <?php endforeach; ?>
