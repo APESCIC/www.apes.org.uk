@@ -1,9 +1,9 @@
 ## Current release
 
-- Version: `v2.8.1`
+- Version: `v2.8.2`
 - Release date: `2026-06-04`
-- Release impact: rebuilt the shared mobile navigation into a touch-friendly overlay panel with reliable first-tap link navigation, accordion submenu behaviour, body scroll lock and safer stacking against sticky donate/chat widgets.
-- Operational note: shared PHP, CSS and JS files remain the source of truth; regenerate the static HTML snapshots in `/public/` after shared renderer, shared asset, navigation or release-record changes, and complete a post-deploy mobile touch check for third-party widgets.
+- Release impact: restored the desktop header navigation row after the mobile-menu panel rollout by retargeting the shared desktop flex selectors to the wrapped primary-nav list, while leaving the mobile overlay and accordion behaviour intact.
+- Operational note: shared PHP, CSS and JS files remain the source of truth; regenerate the static HTML snapshots in `/public/` after shared renderer, shared asset, navigation or release-record changes, complete a post-deploy desktop and mobile navigation check, and confirm third-party donate/chat widgets still do not interfere with mobile menu taps.
 
 <p align="center">
   <a href="https://www.apes.org.uk/" target="_blank" rel="noopener noreferrer">

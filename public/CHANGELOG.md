@@ -1,3 +1,46 @@
+## [v2.8.2] - 2026-06-04
+
+<span class="pill pill-version">Version v2.8.2</span>
+<span class="pill pill-status">Stable</span>
+<span class="pill pill-type">Changed</span>
+<span class="pill pill-fix">Fix</span>
+<span class="pill pill-accessibility">Accessibility</span>
+
+### Summary
+
+Restored the shared desktop navigation to its intended horizontal header layout after the mobile overlay panel wrapper caused the desktop menu list to fall back to a vertical stack.
+
+### Detailed changes
+
+- Retargeted the shared desktop navigation flex and spacing selectors to `.primary-nav > .primary-nav__panel > ul` so the real wrapped list once again renders as a horizontal row above `981px`.
+- Left the current mobile menu architecture, overlay flow, close button, accordion submenu behaviour and shared navigation JavaScript unchanged because the regression was isolated to desktop CSS selector scope.
+- Synchronised the shared stylesheet, Change Log Hub release record, mirrored changelogs, README and canonical version files to `v2.8.2`, and prepared the PHP source of truth for static snapshot regeneration in a PHP-enabled environment.
+- Preserved APES Newsroom routing, footer-required links, canonical URLs, sitemap entries, robots rules and branded error pages without route, label or metadata changes.
+- Checked for a related GitHub issue and found no explicit linked issue in the current repo context, so no issue update was posted during this implementation pass.
+
+### Affected areas
+
+- Website: www.apes.org.uk
+- Page or route: shared header navigation, shared CSS, Change Log Hub, root and public release records, README, branded error pages and regenerated static HTML snapshots
+- Files changed: shared CSS, shared site data release records, VERSION files, root CHANGELOG, public CHANGELOG, README and regenerated static HTML snapshots
+- User groups affected: supporters, donors, volunteers, staff, partners and general public visitors using desktop, laptop, tablet or mobile navigation
+- Public impact: desktop visitors now see the main navigation links aligned horizontally in the header again while the mobile menu continues to behave as the recent overlay release intended
+- Internal impact: the shared desktop selector chain now matches the wrapped navigation markup introduced by the mobile menu work, reducing the risk of future desktop/mobile navigation drift
+
+### Version decision
+
+- Previous version: v2.8.1
+- New version: v2.8.2
+- Version type: patch stable
+- Reason for version bump: shared public-facing navigation layout regression fix without any route, SEO or metadata restructuring
+
+### Validation
+
+- Checks run: shared CSS review, release-metadata consistency review and source/output diff inspection
+- Manual checks completed: desktop selector review for 1366px and 1920px layouts, mobile overlay selector-regression review for 768px, 430px and 390px breakpoints, footer required-link review, APES Newsroom routing review, sitemap/canonical/robots verification-only review, and branded 403/404/500 source-page review
+- Known limitations: the local PHP runtime was unavailable in this implementation pass, so PHP syntax checks, static HTML export/regeneration and full rendered browser QA still need to run in a PHP-enabled environment before deployment
+- Rollback notes: restore the previous shared CSS, version files and release records, then re-export the static HTML snapshots once PHP is available if the desktop navigation fix needs to be reversed
+
 ## [v2.8.1] - 2026-06-04
 
 <span class="pill pill-version">Version v2.8.1</span>
