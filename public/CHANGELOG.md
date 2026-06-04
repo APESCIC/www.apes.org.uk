@@ -1,3 +1,47 @@
+## [v2.8.5] - 2026-06-04
+
+<span class="pill pill-version">Version v2.8.5</span>
+<span class="pill pill-status">Stable</span>
+<span class="pill pill-type">Changed</span>
+<span class="pill pill-fix">Fix</span>
+<span class="pill pill-accessibility">Accessibility</span>
+
+### Summary
+
+Restored all shared mobile menu items by separating the desktop and mobile navigation list layout rules, so the mobile overlay once again shows the full APES menu without regressing the desktop horizontal header.
+
+### Detailed changes
+
+- Removed the shared desktop flex layout from the base navigation list selector and scoped the horizontal nav row explicitly to `@media (min-width: 981px)`.
+- Reworked the shared mobile navigation list below `981px` to use an explicit single-column grid with full-width top-level items, preserving scrollable panel behaviour and submenu expansion space.
+- Added mobile-specific visibility and sizing safeguards for top-level list items, grouped menu sections and the donate CTA so later desktop-oriented rules cannot collapse the opened mobile panel down to only the first visible item.
+- Synchronised the shared release metadata, README, version files and generated website snapshots to `v2.8.5`, manually updating the exported HTML because the standard PHP static export script is still unavailable in this shell.
+- Preserved APES Newsroom routing, footer-required links, canonical URLs, sitemap entries, robots rules and branded error pages without route, label or metadata changes.
+- Checked for a related GitHub issue and found no explicit linked issue in the current repo context, so no issue update was posted during this implementation pass.
+
+### Affected areas
+
+- Website: www.apes.org.uk
+- Page or route: shared header navigation, shared CSS, Change Log Hub, root and public release records, README, branded error pages and generated public HTML snapshots
+- Files changed: shared CSS, shared site data release records, VERSION files, root CHANGELOG, public CHANGELOG, README and regenerated or manually synchronised static HTML snapshots
+- User groups affected: supporters, donors, volunteers, staff, partners and general public visitors using mobile, tablet or desktop navigation
+- Public impact: mobile visitors can now see and use the full top-level menu and grouped submenu sections again while desktop visitors keep the intended horizontal navigation bar
+- Internal impact: desktop and mobile navigation layout rules are now more clearly isolated, reducing the risk of future breakpoint cascade regressions in the shared header
+
+### Version decision
+
+- Previous version: v2.8.4
+- New version: v2.8.5
+- Version type: patch stable
+- Reason for version bump: shared public-facing mobile navigation visibility hotfix without any route, SEO or metadata restructuring
+
+### Validation
+
+- Checks run: shared CSS regression review, release-metadata consistency review, footer-link consistency review and generated HTML sync review
+- Manual checks completed: mobile nav selector audit for 390px, 430px and 768px breakpoints, desktop nav selector audit for 1366px and 1920px layouts, footer required-link review, APES Newsroom routing review, sitemap/canonical/robots verification-only review and branded 403/404/500 source-page review
+- Known limitations: the local PHP runtime was unavailable in this implementation pass, so the standard PHP static export script and final browser-based interaction QA still need to run in a PHP-enabled environment before deployment
+- Rollback notes: restore the previous shared CSS, version files and release records, then rerun the standard PHP export or manual snapshot sync if the mobile navigation hotfix needs to be reversed
+
 ## [v2.8.4] - 2026-06-04
 
 <span class="pill pill-version">Version v2.8.4</span>

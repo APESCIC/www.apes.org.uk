@@ -1,9 +1,9 @@
 ## Current release
 
-- Version: `v2.8.4`
+- Version: `v2.8.5`
 - Release date: `2026-06-04`
-- Release impact: restored the APES development notice so new visitors see the site-under-development warning, can dismiss it, and do not get it again on the same browser after dismissal.
-- Operational note: shared PHP, CSS and JS files remain the source of truth; this pass manually synchronised the exported HTML because no local PHP runtime was available, so complete a post-deploy check that the development notice, local-storage dismissal, live chat CTA, footer required links and branded error pages still behave correctly once PHP export can be rerun in a PHP-enabled environment.
+- Release impact: restored the full shared mobile menu by separating desktop and mobile navigation list layout rules, so mobile visitors can see all top-level links and submenu groups again without regressing the desktop header.
+- Operational note: shared PHP and CSS files remain the source of truth; this pass manually synchronised the exported HTML because no local PHP runtime was available, so complete a post-deploy check that the mobile navigation, submenu expansion, footer required links and branded error pages still behave correctly once PHP export can be rerun in a PHP-enabled environment.
 
 <p align="center">
   <a href="https://www.apes.org.uk/" target="_blank" rel="noopener noreferrer">
