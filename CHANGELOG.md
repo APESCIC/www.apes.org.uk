@@ -2,6 +2,49 @@
 
 Track every major release for this website, including updates, fixes, compliance changes, and user-facing improvements.
 
+## [v2.8.6] - 2026-06-04
+
+<span class="pill pill-version">Version v2.8.6</span>
+<span class="pill pill-status">Stable</span>
+<span class="pill pill-type">Changed</span>
+<span class="pill pill-fix">Fix</span>
+<span class="pill pill-accessibility">Accessibility</span>
+
+### Summary
+
+Removed the horizontal scrollbar from shared desktop mega menus by replacing viewport-based panel sizing with desktop-safe width constraints that do not overflow when the page has a vertical scrollbar.
+
+### Detailed changes
+
+- Updated the shared mega-menu panel sizing rules so desktop navigation no longer relies on `100vw` calculations that can include the browser scrollbar width and trigger horizontal overflow.
+- Kept the current mobile overlay, accordion submenu behaviour, desktop open-state logic and shared header markup unchanged because the regression was isolated to desktop CSS width constraints.
+- Synchronised the shared release metadata, README and version files to `v2.8.6`, and prepared the PHP source of truth for static snapshot regeneration once PHP is available again in a compatible environment.
+- Preserved APES Newsroom routing, footer-required links, canonical URLs, sitemap entries, robots rules and branded error pages without route, label or metadata changes.
+- Opened and linked the related GitHub issue for this fix as issue `#3`.
+
+### Affected areas
+
+- Website: www.apes.org.uk
+- Page or route: shared header navigation, shared CSS, Change Log Hub, root and public release records, README and branded error pages once regenerated from source
+- Files changed: shared CSS, shared site data release records, VERSION files, root CHANGELOG, public CHANGELOG and README
+- User groups affected: supporters, donors, volunteers, staff, partners and general public visitors using desktop or laptop navigation
+- Public impact: desktop visitors should no longer see a horizontal scrollbar when opening mega menus, while mobile and tablet navigation keeps the current overlay behaviour
+- Internal impact: desktop mega-menu sizing now avoids viewport scrollbar-width drift, reducing the risk of future overflow regressions in the shared header
+
+### Version decision
+
+- Previous version: v2.8.5
+- New version: v2.8.6
+- Version type: patch stable
+- Reason for version bump: shared public-facing desktop navigation overflow fix without any route, SEO or metadata restructuring
+
+### Validation
+
+- Checks run: shared CSS overflow review, release-metadata consistency review, sitemap and robots verification-only review, footer-link source review and issue-link verification
+- Manual checks completed: desktop mega-menu width rule audit for 1280px, 1366px, 1440px and 1920px layouts by source inspection, mobile selector regression review for sub-981px rules, footer required-link review, APES Newsroom routing review and branded 403/404/500 source-page review
+- Known limitations: the local PHP runtime is still unavailable in this implementation environment, so the standard static export, full rendered browser QA and generated HTML snapshot resynchronisation still need to run in a PHP-enabled environment before deployment
+- Rollback notes: restore the previous shared CSS width rules, version files and release records, then rerun the standard PHP export when PHP is available if the desktop mega-menu overflow fix needs to be reversed
+
 ## [v2.8.5] - 2026-06-04
 
 <span class="pill pill-version">Version v2.8.5</span>

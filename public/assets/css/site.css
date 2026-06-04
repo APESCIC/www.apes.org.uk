@@ -321,9 +321,9 @@ img {
   top: calc(100% + 0.55rem);
   transform: translateX(-50%);
   box-sizing: border-box;
-  min-width: min(50rem, calc(100vw - 2rem));
-  width: min(60rem, calc(100vw - 2rem));
-  max-width: calc(100vw - 2rem);
+  min-width: min(50rem, calc(100% - 2rem));
+  width: min(60rem, calc(100% - 2rem));
+  max-width: calc(100% - 2rem);
   padding: 1.15rem;
   border-radius: 1.6rem;
   background:
@@ -1985,8 +1985,8 @@ body {
     left: 50%;
     top: var(--mega-panel-top, 7.8rem);
     transform: translateX(-50%);
-    width: min(60rem, calc(100vw - 2rem));
-    max-width: calc(100vw - 2rem);
+    width: min(60rem, calc(100% - 2rem));
+    max-width: calc(100% - 2rem);
     max-height: calc(100vh - var(--mega-panel-top, 7.8rem) - 1.25rem);
     overflow-x: hidden;
     overflow-y: auto;
@@ -2037,8 +2037,8 @@ body {
 }
 
 .mega-panel {
-  min-width: min(44rem, calc(100vw - 2rem));
-  width: min(52rem, calc(100vw - 2rem));
+  min-width: min(44rem, calc(100% - 2rem));
+  width: min(52rem, calc(100% - 2rem));
   padding: 1rem;
 }
 
@@ -2374,7 +2374,7 @@ body {
 
   .mega-menu[open] > .mega-panel {
     top: var(--mega-panel-top, 7rem);
-    width: min(52rem, calc(100vw - 2rem));
+    width: min(52rem, calc(100% - 2rem));
     max-height: calc(100vh - var(--mega-panel-top, 7rem) - 1.25rem);
   }
 }

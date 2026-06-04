@@ -2642,7 +2642,7 @@ HTML,
                 'hero_summary' => 'Track every major release for this website, including updates, fixes, compliance changes, and user-facing improvements.',
                 'hero_actions' => [
                     ['label' => 'Expand all releases', 'href' => '#release-list', 'variant' => 'primary'],
-                    ['label' => 'View current release', 'href' => '#release-v285', 'variant' => 'secondary'],
+                    ['label' => 'View current release', 'href' => '#release-v286', 'variant' => 'secondary'],
                 ],
                 'pills' => ['Current version ' . $siteVersion, 'Patch stable', 'Public-facing'],
                 'body_html' => <<<'HTML'
@@ -2672,52 +2672,51 @@ HTML,
 </section>
 
 <section class="section-shell" id="release-list">
-  <details class="release-card" data-release-card data-tags="current stable changed fixed accessibility public-facing" open id="release-v285">
+  <details class="release-card" data-release-card data-tags="current stable changed fixed accessibility public-facing" open id="release-v286">
     <summary>
-      <span class="release-version">v2.8.5</span>
+      <span class="release-version">v2.8.6</span>
       <span class="release-date">2026-06-04</span>
     </summary>
     <div class="release-body">
       <div class="pill-row">
-        <span class="pill pill-version">Version v2.8.5</span>
+        <span class="pill pill-version">Version v2.8.6</span>
         <span class="pill pill-status">Stable</span>
         <span class="pill pill-type">Changed</span>
         <span class="pill pill-fix">Fix</span>
         <span class="pill pill-accessibility">Accessibility</span>
       </div>
       <h3>Summary</h3>
-      <p>Restored all shared mobile menu items by separating the desktop and mobile navigation list layout rules, so the mobile overlay once again shows the full APES menu without regressing the desktop horizontal header.</p>
+      <p>Removed the horizontal scrollbar from shared desktop mega menus by replacing viewport-based panel sizing with desktop-safe width constraints that do not overflow when the page has a vertical scrollbar.</p>
       <h3>Detailed changes</h3>
       <ul class="clean-list">
-        <li>Removed the shared desktop flex layout from the base navigation list selector and scoped the horizontal nav row explicitly to <code>@media (min-width: 981px)</code>.</li>
-        <li>Reworked the shared mobile navigation list below <code>981px</code> to use an explicit single-column grid with full-width top-level items, preserving scrollable panel behaviour and submenu expansion space.</li>
-        <li>Added mobile-specific visibility and sizing safeguards for top-level list items, grouped menu sections and the donate CTA so later desktop-oriented rules cannot collapse the opened mobile panel down to only the first visible item.</li>
-        <li>Synchronised the shared release metadata, README, version files and generated website snapshots to <code>v2.8.5</code>, manually updating the exported HTML because the standard PHP static export script is still unavailable in this shell.</li>
+        <li>Updated the shared mega-menu panel sizing rules so desktop navigation no longer relies on <code>100vw</code> calculations that can include the browser scrollbar width and trigger horizontal overflow.</li>
+        <li>Kept the current mobile overlay, accordion submenu behaviour, desktop open-state logic and shared header markup unchanged because the regression was isolated to desktop CSS width constraints.</li>
+        <li>Synchronised the shared release metadata, README and version files to <code>v2.8.6</code>, and prepared the PHP source of truth for static snapshot regeneration once PHP is available again in a compatible environment.</li>
         <li>Preserved APES Newsroom routing, footer-required links, canonical URLs, sitemap entries, robots rules and branded error pages without route, label or metadata changes.</li>
-        <li>Checked for a related GitHub issue and found no explicit linked issue in the current repo context, so no issue update was posted during this implementation pass.</li>
+        <li>Opened and linked the related GitHub issue for this fix as issue <code>#3</code>.</li>
       </ul>
       <h3>Affected areas</h3>
       <ul class="clean-list">
         <li>Website: www.apes.org.uk</li>
-        <li>Page or route: shared header navigation, shared CSS, Change Log Hub, root and public release records, README, branded error pages and generated public HTML snapshots</li>
-        <li>Files changed: shared CSS, shared site data release records, VERSION files, root CHANGELOG, public CHANGELOG, README and regenerated or manually synchronised static HTML snapshots</li>
-        <li>User groups affected: supporters, donors, volunteers, staff, partners and general public visitors using mobile, tablet or desktop navigation</li>
-        <li>Public impact: mobile visitors can now see and use the full top-level menu and grouped submenu sections again while desktop visitors keep the intended horizontal navigation bar</li>
-        <li>Internal impact: desktop and mobile navigation layout rules are now more clearly isolated, reducing the risk of future breakpoint cascade regressions in the shared header</li>
+        <li>Page or route: shared header navigation, shared CSS, Change Log Hub, root and public release records, README and branded error pages once regenerated from source</li>
+        <li>Files changed: shared CSS, shared site data release records, VERSION files, root CHANGELOG, public CHANGELOG and README</li>
+        <li>User groups affected: supporters, donors, volunteers, staff, partners and general public visitors using desktop or laptop navigation</li>
+        <li>Public impact: desktop visitors should no longer see a horizontal scrollbar when opening mega menus, while mobile and tablet navigation keeps the current overlay behaviour</li>
+        <li>Internal impact: desktop mega-menu sizing now avoids viewport scrollbar-width drift, reducing the risk of future overflow regressions in the shared header</li>
       </ul>
       <h3>Version decision</h3>
       <ul class="clean-list">
-        <li>Previous version: v2.8.4</li>
-        <li>New version: v2.8.5</li>
+        <li>Previous version: v2.8.5</li>
+        <li>New version: v2.8.6</li>
         <li>Version type: patch stable</li>
-        <li>Reason for version bump: shared public-facing mobile navigation visibility hotfix without any route, SEO or metadata restructuring</li>
+        <li>Reason for version bump: shared public-facing desktop navigation overflow fix without any route, SEO or metadata restructuring</li>
       </ul>
       <h3>Validation</h3>
       <ul class="clean-list">
-        <li>Checks run: shared CSS regression review, release-metadata consistency review, footer-link consistency review and generated HTML sync review</li>
-        <li>Manual checks completed: mobile nav selector audit for 390px, 430px and 768px breakpoints, desktop nav selector audit for 1366px and 1920px layouts, footer required-link review, APES Newsroom routing review, sitemap/canonical/robots verification-only review and branded 403/404/500 source-page review</li>
-        <li>Known limitations: the local PHP runtime was unavailable in this implementation pass, so the standard PHP static export script and final browser-based interaction QA still need to run in a PHP-enabled environment before deployment</li>
-        <li>Rollback notes: restore the previous shared CSS, version files and release records, then rerun the standard PHP export or manual snapshot sync if the mobile navigation hotfix needs to be reversed</li>
+        <li>Checks run: shared CSS overflow review, release-metadata consistency review, sitemap and robots verification-only review, footer-link source review and issue-link verification</li>
+        <li>Manual checks completed: desktop mega-menu width rule audit for 1280px, 1366px, 1440px and 1920px layouts by source inspection, mobile selector regression review for sub-981px rules, footer required-link review, APES Newsroom routing review and branded 403/404/500 source-page review</li>
+        <li>Known limitations: the local PHP runtime is still unavailable in this implementation environment, so the standard static export, full rendered browser QA and generated HTML snapshot resynchronisation still need to run in a PHP-enabled environment before deployment</li>
+        <li>Rollback notes: restore the previous shared CSS width rules, version files and release records, then rerun the standard PHP export when PHP is available if the desktop mega-menu overflow fix needs to be reversed</li>
       </ul>
     </div>
   </details>

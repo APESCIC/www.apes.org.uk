@@ -1,9 +1,9 @@
 ## Current release
 
-- Version: `v2.8.5`
+- Version: `v2.8.6`
 - Release date: `2026-06-04`
-- Release impact: restored the full shared mobile menu by separating desktop and mobile navigation list layout rules, so mobile visitors can see all top-level links and submenu groups again without regressing the desktop header.
-- Operational note: shared PHP and CSS files remain the source of truth; this pass manually synchronised the exported HTML because no local PHP runtime was available, so complete a post-deploy check that the mobile navigation, submenu expansion, footer required links and branded error pages still behave correctly once PHP export can be rerun in a PHP-enabled environment.
+- Release impact: removed the horizontal scrollbar from shared desktop mega menus by replacing viewport-width sizing with scrollbar-safe desktop width constraints, while leaving the current mobile overlay behaviour unchanged.
+- Operational note: shared PHP and CSS files remain the source of truth; this pass updated the shared stylesheet and release metadata in the repo, but the standard PHP static export still needs to be rerun in a PHP-enabled environment before deployment so the generated HTML snapshots and rendered footer version text fully resynchronise.
 
 <p align="center">
   <a href="https://www.apes.org.uk/" target="_blank" rel="noopener noreferrer">
