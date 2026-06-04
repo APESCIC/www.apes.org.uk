@@ -608,7 +608,6 @@ if ($breadcrumb_schema !== null) {
     });
   </script>
   <script type="module" src="https://donorbox.org/widgets.js" async></script>
-  <script src="https://my.hellobar.com/490bbce54e19d5a3b741cba696ca0ca2a6575bfa.js" type="text/javascript" charset="utf-8" async></script>
 </head>
 <body data-page-key="<?= htmlspecialchars((string) ($page_key ?? 'unknown'), ENT_QUOTES) ?>">
   <a class="skip-link" href="#main-content">Skip to main content</a>

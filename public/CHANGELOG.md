@@ -1,3 +1,47 @@
+## [v2.8.3] - 2026-06-04
+
+<span class="pill pill-version">Version v2.8.3</span>
+<span class="pill pill-status">Stable</span>
+<span class="pill pill-type">Changed</span>
+<span class="pill pill-type">Removed</span>
+<span class="pill pill-fix">Fix</span>
+<span class="pill pill-accessibility">Accessibility</span>
+
+### Summary
+
+Removed the site-wide Hellobar embed from the shared APES page shell so APES-owned popups can run without the third-party Hello Bar script loading across the public website and branded error pages.
+
+### Detailed changes
+
+- Removed the shared Hello Bar script include from the PHP document renderer while leaving the APES development popup, booking popup-window behaviour and Donorbox popup flows in place.
+- Synchronised the shared release metadata, README, version files, Change Log Hub source and generated website snapshots to `v2.8.3` so the release record now reflects the Hellobar removal.
+- Manually synchronised the exported HTML snapshots in `/public/` because no local PHP runtime was available for the standard static export script in this shell.
+- Preserved APES Newsroom routing, footer-required links, canonical URLs, sitemap entries, robots rules and branded error pages without route, label or metadata changes.
+- Checked for a related GitHub issue and found no explicit linked issue in the current repo context, so no issue update was posted during this implementation pass.
+
+### Affected areas
+
+- Website: www.apes.org.uk
+- Page or route: shared PHP rendering, all generated public and error-page HTML snapshots, Change Log Hub, root and public release records, README and footer version display
+- Files changed: shared PHP renderer, shared site data release records, VERSION files, root CHANGELOG, public CHANGELOG, README, Change Log Hub snapshot and regenerated or manually synchronised static HTML snapshots
+- User groups affected: supporters, donors, volunteers, staff, partners and general public visitors encountering site-wide overlays, donation prompts or branded fallback pages
+- Public impact: visitors no longer load the third-party Hello Bar script site-wide, reducing interference risk with APES-managed popup behaviour while leaving APES and Donorbox popup journeys available
+- Internal impact: popup ownership is now cleaner in the shared shell, making future APES-managed popup work easier to control without a parallel Hello Bar dependency
+
+### Version decision
+
+- Previous version: v2.8.2
+- New version: v2.8.3
+- Version type: patch stable
+- Reason for version bump: shared public-facing third-party popup-script removal without any route, SEO or metadata restructuring
+
+### Validation
+
+- Checks run: shared renderer review, generated HTML sync review, Hellobar reference search, popup wiring review and release-metadata consistency review
+- Manual checks completed: Hellobar removal review on representative public and branded error-page output, development-popup source review, booking-popup script review, Donorbox popup embed review, footer required-link review, APES Newsroom routing review, sitemap/canonical/robots verification-only review and branded 403/404/500 source-page review
+- Known limitations: the local PHP runtime was unavailable in this implementation pass, so the standard PHP static export script and full rendered browser QA still need to run in a PHP-enabled environment before deployment
+- Rollback notes: restore the previous shared renderer, version files and release records, then rerun the standard PHP export to reintroduce the prior shell output if the Hellobar removal needs to be reversed
+
 ## [v2.8.2] - 2026-06-04
 
 <span class="pill pill-version">Version v2.8.2</span>

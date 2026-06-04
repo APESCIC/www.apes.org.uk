@@ -1,9 +1,9 @@
 ## Current release
 
-- Version: `v2.8.2`
+- Version: `v2.8.3`
 - Release date: `2026-06-04`
-- Release impact: restored the desktop header navigation row after the mobile-menu panel rollout by retargeting the shared desktop flex selectors to the wrapped primary-nav list, while leaving the mobile overlay and accordion behaviour intact.
-- Operational note: shared PHP, CSS and JS files remain the source of truth; regenerate the static HTML snapshots in `/public/` after shared renderer, shared asset, navigation or release-record changes, complete a post-deploy desktop and mobile navigation check, and confirm third-party donate/chat widgets still do not interfere with mobile menu taps.
+- Release impact: removed the site-wide Hellobar embed from the shared page shell so APES-owned popups and donation flows can run without the third-party Hello Bar script loading across public and error-page routes.
+- Operational note: shared PHP, CSS and JS files remain the source of truth; this pass manually synchronised the exported HTML because no local PHP runtime was available, so complete a post-deploy check that APES development popups, booking popups, Donorbox popups, footer required links and branded error pages still behave correctly once PHP export can be rerun in a PHP-enabled environment.
 
 <p align="center">
   <a href="https://www.apes.org.uk/" target="_blank" rel="noopener noreferrer">

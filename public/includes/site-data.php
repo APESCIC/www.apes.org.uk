@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-const APES_FALLBACK_VERSION = 'v2.8.2';
+const APES_FALLBACK_VERSION = 'v2.8.3';
 const APES_SITE_NAME = 'Association of Protecting Exotic Species CIC';
 const APES_CIC_NUMBER = '16253848';
 const APES_CONTACT_EMAIL = 'info@apes.org.uk';
@@ -2641,7 +2641,7 @@ HTML,
                 'hero_summary' => 'Track every major release for this website, including updates, fixes, compliance changes, and user-facing improvements.',
                 'hero_actions' => [
                     ['label' => 'Expand all releases', 'href' => '#release-list', 'variant' => 'primary'],
-                    ['label' => 'View current release', 'href' => '#release-v282', 'variant' => 'secondary'],
+                    ['label' => 'View current release', 'href' => '#release-v283', 'variant' => 'secondary'],
                 ],
                 'pills' => ['Current version ' . $siteVersion, 'Patch stable', 'Public-facing'],
                 'body_html' => <<<'HTML'
@@ -2671,7 +2671,56 @@ HTML,
 </section>
 
 <section class="section-shell" id="release-list">
-  <details class="release-card" data-release-card data-tags="current stable changed fixed accessibility public-facing" open id="release-v282">
+  <details class="release-card" data-release-card data-tags="current stable changed removed fixed accessibility public-facing" open id="release-v283">
+    <summary>
+      <span class="release-version">v2.8.3</span>
+      <span class="release-date">2026-06-04</span>
+    </summary>
+    <div class="release-body">
+      <div class="pill-row">
+        <span class="pill pill-version">Version v2.8.3</span>
+        <span class="pill pill-status">Stable</span>
+        <span class="pill pill-type">Changed</span>
+        <span class="pill pill-type">Removed</span>
+        <span class="pill pill-fix">Fix</span>
+        <span class="pill pill-accessibility">Accessibility</span>
+      </div>
+      <h3>Summary</h3>
+      <p>Removed the site-wide Hellobar embed from the shared APES page shell so APES-owned popups can run without the third-party Hello Bar script loading across the public website and branded error pages.</p>
+      <h3>Detailed changes</h3>
+      <ul class="clean-list">
+        <li>Removed the shared Hello Bar script include from the PHP document renderer while leaving the APES development popup, booking popup-window behaviour and Donorbox popup flows in place.</li>
+        <li>Synchronised the shared release metadata, README, version files, Change Log Hub source and generated website snapshots to <code>v2.8.3</code> so the release record now reflects the Hellobar removal.</li>
+        <li>Manually synchronised the exported HTML snapshots in <code>/public/</code> because no local PHP runtime was available for the standard static export script in this shell.</li>
+        <li>Preserved APES Newsroom routing, footer-required links, canonical URLs, sitemap entries, robots rules and branded error pages without route, label or metadata changes.</li>
+        <li>Checked for a related GitHub issue and found no explicit linked issue in the current repo context, so no issue update was posted during this implementation pass.</li>
+      </ul>
+      <h3>Affected areas</h3>
+      <ul class="clean-list">
+        <li>Website: www.apes.org.uk</li>
+        <li>Page or route: shared PHP rendering, all generated public and error-page HTML snapshots, Change Log Hub, root and public release records, README and footer version display</li>
+        <li>Files changed: shared PHP renderer, shared site data release records, VERSION files, root CHANGELOG, public CHANGELOG, README, Change Log Hub snapshot and regenerated or manually synchronised static HTML snapshots</li>
+        <li>User groups affected: supporters, donors, volunteers, staff, partners and general public visitors encountering site-wide overlays, donation prompts or branded fallback pages</li>
+        <li>Public impact: visitors no longer load the third-party Hello Bar script site-wide, reducing interference risk with APES-managed popup behaviour while leaving APES and Donorbox popup journeys available</li>
+        <li>Internal impact: popup ownership is now cleaner in the shared shell, making future APES-managed popup work easier to control without a parallel Hello Bar dependency</li>
+      </ul>
+      <h3>Version decision</h3>
+      <ul class="clean-list">
+        <li>Previous version: v2.8.2</li>
+        <li>New version: v2.8.3</li>
+        <li>Version type: patch stable</li>
+        <li>Reason for version bump: shared public-facing third-party popup-script removal without any route, SEO or metadata restructuring</li>
+      </ul>
+      <h3>Validation</h3>
+      <ul class="clean-list">
+        <li>Checks run: shared renderer review, generated HTML sync review, Hellobar reference search, popup wiring review and release-metadata consistency review</li>
+        <li>Manual checks completed: Hellobar removal review on representative public and branded error-page output, development-popup source review, booking-popup script review, Donorbox popup embed review, footer required-link review, APES Newsroom routing review, sitemap/canonical/robots verification-only review and branded 403/404/500 source-page review</li>
+        <li>Known limitations: the local PHP runtime was unavailable in this implementation pass, so the standard PHP static export script and full rendered browser QA still need to run in a PHP-enabled environment before deployment</li>
+        <li>Rollback notes: restore the previous shared renderer, version files and release records, then rerun the standard PHP export to reintroduce the prior shell output if the Hellobar removal needs to be reversed</li>
+      </ul>
+    </div>
+  </details>
+  <details class="release-card" data-release-card data-tags="stable changed fixed accessibility public-facing" id="release-v282">
     <summary>
       <span class="release-version">v2.8.2</span>
       <span class="release-date">2026-06-04</span>
