@@ -2642,7 +2642,7 @@ HTML,
                 'hero_summary' => 'Track every major release for this website, including updates, fixes, compliance changes, and user-facing improvements.',
                 'hero_actions' => [
                     ['label' => 'Expand all releases', 'href' => '#release-list', 'variant' => 'primary'],
-                    ['label' => 'View current release', 'href' => '#release-v286', 'variant' => 'secondary'],
+                    ['label' => 'View current release', 'href' => '#release-v285', 'variant' => 'secondary'],
                 ],
                 'pills' => ['Current version ' . $siteVersion, 'Patch stable', 'Public-facing'],
                 'body_html' => <<<'HTML'
@@ -2672,56 +2672,7 @@ HTML,
 </section>
 
 <section class="section-shell" id="release-list">
-  <details class="release-card" data-release-card data-tags="current stable changed fixed accessibility public-facing" open id="release-v286">
-    <summary>
-      <span class="release-version">v2.8.6</span>
-      <span class="release-date">2026-06-04</span>
-    </summary>
-    <div class="release-body">
-      <div class="pill-row">
-        <span class="pill pill-version">Version v2.8.6</span>
-        <span class="pill pill-status">Stable</span>
-        <span class="pill pill-type">Changed</span>
-        <span class="pill pill-fix">Fix</span>
-        <span class="pill pill-accessibility">Accessibility</span>
-      </div>
-      <h3>Summary</h3>
-      <p>Constrained the shared mobile menu to vertical scrolling only, so mobile visitors no longer need to pan right to reveal menu items or submenu content.</p>
-      <h3>Detailed changes</h3>
-      <ul class="clean-list">
-        <li>Added x-axis overflow guards to the opened mobile nav overlay, panel shell and scrollable menu list while preserving vertical scrolling within the menu body.</li>
-        <li>Added mobile-specific width guards for mega-menu panels, pill rows, cards and copy blocks so nested submenu content cannot widen the overlay and trigger sideways scrolling.</li>
-        <li>Left desktop navigation layout, desktop mega-menu positioning and shared navigation JavaScript unchanged because the regression was resolved in shared mobile CSS only.</li>
-        <li>Synchronised the shared release metadata, README, version files and release-facing generated website records to <code>v2.8.6</code>, manually updating the exported files because the standard PHP static export script is still unavailable in this shell.</li>
-        <li>Preserved APES Newsroom routing, footer-required links, canonical URLs, sitemap entries, robots rules and branded error pages without route, label or metadata changes.</li>
-        <li>Checked for a related GitHub issue and found no explicit linked issue in the current repo context, so no issue update was posted during this implementation pass.</li>
-      </ul>
-      <h3>Affected areas</h3>
-      <ul class="clean-list">
-        <li>Website: www.apes.org.uk</li>
-        <li>Page or route: shared header navigation, shared CSS, Change Log Hub, root and public release records, README, branded error pages and generated public release records</li>
-        <li>Files changed: shared CSS, shared site data release records, VERSION files, root CHANGELOG, public CHANGELOG, README and manually synchronised public release-facing HTML snapshots</li>
-        <li>User groups affected: supporters, donors, volunteers, staff, partners and general public visitors using mobile or tablet navigation</li>
-        <li>Public impact: mobile visitors can scroll the open menu vertically without needing to discover horizontal scrolling to reach hidden items</li>
-        <li>Internal impact: the shared mobile overlay now explicitly suppresses x-axis overflow, reducing the risk of future submenu-width regressions</li>
-      </ul>
-      <h3>Version decision</h3>
-      <ul class="clean-list">
-        <li>Previous version: v2.8.5</li>
-        <li>New version: v2.8.6</li>
-        <li>Version type: patch stable</li>
-        <li>Reason for version bump: shared public-facing mobile navigation overflow hotfix without any route, SEO or metadata restructuring</li>
-      </ul>
-      <h3>Validation</h3>
-      <ul class="clean-list">
-        <li>Checks run: shared mobile-nav CSS review, release-metadata consistency review, footer-link consistency review and generated release-record sync review</li>
-        <li>Manual checks completed: mobile nav overflow audit for 390px, 430px and 768px breakpoints, desktop nav regression review for 981px, 1366px and 1920px layouts, footer required-link review, APES Newsroom routing review, sitemap/canonical/robots verification-only review and branded 403/404/500 source-page review</li>
-        <li>Known limitations: the local PHP runtime was unavailable in this implementation pass, so the standard PHP static export script and final browser-based interaction QA still need to run in a PHP-enabled environment before deployment</li>
-        <li>Rollback notes: restore the previous shared CSS, version files and release records, then rerun the standard PHP export or manual snapshot sync if the mobile navigation overflow hotfix needs to be reversed</li>
-      </ul>
-    </div>
-  </details>
-  <details class="release-card" data-release-card data-tags="stable changed fixed accessibility public-facing" id="release-v285">
+  <details class="release-card" data-release-card data-tags="current stable changed fixed accessibility public-facing" open id="release-v285">
     <summary>
       <span class="release-version">v2.8.5</span>
       <span class="release-date">2026-06-04</span>
