@@ -1,9 +1,9 @@
 ## Current release
 
-- Version: `v2.8.0`
+- Version: `v2.8.1`
 - Release date: `2026-06-04`
-- Release impact: tightened launch SEO metadata and structured data, moved legacy main-site news URLs onto exact APES Newsroom successor redirects, added branded 403/404/500 pages, and aligned robots, sitemap and Apache launch behaviour for Cloudron LAMP.
-- Operational note: shared PHP, CSS and JS files remain the source of truth; regenerate the static HTML snapshots in `/public/` after shared renderer, shared asset, routing or release-record changes.
+- Release impact: rebuilt the shared mobile navigation into a touch-friendly overlay panel with reliable first-tap link navigation, accordion submenu behaviour, body scroll lock and safer stacking against sticky donate/chat widgets.
+- Operational note: shared PHP, CSS and JS files remain the source of truth; regenerate the static HTML snapshots in `/public/` after shared renderer, shared asset, navigation or release-record changes, and complete a post-deploy mobile touch check for third-party widgets.
 
 <p align="center">
   <a href="https://www.apes.org.uk/" target="_blank" rel="noopener noreferrer">

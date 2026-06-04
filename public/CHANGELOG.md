@@ -1,3 +1,45 @@
+## [v2.8.1] - 2026-06-04
+
+<span class="pill pill-version">Version v2.8.1</span>
+<span class="pill pill-status">Stable</span>
+<span class="pill pill-type">Changed</span>
+<span class="pill pill-fix">Fix</span>
+<span class="pill pill-accessibility">Accessibility</span>
+
+### Summary
+
+Reworked the shared APES mobile navigation into a dedicated overlay panel so direct links and accordion groups now respond reliably on touch devices without sticky donate or chat controls blocking taps.
+
+### Detailed changes
+
+- Rebuilt the shared mobile navigation shell around the existing header markup by adding a dedicated mobile panel, close control, backdrop hook and clearer open-state accessibility labels while preserving all existing desktop link targets and mega-menu content.
+- Reworked the shared mobile navigation CSS below `980px` so the menu opens as a fixed overlay panel with independent scrolling, full-width touch targets, accordion-friendly `<details>` groups and a body scroll-lock state.
+- Refined the shared navigation script so mobile open-state, desktop mega-menu positioning and close behaviour are handled separately, allowing direct links and submenu links to navigate on first tap while still supporting Escape, overlay close and page-transition resets.
+- Kept APES Newsroom routing, footer-required links, canonical URLs, sitemap entries and branded error pages unchanged, then regenerated the static HTML snapshots and synchronised the canonical version plus release records to `v2.8.1`.
+
+### Affected areas
+
+- Website: www.apes.org.uk
+- Page or route: shared header navigation, shared CSS, shared JS, Change Log Hub, root and public release records, README, branded error pages and regenerated static HTML snapshots
+- Files changed: shared PHP header, shared CSS, shared JS, shared site data release records, VERSION files, root CHANGELOG, public CHANGELOG, README and regenerated static HTML snapshots
+- User groups affected: supporters, donors, volunteers, staff, partners and general public visitors using mobile or tablet navigation
+- Public impact: mobile visitors can now open the menu, expand grouped sections, follow direct links and submenu links on first tap, and use the overlay without donate or chat widgets stealing interaction
+- Internal impact: the shared navigation state model is now cleaner across mobile and desktop breakpoints, reducing the chance of future tap-target and overlay regressions
+
+### Version decision
+
+- Previous version: v2.8.0
+- New version: v2.8.1
+- Version type: patch stable
+- Reason for version bump: shared public-facing navigation reliability, accessibility and overlay-behaviour fixes without any route or SEO structure change
+
+### Validation
+
+- Checks run: local PHP syntax checks, shared CSS and JS review, static HTML export and generated HTML inspection
+- Manual checks completed: mobile navigation markup/state review, footer required-link review, APES Newsroom routing review, sitemap and canonical verification-only review, and branded 403/404/500 page review after regeneration
+- Known limitations: live device/browser interaction with third-party Donorbox and Chatwoot widgets still requires a post-deploy touch test outside this repo-only implementation pass
+- Rollback notes: restore the previous shared header, CSS, JS, version files and release records, then re-export the static HTML snapshots if the mobile navigation rollout needs to be reversed
+
 ## [v2.8.0] - 2026-06-04
 
 <span class="pill pill-version">Version v2.8.0</span>

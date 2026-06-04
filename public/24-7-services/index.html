@@ -125,10 +125,16 @@
           <span>Rescue, rehabilitation, rehoming and public support across the APES network.</span>
         </span>
       </a>
-      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav">Menu</button>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="primary-nav" aria-label="Open menu">Menu</button>
     </div>
-    <nav id="primary-nav" class="primary-nav" aria-label="Primary">
-      <ul>
+    <button class="nav-overlay" type="button" aria-label="Close menu" hidden data-nav-overlay></button>
+    <nav id="primary-nav" class="primary-nav" aria-label="Primary" aria-labelledby="primary-nav-title">
+      <div class="primary-nav__panel">
+        <div class="primary-nav__mobile-bar">
+          <p id="primary-nav-title" class="primary-nav__mobile-title">Site navigation</p>
+          <button class="menu-close" type="button" aria-label="Close menu" data-menu-close>Close</button>
+        </div>
+        <ul>
                             <li class="">
                           <a class="nav-link" href="/">Home</a>
                       </li>
@@ -508,7 +514,8 @@
                             <li class=" nav-cta-item">
                           <a class="button button-primary nav-cta-link" href="/donate/">Donate</a>
                       </li>
-              </ul>
+        </ul>
+      </div>
     </nav>
   </div>
 </header>
@@ -707,7 +714,7 @@
       </div>
       <p class="footer-bar__links">
                   <a class="footer-inline-link" href="/donate/">Donate</a><span aria-hidden="true"> &middot; </span>                  <a class="footer-inline-link" href="/policies/privacy/">Privacy Policy</a><span aria-hidden="true"> &middot; </span>                  <a class="footer-inline-link" href="/policies/terms-of-service/">Terms of Service</a><span aria-hidden="true"> &middot; </span>                  <a class="footer-inline-link" href="/change-log-hub/">Change Log Hub</a>              </p>
-      <p class="footer-bar__version">Website version: <a class="footer-inline-link" href="/change-log-hub/">APES CIC v2.8.0</a> &middot; Change Log Hub</p>
+      <p class="footer-bar__version">Website version: <a class="footer-inline-link" href="/change-log-hub/">APES CIC v2.8.1</a> &middot; Change Log Hub</p>
     </div>
   </div>
 </footer>
