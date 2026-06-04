@@ -16,7 +16,7 @@
     </div>
   </div>
   <?php $developmentNotice = $site['development_notice'] ?? null; ?>
-  <?php if (!empty($developmentNotice['enabled'])): ?>
+  <?php if (!empty($developmentNotice['header_enabled'])): ?>
     <div class="development-notice" aria-label="Website development notice">
       <div class="development-notice__inner">
         <p class="development-notice__message"><?= htmlspecialchars((string) $developmentNotice['header_message'], ENT_QUOTES) ?></p>

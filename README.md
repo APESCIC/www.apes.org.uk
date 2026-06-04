@@ -1,9 +1,9 @@
 ## Current release
 
-- Version: `v2.8.3`
+- Version: `v2.8.4`
 - Release date: `2026-06-04`
-- Release impact: removed the site-wide Hellobar embed from the shared page shell so APES-owned popups and donation flows can run without the third-party Hello Bar script loading across public and error-page routes.
-- Operational note: shared PHP, CSS and JS files remain the source of truth; this pass manually synchronised the exported HTML because no local PHP runtime was available, so complete a post-deploy check that APES development popups, booking popups, Donorbox popups, footer required links and branded error pages still behave correctly once PHP export can be rerun in a PHP-enabled environment.
+- Release impact: restored the APES development notice so new visitors see the site-under-development warning, can dismiss it, and do not get it again on the same browser after dismissal.
+- Operational note: shared PHP, CSS and JS files remain the source of truth; this pass manually synchronised the exported HTML because no local PHP runtime was available, so complete a post-deploy check that the development notice, local-storage dismissal, live chat CTA, footer required links and branded error pages still behave correctly once PHP export can be rerun in a PHP-enabled environment.
 
 <p align="center">
   <a href="https://www.apes.org.uk/" target="_blank" rel="noopener noreferrer">

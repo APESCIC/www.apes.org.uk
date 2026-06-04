@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en-GB">
 <head>
   <meta charset="utf-8" />
@@ -114,7 +114,12 @@
 </svg></span><span class="sr-only">APES on Bluesky</span></a>                  </div>
           </div>
   </div>
-      <div class="nav-shell">
+      <div class="development-notice" aria-label="Website development notice">
+    <div class="development-notice__inner">
+      <p class="development-notice__message">This new site is under development. Some features and buttons may not work yet. Need help? Use live chat.</p>
+      <a class="button button-secondary development-notice__action" href="/contact/" data-live-chat-open>Open live chat</a>
+    </div>
+  </div>  <div class="nav-shell">
     <div class="brand-block">
       <a class="brand-mark" href="/">
         <picture class="brand-logo-wrap">
@@ -535,12 +540,12 @@
         <h1>Change Log Hub</h1>
         <p class="hero-summary">Track every major release for this website, including updates, fixes, compliance changes, and user-facing improvements.</p>
                   <div class="pill-row">
-                          <span class="pill">Current version v2.8.1</span>
+                          <span class="pill">Current version v2.8.4</span>
                           <span class="pill">Patch stable</span>
                           <span class="pill">Public-facing</span>
                       </div>
                           <div class="action-row">
-                                        <a class="button button-primary" href="#release-list">Expand all releases</a>                                        <a class="button button-secondary" href="#release-v283">View current release</a>                      </div>
+                                        <a class="button button-primary" href="#release-list">Expand all releases</a>                                        <a class="button button-secondary" href="#release-v284">View current release</a>                      </div>
               </div>
           </section>
 
@@ -572,7 +577,55 @@
 </section>
 
 <section class="section-shell" id="release-list">
-  <details class="release-card" data-release-card data-tags="current stable changed removed fixed accessibility public-facing" open id="release-v283">
+  <details class="release-card" data-release-card data-tags="current stable changed fixed accessibility public-facing" open id="release-v284">
+    <summary>
+      <span class="release-version">v2.8.4</span>
+      <span class="release-date">2026-06-04</span>
+    </summary>
+    <div class="release-body">
+      <div class="pill-row">
+        <span class="pill pill-version">Version v2.8.4</span>
+        <span class="pill pill-status">Stable</span>
+        <span class="pill pill-type">Changed</span>
+        <span class="pill pill-fix">Fix</span>
+        <span class="pill pill-accessibility">Accessibility</span>
+      </div>
+      <h3>Summary</h3>
+      <p>Restored the shared development notice so new visitors see the site-under-development warning, can dismiss it, and do not get it again on the same browser after dismissal.</p>
+      <h3>Detailed changes</h3>
+      <ul class="clean-list">
+        <li>Re-enabled the shared APES development header notice and first-visit popup with refreshed wording that explains the new site is still under development and some features or buttons may not work yet.</li>
+        <li>Separated the shared header and popup notice controls in the PHP source of truth so APES can manage the persistent banner and first-visit modal intentionally without relying on one generic switch.</li>
+        <li>Changed popup dismissal persistence from session storage to local storage so dismissal survives refreshes, navigation and browser restarts in the same browser profile, while keeping a safe in-memory fallback when storage is unavailable.</li>
+        <li>Synchronised the shared release metadata, README, version files and generated website snapshots to <code>v2.8.4</code>, manually updating the exported HTML because the standard PHP static export script is still unavailable in this shell.</li>
+        <li>Preserved APES Newsroom routing, footer-required links, canonical URLs, sitemap entries, robots rules and branded error pages without route, label or metadata changes.</li>
+      </ul>
+      <h3>Affected areas</h3>
+      <ul class="clean-list">
+        <li>Website: www.apes.org.uk</li>
+        <li>Page or route: shared header, shared footer, shared notice behaviour, root and public release records, Change Log Hub, branded error pages and generated public HTML snapshots</li>
+        <li>Files changed: shared PHP rendering, shared site data release records, shared JS, VERSION files, root CHANGELOG, public CHANGELOG, README and regenerated or manually synchronised static HTML snapshots</li>
+        <li>User groups affected: supporters, donors, volunteers, staff, partners and general public visitors encountering the APES development notice and live-chat help prompt</li>
+        <li>Public impact: new visitors now see the site-under-development warning, can dismiss it, and will not be shown it again on the same browser after dismissal</li>
+        <li>Internal impact: notice visibility and dismissal behaviour are now clearer to manage in the shared shell and better aligned with the intended visitor experience</li>
+      </ul>
+      <h3>Version decision</h3>
+      <ul class="clean-list">
+        <li>Previous version: v2.8.3</li>
+        <li>New version: v2.8.4</li>
+        <li>Version type: patch stable</li>
+        <li>Reason for version bump: shared public-facing notice-behaviour restoration and persistence fix without any route, SEO or metadata restructuring</li>
+      </ul>
+      <h3>Validation</h3>
+      <ul class="clean-list">
+        <li>Checks run: shared notice source review, release-metadata update review, generated HTML sync review and footer-link consistency review</li>
+        <li>Manual checks completed: development notice configuration review, local-storage dismissal logic review, footer required-link review, APES Newsroom routing review, sitemap/canonical/robots verification-only review and branded 403/404/500 source-page review</li>
+        <li>Known limitations: the local PHP runtime was unavailable in this implementation pass, so the standard PHP static export script and full browser-based interaction QA still need to run in a PHP-enabled environment before deployment</li>
+        <li>Rollback notes: restore the previous shared notice configuration, JS, version files and release records, then rerun the standard PHP export or manual snapshot sync if the notice rollout needs to be reversed</li>
+      </ul>
+    </div>
+  </details>
+  <details class="release-card" data-release-card data-tags="stable changed removed fixed accessibility public-facing" id="release-v283">
     <summary>
       <span class="release-version">v2.8.3</span>
       <span class="release-date">2026-06-04</span>
@@ -1517,13 +1570,33 @@
       </div>
       <p class="footer-bar__links">
                   <a class="footer-inline-link" href="/donate/">Donate</a><span aria-hidden="true"> &middot; </span>                  <a class="footer-inline-link" href="/policies/privacy/">Privacy Policy</a><span aria-hidden="true"> &middot; </span>                  <a class="footer-inline-link" href="/policies/terms-of-service/">Terms of Service</a><span aria-hidden="true"> &middot; </span>                  <a class="footer-inline-link" href="/change-log-hub/">Change Log Hub</a>              </p>
-      <p class="footer-bar__version">Website version: <a class="footer-inline-link" href="/change-log-hub/">APES CIC v2.8.3</a> &middot; Change Log Hub</p>
+      <p class="footer-bar__version">Website version: <a class="footer-inline-link" href="/change-log-hub/">APES CIC v2.8.4</a> &middot; Change Log Hub</p>
     </div>
   </div>
 </footer>
 
 
-<div id="fb-root"></div>
+<div class="development-popup" data-development-popup data-storage-key="apesDevelopmentNoticeDismissed" hidden>
+  <div class="development-popup__backdrop" data-development-popup-close tabindex="-1"></div>
+  <div
+    class="development-popup__dialog"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="development-popup-title"
+    aria-describedby="development-popup-message"
+    tabindex="-1"
+    data-development-popup-dialog
+  >
+    <button class="development-popup__close" type="button" aria-label="Close development notice" data-development-popup-close>&times;</button>
+    <p class="development-popup__eyebrow">Website update</p>
+    <h2 id="development-popup-title">Some parts of this website are still being built.</h2>
+    <p id="development-popup-message">This new site is under development, so some features and buttons may not work yet. If you need help, please use live chat on the website.</p>
+    <div class="development-popup__actions">
+      <a class="button button-primary" href="/contact/" data-live-chat-open>Open live chat</a>
+      <button class="button button-secondary" type="button" data-development-popup-close>Continue to website</button>
+    </div>
+  </div>
+</div><div id="fb-root"></div>
 <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v15.0&appId=670420541399530&autoLogAppEvents=1"></script>
 <script>
   window.chatwootSettings = {"position":"right","type":"expanded_bubble","launcherTitle":"Talk to an advisor"};

@@ -252,8 +252,9 @@ const developmentPopup = document.querySelector("[data-development-popup]");
 const developmentPopupDialog = developmentPopup?.querySelector("[data-development-popup-dialog]") ?? null;
 const developmentPopupCloseButtons = [...document.querySelectorAll("[data-development-popup-close]")];
 const liveChatButtons = [...document.querySelectorAll("[data-live-chat-open]")];
-const developmentPopupSessionKey = developmentPopup?.dataset.sessionKey ?? "apesDevelopmentNoticeDismissed";
+const developmentPopupStorageKey = developmentPopup?.dataset.storageKey ?? "apesDevelopmentNoticeDismissed";
 let developmentPopupLastFocused = null;
+let developmentPopupDismissedInMemory = false;
 
 function openChatwootWidget() {
   const chatwootApi = window.$chatwoot;
@@ -295,9 +296,9 @@ function closeDevelopmentPopup({ persist = true } = {}) {
 
   if (persist) {
     try {
-      sessionStorage.setItem(developmentPopupSessionKey, "true");
+      localStorage.setItem(developmentPopupStorageKey, "true");
     } catch {
-      // Ignore storage errors and continue with dismissal for this page view.
+      developmentPopupDismissedInMemory = true;
     }
   }
 
@@ -325,9 +326,9 @@ function shouldOpenDevelopmentPopup() {
   }
 
   try {
-    return sessionStorage.getItem(developmentPopupSessionKey) !== "true";
+    return localStorage.getItem(developmentPopupStorageKey) !== "true";
   } catch {
-    return true;
+    return !developmentPopupDismissedInMemory;
   }
 }
 

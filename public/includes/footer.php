@@ -57,8 +57,8 @@
 </footer>
 
 <?php $developmentNotice = $site['development_notice'] ?? null; ?>
-<?php if (!empty($developmentNotice['enabled'])): ?>
-  <div class="development-popup" data-development-popup data-session-key="<?= htmlspecialchars((string) $developmentNotice['session_key'], ENT_QUOTES) ?>" hidden>
+<?php if (!empty($developmentNotice['popup_enabled'])): ?>
+  <div class="development-popup" data-development-popup data-storage-key="<?= htmlspecialchars((string) $developmentNotice['storage_key'], ENT_QUOTES) ?>" hidden>
     <div class="development-popup__backdrop" data-development-popup-close tabindex="-1"></div>
     <div
       class="development-popup__dialog"

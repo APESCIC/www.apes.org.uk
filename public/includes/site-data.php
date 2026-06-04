@@ -174,12 +174,13 @@ function apes_site_data(): array
         'year' => $year,
         'canonical_domain' => APES_PRIMARY_DOMAIN,
         'development_notice' => [
-            'enabled' => false,
-            'header_message' => 'Some links and features are still in development. Need help now? Use live chat for fast help.',
-            'popup_message' => 'Some links and features are still in development. We are working hard on this. If you need help, please use live chat for fast help.',
+            'header_enabled' => true,
+            'popup_enabled' => true,
+            'header_message' => 'This new site is under development. Some features and buttons may not work yet. Need help? Use live chat.',
+            'popup_message' => 'This new site is under development, so some features and buttons may not work yet. If you need help, please use live chat on the website.',
             'live_chat_label' => 'Open live chat',
             'fallback_href' => '/contact/',
-            'session_key' => 'apesDevelopmentNoticeDismissed',
+            'storage_key' => 'apesDevelopmentNoticeDismissed',
         ],
         'brand' => [
             'logo_nav_png' => '/assets/logos/apes-logo-navbar-72h.png',
@@ -2641,7 +2642,7 @@ HTML,
                 'hero_summary' => 'Track every major release for this website, including updates, fixes, compliance changes, and user-facing improvements.',
                 'hero_actions' => [
                     ['label' => 'Expand all releases', 'href' => '#release-list', 'variant' => 'primary'],
-                    ['label' => 'View current release', 'href' => '#release-v283', 'variant' => 'secondary'],
+                    ['label' => 'View current release', 'href' => '#release-v284', 'variant' => 'secondary'],
                 ],
                 'pills' => ['Current version ' . $siteVersion, 'Patch stable', 'Public-facing'],
                 'body_html' => <<<'HTML'
@@ -2671,7 +2672,55 @@ HTML,
 </section>
 
 <section class="section-shell" id="release-list">
-  <details class="release-card" data-release-card data-tags="current stable changed removed fixed accessibility public-facing" open id="release-v283">
+  <details class="release-card" data-release-card data-tags="current stable changed fixed accessibility public-facing" open id="release-v284">
+    <summary>
+      <span class="release-version">v2.8.4</span>
+      <span class="release-date">2026-06-04</span>
+    </summary>
+    <div class="release-body">
+      <div class="pill-row">
+        <span class="pill pill-version">Version v2.8.4</span>
+        <span class="pill pill-status">Stable</span>
+        <span class="pill pill-type">Changed</span>
+        <span class="pill pill-fix">Fix</span>
+        <span class="pill pill-accessibility">Accessibility</span>
+      </div>
+      <h3>Summary</h3>
+      <p>Restored the shared development notice so new visitors see the site-under-development warning, can dismiss it, and do not get it again on the same browser after dismissal.</p>
+      <h3>Detailed changes</h3>
+      <ul class="clean-list">
+        <li>Re-enabled the shared APES development header notice and first-visit popup with refreshed wording that explains the new site is still under development and some features or buttons may not work yet.</li>
+        <li>Separated the shared header and popup notice controls in the PHP source of truth so APES can manage the persistent banner and first-visit modal intentionally without relying on one generic switch.</li>
+        <li>Changed popup dismissal persistence from session storage to local storage so dismissal survives refreshes, navigation and browser restarts in the same browser profile, while keeping a safe in-memory fallback when storage is unavailable.</li>
+        <li>Synchronised the shared release metadata, README, version files and generated website snapshots to <code>v2.8.4</code>, manually updating the exported HTML because the standard PHP static export script is still unavailable in this shell.</li>
+        <li>Preserved APES Newsroom routing, footer-required links, canonical URLs, sitemap entries, robots rules and branded error pages without route, label or metadata changes.</li>
+      </ul>
+      <h3>Affected areas</h3>
+      <ul class="clean-list">
+        <li>Website: www.apes.org.uk</li>
+        <li>Page or route: shared header, shared footer, shared notice behaviour, root and public release records, Change Log Hub, branded error pages and generated public HTML snapshots</li>
+        <li>Files changed: shared PHP rendering, shared site data release records, shared JS, VERSION files, root CHANGELOG, public CHANGELOG, README and regenerated or manually synchronised static HTML snapshots</li>
+        <li>User groups affected: supporters, donors, volunteers, staff, partners and general public visitors encountering the APES development notice and live-chat help prompt</li>
+        <li>Public impact: new visitors now see the site-under-development warning, can dismiss it, and will not be shown it again on the same browser after dismissal</li>
+        <li>Internal impact: notice visibility and dismissal behaviour are now clearer to manage in the shared shell and better aligned with the intended visitor experience</li>
+      </ul>
+      <h3>Version decision</h3>
+      <ul class="clean-list">
+        <li>Previous version: v2.8.3</li>
+        <li>New version: v2.8.4</li>
+        <li>Version type: patch stable</li>
+        <li>Reason for version bump: shared public-facing notice-behaviour restoration and persistence fix without any route, SEO or metadata restructuring</li>
+      </ul>
+      <h3>Validation</h3>
+      <ul class="clean-list">
+        <li>Checks run: shared notice source review, release-metadata update review, generated HTML sync review and footer-link consistency review</li>
+        <li>Manual checks completed: development notice configuration review, local-storage dismissal logic review, footer required-link review, APES Newsroom routing review, sitemap/canonical/robots verification-only review and branded 403/404/500 source-page review</li>
+        <li>Known limitations: the local PHP runtime was unavailable in this implementation pass, so the standard PHP static export script and full browser-based interaction QA still need to run in a PHP-enabled environment before deployment</li>
+        <li>Rollback notes: restore the previous shared notice configuration, JS, version files and release records, then rerun the standard PHP export or manual snapshot sync if the notice rollout needs to be reversed</li>
+      </ul>
+    </div>
+  </details>
+  <details class="release-card" data-release-card data-tags="stable changed removed fixed accessibility public-facing" id="release-v283">
     <summary>
       <span class="release-version">v2.8.3</span>
       <span class="release-date">2026-06-04</span>
