@@ -1,0 +1,15 @@
+:root {
+  --apes-teal: #008f8f;
+  --apes-bright-teal: #00bfc3;
+  --apes-dark: #000000;
+}
+
+.site-logo {
+  display: inline-block;
+  height: auto;
+  max-width: 100%;
+}
+
+.site-logo--header {
+  width: clamp(140px, 22vw, 320px);
+}
