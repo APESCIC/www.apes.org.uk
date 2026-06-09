@@ -1,9 +1,9 @@
 ## Current release
 
-- Version: `v2.8.6`
-- Release date: `2026-06-04`
-- Release impact: removed the horizontal scrollbar from shared desktop mega menus by replacing viewport-width sizing with scrollbar-safe desktop width constraints, while leaving the current mobile overlay behaviour unchanged.
-- Operational note: shared PHP and CSS files remain the source of truth; this pass updated the shared stylesheet and release metadata in the repo, but the standard PHP static export still needs to be rerun in a PHP-enabled environment before deployment so the generated HTML snapshots and rendered footer version text fully resynchronise.
+- Version: `v2.8.7`
+- Release date: `2026-06-09`
+- Release impact: changed the shared sticky header so the top contact and development-notice bars collapse after the page leaves the top, while the main navigation remains floating and the current mega-menu and mobile overlay behaviour stay aligned to the reduced header height.
+- Operational note: shared PHP, CSS and JS files remain the source of truth; this pass updated the shared header behaviour and release metadata in the repo, but the standard PHP static export still needs to be rerun in a PHP-enabled environment before deployment so the generated HTML snapshots and rendered footer version text fully resynchronise.
 
 <p align="center">
   <a href="https://www.apes.org.uk/" target="_blank" rel="noopener noreferrer">

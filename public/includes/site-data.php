@@ -2642,7 +2642,7 @@ HTML,
                 'hero_summary' => 'Track every major release for this website, including updates, fixes, compliance changes, and user-facing improvements.',
                 'hero_actions' => [
                     ['label' => 'Expand all releases', 'href' => '#release-list', 'variant' => 'primary'],
-                    ['label' => 'View current release', 'href' => '#release-v286', 'variant' => 'secondary'],
+                    ['label' => 'View current release', 'href' => '#release-v287', 'variant' => 'secondary'],
                 ],
                 'pills' => ['Current version ' . $siteVersion, 'Patch stable', 'Public-facing'],
                 'body_html' => <<<'HTML'
@@ -2672,51 +2672,51 @@ HTML,
 </section>
 
 <section class="section-shell" id="release-list">
-  <details class="release-card" data-release-card data-tags="current stable changed fixed accessibility public-facing" open id="release-v286">
+  <details class="release-card" data-release-card data-tags="current stable changed fixed accessibility public-facing" open id="release-v287">
     <summary>
-      <span class="release-version">v2.8.6</span>
-      <span class="release-date">2026-06-04</span>
+      <span class="release-version">v2.8.7</span>
+      <span class="release-date">2026-06-09</span>
     </summary>
     <div class="release-body">
       <div class="pill-row">
-        <span class="pill pill-version">Version v2.8.6</span>
+        <span class="pill pill-version">Version v2.8.7</span>
         <span class="pill pill-status">Stable</span>
         <span class="pill pill-type">Changed</span>
         <span class="pill pill-fix">Fix</span>
         <span class="pill pill-accessibility">Accessibility</span>
       </div>
       <h3>Summary</h3>
-      <p>Removed the horizontal scrollbar from shared desktop mega menus by replacing viewport-based panel sizing with desktop-safe width constraints that do not overflow when the page has a vertical scrollbar.</p>
+      <p>Changed the shared sticky header so only the main navigation remains floating during scroll, while the top contact bar and development notice collapse until the page returns to the top.</p>
       <h3>Detailed changes</h3>
       <ul class="clean-list">
-        <li>Updated the shared mega-menu panel sizing rules so desktop navigation no longer relies on <code>100vw</code> calculations that can include the browser scrollbar width and trigger horizontal overflow.</li>
-        <li>Kept the current mobile overlay, accordion submenu behaviour, desktop open-state logic and shared header markup unchanged because the regression was isolated to desktop CSS width constraints.</li>
-        <li>Synchronised the shared release metadata, README and version files to <code>v2.8.6</code>, and prepared the PHP source of truth for static snapshot regeneration once PHP is available again in a compatible environment.</li>
-        <li>Preserved APES Newsroom routing, footer-required links, canonical URLs, sitemap entries, robots rules and branded error pages without route, label or metadata changes.</li>
-        <li>Opened and linked the related GitHub issue for this fix as issue <code>#3</code>.</li>
+        <li>Added shared header scroll-state logic so the top contact bar and development notice collapse as soon as the page leaves the top, while the main navigation continues to stick in place.</li>
+        <li>Updated the shared header CSS transitions, spacing and border handling so the compact state hides the two upper bars cleanly without leaving a persistent layout gap.</li>
+        <li>Kept the shared header markup, desktop mega-menu structure, mobile overlay navigation pattern, footer routes and APES Newsroom routing unchanged while reusing the existing header-height offset logic.</li>
+        <li>Synchronised the shared release metadata, README, changelog mirrors and version files to <code>v2.8.7</code>, and prepared the PHP source of truth for static snapshot regeneration once PHP is available again in a compatible environment.</li>
+        <li>Preserved canonical URLs, sitemap entries, robots rules, footer-required links and branded error-page source files without route, label or metadata changes.</li>
       </ul>
       <h3>Affected areas</h3>
       <ul class="clean-list">
         <li>Website: www.apes.org.uk</li>
-        <li>Page or route: shared header navigation, shared CSS, Change Log Hub, root and public release records, README and branded error pages once regenerated from source</li>
-        <li>Files changed: shared CSS, shared site data release records, VERSION files, root CHANGELOG, public CHANGELOG and README</li>
-        <li>User groups affected: supporters, donors, volunteers, staff, partners and general public visitors using desktop or laptop navigation</li>
-        <li>Public impact: desktop visitors should no longer see a horizontal scrollbar when opening mega menus, while mobile and tablet navigation keeps the current overlay behaviour</li>
-        <li>Internal impact: desktop mega-menu sizing now avoids viewport scrollbar-width drift, reducing the risk of future overflow regressions in the shared header</li>
+        <li>Page or route: shared header behaviour, shared CSS, shared JS, Change Log Hub, root and public release records, README and branded error pages once regenerated from source</li>
+        <li>Files changed: shared CSS, shared JS, shared site data release records, VERSION files, root CHANGELOG, public CHANGELOG and README</li>
+        <li>User groups affected: supporters, donors, volunteers, staff, partners and general public visitors using the shared sticky header across desktop, tablet and mobile layouts</li>
+        <li>Public impact: visitors now see the contact bar and development notice disappear after scrolling away from the top while the main navigation remains available as the sticky header</li>
+        <li>Internal impact: shared header behaviour now uses a single compact scroll state, keeping mega-menu positioning and mobile-nav offsets aligned to the visible sticky navigation height</li>
       </ul>
       <h3>Version decision</h3>
       <ul class="clean-list">
-        <li>Previous version: v2.8.5</li>
-        <li>New version: v2.8.6</li>
+        <li>Previous version: v2.8.6</li>
+        <li>New version: v2.8.7</li>
         <li>Version type: patch stable</li>
-        <li>Reason for version bump: shared public-facing desktop navigation overflow fix without any route, SEO or metadata restructuring</li>
+        <li>Reason for version bump: shared public-facing header scroll behaviour change without route, SEO or metadata restructuring</li>
       </ul>
       <h3>Validation</h3>
       <ul class="clean-list">
-        <li>Checks run: shared CSS overflow review, release-metadata consistency review, sitemap and robots verification-only review, footer-link source review and issue-link verification</li>
-        <li>Manual checks completed: desktop mega-menu width rule audit for 1280px, 1366px, 1440px and 1920px layouts by source inspection, mobile selector regression review for sub-981px rules, footer required-link review, APES Newsroom routing review and branded 403/404/500 source-page review</li>
+        <li>Checks run: shared header JS and CSS review, release-metadata consistency review, sitemap and robots verification-only review, footer-link source review and header offset logic review</li>
+        <li>Manual checks completed: shared sticky-header source audit for compact-state transitions, desktop mega-menu anchor review, mobile overlay offset review, footer required-link review, APES Newsroom routing review and branded 403/404/500 source-page review</li>
         <li>Known limitations: the local PHP runtime is still unavailable in this implementation environment, so the standard static export, full rendered browser QA and generated HTML snapshot resynchronisation still need to run in a PHP-enabled environment before deployment</li>
-        <li>Rollback notes: restore the previous shared CSS width rules, version files and release records, then rerun the standard PHP export when PHP is available if the desktop mega-menu overflow fix needs to be reversed</li>
+        <li>Rollback notes: restore the previous shared header CSS and JS, version files and release records, then rerun the standard PHP export when PHP is available if the sticky-header compact behaviour needs to be reversed</li>
       </ul>
     </div>
   </details>

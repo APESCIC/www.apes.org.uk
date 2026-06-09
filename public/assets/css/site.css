@@ -160,12 +160,27 @@ img {
   background: rgba(247, 250, 249, 0.96);
   backdrop-filter: blur(14px);
   border-bottom: 1px solid rgba(0, 95, 95, 0.08);
+  transition: box-shadow 0.24s ease;
 }
 
 .development-notice {
   border-top: 1px solid rgba(0, 95, 95, 0.08);
   border-bottom: 1px solid rgba(0, 95, 95, 0.08);
   background: linear-gradient(90deg, rgba(242, 233, 216, 0.96), rgba(221, 243, 239, 0.96));
+}
+
+.topbar,
+.development-notice {
+  overflow: hidden;
+  transition:
+    max-height 0.28s ease,
+    opacity 0.22s ease,
+    transform 0.28s ease,
+    border-width 0.28s ease;
+}
+
+.topbar {
+  max-height: 10rem;
 }
 
 .development-notice__inner {
@@ -176,6 +191,39 @@ img {
   justify-content: space-between;
   gap: 0.9rem 1.2rem;
   padding: 0.7rem 0;
+}
+
+.topbar-inner,
+.development-notice__inner {
+  transition: padding 0.28s ease, gap 0.28s ease;
+}
+
+.development-notice {
+  max-height: 12rem;
+}
+
+.site-header--compact .topbar,
+.site-header--compact .development-notice {
+  max-height: 0;
+  opacity: 0;
+  transform: translateY(-0.65rem);
+  pointer-events: none;
+}
+
+.site-header--compact .topbar {
+  border-bottom-width: 0;
+}
+
+.site-header--compact .development-notice {
+  border-top-width: 0;
+  border-bottom-width: 0;
+}
+
+.site-header--compact .topbar-inner,
+.site-header--compact .development-notice__inner {
+  padding-top: 0;
+  padding-bottom: 0;
+  gap: 0;
 }
 
 .development-notice__message {
@@ -1434,6 +1482,10 @@ body {
 
 .site-header {
   box-shadow: 0 10px 30px rgba(12, 38, 38, 0.08);
+}
+
+.site-header--compact {
+  box-shadow: 0 14px 34px rgba(12, 38, 38, 0.12);
 }
 
 .site-main {
