@@ -5,9 +5,27 @@ const navCloseButton = document.querySelector("[data-menu-close]");
 const siteHeader = document.querySelector(".site-header");
 const megaMenus = [...document.querySelectorAll(".mega-menu")];
 const desktopNavigationQuery = window.matchMedia("(min-width: 981px)");
+const compactHeaderClass = "site-header--compact";
 
 function isDesktopNavigation() {
   return desktopNavigationQuery.matches;
+}
+
+function syncHeaderScrollState() {
+  if (!siteHeader) {
+    return false;
+  }
+
+  const shouldCompact = (window.scrollY ?? window.pageYOffset ?? 0) > 0;
+  const isCompact = siteHeader.classList.contains(compactHeaderClass);
+
+  if (shouldCompact === isCompact) {
+    return false;
+  }
+
+  siteHeader.classList.toggle(compactHeaderClass, shouldCompact);
+
+  return true;
 }
 
 function syncMobileNavigationOffset() {
@@ -73,6 +91,11 @@ function syncMegaMenuPositions() {
       panel.style.setProperty("--mega-panel-top", `${panelTop}px`);
     }
   });
+}
+
+function syncHeaderLayout() {
+  syncHeaderScrollState();
+  syncMegaMenuPositions();
 }
 
 function closeMainNavigation() {
@@ -180,21 +203,21 @@ document.addEventListener("keydown", (event) => {
 });
 
 window.addEventListener("resize", () => {
-  syncMegaMenuPositions();
+  syncHeaderLayout();
 
   if (isDesktopNavigation()) {
     setMainNavigationState(false);
   }
 });
-window.addEventListener("scroll", syncMegaMenuPositions, { passive: true });
+window.addEventListener("scroll", syncHeaderLayout, { passive: true });
 window.addEventListener("pageshow", (event) => {
   if (event.persisted) {
     closeMainNavigation();
   }
+  syncHeaderLayout();
 });
 window.addEventListener("load", () => {
-  syncMobileNavigationOffset();
-  syncMegaMenuPositions();
+  syncHeaderLayout();
 });
 
 function openPopupWindow(link) {
