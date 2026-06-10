@@ -27,4 +27,10 @@ if (-not $volunteerSnapshot.Contains("Apply through the approved volunteer form"
     throw "Volunteer spacing regression: public/volunteer/index.html does not contain the expected volunteer application panel."
 }
 
+$removedVolunteerIntro = "Public APES copy repeatedly explains that staff are unpaid volunteers and asks supporters to treat them with respect. Volunteering and placements form part of how APES keeps services moving across rescue, care, support and education work."
+
+if ($volunteerSnapshot.Contains($removedVolunteerIntro)) {
+    throw "Volunteer copy regression: public/volunteer/index.html still contains the removed volunteer intro paragraph."
+}
+
 Write-Host "Volunteer layout spacing regression check passed."

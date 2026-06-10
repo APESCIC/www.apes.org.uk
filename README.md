@@ -1,8 +1,8 @@
 ## Current release
 
-- Version: `v2.9.6`
+- Version: `v2.9.7`
 - Release date: `2026-06-10`
-- Release impact: restored balanced inset spacing around the first `/volunteer/` content card so the opening panel and role cards have breathing room on every side without widening the change beyond that route.
+- Release impact: removed the opening `/volunteer/` reminder paragraph so the page now starts directly with the approved volunteer application guidance without changing the route structure or application flow.
 - Operational note: shared PHP remains the source of truth; use **APES: Preview PHP source site** for rendered-route checks, **APES: Preview static public snapshots** for HTTP output review, run `scripts/validate-public-site.ps1` before staging, and package only the `public/` bundle for Cloudron upload.
 
 <p align="center">

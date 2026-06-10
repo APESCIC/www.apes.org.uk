@@ -2,7 +2,47 @@
 
 Track every major release for this website, including updates, fixes, compliance changes, and user-facing improvements.
 
-## [v2.9.5] - 2026-06-10
+## [v2.9.7] - 2026-06-10
+
+<span class="pill pill-version">Version v2.9.7</span>
+<span class="pill pill-status">Stable</span>
+<span class="pill pill-type">Changed</span>
+<span class="pill pill-fix">Fix</span>
+
+### Summary
+
+Removed the opening `/volunteer/` reminder paragraph so the page now starts directly with the approved volunteer application guidance.
+
+### Detailed changes
+
+- Removed the opening volunteer reminder paragraph from the shared site data so the route begins with the approved application panel instead of the unpaid-volunteer explainer.
+- Extended the volunteer regression check so validation now fails if the removed introductory copy reappears in the exported volunteer snapshot.
+- Kept the volunteer application route, SEO metadata, footer-required links, APES Newsroom routing, public-folder structure and Cloudron LAMP assumptions unchanged.
+- Regenerated the public static snapshots and synchronised the version files, README, root changelog, public changelog mirror and Change Log Hub release metadata.
+
+### Affected areas
+
+- Website: www.apes.org.uk
+- Page or route: `/volunteer/`, Change Log Hub, root and public release records, README current release, validation script and regenerated public HTML snapshots
+- Files changed: volunteer page source content, validation script, shared site data release records, VERSION files, root CHANGELOG, public CHANGELOG, README and regenerated public HTML snapshots
+- User groups affected: prospective volunteers, student-placement applicants, supporters, staff and partners using the volunteering route
+- Public impact: volunteer-page visitors now land directly on the application guidance without the extra introductory reminder paragraph
+- Internal impact: the copy change remains isolated to the volunteer route while adding a lightweight guard against the removed paragraph returning
+
+### Version decision
+
+- Previous version: v2.9.6
+- New version: v2.9.7
+- Version type: patch stable
+- Reason for version bump: user-visible volunteer copy removal without route, content-model or hosting changes.
+
+### Validation
+
+- Checks run: volunteer regression check, local PHP preview review, PHP syntax checks where available, public-site validation script, static export regeneration and release-metadata consistency review
+- Manual checks completed: volunteer page source review, footer-required link review, Change Log Hub release review and Cloudron LAMP compatibility review
+- Known limitations: in-app browser screenshot validation was unavailable in this session, so final visual QA relied on local preview startup, source inspection and regenerated output review
+- Rollback notes: restore the removed volunteer intro paragraph in shared site data, keep the regression check aligned with the intended copy, then rerun the PHP static export to restore the previous public snapshots if needed.
+
 ## [v2.9.6] - 2026-06-10
 
 <span class="pill pill-version">Version v2.9.6</span>

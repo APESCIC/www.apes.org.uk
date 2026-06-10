@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-const APES_FALLBACK_VERSION = 'v2.9.6';
+const APES_FALLBACK_VERSION = 'v2.9.7';
 const APES_SITE_NAME = 'Association of Protecting Exotic Species CIC';
 const APES_CIC_NUMBER = '16253848';
 const APES_CONTACT_EMAIL = 'info@apes.org.uk';
@@ -1421,7 +1421,6 @@ HTML,
                 'pills' => ['Volunteer-led', 'Placements', 'Respectful support'],
                 'body_html' => <<<'HTML'
 <section class="section-shell">
-  <p>Public APES copy repeatedly explains that staff are unpaid volunteers and asks supporters to treat them with respect. Volunteering and placements form part of how APES keeps services moving across rescue, care, support and education work.</p>
   <div class="note-panel">
     <h2>Apply through the approved volunteer form</h2>
     <p>Use the APES volunteer application form to register your interest. APES will review suitability, availability, training needs and role fit before confirming any volunteer placement.</p>
@@ -2707,7 +2706,7 @@ HTML,
                     ['label' => 'Expand all releases', 'href' => '#release-list', 'variant' => 'primary'],
                     ['label' => 'View current release', 'href' => '#release-v296', 'variant' => 'secondary'],
                 ],
-                'pills' => ['Current version ' . $siteVersion, 'Patch stable', 'Volunteer spacing polish'],
+                'pills' => ['Current version ' . $siteVersion, 'Patch stable', 'Volunteer intro copy removal'],
                 'body_html' => <<<'HTML'
 <section class="section-shell">
   <div class="release-tools">
@@ -2735,52 +2734,53 @@ HTML,
 </section>
 
 <section class="section-shell" id="release-list">
-  <details class="release-card" data-release-card data-tags="current stable changed fixed public-facing" open id="release-v296">
+  <details class="release-card" data-release-card data-tags="current stable changed fixed public-facing" open id="release-v297">
     <summary>
-      <span class="release-version">v2.9.6</span>
+      <span class="release-version">v2.9.7</span>
       <span class="release-date">2026-06-10</span>
     </summary>
     <div class="release-body">
       <div class="pill-row">
-        <span class="pill pill-version">Version v2.9.6</span>
+        <span class="pill pill-version">Version v2.9.7</span>
         <span class="pill pill-status">Stable</span>
         <span class="pill pill-type">Changed</span>
         <span class="pill pill-fix">Fix</span>
       </div>
       <h3>Summary</h3>
-      <p>Restored balanced inset spacing around the first <code>/volunteer/</code> content card so the opening application panel and volunteer role cards have breathing room on every side.</p>
+      <p>Removed the opening <code>/volunteer/</code> reminder paragraph so the page now starts directly with the approved volunteer application guidance.</p>
       <h3>Detailed changes</h3>
       <ul class="clean-list">
-        <li>Added a volunteer-only first-section layout override so the opening <code>/volunteer/</code> content card now uses a grid gap and slightly larger inset padding without changing shared card spacing rules.</li>
-        <li>Added a lightweight regression check for the volunteer spacing rule to the repository validation flow so this route-scoped inset is harder to remove accidentally.</li>
-        <li>Kept volunteer content, SEO metadata, footer-required links, APES Newsroom routing, public-folder structure and Cloudron LAMP assumptions unchanged.</li>
+        <li>Removed the opening volunteer reminder paragraph from the shared site data so the route begins with the approved application panel instead of the unpaid-volunteer explainer.</li>
+        <li>Extended the volunteer regression check so validation now fails if the removed introductory copy reappears in the exported volunteer snapshot.</li>
+        <li>Kept the volunteer application route, SEO metadata, footer-required links, APES Newsroom routing, public-folder structure and Cloudron LAMP assumptions unchanged.</li>
         <li>Regenerated the public static snapshots and synchronised the version files, README, root changelog, public changelog mirror and Change Log Hub release metadata.</li>
       </ul>
       <h3>Affected areas</h3>
       <ul class="clean-list">
         <li>Website: www.apes.org.uk</li>
         <li>Page or route: <code>/volunteer/</code>, Change Log Hub, root and public release records, README current release, validation script and regenerated public HTML snapshots</li>
-        <li>Files changed: volunteer-scoped shared CSS, validation scripts, shared site data release records, VERSION files, root CHANGELOG, public CHANGELOG, README and regenerated static HTML snapshots</li>
+        <li>Files changed: volunteer page source content, validation script, shared site data release records, VERSION files, root CHANGELOG, public CHANGELOG, README and regenerated public HTML snapshots</li>
         <li>User groups affected: prospective volunteers, student-placement applicants, supporters, staff and partners using the volunteering route</li>
-        <li>Public impact: volunteer-page visitors now see consistent inset spacing around the first information block and its role cards on desktop layouts</li>
-        <li>Internal impact: the fix remains isolated to the volunteer route while adding a small regression guard to validation</li>
+        <li>Public impact: volunteer-page visitors now land directly on the application guidance without the extra introductory reminder paragraph</li>
+        <li>Internal impact: the copy change remains isolated to the volunteer route while adding a lightweight guard against the removed paragraph returning</li>
       </ul>
       <h3>Version decision</h3>
       <ul class="clean-list">
-        <li>Previous version: v2.9.5</li>
-        <li>New version: v2.9.6</li>
+        <li>Previous version: v2.9.6</li>
+        <li>New version: v2.9.7</li>
         <li>Version type: patch stable</li>
-        <li>Reason for version bump: user-visible volunteer layout spacing correction without route, content-model or hosting changes.</li>
+        <li>Reason for version bump: user-visible volunteer copy removal without route, content-model or hosting changes.</li>
       </ul>
       <h3>Validation</h3>
       <ul class="clean-list">
-        <li>Checks run: volunteer spacing regression check, local PHP preview review, PHP syntax checks where available, public-site validation script, static export regeneration and release-metadata consistency review</li>
-        <li>Manual checks completed: volunteer page source/layout review, footer-required link review, Change Log Hub release review and Cloudron LAMP compatibility review</li>
+        <li>Checks run: volunteer regression check, local PHP preview review, PHP syntax checks where available, public-site validation script, static export regeneration and release-metadata consistency review</li>
+        <li>Manual checks completed: volunteer page source review, footer-required link review, Change Log Hub release review and Cloudron LAMP compatibility review</li>
         <li>Known limitations: in-app browser screenshot validation was unavailable in this session, so final visual QA relied on local preview startup, source inspection and regenerated output review</li>
-        <li>Rollback notes: restore the volunteer first-section layout override, validation script, version files and release records, then rerun the PHP static export to restore the previous public snapshots if needed.</li>
+        <li>Rollback notes: restore the removed volunteer intro paragraph in shared site data, keep the regression check aligned with the intended copy, then rerun the PHP static export to restore the previous public snapshots if needed.</li>
       </ul>
     </div>
   </details>
+  <details class="release-card" data-release-card data-tags="stable changed fixed public-facing" id="release-v296">
   <details class="release-card" data-release-card data-tags="stable changed fixed public-facing" id="release-v295">
     <summary>
       <span class="release-version">v2.9.5</span>

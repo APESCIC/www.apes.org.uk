@@ -543,12 +543,12 @@
         <h1>Change Log Hub</h1>
         <p class="hero-summary">Track every major release for this website, including updates, fixes, compliance changes, and user-facing improvements.</p>
                   <div class="pill-row">
-                          <span class="pill">Current version v2.9.6</span>
+                          <span class="pill">Current version v2.9.7</span>
                           <span class="pill">Patch stable</span>
-                          <span class="pill">Volunteer spacing polish</span>
+                          <span class="pill">Volunteer intro copy removal</span>
                       </div>
                           <div class="action-row">
-                                        <a class="button button-primary" href="#release-list">Expand all releases</a>                                        <a class="button button-secondary" href="#release-v296">View current release</a>                      </div>
+                                        <a class="button button-primary" href="#release-list">Expand all releases</a>                                        <a class="button button-secondary" href="#release-v297">View current release</a>                      </div>
               </div>
           </section>
 
@@ -580,7 +580,53 @@
 </section>
 
 <section class="section-shell" id="release-list">
-  <details class="release-card" data-release-card data-tags="current stable changed fixed public-facing" open id="release-v296">
+  <details class="release-card" data-release-card data-tags="current stable changed fixed public-facing" open id="release-v297">
+    <summary>
+      <span class="release-version">v2.9.7</span>
+      <span class="release-date">2026-06-10</span>
+    </summary>
+    <div class="release-body">
+      <div class="pill-row">
+        <span class="pill pill-version">Version v2.9.7</span>
+        <span class="pill pill-status">Stable</span>
+        <span class="pill pill-type">Changed</span>
+        <span class="pill pill-fix">Fix</span>
+      </div>
+      <h3>Summary</h3>
+      <p>Removed the opening <code>/volunteer/</code> reminder paragraph so the page now starts directly with the approved volunteer application guidance.</p>
+      <h3>Detailed changes</h3>
+      <ul class="clean-list">
+        <li>Removed the opening volunteer reminder paragraph from the shared site data so the route begins with the approved application panel instead of the unpaid-volunteer explainer.</li>
+        <li>Extended the volunteer regression check so validation now fails if the removed introductory copy reappears in the exported volunteer snapshot.</li>
+        <li>Kept the volunteer application route, SEO metadata, footer-required links, APES Newsroom routing, public-folder structure and Cloudron LAMP assumptions unchanged.</li>
+        <li>Manually synchronised the public static snapshots and release records in this session because the local PHP export runtime was unavailable.</li>
+      </ul>
+      <h3>Affected areas</h3>
+      <ul class="clean-list">
+        <li>Website: www.apes.org.uk</li>
+        <li>Page or route: <code>/volunteer/</code>, Change Log Hub, root and public release records, README current release, validation script and regenerated public HTML snapshots</li>
+        <li>Files changed: volunteer page source content, validation script, shared site data release records, VERSION files, root CHANGELOG, public CHANGELOG, README and manually synced public HTML snapshots</li>
+        <li>User groups affected: prospective volunteers, student-placement applicants, supporters, staff and partners using the volunteering route</li>
+        <li>Public impact: volunteer-page visitors now land directly on the application guidance without the extra introductory reminder paragraph</li>
+        <li>Internal impact: the copy change remains isolated to the volunteer route while adding a lightweight guard against the removed paragraph returning</li>
+      </ul>
+      <h3>Version decision</h3>
+      <ul class="clean-list">
+        <li>Previous version: v2.9.6</li>
+        <li>New version: v2.9.7</li>
+        <li>Version type: patch stable</li>
+        <li>Reason for version bump: user-visible volunteer copy removal without route, content-model or hosting changes.</li>
+      </ul>
+      <h3>Validation</h3>
+      <ul class="clean-list">
+        <li>Checks run: volunteer regression check, source review, release-metadata consistency review and manual public snapshot sync</li>
+        <li>Manual checks completed: volunteer page source review, footer-required link review, Change Log Hub release review and Cloudron LAMP compatibility review</li>
+        <li>Known limitations: the local PHP runtime was unavailable, so full PHP linting, preview startup and automated static export regeneration could not be completed in this session.</li>
+        <li>Rollback notes: restore the removed volunteer intro paragraph in shared site data and the volunteer snapshot, keep the regression check aligned with the intended copy, then rerun the PHP static export when a local PHP runtime is available.</li>
+      </ul>
+    </div>
+  </details>
+  <details class="release-card" data-release-card data-tags="stable changed fixed public-facing" id="release-v296">
     <summary>
       <span class="release-version">v2.9.6</span>
       <span class="release-date">2026-06-10</span>
@@ -1998,7 +2044,7 @@
       </div>
       <p class="footer-bar__links">
                   <a class="footer-inline-link" href="../donate/index.html">Donate</a><span aria-hidden="true"> &middot; </span>                  <a class="footer-inline-link" href="../policies/privacy/index.html">Privacy Policy</a><span aria-hidden="true"> &middot; </span>                  <a class="footer-inline-link" href="../policies/terms-of-service/index.html">Terms of Service</a><span aria-hidden="true"> &middot; </span>                  <a class="footer-inline-link" href="../change-log-hub/index.html">Change Log Hub</a>              </p>
-      <p class="footer-bar__version">Website version: <a class="footer-inline-link" href="../change-log-hub/index.html">APES CIC v2.9.6</a> &middot; Change Log Hub</p>
+      <p class="footer-bar__version">Website version: <a class="footer-inline-link" href="../change-log-hub/index.html">APES CIC v2.9.7</a> &middot; Change Log Hub</p>
     </div>
   </div>
 </footer>
