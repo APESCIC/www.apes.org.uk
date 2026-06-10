@@ -1,0 +1,287 @@
+[
+  {
+    "file": "01-primary-logo/apes-logo-primary-1024.png",
+    "bytes": 792534,
+    "sha256_16": "7cf0c93916b89233"
+  },
+  {
+    "file": "01-primary-logo/apes-logo-primary-1024.webp",
+    "bytes": 244454,
+    "sha256_16": "1c457fa2ee4c1ac7"
+  },
+  {
+    "file": "01-primary-logo/apes-logo-primary-256.png",
+    "bytes": 58892,
+    "sha256_16": "ee99fba6d7793fad"
+  },
+  {
+    "file": "01-primary-logo/apes-logo-primary-256.webp",
+    "bytes": 24440,
+    "sha256_16": "2dcc592dc09c9663"
+  },
+  {
+    "file": "01-primary-logo/apes-logo-primary-512.png",
+    "bytes": 211181,
+    "sha256_16": "65551abca2df7028"
+  },
+  {
+    "file": "01-primary-logo/apes-logo-primary-512.webp",
+    "bytes": 75982,
+    "sha256_16": "a7f9335cebe4b43b"
+  },
+  {
+    "file": "01-primary-logo/apes-logo-primary-original-1024.png",
+    "bytes": 792534,
+    "sha256_16": "7cf0c93916b89233"
+  },
+  {
+    "file": "01-primary-logo/apes-logo-primary-trimmed-320w.png",
+    "bytes": 129858,
+    "sha256_16": "434bd5292f62d303"
+  },
+  {
+    "file": "01-primary-logo/apes-logo-primary-trimmed-320w.webp",
+    "bytes": 50344,
+    "sha256_16": "24f1a324163bc0ed"
+  },
+  {
+    "file": "01-primary-logo/apes-logo-primary-trimmed-480w.png",
+    "bytes": 283926,
+    "sha256_16": "8683d1a13c66119e"
+  },
+  {
+    "file": "01-primary-logo/apes-logo-primary-trimmed-480w.webp",
+    "bytes": 100442,
+    "sha256_16": "08fa60a8feec543e"
+  },
+  {
+    "file": "01-primary-logo/apes-logo-primary-trimmed-640w.png",
+    "bytes": 497994,
+    "sha256_16": "d2fc34aac6bf091d"
+  },
+  {
+    "file": "01-primary-logo/apes-logo-primary-trimmed-640w.webp",
+    "bytes": 169672,
+    "sha256_16": "1e3f73f321a98781"
+  },
+  {
+    "file": "01-primary-logo/apes-logo-primary-trimmed-900w.png",
+    "bytes": 940168,
+    "sha256_16": "b89fcc34829dbe36"
+  },
+  {
+    "file": "01-primary-logo/apes-logo-primary-trimmed-900w.webp",
+    "bytes": 302326,
+    "sha256_16": "8151624d21eb784b"
+  },
+  {
+    "file": "02-header-logo/apes-logo-header-220w.png",
+    "bytes": 16693,
+    "sha256_16": "ac92c1fc21ff7cf6"
+  },
+  {
+    "file": "02-header-logo/apes-logo-header-220w.webp",
+    "bytes": 8042,
+    "sha256_16": "96d31bacd24633ef"
+  },
+  {
+    "file": "02-header-logo/apes-logo-header-320w.png",
+    "bytes": 31269,
+    "sha256_16": "a1a4962a9678e190"
+  },
+  {
+    "file": "02-header-logo/apes-logo-header-320w.webp",
+    "bytes": 14118,
+    "sha256_16": "b58198fc509661f3"
+  },
+  {
+    "file": "02-header-logo/apes-logo-header-440w.png",
+    "bytes": 53589,
+    "sha256_16": "116a9dc388943022"
+  },
+  {
+    "file": "02-header-logo/apes-logo-header-440w.webp",
+    "bytes": 19042,
+    "sha256_16": "175a4f1328f95f7c"
+  },
+  {
+    "file": "02-header-logo/apes-logo-header-660w.png",
+    "bytes": 107357,
+    "sha256_16": "3232d5b6e26519e1"
+  },
+  {
+    "file": "02-header-logo/apes-logo-header-660w.webp",
+    "bytes": 41412,
+    "sha256_16": "34013cd111825f73"
+  },
+  {
+    "file": "02-header-logo/apes-logo-header-880w.png",
+    "bytes": 171396,
+    "sha256_16": "ef706abcc1ee075a"
+  },
+  {
+    "file": "02-header-logo/apes-logo-header-880w.webp",
+    "bytes": 63768,
+    "sha256_16": "7f78c4a4e7a7cb3e"
+  },
+  {
+    "file": "02-header-logo/apes-logo-header-source-440x250.png",
+    "bytes": 53589,
+    "sha256_16": "116a9dc388943022"
+  },
+  {
+    "file": "02-header-logo/apes-logo-navbar-40h.png",
+    "bytes": 5613,
+    "sha256_16": "d5f6090dd3f79c64"
+  },
+  {
+    "file": "02-header-logo/apes-logo-navbar-40h.webp",
+    "bytes": 3116,
+    "sha256_16": "dde59a86626dc3c7"
+  },
+  {
+    "file": "02-header-logo/apes-logo-navbar-56h.png",
+    "bytes": 10070,
+    "sha256_16": "c5b0163bc5448f0f"
+  },
+  {
+    "file": "02-header-logo/apes-logo-navbar-56h.webp",
+    "bytes": 5048,
+    "sha256_16": "fd16c37f753a9524"
+  },
+  {
+    "file": "02-header-logo/apes-logo-navbar-72h.png",
+    "bytes": 15417,
+    "sha256_16": "e02eb0b78a3947ca"
+  },
+  {
+    "file": "02-header-logo/apes-logo-navbar-72h.webp",
+    "bytes": 7586,
+    "sha256_16": "2c4b13fb4295b258"
+  },
+  {
+    "file": "02-header-logo/apes-logo-navbar-96h.png",
+    "bytes": 24502,
+    "sha256_16": "edcf90b1796fc177"
+  },
+  {
+    "file": "02-header-logo/apes-logo-navbar-96h.webp",
+    "bytes": 12386,
+    "sha256_16": "4c0b123ec7ed1deb"
+  },
+  {
+    "file": "03-favicons-app-icons/android-chrome-192x192.png",
+    "bytes": 44548,
+    "sha256_16": "4f0b252e2a2e6934"
+  },
+  {
+    "file": "03-favicons-app-icons/android-chrome-512x512.png",
+    "bytes": 258026,
+    "sha256_16": "f2015f37a0619c9a"
+  },
+  {
+    "file": "03-favicons-app-icons/apes-favicon-source-512.png",
+    "bytes": 195729,
+    "sha256_16": "5db46d28fa506198"
+  },
+  {
+    "file": "03-favicons-app-icons/apes-logo-raster.svg",
+    "bytes": 344231,
+    "sha256_16": "d2370cbb7f35ae28"
+  },
+  {
+    "file": "03-favicons-app-icons/apple-touch-icon.png",
+    "bytes": 40172,
+    "sha256_16": "ce6373b13dde28de"
+  },
+  {
+    "file": "03-favicons-app-icons/favicon-128x128.png",
+    "bytes": 22695,
+    "sha256_16": "df57062488c7a8c5"
+  },
+  {
+    "file": "03-favicons-app-icons/favicon-16x16.png",
+    "bytes": 671,
+    "sha256_16": "b962180d447cc17c"
+  },
+  {
+    "file": "03-favicons-app-icons/favicon-256x256.png",
+    "bytes": 76156,
+    "sha256_16": "50a9fc3f5c90780c"
+  },
+  {
+    "file": "03-favicons-app-icons/favicon-32x32.png",
+    "bytes": 2099,
+    "sha256_16": "202259027e07b714"
+  },
+  {
+    "file": "03-favicons-app-icons/favicon-384x384.png",
+    "bytes": 156495,
+    "sha256_16": "0fade43cf81fa753"
+  },
+  {
+    "file": "03-favicons-app-icons/favicon-48x48.png",
+    "bytes": 4151,
+    "sha256_16": "8a654271d8cbc025"
+  },
+  {
+    "file": "03-favicons-app-icons/favicon-64x64.png",
+    "bytes": 6783,
+    "sha256_16": "849675c011b41550"
+  },
+  {
+    "file": "03-favicons-app-icons/favicon-96x96.png",
+    "bytes": 13802,
+    "sha256_16": "10dfc75bb4cae189"
+  },
+  {
+    "file": "03-favicons-app-icons/favicon.ico",
+    "bytes": 695,
+    "sha256_16": "ef091a7ad3fd88fa"
+  },
+  {
+    "file": "04-social-sharing/apes-og-image-1200x630.jpg",
+    "bytes": 119563,
+    "sha256_16": "b5d781536d8c31bd"
+  },
+  {
+    "file": "04-social-sharing/apes-og-image-1200x630.png",
+    "bytes": 515527,
+    "sha256_16": "28b12d9c52a21e45"
+  },
+  {
+    "file": "04-social-sharing/apes-social-square-1080.jpg",
+    "bytes": 187688,
+    "sha256_16": "25353b3d8514084f"
+  },
+  {
+    "file": "04-social-sharing/apes-twitter-card-1200x600.jpg",
+    "bytes": 115702,
+    "sha256_16": "322280ef6d40cc33"
+  },
+  {
+    "file": "04-social-sharing/apes-twitter-card-1200x600.png",
+    "bytes": 467247,
+    "sha256_16": "1bf6dd90a79bb14b"
+  },
+  {
+    "file": "05-implementation/html-head-snippet.html",
+    "bytes": 943,
+    "sha256_16": "c808aea31ad9e385"
+  },
+  {
+    "file": "05-implementation/logo-css-snippet.css",
+    "bytes": 225,
+    "sha256_16": "bacf47797e619c9b"
+  },
+  {
+    "file": "05-implementation/site.webmanifest",
+    "bytes": 514,
+    "sha256_16": "0a1f0cc2988fdfa0"
+  },
+  {
+    "file": "README.md",
+    "bytes": 1561,
+    "sha256_16": "3303ba7fbf23125d"
+  }
+]

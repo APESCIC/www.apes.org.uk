@@ -1,0 +1,9 @@
+.footer-inline-link {
+  font-weight: 800;
+}
+
+.site-footer .footer-inline-link,
+.site-footer a {
+  text-decoration-thickness: 0.12em;
+  text-underline-offset: 0.16em;
+}

@@ -1,0 +1,17 @@
+.page-shell {
+  display: grid;
+  grid-template-columns: minmax(0, 2.3fr) minmax(18rem, 0.95fr);
+  gap: 1.5rem;
+  padding-bottom: 3rem;
+}
+
+.page-body,
+.page-sidebar {
+  padding: 1.25rem;
+}
+
+.page-sidebar__shared {
+  display: grid;
+  gap: 1rem;
+}
+

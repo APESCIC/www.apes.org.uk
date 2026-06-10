@@ -1,0 +1,37 @@
+.release-card {
+  overflow: hidden;
+}
+
+.release-card summary {
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: center;
+  list-style: none;
+  padding: 1rem 1.25rem;
+  font-weight: 800;
+  background: rgba(221, 243, 239, 0.55);
+}
+
+.release-card summary::-webkit-details-marker {
+  display: none;
+}
+
+.release-version {
+  color: var(--apes-deep-teal);
+}
+
+.release-date {
+  color: rgba(38, 50, 56, 0.72);
+  font-size: 0.95rem;
+}
+
+.release-body {
+  padding: 1.25rem;
+}
+
+.policy-stack {
+  display: grid;
+  gap: 1rem;
+}

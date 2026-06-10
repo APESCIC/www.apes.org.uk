@@ -1,0 +1,30 @@
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: "Segoe UI", "Aptos", "Helvetica Neue", sans-serif;
+  color: var(--apes-charcoal);
+  background:
+    radial-gradient(circle at top left, rgba(221, 243, 239, 0.94), transparent 32rem),
+    radial-gradient(circle at top right, rgba(242, 233, 216, 0.75), transparent 26rem),
+    var(--apes-off-white);
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+a {
+  color: var(--apes-deep-teal);
+}
+
+a:hover,
+a:focus-visible {
+  color: var(--apes-primary-teal);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+

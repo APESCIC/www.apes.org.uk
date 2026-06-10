@@ -1,0 +1,6 @@
+{
+  "chatgpt.openOnStartup": true,
+  "chatgpt.runCodexInWindowsSubsystemForLinux": true,
+  "liveServer.settings.root": "/public",
+  "liveServer.settings.port": 5500
+}
