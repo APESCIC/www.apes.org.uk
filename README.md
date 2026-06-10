@@ -1,9 +1,9 @@
 ## Current release
 
-- Version: `v2.8.8`
+- Version: `v2.8.9`
 - Release date: `2026-06-10`
-- Release impact: replaced the volunteering-page primary hero call to action with the approved Sheltermanager application form link so prospective volunteers can go straight to the external application route.
-- Operational note: shared PHP remains the source of truth; this pass updated the volunteering CTA and release metadata in the repo, but the standard PHP static export still could not be rerun in this environment because `php` is unavailable, so generated HTML snapshots and rendered footer version text still need resynchronising in a PHP-enabled environment before deployment.
+- Release impact: expanded the volunteering page into the main APES volunteer information hub, added practical rescue role categories and kept the approved Sheltermanager application form as the primary application route.
+- Operational note: shared PHP remains the source of truth; this pass updated volunteering content, release metadata and generated public snapshots manually because `php` is unavailable in this environment. A PHP-enabled static export should still be run before deployment for full generated-output assurance.
 
 <p align="center">
   <a href="https://www.apes.org.uk/" target="_blank" rel="noopener noreferrer">

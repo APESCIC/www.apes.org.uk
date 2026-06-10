@@ -540,12 +540,12 @@
         <h1>Change Log Hub</h1>
         <p class="hero-summary">Track every major release for this website, including updates, fixes, compliance changes, and user-facing improvements.</p>
                   <div class="pill-row">
-                          <span class="pill">Current version v2.8.6</span>
+                          <span class="pill">Current version v2.8.9</span>
                           <span class="pill">Patch stable</span>
                           <span class="pill">Public-facing</span>
                       </div>
                           <div class="action-row">
-                                        <a class="button button-primary" href="#release-list">Expand all releases</a>                                        <a class="button button-secondary" href="#release-v286">View current release</a>                      </div>
+                                        <a class="button button-primary" href="#release-list">Expand all releases</a>                                        <a class="button button-secondary" href="#release-v289">View current release</a>                      </div>
               </div>
           </section>
 
@@ -577,7 +577,55 @@
 </section>
 
 <section class="section-shell" id="release-list">
-  <details class="release-card" data-release-card data-tags="current stable changed fixed accessibility public-facing" open id="release-v286">
+  <details class="release-card" data-release-card data-tags="current stable changed fixed accessibility public-facing" open id="release-v289">
+    <summary>
+      <span class="release-version">v2.8.9</span>
+      <span class="release-date">2026-06-10</span>
+    </summary>
+    <div class="release-body">
+      <div class="pill-row">
+        <span class="pill pill-version">Version v2.8.9</span>
+        <span class="pill pill-status">Stable</span>
+        <span class="pill pill-type">Changed</span>
+        <span class="pill pill-fix">Fix</span>
+        <span class="pill pill-accessibility">Accessibility</span>
+      </div>
+      <h3>Summary</h3>
+      <p>Expanded the volunteering page into the main APES volunteer information hub, added practical rescue role categories and kept the approved Sheltermanager application form as the primary application route.</p>
+      <h3>Detailed changes</h3>
+      <ul class="clean-list">
+        <li>Expanded the shared <code>/volunteer/</code> page definition with a prominent in-page application call to action that opens the approved Sheltermanager volunteer form.</li>
+        <li>Added practical rescue volunteer role examples covering animal care, cleaning, feeding, enrichment, housekeeping, transport, fostering, adoption support, public enquiries, fundraising, education, retail, maintenance, administration, photography, student placements and specialist support.</li>
+        <li>Confirmed public volunteering recruitment and support links continue to point to <code>/volunteer/</code>, while the operational Volunteer intranet link remains unchanged.</li>
+        <li>Kept the volunteering page route, canonical URL, sitemap entry, robots rules, footer-required links, APES Newsroom routing and Cloudron LAMP hosting assumptions unchanged.</li>
+        <li>Synchronised the canonical version files, README current-release notes, root changelog, public changelog mirror, Change Log Hub source and generated public snapshots to <code>v2.8.9</code>.</li>
+      </ul>
+      <h3>Affected areas</h3>
+      <ul class="clean-list">
+        <li>Website: www.apes.org.uk</li>
+        <li>Page or route: <code>/volunteer/</code>, Change Log Hub, root and public release records, README current release and generated public HTML snapshots</li>
+        <li>Files changed: shared site data, generated volunteer page, generated Change Log Hub, generated HTML footer version text, VERSION files, root CHANGELOG, public CHANGELOG and README</li>
+        <li>User groups affected: prospective volunteers, student-placement applicants, supporters, staff and partners using the volunteering route</li>
+        <li>Public impact: visitors can review common APES rescue volunteer role types and apply through the approved external form from the volunteer page.</li>
+        <li>Internal impact: APES has one clearer volunteer information hub while preserving the existing external Sheltermanager application workflow.</li>
+      </ul>
+      <h3>Version decision</h3>
+      <ul class="clean-list">
+        <li>Previous version: v2.8.8</li>
+        <li>New version: v2.8.9</li>
+        <li>Version type: patch stable</li>
+        <li>Reason for version bump: public-facing volunteering content expansion and generated-output synchronisation without route, SEO or hosting restructuring.</li>
+      </ul>
+      <h3>Validation</h3>
+      <ul class="clean-list">
+        <li>Checks run: <code>git pull</code>, volunteer-link audit, release-metadata consistency review, sitemap and robots verification-only review, footer-link source review, branded error-page footer review and Cloudron LAMP compatibility review</li>
+        <li>Manual checks completed: volunteering hero and in-page application CTA review, public volunteering link review, canonical/title/meta/robots review for <code>/volunteer/</code>, sitemap entry review, APES Newsroom routing review and generated footer version review</li>
+        <li>Known limitations: <code>php</code> is not installed in this implementation environment, so the standard static export and full rendered browser QA could not be completed here; generated snapshots were synchronised manually from the shared source content.</li>
+        <li>Rollback notes: restore the previous volunteering body content, generated snapshots, version files and release records, then rerun the standard PHP export in a PHP-enabled environment if the expanded volunteering hub needs to be reversed.</li>
+      </ul>
+    </div>
+  </details>
+  <details class="release-card" data-release-card data-tags="stable changed fixed accessibility public-facing" id="release-v286">
     <summary>
       <span class="release-version">v2.8.6</span>
       <span class="release-date">2026-06-04</span>
@@ -1570,7 +1618,7 @@
       </div>
       <p class="footer-bar__links">
                   <a class="footer-inline-link" href="/donate/">Donate</a><span aria-hidden="true"> &middot; </span>                  <a class="footer-inline-link" href="/policies/privacy/">Privacy Policy</a><span aria-hidden="true"> &middot; </span>                  <a class="footer-inline-link" href="/policies/terms-of-service/">Terms of Service</a><span aria-hidden="true"> &middot; </span>                  <a class="footer-inline-link" href="/change-log-hub/">Change Log Hub</a>              </p>
-      <p class="footer-bar__version">Website version: <a class="footer-inline-link" href="/change-log-hub/">APES CIC v2.8.6</a> &middot; Change Log Hub</p>
+      <p class="footer-bar__version">Website version: <a class="footer-inline-link" href="/change-log-hub/">APES CIC v2.8.9</a> &middot; Change Log Hub</p>
     </div>
   </div>
 </footer>
