@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-const APES_FALLBACK_VERSION = 'v2.8.3';
+const APES_FALLBACK_VERSION = 'v2.8.8';
 const APES_SITE_NAME = 'Association of Protecting Exotic Species CIC';
 const APES_CIC_NUMBER = '16253848';
 const APES_CONTACT_EMAIL = 'info@apes.org.uk';
@@ -1415,7 +1415,7 @@ HTML,
                 'hero_title' => 'Help APES deliver specialist support with practical, respectful volunteering.',
                 'hero_summary' => 'Find out how volunteering and placements help APES deliver welfare-led services, public support and day-to-day care.',
                 'hero_actions' => [
-                    ['label' => 'Ask about volunteering', 'href' => '/contact/', 'variant' => 'primary'],
+                    ['label' => 'Apply to volunteer', 'href' => 'https://service.sheltermanager.com/asmservice?account=apes&method=online_form_html&formid=72', 'external' => true, 'variant' => 'primary'],
                     ['label' => 'Open help centre', 'href' => 'https://help.apes.org.uk/', 'external' => true, 'variant' => 'secondary'],
                 ],
                 'pills' => ['Volunteer-led', 'Placements', 'Respectful support'],
@@ -2642,7 +2642,7 @@ HTML,
                 'hero_summary' => 'Track every major release for this website, including updates, fixes, compliance changes, and user-facing improvements.',
                 'hero_actions' => [
                     ['label' => 'Expand all releases', 'href' => '#release-list', 'variant' => 'primary'],
-                    ['label' => 'View current release', 'href' => '#release-v287', 'variant' => 'secondary'],
+                    ['label' => 'View current release', 'href' => '#release-v288', 'variant' => 'secondary'],
                 ],
                 'pills' => ['Current version ' . $siteVersion, 'Patch stable', 'Public-facing'],
                 'body_html' => <<<'HTML'
@@ -2672,7 +2672,55 @@ HTML,
 </section>
 
 <section class="section-shell" id="release-list">
-  <details class="release-card" data-release-card data-tags="current stable changed fixed accessibility public-facing" open id="release-v287">
+  <details class="release-card" data-release-card data-tags="current stable changed fixed accessibility public-facing" open id="release-v288">
+    <summary>
+      <span class="release-version">v2.8.8</span>
+      <span class="release-date">2026-06-10</span>
+    </summary>
+    <div class="release-body">
+      <div class="pill-row">
+        <span class="pill pill-version">Version v2.8.8</span>
+        <span class="pill pill-status">Stable</span>
+        <span class="pill pill-type">Changed</span>
+        <span class="pill pill-fix">Fix</span>
+        <span class="pill pill-accessibility">Accessibility</span>
+      </div>
+      <h3>Summary</h3>
+      <p>Replaced the volunteering-page primary hero call to action with the approved Sheltermanager volunteer application form so applicants can go straight to the correct external route.</p>
+      <h3>Detailed changes</h3>
+      <ul class="clean-list">
+        <li>Updated the shared <code>/volunteer/</code> page definition so the primary hero button now opens the approved Sheltermanager volunteering form instead of sending visitors to the general contact page.</li>
+        <li>Kept the volunteering page route, title, meta description, canonical URL, help-centre secondary action, sitemap entry, robots rules, footer-required links and APES Newsroom routing unchanged.</li>
+        <li>Synchronised the canonical version files, README current-release notes, root changelog, public changelog mirror and Change Log Hub source to <code>v2.8.8</code>.</li>
+        <li>Confirmed Cloudron LAMP compatibility remains unchanged because this is a shared PHP content update with no new runtime dependency or hosting requirement.</li>
+        <li>The standard PHP static export could not be rerun in this environment because <code>php</code> is unavailable, so generated HTML snapshots and rendered footer version text still need resynchronising in a PHP-enabled environment before deployment.</li>
+      </ul>
+      <h3>Affected areas</h3>
+      <ul class="clean-list">
+        <li>Website: www.apes.org.uk</li>
+        <li>Page or route: <code>/volunteer/</code>, Change Log Hub, root and public release records, README current release and generated public HTML snapshots once re-exported</li>
+        <li>Files changed: shared site data, VERSION files, root CHANGELOG, public CHANGELOG and README</li>
+        <li>User groups affected: prospective volunteers, student-placement applicants, supporters, staff and partners using the volunteering route</li>
+        <li>Public impact: visitors can now use the main volunteering hero button to open the approved external application form directly</li>
+        <li>Internal impact: the volunteering CTA now points to the approved Sheltermanager workflow while release records move forward to the next stable patch version</li>
+      </ul>
+      <h3>Version decision</h3>
+      <ul class="clean-list">
+        <li>Previous version: v2.8.7</li>
+        <li>New version: v2.8.8</li>
+        <li>Version type: patch stable</li>
+        <li>Reason for version bump: small public-facing volunteering CTA change without any route, SEO or metadata restructuring</li>
+      </ul>
+      <h3>Validation</h3>
+      <ul class="clean-list">
+        <li>Checks run: <code>git pull</code>, volunteer page source review, release-metadata consistency review, sitemap and robots verification-only review, footer-link source review and Cloudron LAMP compatibility review</li>
+        <li>Manual checks completed: volunteering hero-action source audit, canonical/title/meta/robots review for <code>/volunteer/</code>, sitemap entry review, footer required-link review, APES Newsroom routing review and Change Log Hub source review</li>
+        <li>Known limitations: <code>php</code> is not installed in this implementation environment, so the standard static export, full rendered browser QA and generated HTML snapshot resynchronisation could not be completed here</li>
+        <li>Rollback notes: restore the previous volunteering hero action, version files and release records, then rerun the standard PHP export in a PHP-enabled environment if the direct application CTA needs to be reversed</li>
+      </ul>
+    </div>
+  </details>
+  <details class="release-card" data-release-card data-tags="stable changed fixed accessibility public-facing" id="release-v287">
     <summary>
       <span class="release-version">v2.8.7</span>
       <span class="release-date">2026-06-09</span>

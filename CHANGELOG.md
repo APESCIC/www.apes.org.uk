@@ -2,6 +2,49 @@
 
 Track every major release for this website, including updates, fixes, compliance changes, and user-facing improvements.
 
+## [v2.8.8] - 2026-06-10
+
+<span class="pill pill-version">Version v2.8.8</span>
+<span class="pill pill-status">Stable</span>
+<span class="pill pill-type">Changed</span>
+<span class="pill pill-fix">Fix</span>
+<span class="pill pill-accessibility">Accessibility</span>
+
+### Summary
+
+Replaced the volunteering-page primary hero call to action with the approved Sheltermanager volunteer application form so applicants can go straight to the correct external route.
+
+### Detailed changes
+
+- Updated the shared `/volunteer/` page definition so the primary hero button now opens the approved Sheltermanager volunteering form instead of sending visitors to the general contact page.
+- Kept the volunteering page route, title, meta description, canonical URL, help-centre secondary action, sitemap entry, robots rules, footer-required links and APES Newsroom routing unchanged.
+- Synchronised the canonical version files, README current-release notes, root changelog, public changelog mirror and Change Log Hub source to `v2.8.8`.
+- Confirmed Cloudron LAMP compatibility remains unchanged because this is a shared PHP content update with no new runtime dependency or hosting requirement.
+- The standard PHP static export could not be rerun in this environment because `php` is unavailable, so generated HTML snapshots and rendered footer version text still need resynchronising in a PHP-enabled environment before deployment.
+
+### Affected areas
+
+- Website: www.apes.org.uk
+- Page or route: `/volunteer/`, Change Log Hub, root and public release records, README current release and generated public HTML snapshots once re-exported
+- Files changed: shared site data, VERSION files, root CHANGELOG, public CHANGELOG and README
+- User groups affected: prospective volunteers, student-placement applicants, supporters, staff and partners using the volunteering route
+- Public impact: visitors can now use the main volunteering hero button to open the approved external application form directly
+- Internal impact: the volunteering CTA now points to the approved Sheltermanager workflow while release records move forward to the next stable patch version
+
+### Version decision
+
+- Previous version: v2.8.7
+- New version: v2.8.8
+- Version type: patch stable
+- Reason for version bump: small public-facing volunteering CTA change without any route, SEO or metadata restructuring
+
+### Validation
+
+- Checks run: `git pull`, volunteer page source review, release-metadata consistency review, sitemap and robots verification-only review, footer-link source review and Cloudron LAMP compatibility review
+- Manual checks completed: volunteering hero-action source audit, canonical/title/meta/robots review for `/volunteer/`, sitemap entry review, footer required-link review, APES Newsroom routing review and Change Log Hub source review
+- Known limitations: `php` is not installed in this implementation environment, so the standard static export, full rendered browser QA and generated HTML snapshot resynchronisation could not be completed here
+- Rollback notes: restore the previous volunteering hero action, version files and release records, then rerun the standard PHP export in a PHP-enabled environment if the direct application CTA needs to be reversed
+
 ## [v2.8.7] - 2026-06-09
 
 <span class="pill pill-version">Version v2.8.7</span>
