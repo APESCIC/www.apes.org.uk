@@ -2,6 +2,49 @@
 
 Track every major release for this website, including updates, fixes, compliance changes, and user-facing improvements.
 
+## [v2.9.0] - 2026-06-10
+
+<span class="pill pill-version">Version v2.9.0</span>
+<span class="pill pill-status">Stable</span>
+<span class="pill pill-type">Added</span>
+<span class="pill pill-type">Changed</span>
+<span class="pill pill-accessibility">Accessibility</span>
+
+### Summary
+
+Refactored the public website theme into modular CSS and browser-module JavaScript while adding a manual VS Code static export task for served-root preview workflows.
+
+### Detailed changes
+
+- Created the shared `/theme/` asset structure with ordered stylesheet imports for utilities, layouts, components, responsive rules and animation states.
+- Moved shared browser behaviour into `/theme/js/` ES module entrypoints covering navigation, popup links, the development notice, release filters and the route finder.
+- Updated the PHP renderer and footer to load `/theme/site.css` and `/theme/js/site.js` while leaving production PHP routing unchanged for Cloudron LAMP.
+- Kept compatibility shims at the previous `/assets/css/site.css` and `/assets/js/site.js` paths for stale snapshots during the transition release.
+- Added a manual VS Code task to run `php public/scripts/export-static-site.php` and documented the edit, export and served-root preview workflow.
+
+### Affected areas
+
+- Website: www.apes.org.uk
+- Page or route: shared theme assets, shared PHP rendering, generated static snapshots, Change Log Hub, root and public release records, README and footer version display
+- Files changed: shared CSS and JS asset structure, shared renderer and footer asset references, VS Code task configuration, VERSION files, root CHANGELOG, public CHANGELOG, README, Change Log Hub source and generated static HTML snapshots
+- User groups affected: maintainers previewing the APES website locally, plus public visitors receiving the same shared styling and interactions after deployment
+- Public impact: no route, content or journey change is intended; the public site should keep the same visual treatment and interaction behaviour through the new theme entrypoints.
+- Internal impact: APES maintainers now have a clearer modular theme structure and a documented manual static export task for VS Code preview work.
+
+### Version decision
+
+- Previous version: v2.8.9
+- New version: v2.9.0
+- Version type: minor stable
+- Reason for version bump: development workflow and shared asset-structure addition across the website without route, content, database or production hosting changes.
+
+### Validation
+
+- Checks run: `git pull`, modular CSS reconstruction review, asset-reference search, generated snapshot asset-path synchronisation, release-metadata consistency review, footer-link source review and Cloudron LAMP compatibility review
+- Manual checks completed: PHP renderer and footer asset-reference review, VS Code task review, APES Newsroom routing verification-only review, sitemap and robots verification-only review, branded 403/404/500 source-page review and static preview workflow documentation review
+- Known limitations: `php` is not installed in this implementation environment, so PHP syntax checks, the standard static exporter and full served-browser QA still need to run in a PHP-enabled environment before deployment.
+- Rollback notes: restore the previous shared asset references, remove the `/theme/` entrypoints and VS Code task, restore the previous version files and release records, then rerun the standard PHP export in a PHP-enabled environment.
+
 ## [v2.8.9] - 2026-06-10
 
 <span class="pill pill-version">Version v2.8.9</span>

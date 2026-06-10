@@ -1,0 +1,25 @@
+:root {
+  --apes-primary-teal: #008c8c;
+  --apes-deep-teal: #005f5f;
+  --apes-soft-mint: #ddf3ef;
+  --apes-leaf-green: #2e7d32;
+  --apes-rescue-sage: #a7c957;
+  --apes-petcare-aqua: #26b6c8;
+  --apes-warm-sand: #f2e9d8;
+  --apes-charcoal: #263238;
+  --apes-off-white: #f7faf9;
+  --apes-alert-amber: #f9a825;
+  --apes-donation-coral: #e76f51;
+  --apes-border: rgba(0, 95, 95, 0.14);
+  --apes-shadow: 0 26px 70px rgba(18, 40, 40, 0.1);
+  --site-width: min(90vw, 120rem);
+  --radius-large: 1.5rem;
+  --radius-medium: 1rem;
+  --radius-small: 0.7rem;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}

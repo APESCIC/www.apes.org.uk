@@ -1,0 +1,30 @@
+.tick-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  gap: 0.8rem;
+}
+
+.tick-list li::before {
+  content: "•";
+  display: inline-block;
+  margin-right: 0.6rem;
+  color: var(--apes-leaf-green);
+  font-weight: 800;
+}
+
+.clean-list li + li {
+  margin-top: 0.55rem;
+}
+
+.tick-list li::before {
+  content: "\2022";
+}
+
+.text-link {
+  font-weight: 700;
+}
+
+.search-form {
+  display: grid;

@@ -596,7 +596,7 @@ if ($breadcrumb_schema !== null) {
   <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicons/favicon-16x16.png" />
   <link rel="apple-touch-icon" href="/assets/favicons/apple-touch-icon.png" />
   <link rel="manifest" href="/site.webmanifest" />
-  <link rel="stylesheet" href="<?= htmlspecialchars(apes_asset('css/site.css'), ENT_QUOTES) ?>" />
+  <link rel="stylesheet" href="/theme/site.css" />
   <script type="application/ld+json"><?= json_encode($schema_graph, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT) ?></script>
   <script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" defer></script>
   <script>

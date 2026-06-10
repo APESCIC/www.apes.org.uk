@@ -1,0 +1,70 @@
+.info-card,
+.service-card,
+.metric-card,
+.pricing-card,
+.quote-card,
+.policy-block,
+.sponsor-card {
+  padding: 1.1rem;
+}
+
+.service-card {
+  background: linear-gradient(180deg, #fff, rgba(221, 243, 239, 0.45));
+}
+
+.metric-card strong {
+  display: block;
+  font-size: 1.15rem;
+  margin-bottom: 0.35rem;
+}
+
+.metric-card span {
+  color: rgba(38, 50, 56, 0.84);
+}
+
+.price {
+  margin: 0.35rem 0 0.75rem;
+  color: var(--apes-donation-coral);
+  font-weight: 800;
+  font-size: 1.3rem;
+}
+
+.quote-card {
+  border-left: 0.35rem solid var(--apes-primary-teal);
+}
+
+.quote-card p {
+  margin: 0;
+  font-style: italic;
+}
+
+.sponsor-card {
+  display: grid;
+  align-content: start;
+  gap: 0.85rem;
+}
+
+.sponsor-card p {
+  margin: 0;
+}
+
+.sponsor-card-logo-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 8rem;
+  padding: 1rem;
+  border-radius: 1rem;
+  background: rgba(247, 250, 249, 0.9);
+  border: 1px solid rgba(0, 95, 95, 0.08);
+}
+
+.sponsor-card-logo-dark {
+  background: #2f373d;
+}
+
+.sponsor-card-logo {
+  max-height: 4.5rem;
+  width: auto;
+  object-fit: contain;
+}

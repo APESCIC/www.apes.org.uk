@@ -1,9 +1,9 @@
 ## Current release
 
-- Version: `v2.8.9`
+- Version: `v2.9.0`
 - Release date: `2026-06-10`
-- Release impact: expanded the volunteering page into the main APES volunteer information hub, added practical rescue role categories and kept the approved Sheltermanager application form as the primary application route.
-- Operational note: shared PHP remains the source of truth; this pass updated volunteering content, release metadata and generated public snapshots manually because `php` is unavailable in this environment. A PHP-enabled static export should still be run before deployment for full generated-output assurance.
+- Release impact: refactored the public website theme into modular CSS and browser-module JavaScript, added a manual VS Code static export task and kept production PHP routing intact for Cloudron LAMP.
+- Operational note: shared PHP remains the source of truth; serve `public/` as the local preview web root, run the manual VS Code export task after source changes, and use a PHP-enabled environment for final static export and syntax checks before deployment.
 
 <p align="center">
   <a href="https://www.apes.org.uk/" target="_blank" rel="noopener noreferrer">
@@ -165,11 +165,31 @@ The exact structure may vary by framework, but the repository should stay easy t
 └── SECURITY.md
 ```
 
+### Current theme and preview structure
+
+This repository currently serves the production website from `public/` as static files and PHP under Apache-compatible Cloudron LAMP hosting.
+
+```text
+public/
+├── assets/              # Images, favicons, logos and one-release CSS/JS compatibility shims
+├── includes/            # PHP rendering, site data, header and footer source of truth
+├── scripts/
+│   └── export-static-site.php
+└── theme/
+    ├── animations/      # Focus, hover and transition states
+    ├── components/      # Buttons, cards, navigation, route finder, releases and popups
+    ├── js/
+    │   ├── modules/     # Browser-native ES modules by behaviour
+    │   └── site.js      # Only JavaScript entrypoint loaded by rendered pages
+    ├── layouts/         # Header, hero, page, grid and footer layout rules
+    ├── responsive/      # Breakpoint-specific rules
+    ├── utilities/       # Variables, reset, base helpers and screen-reader utilities
+    └── site.css         # Only stylesheet entrypoint loaded by rendered pages
+```
+
 ---
 
 ## 🚀 Getting started
-
-> Replace the commands below with the confirmed project stack once the framework and package manager are finalised.
 
 ### 1. Clone the repository
 
@@ -178,30 +198,36 @@ git clone https://github.com/APESCIC/www.apes.org.uk.git
 cd www.apes.org.uk
 ```
 
-### 2. Install dependencies
+### 2. Confirm PHP is available for exports
 
 ```bash
-npm install
+php -v
 ```
 
-### 3. Create local environment file
+### 3. Regenerate static snapshots
 
 ```bash
-cp .env.example .env.local
+php public/scripts/export-static-site.php
 ```
 
-### 4. Start the development server
+In VS Code, use the task **APES: Export static HTML snapshots** to run the same exporter manually.
+
+### 4. Preview from the public web root
 
 ```bash
-npm run dev
+php -S localhost:8080 -t public
 ```
 
-### 5. Run checks before committing
+Open `http://localhost:8080/` and test representative routes. Root-relative links such as `/theme/site.css`, `/donate/` and `/change-log-hub/` expect `public/` to be served as the web root; raw `file://` opening is not the supported preview mode.
+
+### 5. Run checks before committing where PHP is available
 
 ```bash
-npm run lint
-npm run test
-npm run build
+php -l public/includes/render-page.php
+php -l public/includes/footer.php
+php -l public/includes/site-data.php
+php -l public/scripts/export-static-site.php
+php public/scripts/export-static-site.php
 ```
 
 ---

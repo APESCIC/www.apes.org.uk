@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-const APES_FALLBACK_VERSION = 'v2.8.9';
+const APES_FALLBACK_VERSION = 'v2.9.0';
 const APES_SITE_NAME = 'Association of Protecting Exotic Species CIC';
 const APES_CIC_NUMBER = '16253848';
 const APES_CONTACT_EMAIL = 'info@apes.org.uk';
@@ -2705,9 +2705,9 @@ HTML,
                 'hero_summary' => 'Track every major release for this website, including updates, fixes, compliance changes, and user-facing improvements.',
                 'hero_actions' => [
                     ['label' => 'Expand all releases', 'href' => '#release-list', 'variant' => 'primary'],
-                    ['label' => 'View current release', 'href' => '#release-v289', 'variant' => 'secondary'],
+                    ['label' => 'View current release', 'href' => '#release-v290', 'variant' => 'secondary'],
                 ],
-                'pills' => ['Current version ' . $siteVersion, 'Patch stable', 'Public-facing'],
+                'pills' => ['Current version ' . $siteVersion, 'Minor stable', 'Public-facing'],
                 'body_html' => <<<'HTML'
 <section class="section-shell">
   <div class="release-tools">
@@ -2735,7 +2735,55 @@ HTML,
 </section>
 
 <section class="section-shell" id="release-list">
-  <details class="release-card" data-release-card data-tags="current stable changed fixed accessibility public-facing" open id="release-v289">
+  <details class="release-card" data-release-card data-tags="current stable added changed accessibility public-facing" open id="release-v290">
+    <summary>
+      <span class="release-version">v2.9.0</span>
+      <span class="release-date">2026-06-10</span>
+    </summary>
+    <div class="release-body">
+      <div class="pill-row">
+        <span class="pill pill-version">Version v2.9.0</span>
+        <span class="pill pill-status">Stable</span>
+        <span class="pill pill-type">Added</span>
+        <span class="pill pill-type">Changed</span>
+        <span class="pill pill-accessibility">Accessibility</span>
+      </div>
+      <h3>Summary</h3>
+      <p>Refactored the public website theme into modular CSS and browser-module JavaScript while adding a manual VS Code static export task for served-root preview workflows.</p>
+      <h3>Detailed changes</h3>
+      <ul class="clean-list">
+        <li>Created the shared <code>/theme/</code> asset structure with ordered stylesheet imports for utilities, layouts, components, responsive rules and animation states.</li>
+        <li>Moved shared browser behaviour into <code>/theme/js/</code> ES module entrypoints covering navigation, popup links, the development notice, release filters and the route finder.</li>
+        <li>Updated the PHP renderer and footer to load <code>/theme/site.css</code> and <code>/theme/js/site.js</code> while leaving production PHP routing unchanged for Cloudron LAMP.</li>
+        <li>Kept compatibility shims at the previous <code>/assets/css/site.css</code> and <code>/assets/js/site.js</code> paths for stale snapshots during the transition release.</li>
+        <li>Added a manual VS Code task to run <code>php public/scripts/export-static-site.php</code> and documented the edit, export and served-root preview workflow.</li>
+      </ul>
+      <h3>Affected areas</h3>
+      <ul class="clean-list">
+        <li>Website: www.apes.org.uk</li>
+        <li>Page or route: shared theme assets, shared PHP rendering, generated static snapshots, Change Log Hub, root and public release records, README and footer version display</li>
+        <li>Files changed: shared CSS and JS asset structure, shared renderer and footer asset references, VS Code task configuration, VERSION files, root CHANGELOG, public CHANGELOG, README, Change Log Hub source and generated static HTML snapshots</li>
+        <li>User groups affected: maintainers previewing the APES website locally, plus public visitors receiving the same shared styling and interactions after deployment</li>
+        <li>Public impact: no route, content or journey change is intended; the public site should keep the same visual treatment and interaction behaviour through the new theme entrypoints.</li>
+        <li>Internal impact: APES maintainers now have a clearer modular theme structure and a documented manual static export task for VS Code preview work.</li>
+      </ul>
+      <h3>Version decision</h3>
+      <ul class="clean-list">
+        <li>Previous version: v2.8.9</li>
+        <li>New version: v2.9.0</li>
+        <li>Version type: minor stable</li>
+        <li>Reason for version bump: development workflow and shared asset-structure addition across the website without route, content, database or production hosting changes.</li>
+      </ul>
+      <h3>Validation</h3>
+      <ul class="clean-list">
+        <li>Checks run: <code>git pull</code>, modular CSS reconstruction review, asset-reference search, generated snapshot asset-path synchronisation, release-metadata consistency review, footer-link source review and Cloudron LAMP compatibility review</li>
+        <li>Manual checks completed: PHP renderer and footer asset-reference review, VS Code task review, APES Newsroom routing verification-only review, sitemap and robots verification-only review, branded 403/404/500 source-page review and static preview workflow documentation review</li>
+        <li>Known limitations: <code>php</code> is not installed in this implementation environment, so PHP syntax checks, the standard static exporter and full served-browser QA still need to run in a PHP-enabled environment before deployment.</li>
+        <li>Rollback notes: restore the previous shared asset references, remove the <code>/theme/</code> entrypoints and VS Code task, restore the previous version files and release records, then rerun the standard PHP export in a PHP-enabled environment.</li>
+      </ul>
+    </div>
+  </details>
+  <details class="release-card" data-release-card data-tags="stable changed fixed accessibility public-facing" id="release-v289">
     <summary>
       <span class="release-version">v2.8.9</span>
       <span class="release-date">2026-06-10</span>

@@ -1,0 +1,93 @@
+.eyebrow {
+  margin: 0 0 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: inherit;
+  opacity: 0.82;
+}
+
+.pill-row,
+.action-row,
+.filter-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.pill-row {
+  margin-top: 1rem;
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.45rem 0.85rem;
+  border-radius: 999px;
+  background: rgba(221, 243, 239, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  color: inherit;
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
+.release-card .pill {
+  color: var(--apes-deep-teal);
+  background: var(--apes-soft-mint);
+  border-color: rgba(0, 95, 95, 0.18);
+}
+
+.pill-fix,
+.pill-compliance {
+  background: rgba(242, 233, 216, 0.92);
+}
+
+.button,
+.chip-button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.45rem;
+  text-decoration: none;
+  font-weight: 800;
+  border-radius: 999px;
+  border: 1px solid transparent;
+  padding: 0.9rem 1.25rem;
+  transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease;
+}
+
+.button:hover,
+.button:focus-visible,
+.chip-button:hover,
+.chip-button:focus-visible {
+  transform: translateY(-1px);
+}
+
+.button-primary {
+  background: var(--apes-donation-coral);
+  color: #fff;
+}
+
+.button-secondary,
+.chip-button {
+  background: #fff;
+  color: var(--apes-deep-teal);
+  border-color: var(--apes-border);
+}
+
+.chip-button.is-active {
+  background: var(--apes-primary-teal);
+  color: #fff;
+}
+
+.action-row,
+.action-stack {
+  margin-top: 1.2rem;
+}
+
+.action-stack {
+  display: grid;
+  gap: 0.8rem;
+}

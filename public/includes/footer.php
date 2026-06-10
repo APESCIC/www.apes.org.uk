@@ -103,4 +103,4 @@
     };
   })(document, "script");
 </script>
-<script src="<?= htmlspecialchars(apes_asset('js/site.js'), ENT_QUOTES) ?>" defer></script>
+<script type="module" src="/theme/js/site.js" defer></script>

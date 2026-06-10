@@ -1,0 +1,34 @@
+.alert-band,
+.cta-band {
+  padding: 1.25rem;
+  border-radius: var(--radius-large);
+  background: linear-gradient(135deg, rgba(0, 140, 140, 0.08), rgba(167, 201, 87, 0.2));
+  border: 1px solid rgba(0, 95, 95, 0.12);
+}
+
+.cta-band h2,
+.section-heading h2,
+.note-panel h2,
+.policy-block h2 {
+  margin-top: 0;
+}
+
+.section-heading {
+  margin-bottom: 1rem;
+}
+
+.section-heading h2,
+.note-panel h2,
+.mini-panel h2,
+.policy-block h2,
+.info-card h3,
+.service-card h3,
+.metric-card strong,
+.pricing-card h3,
+.sponsor-card h3 {
+  color: var(--apes-deep-teal);
+}
+
+.split-panel {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
