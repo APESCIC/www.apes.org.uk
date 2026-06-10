@@ -1,9 +1,11 @@
-  gap: 1.2rem;
+.card-grid,
+.sponsor-grid,
+.metrics-grid {
+  display: grid;
 }
 
 .card-grid {
-  display: grid;
-  gap: 1rem;
+  gap: 1.45rem;
 }
 
 .card-grid-two,
@@ -16,7 +18,11 @@
   grid-template-columns: repeat(3, minmax(0, 1fr));
 }
 
+.card-grid-three {
+  gap: 1.6rem;
+}
+
+.sponsor-grid,
 .metrics-grid {
-  display: grid;
-  gap: 1rem;
+  gap: 1.45rem;
 }

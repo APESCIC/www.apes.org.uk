@@ -1,9 +1,9 @@
 ## Current release
 
-- Version: `v2.9.3`
+- Version: `v2.9.4`
 - Release date: `2026-06-10`
-- Release impact: added direct `file://` rendering support for exported static HTML snapshots while preserving the APES `public/` web-root and Cloudron LAMP hosting assumptions.
-- Operational note: shared PHP remains the source of truth; use **APES: Preview PHP source site** for rendered-route checks, **APES: Preview static public snapshots** for HTTP output review, direct `file://` only for exported snapshot inspection, run `scripts/validate-public-site.ps1` before staging, and package only the `public/` bundle for Cloudron upload.
+- Release impact: expanded shared card spacing across content, sidebar, sponsor, metric and footer card patterns so crowded stacks read more clearly across desktop and mobile layouts.
+- Operational note: shared PHP remains the source of truth; use **APES: Preview PHP source site** for rendered-route checks, **APES: Preview static public snapshots** for HTTP output review, run `scripts/validate-public-site.ps1` before staging, and package only the `public/` bundle for Cloudron upload.
 
 <p align="center">
   <a href="https://www.apes.org.uk/" target="_blank" rel="noopener noreferrer">

@@ -2,6 +2,48 @@
 
 Track every major release for this website, including updates, fixes, compliance changes, and user-facing improvements.
 
+## [v2.9.4] - 2026-06-10
+
+<span class="pill pill-version">Version v2.9.4</span>
+<span class="pill pill-status">Stable</span>
+<span class="pill pill-type">Changed</span>
+<span class="pill pill-fix">Fix</span>
+
+### Summary
+
+Expanded shared card spacing across the website so content, sidebar, sponsor, metric and footer cards feel less cramped on desktop and stacked mobile layouts.
+
+### Detailed changes
+
+- Increased shared grid gaps for reusable card layouts so stacked and multi-column card groups keep more consistent breathing room.
+- Enlarged the base card padding and normalized internal card spacing for shared content-card patterns without changing public HTML structure or routes.
+- Aligned refreshed sidebar, release and footer card spacing so heavier card surfaces no longer visually compress their content.
+- Added responsive spacing tuning below the main grid-collapse breakpoints so single-column card stacks remain comfortably separated.
+- Regenerated the public static snapshots so the exported site reflects the updated shared spacing and release metadata consistently.
+
+### Affected areas
+
+- Website: www.apes.org.uk
+- Page or route: volunteer page card stacks, shared content cards, service cards, sidebar mini-panels, footer cards, Change Log Hub, root and public release records, README and generated public HTML snapshots
+- Files changed: shared CSS, shared site data release records, VERSION files, root CHANGELOG, public CHANGELOG, README and regenerated static HTML snapshots
+- User groups affected: supporters, adopters, service users, volunteers, partners and general public visitors
+- Public impact: shared cards now have clearer spacing and improved readability across desktop, tablet and mobile views
+- Internal impact: the shared card system is more consistent, reducing the need for page-specific spacing overrides
+
+### Version decision
+
+- Previous version: v2.9.3
+- New version: v2.9.4
+- Version type: patch stable
+- Reason for version bump: user-visible shared layout spacing fix without route, content-model or hosting changes.
+
+### Validation
+
+- Checks run: shared CSS diff review, PHP syntax checks where available, public-site validation script, static export regeneration and release-metadata consistency review
+- Manual checks completed: volunteer page card spacing review, shared service/sidebar/footer card source review, footer-required link review, Change Log Hub release review and Cloudron LAMP compatibility review
+- Known limitations: final QA in this session relies on local preview and regenerated output review rather than exhaustive route-by-route browser screenshots
+- Rollback notes: restore the previous shared CSS, version files and release records, then rerun the PHP static export to restore the prior public snapshots if needed.
+
 ## [v2.9.3] - 2026-06-10
 
 <span class="pill pill-version">Version v2.9.3</span>

@@ -116,6 +116,15 @@ body {
   z-index: 1;
 }
 
+.note-panel,
+.mini-panel,
+.release-card {
+  display: grid;
+  align-content: start;
+  gap: 1rem;
+  padding: 1.35rem;
+}
+
 .spotlight-band {
   display: grid;
   grid-template-columns: minmax(0, 1.2fr) minmax(18rem, 1fr);
