@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-const APES_FALLBACK_VERSION = 'v2.9.4';
+const APES_FALLBACK_VERSION = 'v2.9.5';
 const APES_SITE_NAME = 'Association of Protecting Exotic Species CIC';
 const APES_CIC_NUMBER = '16253848';
 const APES_CONTACT_EMAIL = 'info@apes.org.uk';
@@ -2705,9 +2705,9 @@ HTML,
                 'hero_summary' => 'Track every major release for this website, including updates, fixes, compliance changes, and user-facing improvements.',
                 'hero_actions' => [
                     ['label' => 'Expand all releases', 'href' => '#release-list', 'variant' => 'primary'],
-                    ['label' => 'View current release', 'href' => '#release-v293', 'variant' => 'secondary'],
+                    ['label' => 'View current release', 'href' => '#release-v295', 'variant' => 'secondary'],
                 ],
-                'pills' => ['Current version ' . $siteVersion, 'Patch stable', 'File preview support'],
+                'pills' => ['Current version ' . $siteVersion, 'Patch stable', 'Volunteer spacing polish'],
                 'body_html' => <<<'HTML'
 <section class="section-shell">
   <div class="release-tools">
@@ -2735,7 +2735,54 @@ HTML,
 </section>
 
 <section class="section-shell" id="release-list">
-  <details class="release-card" data-release-card data-tags="current stable changed fixed public-facing" open id="release-v294">
+  <details class="release-card" data-release-card data-tags="current stable changed fixed public-facing" open id="release-v295">
+    <summary>
+      <span class="release-version">v2.9.5</span>
+      <span class="release-date">2026-06-10</span>
+    </summary>
+    <div class="release-body">
+      <div class="pill-row">
+        <span class="pill pill-version">Version v2.9.5</span>
+        <span class="pill pill-status">Stable</span>
+        <span class="pill pill-type">Changed</span>
+        <span class="pill pill-fix">Fix</span>
+      </div>
+      <h3>Summary</h3>
+      <p>Tightened the <code>/volunteer/</code> page layout so the desktop sidebar no longer leaves a large empty card, the main content has a better column balance and the volunteer panels use more controlled spacing.</p>
+      <h3>Detailed changes</h3>
+      <ul class="clean-list">
+        <li>Added volunteer-only desktop layout overrides so the main content column is wider and the sidebar column is slimmer without changing shared sitewide card spacing.</li>
+        <li>Removed the volunteer sidebar wrapper's stretched card appearance so the smaller sidebar panels sit directly on the page instead of inside a tall empty container.</li>
+        <li>Reduced padding and internal gaps for the volunteer application panel, the "Before you apply" panel and the lower split note cards to better match the screenshot feedback.</li>
+        <li>Kept the volunteer route content, links, SEO metadata, APES Newsroom routing, footer-required links and Cloudron LAMP assumptions unchanged.</li>
+        <li>Regenerated the public static snapshots and synchronised the version files, README, root changelog, public changelog mirror and Change Log Hub release metadata.</li>
+      </ul>
+      <h3>Affected areas</h3>
+      <ul class="clean-list">
+        <li>Website: www.apes.org.uk</li>
+        <li>Page or route: <code>/volunteer/</code>, Change Log Hub, root and public release records, README current release and regenerated public HTML snapshots</li>
+        <li>Files changed: volunteer-scoped shared CSS, shared site data release records, VERSION files, root CHANGELOG, public CHANGELOG, README and regenerated static HTML snapshots</li>
+        <li>User groups affected: prospective volunteers, student-placement applicants, supporters, staff and partners using the volunteering route</li>
+        <li>Public impact: volunteer-page visitors now get a tighter desktop layout with less empty sidebar space and more balanced content panels</li>
+        <li>Internal impact: the volunteer spacing correction stays isolated to that route instead of broadening the shared card system again</li>
+      </ul>
+      <h3>Version decision</h3>
+      <ul class="clean-list">
+        <li>Previous version: v2.9.4</li>
+        <li>New version: v2.9.5</li>
+        <li>Version type: patch stable</li>
+        <li>Reason for version bump: user-visible volunteer-page layout correction without route, content-model or hosting changes.</li>
+      </ul>
+      <h3>Validation</h3>
+      <ul class="clean-list">
+        <li>Checks run: local PHP preview review, PHP syntax checks where available, public-site validation script, static export regeneration and release-metadata consistency review</li>
+        <li>Manual checks completed: volunteer page source/layout review, footer-required link review, Change Log Hub release review and Cloudron LAMP compatibility review</li>
+        <li>Known limitations: in-app browser screenshot validation was unavailable in this session, so final visual QA relied on local preview startup, source inspection and regenerated output review</li>
+        <li>Rollback notes: restore the volunteer page layout CSS overrides, version files and release records, then rerun the PHP static export to restore the prior public snapshots if needed.</li>
+      </ul>
+    </div>
+  </details>
+  <details class="release-card" data-release-card data-tags="stable changed fixed public-facing" id="release-v294">
     <summary>
       <span class="release-version">v2.9.4</span>
       <span class="release-date">2026-06-10</span>

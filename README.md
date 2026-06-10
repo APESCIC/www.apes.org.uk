@@ -1,8 +1,8 @@
 ## Current release
 
-- Version: `v2.9.4`
+- Version: `v2.9.5`
 - Release date: `2026-06-10`
-- Release impact: expanded shared card spacing across content, sidebar, sponsor, metric and footer card patterns so crowded stacks read more clearly across desktop and mobile layouts.
+- Release impact: tightened the `/volunteer/` desktop layout so the sidebar no longer leaves a large empty card, the main content gets more room, and the volunteer information panels feel more intentional.
 - Operational note: shared PHP remains the source of truth; use **APES: Preview PHP source site** for rendered-route checks, **APES: Preview static public snapshots** for HTTP output review, run `scripts/validate-public-site.ps1` before staging, and package only the `public/` bundle for Cloudron upload.
 
 <p align="center">

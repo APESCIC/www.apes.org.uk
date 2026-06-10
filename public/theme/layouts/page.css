@@ -15,3 +15,14 @@
   gap: 1.2rem;
 }
 
+body[data-page-key="volunteer"] .page-shell {
+  grid-template-columns: minmax(0, 2.55fr) minmax(16.5rem, 0.8fr);
+  align-items: start;
+  gap: 1.25rem;
+}
+
+body[data-page-key="volunteer"] .page-sidebar {
+  align-self: start;
+  padding: 0;
+}
+

@@ -1,3 +1,45 @@
+## [v2.9.5] - 2026-06-10
+
+<span class="pill pill-version">Version v2.9.5</span>
+<span class="pill pill-status">Stable</span>
+<span class="pill pill-type">Changed</span>
+<span class="pill pill-fix">Fix</span>
+
+### Summary
+
+Tightened the `/volunteer/` page layout so the desktop sidebar no longer leaves a large empty card, the main content has a better column balance and the volunteer panels use more controlled spacing.
+
+### Detailed changes
+
+- Added volunteer-only desktop layout overrides so the main content column is wider and the sidebar column is slimmer without changing shared sitewide card spacing.
+- Removed the volunteer sidebar wrapper's stretched card appearance so the smaller sidebar panels sit directly on the page instead of inside a tall empty container.
+- Reduced padding and internal gaps for the volunteer application panel, the "Before you apply" panel and the lower split note cards to better match the screenshot feedback.
+- Kept the volunteer route content, links, SEO metadata, APES Newsroom routing, footer-required links and Cloudron LAMP assumptions unchanged.
+- Regenerated the public static snapshots and synchronised the version files, README, root changelog, public changelog mirror and Change Log Hub release metadata.
+
+### Affected areas
+
+- Website: www.apes.org.uk
+- Page or route: `/volunteer/`, Change Log Hub, root and public release records, README current release and regenerated public HTML snapshots
+- Files changed: volunteer-scoped shared CSS, shared site data release records, VERSION files, root CHANGELOG, public CHANGELOG, README and regenerated static HTML snapshots
+- User groups affected: prospective volunteers, student-placement applicants, supporters, staff and partners using the volunteering route
+- Public impact: volunteer-page visitors now get a tighter desktop layout with less empty sidebar space and more balanced content panels
+- Internal impact: the volunteer spacing correction stays isolated to that route instead of broadening the shared card system again
+
+### Version decision
+
+- Previous version: v2.9.4
+- New version: v2.9.5
+- Version type: patch stable
+- Reason for version bump: user-visible volunteer-page layout correction without route, content-model or hosting changes.
+
+### Validation
+
+- Checks run: local PHP preview review, PHP syntax checks where available, public-site validation script, static export regeneration and release-metadata consistency review
+- Manual checks completed: volunteer page source/layout review, footer-required link review, Change Log Hub release review and Cloudron LAMP compatibility review
+- Known limitations: in-app browser screenshot validation was unavailable in this session, so final visual QA relied on local preview startup, source inspection and regenerated output review
+- Rollback notes: restore the volunteer page layout CSS overrides, version files and release records, then rerun the PHP static export to restore the prior public snapshots if needed.
+
 ## [v2.9.4] - 2026-06-10
 
 <span class="pill pill-version">Version v2.9.4</span>

@@ -125,6 +125,37 @@ body {
   padding: 1.35rem;
 }
 
+body[data-page-key="volunteer"] .page-sidebar {
+  background: transparent;
+  border-color: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
+  gap: 1.1rem;
+}
+
+body[data-page-key="volunteer"] .page-sidebar__shared {
+  gap: 1rem;
+}
+
+body[data-page-key="volunteer"] .page-body > .section-shell:first-child > .note-panel {
+  gap: 0.8rem;
+  padding: 1.15rem 1.2rem;
+}
+
+body[data-page-key="volunteer"] .page-body > .note-panel {
+  gap: 0.75rem;
+  padding: 1.1rem 1.2rem;
+}
+
+body[data-page-key="volunteer"] .split-panel {
+  gap: 1rem;
+}
+
+body[data-page-key="volunteer"] .split-panel > .note-panel {
+  gap: 0.75rem;
+  padding: 1.1rem 1.2rem;
+}
+
 .spotlight-band {
   display: grid;
   grid-template-columns: minmax(0, 1.2fr) minmax(18rem, 1fr);
