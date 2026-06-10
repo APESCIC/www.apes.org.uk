@@ -1,36 +1,42 @@
-# APES CIC GitHub Repository Agent Instructions
+# APES CIC VS Code, Codex And GitHub Agent Instructions
 
-Use these instructions as the default GitHub repository working profile for APES CIC repositories maintained by the Association of Protecting Exotic Species CIC.
+Use these instructions as the default working profile for APES CIC website repositories and related codebases maintained by the Association of Protecting Exotic Species CIC.
 
-These instructions apply to GitHub-hosted repository work, especially APES CIC website repositories, documentation, release records, pull requests, GitHub Issues, repository maintenance guidance, and direct GitHub updates.
+These instructions combine the APES CIC GitHub repository workflow, Codex working profile, and Visual Studio Code workflow. They apply when an agent is working in VS Code, Codex, GitHub, or a VS Code-based coding environment on website, repository, documentation, release, changelog, SEO, sitemap, footer, Newsroom, compliance, hosting, issue, pull request, or maintenance tasks.
 
-Use this file as repository-level guidance for keeping GitHub work planned, traceable, documented, validated, and aligned with APES CIC website standards. If a repository contains its own `AGENTS.md`, `README.md`, contribution guide, or task-specific instruction, follow that local guidance as well. If local guidance conflicts with this profile, ask the user before weakening any APES CIC compliance, changelog, Change Log Hub, versioning, SEO, sitemap, footer, error-page, or documentation requirement.
+If a repository contains its own `AGENTS.md`, `README.md`, contribution guide, `.vscode/` settings, workspace file, task-specific instruction, or issue or pull request guidance, follow that local guidance as well. If local guidance conflicts with this profile, ask the user before weakening any APES CIC compliance, changelog, Change Log Hub, versioning, SEO, sitemap, footer, error-page, issue-tracking, Cloudron LAMP hosting, or documentation requirement.
 
 ---
 
 ## Project
 
-This is a website project. Make changes on a new branch unless told otherwise.
+This is a website project unless repository evidence clearly says otherwise.
+
+Make changes on a new branch only after the user confirms the branch plan. Do not create, switch, commit, push, open pull requests, merge, deploy, or close issues unless the user has explicitly asked for that action or clearly agreed to it.
 
 ## Setup
 
-Run:
+Inspect the repository before running commands. If the repository uses Node and provides a package manifest, run:
 
 ```bash
 npm install
 ```
 
-## Local development
+If `npm install` fails, report the exact terminal error output, stop dependent actions, and offer concrete remediation options such as installing missing packages, using a compatible Node version, or asking the user for environment details.
 
-Run:
+## Local Development
+
+When the repository provides the script, run:
 
 ```bash
 npm run dev
 ```
 
-## Checks before completion
+If the repository uses a different stack or script, follow the actual repository evidence and document the command used.
 
-Run:
+## Checks Before Completion
+
+When these scripts exist, run:
 
 ```bash
 npm run lint
@@ -38,140 +44,187 @@ npm run typecheck
 npm run test:e2e
 ```
 
+If a script is missing, inspect `package.json` and run the closest repository-supported validation command instead. If validation cannot be run, state why, name the commands attempted, and describe what was checked manually.
+
 ## Safety
 
-Do not edit production secrets.
-Do not deploy automatically.
-Do not commit unless explicitly asked.
-Show the diff and test results first.
+Do not edit production secrets. Do not add secrets to the repository. Do not deploy automatically.
+
+If build, test, install, or deployment-related commands require credentials or environment variables that are not available, do not invent values. Report which credentials or variables are missing and ask the user to provide secure access or run the remote step.
+
+Before any commit or push, show the final diff summary and validation results. Commit only after explicit approval. Push only after explicit approval.
 
 ---
 
 ## 1. Operating Principles
 
-Before changing a repository, understand the repository structure, the user's request, and the likely public, operational, compliance, or maintenance impact of the work.
+Before changing a repository, understand the repository structure, the user's request, the current branch or remote state where relevant, and the likely public, operational, hosting, compliance, release, or maintenance impact of the work.
 
-Make the smallest safe change that satisfies the request while preserving APES CIC standards, accessibility, release records, documentation quality, and website reliability.
+Make the smallest safe change that satisfies the request while preserving APES CIC standards, accessibility, release records, documentation quality, website reliability, and the approved hosting model.
 
-Do not invent repository facts, deployment processes, issue numbers, version numbers, routes, branch names, technical requirements, or third-party services. If required context is missing, inspect the repository first. If the repository does not contain enough evidence, explain the assumption and choose the safest general approach.
+Prefer narrow edits. If the requested fix requires broad refactoring, shared component changes, architecture changes, more than three files, or more than about 200 changed lines, pause and explain the scope before proceeding unless the user already approved that scale.
+
+Do not invent repository facts, deployment processes, issue numbers, version numbers, routes, branch names, technical requirements, hosting support, runtimes, third-party services, or test results. Inspect first. If the repository does not contain enough evidence, explain the assumption and choose the safest general approach.
 
 Do not remove or weaken mandatory APES CIC requirements unless the user explicitly asks for that specific removal.
 
 ---
 
-## 2. Primary Repository Rule
+## 2. Workspace And VS Code Working Method
 
-Every repository update must be planned, versioned where applicable, recorded, validated, documented, and reflected in the relevant GitHub Issues where issue tracking is being used.
+When starting work in VS Code or a VS Code-based environment:
 
-Before completing repository work, always check whether the following are required:
+1. Inspect the repository tree, local `AGENTS.md`, `README.md`, package scripts, nearest config files, `.vscode/` folder, workspace files, and task-specific instructions before editing.
+2. If the workspace is a local clone and the user has not confirmed it is current, ask whether to pull the latest changes before planning.
+3. Check whether there is an existing GitHub Issue. Ask for the issue number or link if one exists.
+4. If no issue is provided, offer clear options: create a new issue, draft issue text for the user, or proceed without an issue for a trivial correction.
+5. Verify release state and repository rules before editing. Check versions, changelogs, Change Log Hub records, README current-release notes, generated output, hosting notes, and repository-specific instructions where present.
+6. Confirm the branch path before editing when branch work is needed.
+7. Use VS Code Explorer, workspace search, diagnostics, source-control diff views, and integrated terminal tasks to ground the work. If running outside interactive VS Code, use CLI equivalents such as `rg`, `git status`, `git diff`, package scripts, linters, typecheckers, and test runners.
+8. Save intended changes before running validation or summarising work.
+9. Treat VS Code warnings, TypeScript errors, lint diagnostics, test failures, and failed terminal tasks as signals to investigate before completing work.
 
-1. A website Change Log Hub page update.
-2. A root-level `CHANGELOG.md` update.
-3. A `/public/CHANGELOG.md` update where the repository has a `/public/` folder, so public website release records match the root changelog.
-4. A canonical version update where the repository uses versioning.
-5. A GitHub Issue start, progress, or completion update.
-6. A root-level `README.md` update describing the change, release impact, setup impact, and operational notes.
-7. Any repository-specific documentation updates needed to keep setup, workflow, governance, deployment, and maintenance guidance accurate.
-8. For website repositories, an APES website brand and feature standards review.
-9. For website repositories, an APES Newsroom routing check for any news, update, announcement, newsletter, footer, navigation, or article-related change.
-10. For website repositories, an APES universal footer compliance check.
-11. For website repositories, a footer link check for the website donation page, Privacy Policy page, Terms of Service page, and Change Log Hub.
-12. For website repositories, SEO metadata, sitemap, robots or noindex, and error-page checks whenever routes, navigation, deployment behavior, public pages, or website structure change.
-13. Generated-output, release metadata, static snapshot, or footer version display updates where the repository produces public build output.
+Before broad edits, check whether the workspace defines:
 
-A changelog entry is required when work changes public website content, intranet website content, page structure, forms, buttons, links, menus, navigation, CTAs, styling, layout, themes, branding, visual assets, accessibility, SEO, analytics, tracking, CRM, automation, embedded tools, third-party integrations, scripts, widgets, site configuration, build configuration, deployment configuration, generated website output, security, privacy, safeguarding, legal, compliance, finance, governance, HR, animal welfare content, or any user-visible bug fix.
-
-If there is any uncertainty, assume documentation, changelog, version, release-record, and issue-tracking checks are required.
+- `.vscode/settings.json`
+- `.vscode/tasks.json`
+- `.vscode/launch.json`
+- `.code-workspace` files
+- lint, format, build, test, typecheck, or end-to-end test configuration
+- repository scripts that should be preferred over ad hoc commands
 
 ---
 
-## 3. Start-of-Planning Release Verification
+## 3. GitHub Repository Workflow
 
-At the start of planning any APES CIC website or repository change, verify the current release state before deciding scope or implementation order.
+For GitHub-backed work, follow a traceable lifecycle unless the user gives a different workflow:
 
-For GitHub-only work, inspect the repository files and record the verified release state in the issue, pull request, review comment, or final summary. For Codex-led work, this verification must happen in Codex planning before edits begin.
+1. Understand the request and inspect the repository.
+2. Confirm whether to pull latest changes when working in a local clone.
+3. Identify or create the GitHub Issue workflow with the user's approval.
+4. Triage scope, priority, affected files or routes, acceptance criteria, labels, assignees, milestone, blockers, release impact, compliance impact, hosting impact, branch strategy, and pull request expectations.
+5. Verify release state, changelog state, README current-release notes, generated output, hosting constraints, and repository-specific instructions.
+6. Confirm branch strategy before creating or switching branches.
+7. Record issue start or progress notes when issue tracking is being used.
+8. Implement the smallest safe change.
+9. Update documentation, changelog, version, Change Log Hub, README, generated output, SEO, sitemap, footer, Newsroom, error pages, and hosting records where required.
+10. Run relevant checks and inspect the final diff.
+11. Prepare a completion summary and issue or pull request update where applicable.
+12. Provide a concise proposed commit message before committing.
+13. Commit only after approval.
+14. Push only after approval.
+15. Open or update a pull request only after approval or when the agreed workflow requires it.
+16. Merge only after the user asks, required checks and reviews are satisfied, release records are aligned, and issue-closing behavior is confirmed.
+17. Close issues only after user approval or an agreed workflow clearly allows closure.
 
-Check, where present:
+Ask concise questions before GitHub actions that change remote state. Do not create issues, create or switch branches, commit, push, open pull requests, merge, or close issues without explicit permission.
+
+---
+
+## 4. Primary Website Rule
+
+Every APES CIC website update must be planned, versioned where relevant, recorded, validated, checked against APES website standards, checked against APES Newsroom routing rules where relevant, checked against APES universal footer standards, checked against the approved hosting model, and reflected in relevant GitHub Issues where issue tracking is being used.
+
+Before completing website or repository work, check whether the following are required:
+
+1. Website Change Log Hub update.
+2. Root-level `CHANGELOG.md` update.
+3. `/public/CHANGELOG.md` update where a `/public/` folder exists.
+4. Canonical version update where the repository uses versioning.
+5. GitHub Issue start, progress, completion, or closure update where issue tracking is used.
+6. Root-level `README.md` update describing release, setup, hosting, operational, or maintenance impact.
+7. Repository-specific documentation updates.
+8. APES brand and feature standards review.
+9. APES Newsroom routing check for news, update, announcement, newsletter, footer, navigation, or article-related changes.
+10. APES universal footer compliance check.
+11. Footer link check for donation, Privacy Policy, Terms of Service, and Change Log Hub links.
+12. SEO metadata, sitemap, robots or noindex, and error-page checks when routes, navigation, deployment behavior, public pages, or website structure change.
+13. Generated-output, release metadata, static snapshot, or footer version display updates where the repository produces public build output.
+14. Cloudron LAMP compatibility review where the website is expected to run on Cloudron LAMP.
+
+If there is uncertainty, assume documentation, changelog, version, release-record, hosting compatibility, and issue-tracking checks are required until repository evidence or the user says otherwise.
+
+---
+
+## 5. Release Verification
+
+At the start of planning any APES CIC website or repository change, verify current release state before deciding scope or implementation order.
+
+Inspect, where present:
 
 - root `VERSION`
 - `/public/VERSION`
 - root `CHANGELOG.md`
 - `/public/CHANGELOG.md`
-- the website Change Log Hub page or its source data
+- website Change Log Hub page or source data
 - README current-release notes
 - release metadata files or site data that render footer version text, Change Log Hub entries, public release cards, or generated static snapshots
+- hosting and deployment notes, including Cloudron LAMP assumptions where relevant
 
 The planning note should identify:
 
 - current version
 - beta or stable status
 - expected version bump type: major, minor, or patch
-- required Change Log Hub, changelog, README, version, generated-output, and issue updates
-- whether GitHub Issues need start, progress, or completion updates
-- any mismatched version or release records that must be fixed before completion
-- any uncertainty that must be resolved before completing the change
+- required Change Log Hub, changelog, README, version, generated-output, hosting, and issue updates
+- whether GitHub Issues need start, progress, completion, or closure updates
+- any mismatched version, release records, hosting assumptions, or runtime requirements that must be fixed before completion
 
-Do not complete the task while `VERSION`, `/public/VERSION`, Change Log Hub records, root changelog, public changelog, README current-release notes, footer version text, or generated output disagree, unless the user has explicitly asked to defer that sync.
-
----
-
-## 4. GitHub Workflow And Audit Trail
-
-GitHub work must be easy to review after the fact. Keep repository changes tied to clear records of what changed, why it changed, and what validation was completed.
-
-Use GitHub Issues as the operational record for repository work:
-
-- Link work to an existing issue where one exists.
-- Create or recommend an issue when work has no clear tracking record and is more than a trivial correction.
-- Record meaningful status updates for started, paused, blocked, or completed work.
-- Note any documentation, changelog, release, SEO, sitemap, footer, error-page, generated-output, or compliance follow-up needed.
-- Do not mark issue-related work as complete until the repository evidence supports completion.
-
-For pull requests, release notes, merge summaries, or GitHub issue comments, include:
-
-- the user-facing or operational change
-- affected files, routes, features, or repository areas
-- documentation and changelog updates completed or still required
-- release-record, generated-output, version, and README updates completed or still required
-- validation performed, including build, test, link, accessibility, SEO, sitemap, footer, Newsroom, robots, and error-page checks where applicable
-- known limitations, deferred work, or follow-up issues
-
-When a GitHub change affects the work plan, ask concise questions before acting. Do not create issues, create or switch branches, open pull requests, merge, or close issues unless the user has asked for that action or clearly agreed to it.
-
-Preferred GitHub coordination checkpoints:
-
-1. At the start: identify whether there is an existing GitHub Issue for the work, or whether one should be opened.
-2. During planning: identify the branch or pull request where the work should happen.
-3. During implementation: update or prepare an issue progress note only when the user has asked for issue updates, when the repository workflow expects them, or when scope changes, the work becomes blocked, or a meaningful milestone is reached.
-4. After validation: summarize the files changed, checks run, release-record updates, issue status, and any remaining risks.
-5. Before publishing or merging: confirm the requested branch, pull request, merge method, and issue-closing behavior.
+Do not complete the task while version records, changelogs, Change Log Hub records, README current-release notes, footer version text, generated output, or documented hosting requirements disagree unless the user explicitly asks to defer that sync.
 
 ---
 
-## 5. Repository Structure And Documentation Expectations
+## 6. README Maintenance
 
-Keep repository instructions consistent with the actual repository structure and operating workflow.
+Use `APESCIC/Website-Repo-Template` `README.md` as the default source template for APES CIC website repository README files.
 
-When the repository is a website repository, treat the root-level `/public/` folder as the website source and deployment content folder unless repository-specific documentation clearly states otherwise.
+When a website repository has no root `README.md`, create one from the template and adapt it to the actual repository before completion. Do not leave placeholders such as `{{PROJECT_NAME}}`, `{{PUBLIC_WEBSITE_URL}}`, `{{VERSION}}`, `{{INSTALL_COMMAND}}`, or `{{STATUS}}` unresolved unless the value is genuinely unknown and the final summary or issue update names the missing information.
+
+Every APES CIC website repository README should include a centered badge row near the top when repository evidence supports it. Badges should be relevant to the actual repository and may include website, status, theme, accessibility, version, licence, build or CI, deployment host, tests, coverage, framework, package, security, maintenance, documentation, hosting, or review status.
+
+Maintain existing useful README content. Refresh setup commands, environment variables, development workflow, repository structure, website areas, connected services, testing expectations, documentation standards, security, compliance, roadmap, release impact, hosting notes, Cloudron LAMP compatibility, and operational maintenance guidance when the change affects them.
+
+Mention README creation, material updates, or intentional deferral in GitHub Issue updates, pull request descriptions, release notes, and final summaries.
+
+---
+
+## 7. Repository Structure
+
+For APES CIC website repositories, treat the root-level `/public/` folder as the website source and deployment content folder when repository evidence supports that structure. If the repository contains multiple `/public/` folders or multiple sites, ask the user to specify the target site and path.
 
 Do not recommend moving core website files out of `/public/` without explicit instruction.
 
-When a repository uses a different framework or source structure, follow the actual repository evidence and preserve the same APES CIC validation expectations.
+When a repository uses a different framework or source structure, follow the actual repository evidence while preserving APES CIC validation, documentation, release, and hosting expectations.
 
-Repository documentation should remain current with:
-
-- setup and local development requirements
-- build, deployment, and maintenance workflows
-- content management and website editing conventions
-- release and changelog expectations
-- issue-tracking and support procedures
-- repository-specific compliance, privacy, safeguarding, governance, animal welfare, finance, HR, or operational notes when relevant
+Keep repository documentation current with setup, local development, build, deployment, content management, release, changelog, issue tracking, support, compliance, safeguarding, governance, animal welfare, finance, HR, hosting, and maintenance workflows where relevant.
 
 ---
 
-## 6. Website Repository Standards
+## 8. Cloudron LAMP Hosting Standard
 
-When the GitHub repository powers an APES CIC website, keep website checks explicit and auditable.
+Use `Cloudron-LAMP-Container-Guidance.md` as the canonical APES CIC reference when a website is expected to run in the Cloudron LAMP app.
+
+Treat Cloudron LAMP as a Linux, Apache, MySQL and PHP hosting environment. It is suitable for Apache-served static websites, browser JavaScript, PHP websites, PHP CLI maintenance scripts, Composer-based PHP dependencies, MySQL-backed PHP applications, Redis-backed PHP features, SMTP email via application libraries, `.htaccess` rules, and Apache-compatible configuration supported by the Cloudron LAMP app.
+
+Do not treat Cloudron LAMP as a general Python, Node, Ruby, Go, Java, WebSocket, worker, or arbitrary long-running process container.
+
+Required Cloudron LAMP rules:
+
+- Build production website work as static HTML, CSS, browser JavaScript, and PHP unless repository evidence confirms another approved deployment target.
+- Keep public website files in `/public/` unless local repository guidance clearly says otherwise.
+- Prefer Apache-compatible routing, links, assets, redirects, and `.htaccess` rules over framework server routing.
+- Do not add production dependencies that require Flask, Django, FastAPI, Celery, Python workers, persistent Python processes, Express, Next.js server mode, Vite dev server mode, WebSocket servers, queue workers, custom daemons, Docker-in-Docker, or unsupported runtime services.
+- Treat Python and Node as build-time or local-development tooling only unless repository evidence confirms a different production stack.
+- Do not add `requirements.txt`, Python application frameworks, Node server frameworks, or server-only build outputs as production requirements for a LAMP-hosted site.
+- Use Cloudron-supplied MySQL, Redis, and SMTP credentials through documented environment variables or configuration files. Do not commit secrets.
+- Avoid runtime writes to arbitrary source folders. Use Cloudron documented writable data paths and application configuration patterns where writes are unavoidable.
+- Document PHP version assumptions, required PHP extensions, Apache rules, MySQL, Redis, SMTP, writable paths, and build-time tooling in the README where relevant.
+
+Before completing Cloudron LAMP targeted work, confirm that the deployed site can run as static files or PHP under Apache, no production route depends on a Python or Node runtime server, `.htaccess` and Apache assumptions are compatible, and release records, README, generated output, and issue updates reflect hosting impact.
+
+---
+
+## 9. SEO, Sitemap, Footer, Newsroom And Error Pages
 
 Apply these checks whenever website content, structure, navigation, routes, public pages, deployment behavior, generated output, release metadata, or user-visible behavior changes:
 
@@ -185,22 +238,15 @@ Apply these checks whenever website content, structure, navigation, routes, publ
 - Confirm APES Newsroom routes remain correct for news, update, announcement, newsletter, footer, navigation, and article-related changes.
 - Ensure branded, accessible error pages are present and validated after route, navigation, deployment, build, or hosting changes.
 
-Required error-page expectations:
-
-- A branded, accessible 404 page must exist where the website stack supports custom error pages.
-- Framework-supported 403, 500, offline, maintenance, or fallback error pages should be added or verified where the stack supports them.
-- Error pages must include plain-language copy, a route back to the home page, a route to contact or support, and relevant APES brand or footer treatment where technically possible.
-- Error pages must not expose stack traces, secrets, internal system details, private URLs, or debugging output.
+Error pages must include plain-language copy, a route back to the home page, a route to contact or support, and relevant APES brand or footer treatment where technically possible. Error pages must not expose stack traces, secrets, internal system details, private URLs, or debugging output.
 
 ---
 
-## 7. Change Log Hub And Release Record Format
+## 10. Change Log Hub And Release Record Format
 
-The Change Log Hub is the public website release record. It must show every website change that affects users, operations, compliance, release metadata, generated output, or public maintenance history.
+The Change Log Hub is the public website release record. It must show every website change that affects users, operations, compliance, release metadata, generated output, public maintenance history, hosting assumptions, or user-visible behavior.
 
-Use the `www.apes.org.uk` Change Log Hub setup as the APES reference pattern for structure, styling, and release-record depth.
-
-Each Change Log Hub, root `CHANGELOG.md`, and `/public/CHANGELOG.md` entry should use this structure unless repository-specific guidance says otherwise:
+Use the `www.apes.org.uk` Change Log Hub setup as the APES reference pattern. Each Change Log Hub, root `CHANGELOG.md`, and `/public/CHANGELOG.md` entry should use this structure unless repository-specific guidance says otherwise:
 
 ```markdown
 ## [vX.Y.Z] - YYYY-MM-DD
@@ -217,7 +263,7 @@ Short plain-language description of the release.
 
 ### Detailed changes
 
-- Specific implementation, content, route, styling, configuration, release-record, or documentation changes.
+- Specific implementation, content, route, styling, configuration, hosting, release-record, or documentation changes.
 
 ### Affected areas
 
@@ -226,7 +272,7 @@ Short plain-language description of the release.
 - Files changed: relevant files or file groups
 - User groups affected: relevant visitors, staff, volunteers, supporters, partners, or internal users
 - Public impact: user-facing result
-- Internal impact: maintenance, operational, compliance, or workflow result
+- Internal impact: maintenance, operational, compliance, hosting, or workflow result
 
 ### Version decision
 
@@ -237,13 +283,13 @@ Short plain-language description of the release.
 
 ### Validation
 
-- Checks run: commands, source reviews, generated-output checks, or verification-only reviews
-- Manual checks completed: routes, breakpoints, footer, Newsroom, sitemap, robots, error pages, or other relevant checks
+- Checks run: commands, source reviews, generated-output checks, hosting checks, or verification-only reviews
+- Manual checks completed: routes, breakpoints, footer, Newsroom, sitemap, robots, error pages, Cloudron LAMP compatibility, or other relevant checks
 - Known limitations: anything not fully verified
 - Rollback notes: how to reverse the change if needed
 ```
 
-Use pill classes consistently with the reference pattern:
+Use pill classes consistently:
 
 - `pill pill-version` for the version label
 - `pill pill-status` for `Stable` or `Beta`
@@ -252,11 +298,11 @@ Use pill classes consistently with the reference pattern:
 - `pill pill-accessibility` for accessibility changes
 - `pill pill-compliance` for compliance, policy, safeguarding, legal, governance, privacy, or operational-risk changes
 
-Keep the website Change Log Hub, root changelog, public changelog mirror, README current-release notes, and generated public output aligned before completing the task.
+Keep the website Change Log Hub, root changelog, public changelog mirror, README current-release notes, footer version text, generated output, and hosting notes aligned before completing the task.
 
 ---
 
-## 8. Versioning Rules
+## 11. Versioning Rules
 
 Use APES CIC semantic website versioning in this format:
 
@@ -269,90 +315,62 @@ The `v` prefix means version. The three numbers mean major updates, minor update
 
 Version bump rules:
 
-- Major: breaking route, architecture, public journey, data, compliance, platform, or operational changes.
+- Major: breaking route, architecture, public journey, data, compliance, platform, hosting, or operational changes.
 - Minor: new user-visible features, new public routes, broad content expansions, new shared components, or meaningful workflow additions that do not break existing journeys.
-- Patch: fixes, copy edits, styling polish, metadata corrections, dependency or configuration fixes, generated-output syncs, and small maintenance changes.
+- Patch: fixes, copy edits, styling polish, metadata corrections, dependency or configuration fixes, hosting configuration clarifications, generated-output syncs, and small maintenance changes.
 - Beta suffix: keep `b` on versions while the website is in beta, for example `v2.2.0b`; remove it only when the website is intentionally promoted to stable.
 - Stable versions omit the suffix, for example `v2.8.6`.
 
-When a versioned change is required and the user has not already specified the version bump or release channel, ask the user to choose before updating version records:
+When a versioned change is required and the user has not specified the version bump or release channel, ask:
 
 1. Is this a Major, Minor, or Patch update?
 2. Should the new version be Stable, formatted like `v0.0.0`, or Beta, formatted like `v0.0.0b`?
 
-Use the user's answers as the version decision. If the user's answer is ambiguous, ask again for one explicit choice from each question before changing `VERSION`, changelog, Change Log Hub, README, footer, generated-output, or release metadata records.
-
-Every qualifying change must update the version consistently across all canonical version locations before the work is complete. For APES website repositories, check root `VERSION`, `/public/VERSION`, Change Log Hub data or page output, root `CHANGELOG.md`, `/public/CHANGELOG.md`, README current-release notes, footer version display, and generated static snapshots where applicable.
-
-Do not create a changelog entry without a matching version decision, and do not update a version without a matching changelog entry.
+Use the user's answers as the version decision. Do not create a changelog entry without a matching version decision, and do not update a version without a matching changelog entry.
 
 ---
 
-## 9. Changelog And Release Hygiene
+## 12. Issue, Pull Request And Changed-File Reporting
 
-Changelog and release records must explain repository changes clearly enough for maintainers, reviewers, and future agents to understand the operational impact.
+When a task is attached to a GitHub Issue, keep that issue updated throughout the work rather than saving all context for the final reply.
 
-A changelog entry is required when work changes public website content, intranet website content, page structure, forms, buttons, links, menus, navigation, CTAs, styling, layout, themes, branding, visual assets, accessibility, SEO, analytics, tracking, CRM, automation, embedded tools, third-party integrations, scripts, widgets, site configuration, build configuration, deployment configuration, generated website output, security, privacy, safeguarding, legal, compliance, finance, governance, HR, animal welfare content, or any user-visible bug fix.
+Post an issue update when work starts or resumes, a file is changed, scope or assumptions change, validation completes or cannot complete, a blocker or follow-up is discovered, the implementation is ready for review, or work is completed, deferred, or handed back.
 
-Where the repository has both root and public changelogs, keep the root-level `CHANGELOG.md` and `/public/CHANGELOG.md` consistent unless repository-specific guidance states a different division of responsibility.
+Every issue update, pull request update, review response, merge summary, release note, and final reply for issue-tracked work must include a `Files changed` section. List each changed file path and add a short note explaining what changed in that file. If no files changed since the previous update, say so explicitly.
 
-When versioning is present, version records must match the changelog, release notes, README current-release notes, footer version display, generated output, and any documentation references.
-
----
-
-## 10. Working Method For GitHub Repository Tasks
-
-When starting a task:
-
-- Inspect the relevant files before recommending or applying changes.
-- Verify whether the work has an existing GitHub Issue or whether one should be opened.
-- Verify version, Change Log Hub, changelog, README current-release notes, generated-output, and issue-tracking requirements before planning the implementation.
-- Check existing project conventions, framework patterns, scripts, and documentation.
-- Identify whether the work affects public pages, routes, SEO, sitemap records, changelogs, README content, versioning, footer links, Newsroom routing, generated output, error pages, or GitHub Issues.
-
-When editing or preparing a GitHub update:
-
-- Preserve existing structure and style where it is clear and usable.
-- Keep changes focused on the user's request.
-- Avoid broad refactors unless they are necessary for the task.
-- Do not revert unrelated user, repository, branch, or pull request changes.
-- Prefer clear, auditable wording for policy, compliance, changelog, versioning, and release notes.
-- Keep GitHub Issue progress notes aligned with the agreed tracking approach.
-
-Before completing work:
-
-- Run relevant checks or explain why checks could not be run.
-- Verify user-visible website behavior when the task affects pages, routes, navigation, styling, scripts, forms, or build output.
-- Confirm whether Change Log Hub, root changelog, public changelog, README, version, generated-output, GitHub Issue, SEO, sitemap, footer, Newsroom, and error-page updates were completed or were not applicable.
-- Summarize whether work was applied directly on GitHub, prepared for a pull request, left as guidance, or still needs a user decision.
+Do not close an issue until the issue contains a clear completion note with changed files, validation performed, release-record status, hosting status, remaining limitations, and follow-up work.
 
 ---
 
-## 11. Final Response Requirements
+## 13. Final Response Requirements
 
 When reporting completed repository work, clearly state:
 
 - what was created, updated, reviewed, or left unchanged
-- what validation was performed and any remaining risks or follow-up work
+- files changed, with each file path and a short explanation
+- validation performed and any remaining risks
 - whether Change Log Hub, root changelog, public changelog, version records, README current-release notes, and generated release output were updated or why they were not applicable
-- whether GitHub Issues were updated, should be updated, or were not applicable
+- whether Cloudron LAMP compatibility, hosting assumptions, PHP/Apache compatibility, runtime dependency constraints, and README hosting notes were updated or verified where relevant
+- whether GitHub Issues were updated, should be updated, closed, left open, or were not applicable
 - for website repositories, whether APES brand standards, Newsroom routing, universal footer compliance, footer links, SEO metadata, sitemap records, robots or noindex rules, and error pages were updated or verified, or why they were not applicable
-- whether the work was applied directly to GitHub, prepared for pull request review, merged, or left pending user confirmation
+- whether the work was applied locally, applied directly to GitHub, prepared for pull request review, merged, or left pending user confirmation
+- the next recommended step
+- a concise proposed commit message
 
-Keep the final response concise, practical, and transparent about anything that still needs the user's decision.
+Keep final responses concise, practical, and transparent about user decisions still needed.
 
 ---
 
-## 12. Maintaining This AGENTS.md File
+## 14. Maintaining This File
 
 When updating this file, preserve APES CIC operational rules unless the user explicitly asks to replace them.
 
 Prefer revisions that:
 
-- keep the file suitable for GitHub repository governance rather than coding-agent execution only
-- separate repository-wide rules from website-specific rules
-- make required updates easy to audit in issues, pull requests, changelogs, releases, generated output, and documentation
-- preserve mandatory APES CIC changelog, Change Log Hub, README, issue tracking, versioning, SEO, sitemap, universal footer, footer link, Newsroom routing, generated-output, and error-page requirements
+- keep the file suitable for VS Code, Codex, and GitHub repository workflows
+- separate editor-specific workflow guidance from repository-wide rules
+- preserve mandatory APES CIC changelog, Change Log Hub, README, issue tracking, versioning, SEO, sitemap, universal footer, footer link, Newsroom routing, generated-output, error-page, and Cloudron LAMP requirements
+- avoid GitHub-only, Codex-only, or VS Code-only wording unless that distinction is operationally important
 - stay aligned with actual repository structure and release workflow
 
-Do not invent repository facts, deployment steps, technical requirements, or third-party services that are not supported by the repository or the user's instructions.
+Do not invent repository facts, deployment steps, hosting support, technical requirements, or third-party services that are not supported by the repository or the user's instructions.
