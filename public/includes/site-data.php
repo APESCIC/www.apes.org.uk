@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-const APES_FALLBACK_VERSION = 'v2.8.8';
+const APES_FALLBACK_VERSION = 'v2.8.9';
 const APES_SITE_NAME = 'Association of Protecting Exotic Species CIC';
 const APES_CIC_NUMBER = '16253848';
 const APES_CONTACT_EMAIL = 'info@apes.org.uk';
@@ -1422,18 +1422,80 @@ HTML,
                 'body_html' => <<<'HTML'
 <section class="section-shell">
   <p>Public APES copy repeatedly explains that staff are unpaid volunteers and asks supporters to treat them with respect. Volunteering and placements form part of how APES keeps services moving across rescue, care, support and education work.</p>
+  <div class="note-panel">
+    <h2>Apply through the approved volunteer form</h2>
+    <p>Use the APES volunteer application form to register your interest. APES will review suitability, availability, training needs and role fit before confirming any volunteer placement.</p>
+    <div class="action-row">
+      <a class="button button-primary" href="https://service.sheltermanager.com/asmservice?account=apes&amp;method=online_form_html&amp;formid=72" target="_blank" rel="noopener noreferrer">Apply to volunteer</a>
+    </div>
+  </div>
   <div class="card-grid card-grid-three">
     <article class="info-card">
-      <h3>Animal welfare support</h3>
-      <p>Support day-to-day care, cleaning, handling preparation and practical routines.</p>
+      <h3>Animal care and cleaning</h3>
+      <p>Support supervised animal areas with cleaning, bedding changes, enclosure resets and routine welfare checks.</p>
     </article>
     <article class="info-card">
-      <h3>Public support routes</h3>
-      <p>Help people access information, signposting and welfare-focused services clearly.</p>
+      <h3>Feeding and enrichment</h3>
+      <p>Help prepare feeds, refresh water, set up enrichment and support species-appropriate daily routines.</p>
+    </article>
+    <article class="info-card">
+      <h3>Housekeeping and laundry</h3>
+      <p>Keep rescue spaces supplied with clean towels, bedding, carriers, bowls and practical day-to-day equipment.</p>
+    </article>
+  </div>
+</section>
+
+<section class="section-shell">
+  <h2>Volunteer roles APES may need</h2>
+  <p>Volunteer needs can change with rescue intake, animal welfare priorities, staff capacity and public demand. These role types are examples of support a rescue may need; APES will match applicants to safe, supervised work where there is a suitable vacancy.</p>
+  <div class="card-grid card-grid-three">
+    <article class="info-card">
+      <h3>Transport support</h3>
+      <p>Assist with collections, transfers, appointment travel and supply runs where vehicle, insurance and handling requirements are met.</p>
+    </article>
+    <article class="info-card">
+      <h3>Foster care support</h3>
+      <p>Provide suitable temporary care or holding support only where APES has assessed the home, species needs and safeguarding expectations.</p>
+    </article>
+    <article class="info-card">
+      <h3>Adoption and home checks</h3>
+      <p>Support rehoming follow-up, adopter preparation and home-check activity after training and under APES procedures.</p>
+    </article>
+    <article class="info-card">
+      <h3>Reception and enquiries</h3>
+      <p>Help visitors and callers reach the right APES route, with clear signposting and respectful public-facing communication.</p>
+    </article>
+    <article class="info-card">
+      <h3>Fundraising and events</h3>
+      <p>Support community stalls, campaigns, donation drives, sponsor activity and public awareness events.</p>
+    </article>
+    <article class="info-card">
+      <h3>Education and outreach</h3>
+      <p>Help with talks, learning resources, responsible ownership messaging and supervised public education activity.</p>
+    </article>
+    <article class="info-card">
+      <h3>Retail and donation sorting</h3>
+      <p>Sort donated goods, prepare stock, support shop or stall activity and keep fundraising materials organised.</p>
+    </article>
+    <article class="info-card">
+      <h3>Site maintenance</h3>
+      <p>Help with gardening, basic repairs, safe storage, practical improvements and centre upkeep where skills and supervision fit.</p>
+    </article>
+    <article class="info-card">
+      <h3>Administration and records</h3>
+      <p>Support data entry, follow-up calls, document organisation and routine admin while protecting sensitive information.</p>
+    </article>
+    <article class="info-card">
+      <h3>Photography and profiles</h3>
+      <p>Help create animal photos, adoption profiles, campaign materials and social updates in line with APES privacy and welfare standards.</p>
     </article>
     <article class="info-card">
       <h3>Student placements</h3>
-      <p>Placement pathways should be coordinated through approved APES contact routes rather than through unreviewed local forms.</p>
+      <p>Coordinate placement interest through approved APES routes so training, supervision and suitability can be reviewed before any placement.</p>
+    </article>
+    <article class="info-card">
+      <h3>Specialist support</h3>
+      <p>Offer qualified help with veterinary nursing, behaviour, species care, safeguarding, finance, compliance, IT or other professional skills where appropriate.</p>
     </article>
   </div>
 </section>
@@ -1445,8 +1507,8 @@ HTML,
 
 <section class="section-shell split-panel">
   <div class="note-panel">
-    <h2>Likely role types</h2>
-    <p>Current public wording supports animal welfare routines, public support work and student placements. APES should continue to match applicants to practical, supervised roles rather than promise immediate placement.</p>
+    <h2>Role matching</h2>
+    <p>APES should continue to match applicants to practical, supervised roles rather than promise immediate placement. Some roles may be occasional, seasonal, remote, centre-based or limited by animal welfare need.</p>
   </div>
   <div class="note-panel">
     <h2>Checks and onboarding</h2>
@@ -1455,6 +1517,7 @@ HTML,
 </section>
 HTML,
                 'related_links' => [
+                    ['label' => 'Volunteer application form', 'href' => 'https://service.sheltermanager.com/asmservice?account=apes&method=online_form_html&formid=72', 'external' => true],
                     ['label' => 'Contact centre', 'href' => 'https://contact.apes.org.uk/', 'external' => true],
                     ['label' => 'Help centre', 'href' => 'https://help.apes.org.uk/', 'external' => true],
                 ],
@@ -2642,7 +2705,7 @@ HTML,
                 'hero_summary' => 'Track every major release for this website, including updates, fixes, compliance changes, and user-facing improvements.',
                 'hero_actions' => [
                     ['label' => 'Expand all releases', 'href' => '#release-list', 'variant' => 'primary'],
-                    ['label' => 'View current release', 'href' => '#release-v288', 'variant' => 'secondary'],
+                    ['label' => 'View current release', 'href' => '#release-v289', 'variant' => 'secondary'],
                 ],
                 'pills' => ['Current version ' . $siteVersion, 'Patch stable', 'Public-facing'],
                 'body_html' => <<<'HTML'
@@ -2672,7 +2735,55 @@ HTML,
 </section>
 
 <section class="section-shell" id="release-list">
-  <details class="release-card" data-release-card data-tags="current stable changed fixed accessibility public-facing" open id="release-v288">
+  <details class="release-card" data-release-card data-tags="current stable changed fixed accessibility public-facing" open id="release-v289">
+    <summary>
+      <span class="release-version">v2.8.9</span>
+      <span class="release-date">2026-06-10</span>
+    </summary>
+    <div class="release-body">
+      <div class="pill-row">
+        <span class="pill pill-version">Version v2.8.9</span>
+        <span class="pill pill-status">Stable</span>
+        <span class="pill pill-type">Changed</span>
+        <span class="pill pill-fix">Fix</span>
+        <span class="pill pill-accessibility">Accessibility</span>
+      </div>
+      <h3>Summary</h3>
+      <p>Expanded the volunteering page into the main APES volunteer information hub, added practical rescue role categories and kept the approved Sheltermanager application form as the primary application route.</p>
+      <h3>Detailed changes</h3>
+      <ul class="clean-list">
+        <li>Expanded the shared <code>/volunteer/</code> page definition with a prominent in-page application call to action that opens the approved Sheltermanager volunteer form.</li>
+        <li>Added practical rescue volunteer role examples covering animal care, cleaning, feeding, enrichment, housekeeping, transport, fostering, adoption support, public enquiries, fundraising, education, retail, maintenance, administration, photography, student placements and specialist support.</li>
+        <li>Confirmed public volunteering recruitment and support links continue to point to <code>/volunteer/</code>, while the operational Volunteer intranet link remains unchanged.</li>
+        <li>Kept the volunteering page route, canonical URL, sitemap entry, robots rules, footer-required links, APES Newsroom routing and Cloudron LAMP hosting assumptions unchanged.</li>
+        <li>Synchronised the canonical version files, README current-release notes, root changelog, public changelog mirror, Change Log Hub source and generated public snapshots to <code>v2.8.9</code>.</li>
+      </ul>
+      <h3>Affected areas</h3>
+      <ul class="clean-list">
+        <li>Website: www.apes.org.uk</li>
+        <li>Page or route: <code>/volunteer/</code>, Change Log Hub, root and public release records, README current release and generated public HTML snapshots</li>
+        <li>Files changed: shared site data, generated volunteer page, generated Change Log Hub, generated HTML footer version text, VERSION files, root CHANGELOG, public CHANGELOG and README</li>
+        <li>User groups affected: prospective volunteers, student-placement applicants, supporters, staff and partners using the volunteering route</li>
+        <li>Public impact: visitors can review common APES rescue volunteer role types and apply through the approved external form from the volunteer page.</li>
+        <li>Internal impact: APES has one clearer volunteer information hub while preserving the existing external Sheltermanager application workflow.</li>
+      </ul>
+      <h3>Version decision</h3>
+      <ul class="clean-list">
+        <li>Previous version: v2.8.8</li>
+        <li>New version: v2.8.9</li>
+        <li>Version type: patch stable</li>
+        <li>Reason for version bump: public-facing volunteering content expansion and generated-output synchronisation without route, SEO or hosting restructuring.</li>
+      </ul>
+      <h3>Validation</h3>
+      <ul class="clean-list">
+        <li>Checks run: <code>git pull</code>, volunteer-link audit, release-metadata consistency review, sitemap and robots verification-only review, footer-link source review, branded error-page footer review and Cloudron LAMP compatibility review</li>
+        <li>Manual checks completed: volunteering hero and in-page application CTA review, public volunteering link review, canonical/title/meta/robots review for <code>/volunteer/</code>, sitemap entry review, APES Newsroom routing review and generated footer version review</li>
+        <li>Known limitations: <code>php</code> is not installed in this implementation environment, so the standard static export and full rendered browser QA could not be completed here; generated snapshots were synchronised manually from the shared source content.</li>
+        <li>Rollback notes: restore the previous volunteering body content, generated snapshots, version files and release records, then rerun the standard PHP export in a PHP-enabled environment if the expanded volunteering hub needs to be reversed.</li>
+      </ul>
+    </div>
+  </details>
+  <details class="release-card" data-release-card data-tags="stable changed fixed accessibility public-facing" id="release-v288">
     <summary>
       <span class="release-version">v2.8.8</span>
       <span class="release-date">2026-06-10</span>

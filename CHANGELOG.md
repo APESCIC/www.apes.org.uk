@@ -2,6 +2,49 @@
 
 Track every major release for this website, including updates, fixes, compliance changes, and user-facing improvements.
 
+## [v2.8.9] - 2026-06-10
+
+<span class="pill pill-version">Version v2.8.9</span>
+<span class="pill pill-status">Stable</span>
+<span class="pill pill-type">Changed</span>
+<span class="pill pill-fix">Fix</span>
+<span class="pill pill-accessibility">Accessibility</span>
+
+### Summary
+
+Expanded the volunteering page into the main APES volunteer information hub, added practical rescue role categories and kept the approved Sheltermanager application form as the primary application route.
+
+### Detailed changes
+
+- Expanded the shared `/volunteer/` page definition with a prominent in-page application call to action that opens the approved Sheltermanager volunteer form.
+- Added practical rescue volunteer role examples covering animal care, cleaning, feeding, enrichment, housekeeping, transport, fostering, adoption support, public enquiries, fundraising, education, retail, maintenance, administration, photography, student placements and specialist support.
+- Confirmed public volunteering recruitment and support links continue to point to `/volunteer/`, while the operational Volunteer intranet link remains unchanged.
+- Kept the volunteering page route, canonical URL, sitemap entry, robots rules, footer-required links, APES Newsroom routing and Cloudron LAMP hosting assumptions unchanged.
+- Synchronised the canonical version files, README current-release notes, root changelog, public changelog mirror, Change Log Hub source and generated public snapshots to `v2.8.9`.
+
+### Affected areas
+
+- Website: www.apes.org.uk
+- Page or route: `/volunteer/`, Change Log Hub, root and public release records, README current release and generated public HTML snapshots
+- Files changed: shared site data, generated volunteer page, generated Change Log Hub, generated HTML footer version text, VERSION files, root CHANGELOG, public CHANGELOG and README
+- User groups affected: prospective volunteers, student-placement applicants, supporters, staff and partners using the volunteering route
+- Public impact: visitors can review common APES rescue volunteer role types and apply through the approved external form from the volunteer page.
+- Internal impact: APES has one clearer volunteer information hub while preserving the existing external Sheltermanager application workflow.
+
+### Version decision
+
+- Previous version: v2.8.8
+- New version: v2.8.9
+- Version type: patch stable
+- Reason for version bump: public-facing volunteering content expansion and generated-output synchronisation without route, SEO or hosting restructuring.
+
+### Validation
+
+- Checks run: `git pull`, volunteer-link audit, release-metadata consistency review, sitemap and robots verification-only review, footer-link source review, branded error-page footer review and Cloudron LAMP compatibility review
+- Manual checks completed: volunteering hero and in-page application CTA review, public volunteering link review, canonical/title/meta/robots review for `/volunteer/`, sitemap entry review, APES Newsroom routing review and generated footer version review
+- Known limitations: `php` is not installed in this implementation environment, so the standard static export and full rendered browser QA could not be completed here; generated snapshots were synchronised manually from the shared source content.
+- Rollback notes: restore the previous volunteering body content, generated snapshots, version files and release records, then rerun the standard PHP export in a PHP-enabled environment if the expanded volunteering hub needs to be reversed.
+
 ## [v2.8.8] - 2026-06-10
 
 <span class="pill pill-version">Version v2.8.8</span>
