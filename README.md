@@ -1,8 +1,8 @@
 ## Current release
 
-- Version: `v2.9.5`
+- Version: `v2.9.6`
 - Release date: `2026-06-10`
-- Release impact: tightened the `/volunteer/` desktop layout so the sidebar no longer leaves a large empty card, the main content gets more room, and the volunteer information panels feel more intentional.
+- Release impact: restored balanced inset spacing around the first `/volunteer/` content card so the opening panel and role cards have breathing room on every side without widening the change beyond that route.
 - Operational note: shared PHP remains the source of truth; use **APES: Preview PHP source site** for rendered-route checks, **APES: Preview static public snapshots** for HTTP output review, run `scripts/validate-public-site.ps1` before staging, and package only the `public/` bundle for Cloudron upload.
 
 <p align="center">

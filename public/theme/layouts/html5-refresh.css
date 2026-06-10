@@ -137,6 +137,13 @@ body[data-page-key="volunteer"] .page-sidebar__shared {
   gap: 1rem;
 }
 
+body[data-page-key="volunteer"] .page-body > .section-shell:first-child {
+  display: grid;
+  align-content: start;
+  gap: 1rem;
+  padding: 1.4rem;
+}
+
 body[data-page-key="volunteer"] .page-body > .section-shell:first-child > .note-panel {
   gap: 0.8rem;
   padding: 1.15rem 1.2rem;

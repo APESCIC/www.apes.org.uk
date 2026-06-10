@@ -3,6 +3,48 @@
 Track every major release for this website, including updates, fixes, compliance changes, and user-facing improvements.
 
 ## [v2.9.5] - 2026-06-10
+## [v2.9.6] - 2026-06-10
+
+<span class="pill pill-version">Version v2.9.6</span>
+<span class="pill pill-status">Stable</span>
+<span class="pill pill-type">Changed</span>
+<span class="pill pill-fix">Fix</span>
+
+### Summary
+
+Restored balanced inset spacing around the first `/volunteer/` content card so the opening application panel and volunteer role cards have breathing room on every side.
+
+### Detailed changes
+
+- Added a volunteer-only first-section layout override so the opening `/volunteer/` content card now uses a grid gap and slightly larger inset padding without changing shared card spacing rules.
+- Added a lightweight regression check for the volunteer spacing rule to the repository validation flow so this route-scoped inset is harder to remove accidentally.
+- Kept volunteer content, SEO metadata, footer-required links, APES Newsroom routing, public-folder structure and Cloudron LAMP assumptions unchanged.
+- Regenerated the public static snapshots and synchronised the version files, README, root changelog, public changelog mirror and Change Log Hub release metadata.
+
+### Affected areas
+
+- Website: www.apes.org.uk
+- Page or route: `/volunteer/`, Change Log Hub, root and public release records, README current release, validation script and regenerated public HTML snapshots
+- Files changed: volunteer-scoped shared CSS, validation scripts, shared site data release records, VERSION files, root CHANGELOG, public CHANGELOG, README and regenerated static HTML snapshots
+- User groups affected: prospective volunteers, student-placement applicants, supporters, staff and partners using the volunteering route
+- Public impact: volunteer-page visitors now see consistent inset spacing around the first information block and its role cards on desktop layouts
+- Internal impact: the fix remains isolated to the volunteer route while adding a small regression guard to validation
+
+### Version decision
+
+- Previous version: v2.9.5
+- New version: v2.9.6
+- Version type: patch stable
+- Reason for version bump: user-visible volunteer layout spacing correction without route, content-model or hosting changes.
+
+### Validation
+
+- Checks run: volunteer spacing regression check, local PHP preview review, PHP syntax checks where available, public-site validation script, static export regeneration and release-metadata consistency review
+- Manual checks completed: volunteer page source/layout review, footer-required link review, Change Log Hub release review and Cloudron LAMP compatibility review
+- Known limitations: in-app browser screenshot validation was unavailable in this session, so final visual QA relied on local preview startup, source inspection and regenerated output review
+- Rollback notes: restore the volunteer first-section layout override, validation script, version files and release records, then rerun the PHP static export to restore the previous public snapshots if needed.
+
+## [v2.9.5] - 2026-06-10
 
 <span class="pill pill-version">Version v2.9.5</span>
 <span class="pill pill-status">Stable</span>
