@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-const APES_FALLBACK_VERSION = 'v2.9.3';
+const APES_FALLBACK_VERSION = 'v2.9.7';
 const APES_SITE_NAME = 'Association of Protecting Exotic Species CIC';
 const APES_CIC_NUMBER = '16253848';
 const APES_CONTACT_EMAIL = 'info@apes.org.uk';
@@ -1421,7 +1421,6 @@ HTML,
                 'pills' => ['Volunteer-led', 'Placements', 'Respectful support'],
                 'body_html' => <<<'HTML'
 <section class="section-shell">
-  <p>Public APES copy repeatedly explains that staff are unpaid volunteers and asks supporters to treat them with respect. Volunteering and placements form part of how APES keeps services moving across rescue, care, support and education work.</p>
   <div class="note-panel">
     <h2>Apply through the approved volunteer form</h2>
     <p>Use the APES volunteer application form to register your interest. APES will review suitability, availability, training needs and role fit before confirming any volunteer placement.</p>
@@ -2705,9 +2704,9 @@ HTML,
                 'hero_summary' => 'Track every major release for this website, including updates, fixes, compliance changes, and user-facing improvements.',
                 'hero_actions' => [
                     ['label' => 'Expand all releases', 'href' => '#release-list', 'variant' => 'primary'],
-                    ['label' => 'View current release', 'href' => '#release-v293', 'variant' => 'secondary'],
+                    ['label' => 'View current release', 'href' => '#release-v296', 'variant' => 'secondary'],
                 ],
-                'pills' => ['Current version ' . $siteVersion, 'Patch stable', 'File preview support'],
+                'pills' => ['Current version ' . $siteVersion, 'Patch stable', 'Volunteer intro copy removal'],
                 'body_html' => <<<'HTML'
 <section class="section-shell">
   <div class="release-tools">
@@ -2735,50 +2734,144 @@ HTML,
 </section>
 
 <section class="section-shell" id="release-list">
-  <details class="release-card" data-release-card data-tags="current stable changed fixed internal-only" open id="release-v293">
+  <details class="release-card" data-release-card data-tags="current stable changed fixed public-facing" open id="release-v297">
     <summary>
-      <span class="release-version">v2.9.3</span>
+      <span class="release-version">v2.9.7</span>
       <span class="release-date">2026-06-10</span>
     </summary>
     <div class="release-body">
       <div class="pill-row">
-        <span class="pill pill-version">Version v2.9.3</span>
+        <span class="pill pill-version">Version v2.9.7</span>
         <span class="pill pill-status">Stable</span>
         <span class="pill pill-type">Changed</span>
         <span class="pill pill-fix">Fix</span>
       </div>
       <h3>Summary</h3>
-      <p>Added direct <code>file://</code> rendering support for exported static HTML snapshots while preserving the APES <code>public/</code> web-root and Cloudron LAMP hosting assumptions.</p>
+      <p>Removed the opening <code>/volunteer/</code> reminder paragraph so the page now starts directly with the approved volunteer application guidance.</p>
       <h3>Detailed changes</h3>
       <ul class="clean-list">
-        <li>Updated the static HTML exporter so generated snapshots rewrite internal root-relative assets, links and route-finder data to page-depth-aware relative paths.</li>
-        <li>Tightened local validation helpers so PHP preview startup handles workspace paths with spaces and redirect assertions work reliably in Windows PowerShell.</li>
-        <li>Preserved PHP source rendering, canonical URLs, Open Graph metadata, JSON-LD and hosted Cloudron paths so production output still uses the approved web-root model.</li>
-        <li>Regenerated the public static snapshots so <code>public/index.html</code> can be opened directly from disk with styling, images, navigation and route-finder links intact.</li>
-        <li>Updated README preview guidance to clarify that HTTP/PHP preview remains preferred, while exported static snapshots now support direct <code>file://</code> inspection.</li>
+        <li>Removed the opening volunteer reminder paragraph from the shared site data so the route begins with the approved application panel instead of the unpaid-volunteer explainer.</li>
+        <li>Extended the volunteer regression check so validation now fails if the removed introductory copy reappears in the exported volunteer snapshot.</li>
+        <li>Kept the volunteer application route, SEO metadata, footer-required links, APES Newsroom routing, public-folder structure and Cloudron LAMP assumptions unchanged.</li>
+        <li>Regenerated the public static snapshots and synchronised the version files, README, root changelog, public changelog mirror and Change Log Hub release metadata.</li>
       </ul>
       <h3>Affected areas</h3>
       <ul class="clean-list">
         <li>Website: www.apes.org.uk</li>
-        <li>Page or route: exported static snapshots, homepage file preview, internal static navigation, route-finder links, Change Log Hub, root and public release records, README and generated public HTML snapshots</li>
-        <li>Files changed: static exporter, PHP preview and validation helpers, shared site data release records, VERSION files, root CHANGELOG, public CHANGELOG, README and regenerated static HTML snapshots</li>
-        <li>User groups affected: APES maintainers previewing exported snapshots locally in Codex, VS Code or a browser without a running local server</li>
-        <li>Public impact: no public route, content, SEO metadata or production hosting behavior change is intended.</li>
-        <li>Internal impact: maintainers can inspect the generated public bundle from disk while retaining HTTP preview and Cloudron LAMP parity for deployment checks.</li>
+        <li>Page or route: <code>/volunteer/</code>, Change Log Hub, root and public release records, README current release, validation script and regenerated public HTML snapshots</li>
+        <li>Files changed: volunteer page source content, validation script, shared site data release records, VERSION files, root CHANGELOG, public CHANGELOG, README and regenerated public HTML snapshots</li>
+        <li>User groups affected: prospective volunteers, student-placement applicants, supporters, staff and partners using the volunteering route</li>
+        <li>Public impact: volunteer-page visitors now land directly on the application guidance without the extra introductory reminder paragraph</li>
+        <li>Internal impact: the copy change remains isolated to the volunteer route while adding a lightweight guard against the removed paragraph returning</li>
       </ul>
       <h3>Version decision</h3>
       <ul class="clean-list">
-        <li>Previous version: v2.9.2</li>
-        <li>New version: v2.9.3</li>
+        <li>Previous version: v2.9.6</li>
+        <li>New version: v2.9.7</li>
         <li>Version type: patch stable</li>
-        <li>Reason for version bump: local static snapshot rendering fix without public route expansion, content change or production architecture change.</li>
+        <li>Reason for version bump: user-visible volunteer copy removal without route, content-model or hosting changes.</li>
       </ul>
       <h3>Validation</h3>
       <ul class="clean-list">
-        <li>Checks run: PHP syntax checks where available, static export regeneration, generated-link inspection for homepage and nested routes, route-finder data inspection, local HTTP preview smoke checks and release-metadata consistency review</li>
-        <li>Manual checks completed: direct <code>file://</code> homepage preview, stylesheet/logo rendering review, navigation link review, route-finder interaction review, footer-required link review, Change Log Hub release review and Cloudron LAMP compatibility review</li>
-        <li>Known limitations: <code>file://</code> preview is for local inspection of exported static snapshots only; HTTP/PHP preview remains the preferred validation path for route and server behavior.</li>
-        <li>Rollback notes: restore the previous static exporter, PHP preview helper, validation helper, version files and release records, then rerun the PHP static export to restore root-relative generated snapshots.</li>
+        <li>Checks run: volunteer regression check, local PHP preview review, PHP syntax checks where available, public-site validation script, static export regeneration and release-metadata consistency review</li>
+        <li>Manual checks completed: volunteer page source review, footer-required link review, Change Log Hub release review and Cloudron LAMP compatibility review</li>
+        <li>Known limitations: in-app browser screenshot validation was unavailable in this session, so final visual QA relied on local preview startup, source inspection and regenerated output review</li>
+        <li>Rollback notes: restore the removed volunteer intro paragraph in shared site data, keep the regression check aligned with the intended copy, then rerun the PHP static export to restore the previous public snapshots if needed.</li>
+      </ul>
+    </div>
+  </details>
+  <details class="release-card" data-release-card data-tags="stable changed fixed public-facing" id="release-v296">
+  <details class="release-card" data-release-card data-tags="stable changed fixed public-facing" id="release-v295">
+    <summary>
+      <span class="release-version">v2.9.5</span>
+      <span class="release-date">2026-06-10</span>
+    </summary>
+    <div class="release-body">
+      <div class="pill-row">
+        <span class="pill pill-version">Version v2.9.5</span>
+        <span class="pill pill-status">Stable</span>
+        <span class="pill pill-type">Changed</span>
+        <span class="pill pill-fix">Fix</span>
+      </div>
+      <h3>Summary</h3>
+      <p>Tightened the <code>/volunteer/</code> page layout so the desktop sidebar no longer leaves a large empty card, the main content has a better column balance and the volunteer panels use more controlled spacing.</p>
+      <h3>Detailed changes</h3>
+      <ul class="clean-list">
+        <li>Added volunteer-only desktop layout overrides so the main content column is wider and the sidebar column is slimmer without changing shared sitewide card spacing.</li>
+        <li>Removed the volunteer sidebar wrapper's stretched card appearance so the smaller sidebar panels sit directly on the page instead of inside a tall empty container.</li>
+        <li>Reduced padding and internal gaps for the volunteer application panel, the "Before you apply" panel and the lower split note cards to better match the screenshot feedback.</li>
+        <li>Kept the volunteer route content, links, SEO metadata, APES Newsroom routing, footer-required links and Cloudron LAMP assumptions unchanged.</li>
+        <li>Regenerated the public static snapshots and synchronised the version files, README, root changelog, public changelog mirror and Change Log Hub release metadata.</li>
+      </ul>
+      <h3>Affected areas</h3>
+      <ul class="clean-list">
+        <li>Website: www.apes.org.uk</li>
+        <li>Page or route: <code>/volunteer/</code>, Change Log Hub, root and public release records, README current release and regenerated public HTML snapshots</li>
+        <li>Files changed: volunteer-scoped shared CSS, shared site data release records, VERSION files, root CHANGELOG, public CHANGELOG, README and regenerated static HTML snapshots</li>
+        <li>User groups affected: prospective volunteers, student-placement applicants, supporters, staff and partners using the volunteering route</li>
+        <li>Public impact: volunteer-page visitors now get a tighter desktop layout with less empty sidebar space and more balanced content panels</li>
+        <li>Internal impact: the volunteer spacing correction stays isolated to that route instead of broadening the shared card system again</li>
+      </ul>
+      <h3>Version decision</h3>
+      <ul class="clean-list">
+        <li>Previous version: v2.9.4</li>
+        <li>New version: v2.9.5</li>
+        <li>Version type: patch stable</li>
+        <li>Reason for version bump: user-visible volunteer-page layout correction without route, content-model or hosting changes.</li>
+      </ul>
+      <h3>Validation</h3>
+      <ul class="clean-list">
+        <li>Checks run: local PHP preview review, PHP syntax checks where available, public-site validation script, static export regeneration and release-metadata consistency review</li>
+        <li>Manual checks completed: volunteer page source/layout review, footer-required link review, Change Log Hub release review and Cloudron LAMP compatibility review</li>
+        <li>Known limitations: in-app browser screenshot validation was unavailable in this session, so final visual QA relied on local preview startup, source inspection and regenerated output review</li>
+        <li>Rollback notes: restore the volunteer page layout CSS overrides, version files and release records, then rerun the PHP static export to restore the prior public snapshots if needed.</li>
+      </ul>
+    </div>
+  </details>
+  <details class="release-card" data-release-card data-tags="stable changed fixed public-facing" id="release-v294">
+    <summary>
+      <span class="release-version">v2.9.4</span>
+      <span class="release-date">2026-06-10</span>
+    </summary>
+    <div class="release-body">
+      <div class="pill-row">
+        <span class="pill pill-version">Version v2.9.4</span>
+        <span class="pill pill-status">Stable</span>
+        <span class="pill pill-type">Changed</span>
+        <span class="pill pill-fix">Fix</span>
+      </div>
+      <h3>Summary</h3>
+      <p>Expanded shared card spacing across the website so content, sidebar, sponsor, metric and footer cards feel less cramped on desktop and stacked mobile layouts.</p>
+      <h3>Detailed changes</h3>
+      <ul class="clean-list">
+        <li>Increased shared grid gaps for reusable card layouts so stacked and multi-column card groups keep more consistent breathing room.</li>
+        <li>Enlarged the base card padding and normalized internal card spacing for shared content-card patterns without changing public HTML structure or routes.</li>
+        <li>Aligned refreshed sidebar, release and footer card spacing so heavier card surfaces no longer visually compress their content.</li>
+        <li>Added responsive spacing tuning below the main grid-collapse breakpoints so single-column card stacks remain comfortably separated.</li>
+        <li>Regenerated the public static snapshots so the exported site reflects the updated shared spacing and release metadata consistently.</li>
+      </ul>
+      <h3>Affected areas</h3>
+      <ul class="clean-list">
+        <li>Website: www.apes.org.uk</li>
+        <li>Page or route: volunteer page card stacks, shared content cards, service cards, sidebar mini-panels, footer cards, Change Log Hub, root and public release records, README and generated public HTML snapshots</li>
+        <li>Files changed: shared CSS, shared site data release records, VERSION files, root CHANGELOG, public CHANGELOG, README and regenerated static HTML snapshots</li>
+        <li>User groups affected: supporters, adopters, service users, volunteers, partners and general public visitors</li>
+        <li>Public impact: shared cards now have clearer spacing and improved readability across desktop, tablet and mobile views</li>
+        <li>Internal impact: the shared card system is more consistent, reducing the need for page-specific spacing overrides</li>
+      </ul>
+      <h3>Version decision</h3>
+      <ul class="clean-list">
+        <li>Previous version: v2.9.3</li>
+        <li>New version: v2.9.4</li>
+        <li>Version type: patch stable</li>
+        <li>Reason for version bump: user-visible shared layout spacing fix without route, content-model or hosting changes.</li>
+      </ul>
+      <h3>Validation</h3>
+      <ul class="clean-list">
+        <li>Checks run: shared CSS diff review, PHP syntax checks where available, public-site validation script, static export regeneration and release-metadata consistency review</li>
+        <li>Manual checks completed: volunteer page card spacing review, shared service/sidebar/footer card source review, footer-required link review, Change Log Hub release review and Cloudron LAMP compatibility review</li>
+        <li>Known limitations: final QA in this session relies on local preview and regenerated output review rather than exhaustive route-by-route browser screenshots</li>
+        <li>Rollback notes: restore the previous shared CSS, version files and release records, then rerun the PHP static export to restore the prior public snapshots if needed.</li>
       </ul>
     </div>
   </details>

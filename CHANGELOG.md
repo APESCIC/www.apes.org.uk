@@ -2,6 +2,172 @@
 
 Track every major release for this website, including updates, fixes, compliance changes, and user-facing improvements.
 
+## [v2.9.7] - 2026-06-10
+
+<span class="pill pill-version">Version v2.9.7</span>
+<span class="pill pill-status">Stable</span>
+<span class="pill pill-type">Changed</span>
+<span class="pill pill-fix">Fix</span>
+
+### Summary
+
+Removed the opening `/volunteer/` reminder paragraph so the page now starts directly with the approved volunteer application guidance.
+
+### Detailed changes
+
+- Removed the opening volunteer reminder paragraph from the shared site data so the route begins with the approved application panel instead of the unpaid-volunteer explainer.
+- Extended the volunteer regression check so validation now fails if the removed introductory copy reappears in the exported volunteer snapshot.
+- Kept the volunteer application route, SEO metadata, footer-required links, APES Newsroom routing, public-folder structure and Cloudron LAMP assumptions unchanged.
+- Regenerated the public static snapshots and synchronised the version files, README, root changelog, public changelog mirror and Change Log Hub release metadata.
+
+### Affected areas
+
+- Website: www.apes.org.uk
+- Page or route: `/volunteer/`, Change Log Hub, root and public release records, README current release, validation script and regenerated public HTML snapshots
+- Files changed: volunteer page source content, validation script, shared site data release records, VERSION files, root CHANGELOG, public CHANGELOG, README and regenerated public HTML snapshots
+- User groups affected: prospective volunteers, student-placement applicants, supporters, staff and partners using the volunteering route
+- Public impact: volunteer-page visitors now land directly on the application guidance without the extra introductory reminder paragraph
+- Internal impact: the copy change remains isolated to the volunteer route while adding a lightweight guard against the removed paragraph returning
+
+### Version decision
+
+- Previous version: v2.9.6
+- New version: v2.9.7
+- Version type: patch stable
+- Reason for version bump: user-visible volunteer copy removal without route, content-model or hosting changes.
+
+### Validation
+
+- Checks run: volunteer regression check, local PHP preview review, PHP syntax checks where available, public-site validation script, static export regeneration and release-metadata consistency review
+- Manual checks completed: volunteer page source review, footer-required link review, Change Log Hub release review and Cloudron LAMP compatibility review
+- Known limitations: in-app browser screenshot validation was unavailable in this session, so final visual QA relied on local preview startup, source inspection and regenerated output review
+- Rollback notes: restore the removed volunteer intro paragraph in shared site data, keep the regression check aligned with the intended copy, then rerun the PHP static export to restore the previous public snapshots if needed.
+
+## [v2.9.6] - 2026-06-10
+
+<span class="pill pill-version">Version v2.9.6</span>
+<span class="pill pill-status">Stable</span>
+<span class="pill pill-type">Changed</span>
+<span class="pill pill-fix">Fix</span>
+
+### Summary
+
+Restored balanced inset spacing around the first `/volunteer/` content card so the opening application panel and volunteer role cards have breathing room on every side.
+
+### Detailed changes
+
+- Added a volunteer-only first-section layout override so the opening `/volunteer/` content card now uses a grid gap and slightly larger inset padding without changing shared card spacing rules.
+- Added a lightweight regression check for the volunteer spacing rule to the repository validation flow so this route-scoped inset is harder to remove accidentally.
+- Kept volunteer content, SEO metadata, footer-required links, APES Newsroom routing, public-folder structure and Cloudron LAMP assumptions unchanged.
+- Regenerated the public static snapshots and synchronised the version files, README, root changelog, public changelog mirror and Change Log Hub release metadata.
+
+### Affected areas
+
+- Website: www.apes.org.uk
+- Page or route: `/volunteer/`, Change Log Hub, root and public release records, README current release, validation script and regenerated public HTML snapshots
+- Files changed: volunteer-scoped shared CSS, validation scripts, shared site data release records, VERSION files, root CHANGELOG, public CHANGELOG, README and regenerated static HTML snapshots
+- User groups affected: prospective volunteers, student-placement applicants, supporters, staff and partners using the volunteering route
+- Public impact: volunteer-page visitors now see consistent inset spacing around the first information block and its role cards on desktop layouts
+- Internal impact: the fix remains isolated to the volunteer route while adding a small regression guard to validation
+
+### Version decision
+
+- Previous version: v2.9.5
+- New version: v2.9.6
+- Version type: patch stable
+- Reason for version bump: user-visible volunteer layout spacing correction without route, content-model or hosting changes.
+
+### Validation
+
+- Checks run: volunteer spacing regression check, local PHP preview review, PHP syntax checks where available, public-site validation script, static export regeneration and release-metadata consistency review
+- Manual checks completed: volunteer page source/layout review, footer-required link review, Change Log Hub release review and Cloudron LAMP compatibility review
+- Known limitations: in-app browser screenshot validation was unavailable in this session, so final visual QA relied on local preview startup, source inspection and regenerated output review
+- Rollback notes: restore the volunteer first-section layout override, validation script, version files and release records, then rerun the PHP static export to restore the previous public snapshots if needed.
+
+## [v2.9.5] - 2026-06-10
+
+<span class="pill pill-version">Version v2.9.5</span>
+<span class="pill pill-status">Stable</span>
+<span class="pill pill-type">Changed</span>
+<span class="pill pill-fix">Fix</span>
+
+### Summary
+
+Tightened the `/volunteer/` page layout so the desktop sidebar no longer leaves a large empty card, the main content has a better column balance and the volunteer panels use more controlled spacing.
+
+### Detailed changes
+
+- Added volunteer-only desktop layout overrides so the main content column is wider and the sidebar column is slimmer without changing shared sitewide card spacing.
+- Removed the volunteer sidebar wrapper's stretched card appearance so the smaller sidebar panels sit directly on the page instead of inside a tall empty container.
+- Reduced padding and internal gaps for the volunteer application panel, the "Before you apply" panel and the lower split note cards to better match the screenshot feedback.
+- Kept the volunteer route content, links, SEO metadata, APES Newsroom routing, footer-required links and Cloudron LAMP assumptions unchanged.
+- Regenerated the public static snapshots and synchronised the version files, README, root changelog, public changelog mirror and Change Log Hub release metadata.
+
+### Affected areas
+
+- Website: www.apes.org.uk
+- Page or route: `/volunteer/`, Change Log Hub, root and public release records, README current release and regenerated public HTML snapshots
+- Files changed: volunteer-scoped shared CSS, shared site data release records, VERSION files, root CHANGELOG, public CHANGELOG, README and regenerated static HTML snapshots
+- User groups affected: prospective volunteers, student-placement applicants, supporters, staff and partners using the volunteering route
+- Public impact: volunteer-page visitors now get a tighter desktop layout with less empty sidebar space and more balanced content panels
+- Internal impact: the volunteer spacing correction stays isolated to that route instead of broadening the shared card system again
+
+### Version decision
+
+- Previous version: v2.9.4
+- New version: v2.9.5
+- Version type: patch stable
+- Reason for version bump: user-visible volunteer-page layout correction without route, content-model or hosting changes.
+
+### Validation
+
+- Checks run: local PHP preview review, PHP syntax checks where available, public-site validation script, static export regeneration and release-metadata consistency review
+- Manual checks completed: volunteer page source/layout review, footer-required link review, Change Log Hub release review and Cloudron LAMP compatibility review
+- Known limitations: in-app browser screenshot validation was unavailable in this session, so final visual QA relied on local preview startup, source inspection and regenerated output review
+- Rollback notes: restore the volunteer page layout CSS overrides, version files and release records, then rerun the PHP static export to restore the prior public snapshots if needed.
+
+## [v2.9.4] - 2026-06-10
+
+<span class="pill pill-version">Version v2.9.4</span>
+<span class="pill pill-status">Stable</span>
+<span class="pill pill-type">Changed</span>
+<span class="pill pill-fix">Fix</span>
+
+### Summary
+
+Expanded shared card spacing across the website so content, sidebar, sponsor, metric and footer cards feel less cramped on desktop and stacked mobile layouts.
+
+### Detailed changes
+
+- Increased shared grid gaps for reusable card layouts so stacked and multi-column card groups keep more consistent breathing room.
+- Enlarged the base card padding and normalized internal card spacing for shared content-card patterns without changing public HTML structure or routes.
+- Aligned refreshed sidebar, release and footer card spacing so heavier card surfaces no longer visually compress their content.
+- Added responsive spacing tuning below the main grid-collapse breakpoints so single-column card stacks remain comfortably separated.
+- Regenerated the public static snapshots so the exported site reflects the updated shared spacing and release metadata consistently.
+
+### Affected areas
+
+- Website: www.apes.org.uk
+- Page or route: volunteer page card stacks, shared content cards, service cards, sidebar mini-panels, footer cards, Change Log Hub, root and public release records, README and generated public HTML snapshots
+- Files changed: shared CSS, shared site data release records, VERSION files, root CHANGELOG, public CHANGELOG, README and regenerated static HTML snapshots
+- User groups affected: supporters, adopters, service users, volunteers, partners and general public visitors
+- Public impact: shared cards now have clearer spacing and improved readability across desktop, tablet and mobile views
+- Internal impact: the shared card system is more consistent, reducing the need for page-specific spacing overrides
+
+### Version decision
+
+- Previous version: v2.9.3
+- New version: v2.9.4
+- Version type: patch stable
+- Reason for version bump: user-visible shared layout spacing fix without route, content-model or hosting changes.
+
+### Validation
+
+- Checks run: shared CSS diff review, PHP syntax checks where available, public-site validation script, static export regeneration and release-metadata consistency review
+- Manual checks completed: volunteer page card spacing review, shared service/sidebar/footer card source review, footer-required link review, Change Log Hub release review and Cloudron LAMP compatibility review
+- Known limitations: final QA in this session relies on local preview and regenerated output review rather than exhaustive route-by-route browser screenshots
+- Rollback notes: restore the previous shared CSS, version files and release records, then rerun the PHP static export to restore the prior public snapshots if needed.
+
 ## [v2.9.3] - 2026-06-10
 
 <span class="pill pill-version">Version v2.9.3</span>

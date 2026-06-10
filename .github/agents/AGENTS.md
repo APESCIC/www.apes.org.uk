@@ -51,7 +51,33 @@ Do not remove or weaken mandatory APES CIC requirements unless the user explicit
 
 ---
 
-## 3. Setup, Build, And Validation Commands
+## 3. Planning-Stage Questions Codex Must Ask
+
+Use the planning stage to ask only questions that materially affect scope, risk, implementation route, release records, or validation. Ask these before implementation, branch creation, file edits, issue-start updates, commits, pushes, or pull requests unless the user has already provided the answer or explicitly authorises a stated assumption.
+
+During planning, identify and ask for any missing decision on:
+
+1. **Work type:** whether the change is Major, Minor, or Patch.
+2. **Release status:** whether the release should be Beta or Stable.
+3. **Versioning:** the expected version bump, whether existing version records should be updated, and whether beta suffixes are required.
+4. **Changelog scope:** whether the root changelog, `/public/CHANGELOG.md`, Change Log Hub, release metadata, or public release cards must be updated.
+5. **Website type:** for new websites or migrations, whether the target is static, PHP, WordPress-style or CMS-backed, campaign or landing page, information hub, knowledge hub, form-led site, built frontend-only single page application, custom PHP and database-backed site, or a system that needs a non-PHP runtime.
+6. **Hosting target:** whether the site is expected to run on Cloudron LAMP, another static/PHP host, or a runtime that requires further hosting review.
+7. **Target site and path:** for multi-site or monorepo work, which site, package, folder, route, or public path is in scope.
+8. **Issue workflow:** whether to create a new issue, start an existing issue, update progress, link a pull request, or defer issue updates.
+9. **Branch and pull request route:** whether to use an existing branch, create a short task branch, open a draft pull request, or stop after preparing changes locally.
+10. **Documentation scope:** whether `README.md`, local-preview notes, hosting notes, repository structure guidance, generated output, or operational notes must be updated.
+11. **Compliance and data handling:** whether the task touches UK GDPR, consent, retention, safeguarding, finance, client-record, animal-welfare, form, upload, email, or payment implications.
+12. **Validation expectations:** which repository-supported build, lint, typecheck, test, smoke-test, local-preview, SEO, sitemap, footer, error-page, or hosting checks must be run before completion.
+13. **Deferrals:** whether any release-record, documentation, version, hosting, issue, or validation requirement may be deferred and how that deferral should be recorded.
+
+When several missing decisions are related, ask them as one concise planning prompt instead of scattering them across implementation updates.
+
+If the user gives no answer and asks Codex to proceed, record the assumption in the plan, use the safest compliant option, and continue only within the user's approved scope.
+
+---
+
+## 4. Setup, Build, And Validation Commands
 
 Use repository-defined commands first. Inspect `package.json`, lockfiles, build scripts, framework configuration, Makefiles, CI files, and local documentation before choosing commands.
 
@@ -77,7 +103,7 @@ Treat development-server commands such as `npm run dev` or `php -S` as local ins
 
 ---
 
-## 4. Safety Rules
+## 5. Safety Rules
 
 Do not edit production secrets, credentials, API keys, private tokens, or unrelated environment files.
 
@@ -91,11 +117,11 @@ Never overwrite local user work. If uncommitted or unrelated changes exist, stop
 
 ---
 
-## 5. Primary Website Rule
+## 6. Primary Website Rule
 
 Every APES CIC website update must be assessed for release, documentation, compliance, website quality, repository public-folder, local-preview, and hosting impact.
 
-When creating a new website or migrating an existing website, Codex must ask what type of website the user wants unless the request already clearly specifies it. Establish whether the site is a static site, PHP site, WordPress-style or CMS site, campaign or landing page, public information hub, knowledge hub, simple form-led website, built frontend-only single page application, custom PHP and database-backed site, or a system that requires a non-PHP runtime. Use the answer to assess Cloudron LAMP suitability before planning implementation or migration.
+For new websites or migrations, resolve the website type during planning using Section 3 unless the request already clearly specifies it. Use the answer to assess Cloudron LAMP suitability before planning implementation or migration.
 
 When working on any repository, update the repository being worked on so its documentation and release records stay aligned with the change. This includes updating `README.md`, `CHANGELOG.md`, `/public/CHANGELOG.md` where present, version files, generated release metadata, local-preview documentation, hosting notes, public-facing release pages, and any other file that is affected by the work or required to keep the repository accurate. If a file exists but does not need a change, state why. If an expected file is missing, state that clearly and do not invent one unless the user approves or repository conventions require it.
 
@@ -121,16 +147,13 @@ If uncertain, assume changelog, README, documentation, hosting compatibility, re
 
 ---
 
-## 6. Issue-Tracked Work
+## 7. Issue-Tracked Work
 
 Use an issue-first workflow when work is non-trivial, public-facing, operationally relevant, compliance relevant, or likely to need an audit trail.
 
 Creating or drafting a new issue is an issue-filing action only. Do not treat issue creation as approval to start implementation, create a branch, assign yourself, post a work-started update, change issue status, edit files, commit, push, open a pull request, or otherwise begin work on that issue unless the user explicitly asks you to start work or the existing instruction clearly requires both actions.
 
-When starting work, ask the user to confirm the release classification before implementation begins. The required classification is:
-
-1. Work type: Major, Minor, or Patch.
-2. Release status: Beta or Stable.
+Before starting work, resolve the planning-stage release classification in Section 3: Work type must be Major, Minor, or Patch, and release status must be Beta or Stable.
 
 Do not begin implementation, create a work branch, change files, commit, push, open a pull request, or mark an issue as started until the user has confirmed both the work type and release status, unless the user explicitly instructs you to proceed using a stated assumption.
 
@@ -156,7 +179,7 @@ Do not close an issue until it has a clear completion note covering changed file
 
 ---
 
-## 7. Git And Pull Request Rules
+## 8. Git And Pull Request Rules
 
 Use a short task-specific branch for non-trivial work unless the user tells you to use an existing branch.
 
@@ -183,9 +206,9 @@ Merge only after explicit user approval, passing or intentionally waived checks,
 
 ---
 
-## 8. Repository Documentation, Version, And Release Records
+## 9. Repository Documentation, Version, And Release Records
 
-At the start of planning for repository work, verify the repository's current documentation, version, and release state where files exist:
+During planning for repository work, use Section 3 to verify the repository's current documentation, version, and release state where files exist:
 
 1. Repository `README.md`.
 2. Root `VERSION`.
@@ -216,7 +239,7 @@ Do not update a version without a matching changelog decision and entry.
 
 ---
 
-## 9. Change Log Hub And Changelog Entries
+## 10. Change Log Hub And Changelog Entries
 
 The Change Log Hub is the public website release record. Update it for every website change affecting users, operations, compliance, release metadata, generated output, public maintenance history, hosting assumptions, local-preview assumptions, or user-visible behaviour.
 
@@ -238,7 +261,7 @@ Do not create a changelog entry without a grounded version decision.
 
 ---
 
-## 10. Generic APES CIC Website Public Folder And Local Preview Standard
+## 11. Generic APES CIC Website Public Folder And Local Preview Standard
 
 Apply this generic standard to any APES CIC public website, microsite, landing page, campaign site, service site, static website, PHP-backed public website, frontend-only website, or website intended to be previewed locally by Codex or another coding agent.
 
@@ -393,17 +416,17 @@ The work is complete when:
 
 ---
 
-## 11. Repository Structure And Cloudron LAMP Hosting
+## 12. Repository Structure And Cloudron LAMP Hosting
 
 For APES CIC website repositories, treat root-level `/public/` as the browser-served website folder unless repository-specific documentation clearly states otherwise.
 
-For multi-site or monorepo repositories, confirm the target site and path before assuming the first `public/` folder is correct.
+For multi-site or monorepo repositories, confirm the target site and path during planning before assuming the first `public/` folder is correct.
 
 Use `Guidance/cloudron-lamp-container-website-types.md` as the source guidance for Cloudron LAMP website-type suitability. Keep this section operational and defer extended explanation to that guidance file.
 
 For websites expected to run on Cloudron LAMP, treat the Cloudron LAMP app as a traditional Linux, Apache, MySQL or MariaDB, and PHP hosting environment. It is not a general-purpose application runtime for persistent non-PHP services.
 
-When creating a website or migrating a website, ask what type of website the user wants unless the website type is already explicit in the request, issue, repository documentation, or migration source. Record the selected website type in the plan, issue update, pull request summary, or final response where relevant.
+When creating a website or migrating a website, resolve the website type during planning using Section 3 unless the website type is already explicit in the request, issue, repository documentation, or migration source. Record the selected website type in the plan, issue update, pull request summary, or final response where relevant.
 
 ### Cloudron LAMP Decision Rule
 
@@ -496,7 +519,7 @@ If evidence is missing, state the missing evidence and use the safest assumption
 
 ---
 
-## 12. SEO, Sitemap, Footer, Newsroom, And Error Pages
+## 13. SEO, Sitemap, Footer, Newsroom, And Error Pages
 
 Update SEO and sitemap records whenever public pages are added, removed, renamed, moved, or materially changed.
 
@@ -514,7 +537,7 @@ Error pages must not expose stack traces, secrets, internal system details, priv
 
 ---
 
-## 13. Final Response Requirements
+## 14. Final Response Requirements
 
 For every APES CIC website task, the final response must state:
 

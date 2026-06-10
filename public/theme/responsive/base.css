@@ -18,6 +18,16 @@
     align-items: flex-start;
   }
 
+  .card-grid,
+  .card-grid-two,
+  .card-grid-three,
+  .metrics-grid,
+  .sponsor-grid,
+  .page-sidebar__shared,
+  .footer-grid {
+    gap: 1.35rem;
+  }
+
   .footer-grid,
   .split-panel,
   .card-grid-two,
@@ -77,6 +87,16 @@
 }
 
 @media (max-width: 640px) {
+  .card-grid,
+  .card-grid-two,
+  .card-grid-three,
+  .metrics-grid,
+  .sponsor-grid,
+  .page-sidebar__shared,
+  .footer-grid {
+    gap: 1.2rem;
+  }
+
   .topbar-inner,
   .development-notice__inner,
   .nav-shell,

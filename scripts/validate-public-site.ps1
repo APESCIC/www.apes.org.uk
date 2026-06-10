@@ -184,6 +184,13 @@ foreach ($relativePath in $requiredFiles) {
     }
 }
 
+Write-Host "Running volunteer layout regression check"
+& powershell -ExecutionPolicy Bypass -File (Join-Path $repoRoot "scripts/test-volunteer-layout-spacing.ps1") | Out-Host
+
+if ($LASTEXITCODE -ne 0) {
+    throw "Volunteer layout regression check failed."
+}
+
 $errorPageExpectations = @{
     "public/403.html" = "Access denied"
     "public/404.html" = "The page you requested could not be found."
