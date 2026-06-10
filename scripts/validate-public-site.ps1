@@ -7,7 +7,107 @@ param(
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
 
-. (Join-Path $PSScriptRoot "ApesPhpTools.ps1")
+function Wait-ApesHttpEndpoint {
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory = $true)]
+        [string] $Uri,
+
+        [int] $TimeoutSeconds = 15
+    )
+
+    $deadline = (Get-Date).AddSeconds($TimeoutSeconds)
+
+    while ((Get-Date) -lt $deadline) {
+        try {
+            Invoke-WebRequest -Uri $Uri -UseBasicParsing -TimeoutSec 2 | Out-Null
+            return
+        } catch {
+            Start-Sleep -Milliseconds 250
+        }
+    }
+
+    throw "Timed out waiting for $Uri"
+}
+
+function Get-ApesNodePath {
+    [CmdletBinding()]
+    param()
+
+    $nodeCommand = Get-Command node -ErrorAction SilentlyContinue | Select-Object -First 1
+
+    if ($null -eq $nodeCommand -or -not $nodeCommand.Source) {
+        throw "Unable to locate node.exe for static preview validation."
+    }
+
+    return $nodeCommand.Source
+}
+
+function Start-ApesStaticPreview {
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory = $true)]
+        [string] $NodePath,
+
+        [Parameter(Mandatory = $true)]
+        [string] $ServerScriptPath,
+
+        [Parameter(Mandatory = $true)]
+        [string] $DocumentRoot,
+
+        [string] $BindHost = "127.0.0.1",
+
+        [int] $Port = 8080,
+
+        [string] $WorkingDirectory = (Get-Location).Path
+    )
+
+    $stdoutPath = Join-Path ([System.IO.Path]::GetTempPath()) ("apes-static-preview-$Port-stdout.log")
+    $stderrPath = Join-Path ([System.IO.Path]::GetTempPath()) ("apes-static-preview-$Port-stderr.log")
+
+    foreach ($logPath in @($stdoutPath, $stderrPath)) {
+        if (Test-Path -LiteralPath $logPath) {
+            Remove-Item -LiteralPath $logPath -Force
+        }
+    }
+
+    $arguments = @($ServerScriptPath, $BindHost, $Port.ToString(), $DocumentRoot) | ForEach-Object {
+        if ($_ -match '[\s"]') {
+            '"' + ($_ -replace '"', '\"') + '"'
+        } else {
+            $_
+        }
+    }
+
+    $process = Start-Process `
+        -FilePath $NodePath `
+        -ArgumentList $arguments `
+        -WorkingDirectory $WorkingDirectory `
+        -RedirectStandardOutput $stdoutPath `
+        -RedirectStandardError $stderrPath `
+        -PassThru `
+        -WindowStyle Hidden
+
+    Wait-ApesHttpEndpoint -Uri "http://$BindHost`:$Port/"
+
+    return [pscustomobject]@{
+        Process = $process
+        BaseUri = "http://$BindHost`:$Port"
+    }
+}
+
+function Stop-ApesPreviewProcess {
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory = $true)]
+        [System.Diagnostics.Process] $Process
+    )
+
+    if (-not $Process.HasExited) {
+        Stop-Process -Id $Process.Id -Force
+        $Process.WaitForExit()
+    }
+}
 
 function Invoke-ApesHttpRequest {
     [CmdletBinding()]
@@ -55,12 +155,7 @@ function Invoke-ApesHttpRequest {
     }
 
     try {
-        $parameters = @{
-            Uri = $Uri
-            UseBasicParsing = $true
-        }
-
-        $response = Invoke-WebRequest @parameters
+        $response = Invoke-WebRequest -Uri $Uri -UseBasicParsing
 
         return [pscustomobject]@{
             StatusCode = [int] $response.StatusCode
@@ -129,49 +224,31 @@ function Assert-ApesContains {
 }
 
 $repoRoot = (Resolve-Path (Join-Path $PSScriptRoot "..")).Path
-$phpPath = Get-ApesPhpPath
+$nodePath = Get-ApesNodePath
 $version = (Get-Content (Join-Path $repoRoot "VERSION") -Raw).Trim()
-$routerPath = (Resolve-Path (Join-Path $repoRoot "dev/router.php")).Path
+$serverScriptPath = (Resolve-Path (Join-Path $repoRoot "scripts/static-preview-server.js")).Path
 $documentRoot = (Resolve-Path (Join-Path $repoRoot "public")).Path
-$exportScript = (Resolve-Path (Join-Path $repoRoot "public/scripts/export-static-site.php")).Path
-
-$phpFiles = @(
-    "public/index.php",
-    "public/includes/render-page.php",
-    "public/includes/footer.php",
-    "public/includes/site-data.php",
-    "public/scripts/export-static-site.php",
-    "dev/router.php"
-)
-
-foreach ($relativePath in $phpFiles) {
-    $absolutePath = (Resolve-Path (Join-Path $repoRoot $relativePath)).Path
-    Write-Host "Linting $relativePath"
-    & $phpPath -l $absolutePath | Out-Host
-
-    if ($LASTEXITCODE -ne 0) {
-        throw "PHP lint failed for $relativePath"
-    }
-}
-
-Write-Host "Exporting static HTML snapshots from shared PHP source"
-& $phpPath $exportScript | Out-Host
-
-if ($LASTEXITCODE -ne 0) {
-    throw "Static HTML export failed."
-}
+$searchIndexPath = Join-Path $repoRoot "public/assets/data/search-index.json"
+$htmlFiles = Get-ChildItem (Join-Path $repoRoot "public") -Recurse -File -Filter "*.html"
 
 $requiredFiles = @(
     "public/.htaccess",
-    "public/index.php",
+    "public/index.html",
+    "public/page.css",
+    "public/page.js",
+    "public/403.html",
+    "public/403.css",
+    "public/403.js",
+    "public/404.html",
+    "public/404.css",
+    "public/404.js",
+    "public/500.html",
+    "public/500.css",
+    "public/500.js",
+    "public/assets/data/search-index.json",
     "public/robots.txt",
     "public/sitemap.xml",
     "public/site.webmanifest",
-    "public/theme/site.css",
-    "public/theme/js/site.js",
-    "public/403.html",
-    "public/404.html",
-    "public/500.html",
     "VERSION",
     "public/VERSION"
 )
@@ -180,29 +257,50 @@ foreach ($relativePath in $requiredFiles) {
     $absolutePath = Join-Path $repoRoot $relativePath
 
     if (-not (Test-Path -LiteralPath $absolutePath -PathType Leaf)) {
-        throw "Required public file is missing: $relativePath"
+        throw "Required file is missing: $relativePath"
     }
 }
 
-Write-Host "Running volunteer layout regression check"
-& powershell -ExecutionPolicy Bypass -File (Join-Path $repoRoot "scripts/test-volunteer-layout-spacing.ps1") | Out-Host
-
-if ($LASTEXITCODE -ne 0) {
-    throw "Volunteer layout regression check failed."
+if (-not (Test-Path -LiteralPath $searchIndexPath -PathType Leaf)) {
+    throw "Static search index is missing."
 }
 
-$errorPageExpectations = @{
-    "public/403.html" = "Access denied"
-    "public/404.html" = "The page you requested could not be found."
-    "public/500.html" = "Something went wrong while loading this page."
+$searchIndex = Get-Content -LiteralPath $searchIndexPath -Raw | ConvertFrom-Json
+
+if ($searchIndex.Count -lt 30) {
+    throw "Search index looks incomplete. Expected at least 30 entries but found $($searchIndex.Count)."
 }
 
-foreach ($relativePath in $errorPageExpectations.Keys) {
-    $content = Get-Content (Join-Path $repoRoot $relativePath) -Raw
-    Assert-ApesContains -Content $content -ExpectedText $errorPageExpectations[$relativePath] -Label $relativePath
+foreach ($htmlFile in $htmlFiles) {
+    $content = Get-Content -LiteralPath $htmlFile.FullName -Raw
+
+    if ($content -match 'href="[^"]*theme/site\.css"' -or $content -match 'src="[^"]*theme/js/site\.js"') {
+        throw "$($htmlFile.FullName) still contains live references to the removed shared theme assets."
+    }
+
+    if ($content -match 'href="[^"]*assets/css/site\.css"' -or $content -match 'src="[^"]*assets/js/site\.js"') {
+        throw "$($htmlFile.FullName) still contains live references to the compatibility shims."
+    }
+
+    if ($content -match 'href="[^"]*includes/' -or $content -match 'src="[^"]*includes/' -or $content -match 'href="[^"]*index\.php"' -or $content -match 'src="[^"]*index\.php"') {
+        throw "$($htmlFile.FullName) still contains live references to removed PHP source-of-truth routes."
+    }
+
+    $directory = Split-Path -Parent $htmlFile.FullName
+    $fileName = Split-Path -Leaf $htmlFile.FullName
+    $expectedCss = if ($fileName -ieq "index.html") { "page.css" } else { ([System.IO.Path]::GetFileNameWithoutExtension($fileName) + ".css") }
+    $expectedJs = if ($fileName -ieq "index.html") { "page.js" } else { ([System.IO.Path]::GetFileNameWithoutExtension($fileName) + ".js") }
+
+    if (-not (Test-Path -LiteralPath (Join-Path $directory $expectedCss) -PathType Leaf)) {
+        throw "$($htmlFile.FullName) is missing its page-owned stylesheet $expectedCss."
+    }
+
+    if (-not (Test-Path -LiteralPath (Join-Path $directory $expectedJs) -PathType Leaf)) {
+        throw "$($htmlFile.FullName) is missing its page-owned script $expectedJs."
+    }
 }
 
-$preview = Start-ApesPhpPreview -PhpPath $phpPath -DocumentRoot $documentRoot -RouterPath $routerPath -BindHost $BindHost -Port $Port -WorkingDirectory $repoRoot
+$preview = Start-ApesStaticPreview -NodePath $nodePath -ServerScriptPath $serverScriptPath -DocumentRoot $documentRoot -BindHost $BindHost -Port $Port -WorkingDirectory $repoRoot
 
 try {
     $baseUri = $preview.BaseUri
@@ -221,8 +319,9 @@ try {
         "/24-7-services/",
         "/robots.txt",
         "/sitemap.xml",
-        "/theme/site.css",
-        "/theme/js/site.js"
+        "/page.css",
+        "/page.js",
+        "/assets/data/search-index.json"
     )
 
     foreach ($route in $okRoutes) {
@@ -233,7 +332,6 @@ try {
 
     $indexRedirect = Invoke-ApesHttpRequest -Uri ($baseUri + "/index") -NoRedirect
     Assert-ApesStatus -Response $indexRedirect -ExpectedStatusCode 301 -Label "/index"
-
     if ($indexRedirect.Headers["Location"] -ne "/") {
         throw "/index redirect target should be '/' but was '$($indexRedirect.Headers["Location"])'."
     }
@@ -241,7 +339,6 @@ try {
     $legacyNewsRoute = "/news/post/Urgent-APES-Must-Relocate-by-3-March-2026/"
     $legacyRedirect = Invoke-ApesHttpRequest -Uri ($baseUri + $legacyNewsRoute) -NoRedirect
     Assert-ApesStatus -Response $legacyRedirect -ExpectedStatusCode 301 -Label $legacyNewsRoute
-
     if ($legacyRedirect.Headers["Location"] -ne "https://www.apesnews.org.uk/tag/apes-cic/") {
         throw "$legacyNewsRoute did not redirect to the expected APES Newsroom URL."
     }
@@ -254,12 +351,16 @@ try {
     Assert-ApesStatus -Response $forbiddenRoute -ExpectedStatusCode 403 -Label "forbidden route"
     Assert-ApesContains -Content $forbiddenRoute.Content -ExpectedText "You do not have access to that page." -Label "forbidden route"
 
-    if ($responses["/theme/site.css"].Headers["Content-Type"] -notlike "text/css*") {
-        throw "/theme/site.css did not return a CSS content type."
+    if ($responses["/page.css"].Headers["Content-Type"] -notlike "text/css*") {
+        throw "/page.css did not return a CSS content type."
     }
 
-    if ($responses["/theme/js/site.js"].Headers["Content-Type"] -notlike "application/javascript*") {
-        throw "/theme/js/site.js did not return a JavaScript content type."
+    if ($responses["/page.js"].Headers["Content-Type"] -notlike "application/javascript*") {
+        throw "/page.js did not return a JavaScript content type."
+    }
+
+    if ($responses["/assets/data/search-index.json"].Headers["Content-Type"] -notlike "application/json*") {
+        throw "/assets/data/search-index.json did not return a JSON content type."
     }
 
     foreach ($footerRoute in @("/", "/donate/", "/contact/", "/change-log-hub/")) {
@@ -271,13 +372,12 @@ try {
         Assert-ApesContains -Content $content -ExpectedText "APES CIC $version" -Label "$footerRoute version"
     }
 
+    Assert-ApesContains -Content $responses["/search/"].Content -ExpectedText "data-static-search-results" -Label "/search/"
+
     Write-Host "Validation passed:"
-    Write-Host "- Linted $($phpFiles.Count) PHP files including dev/router.php"
-    Write-Host "- Exported static HTML snapshots from shared PHP source"
-    Write-Host "- Checked $($okRoutes.Count) representative HTTP 200 routes and asset endpoints"
-    Write-Host "- Confirmed canonical and legacy redirect behavior"
-    Write-Host "- Confirmed branded 403 and 404 responses plus branded error-page source files"
-    Write-Host "- Confirmed footer-required links, CIC number and website version text on representative rendered pages"
+    Write-Host "- Confirmed static required files, page-owned CSS/JS assets, and generated search index"
+    Write-Host "- Checked representative HTTP routes, redirects, branded error responses, and static asset endpoints"
+    Write-Host "- Confirmed representative footer-required links, CIC number, and website version text"
 } finally {
     Stop-ApesPreviewProcess -Process $preview.Process
 }

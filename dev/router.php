@@ -11,8 +11,6 @@ if ($publicRoot === false) {
     return true;
 }
 
-require_once $publicRoot . '/includes/site-data.php';
-
 function apes_router_error_page(string $publicRoot, int $statusCode, string $fallbackMessage): void
 {
     http_response_code($statusCode);
@@ -34,9 +32,74 @@ function apes_router_error_page(string $publicRoot, int $statusCode, string $fal
     echo $fallbackMessage;
 }
 
+function apes_router_redirect(string $target, int $statusCode = 301): bool
+{
+    header('Location: ' . $target, true, $statusCode);
+
+    return true;
+}
+
+function apes_router_content_type(string $path): string
+{
+    return match (strtolower((string) pathinfo($path, PATHINFO_EXTENSION))) {
+        'css' => 'text/css; charset=utf-8',
+        'js' => 'application/javascript; charset=utf-8',
+        'json' => 'application/json; charset=utf-8',
+        'xml' => 'application/xml; charset=utf-8',
+        'txt' => 'text/plain; charset=utf-8',
+        'svg' => 'image/svg+xml',
+        'webp' => 'image/webp',
+        'png' => 'image/png',
+        'jpg', 'jpeg' => 'image/jpeg',
+        'ico' => 'image/x-icon',
+        'webmanifest' => 'application/manifest+json; charset=utf-8',
+        default => 'text/html; charset=utf-8',
+    };
+}
+
+function apes_router_serve_file(string $path): bool
+{
+    header('Content-Type: ' . apes_router_content_type($path));
+    readfile($path);
+
+    return true;
+}
+
 $requestUri = $_SERVER['REQUEST_URI'] ?? '/';
-$requestPath = apes_path_from_request_uri($requestUri);
+$requestParts = parse_url($requestUri);
+$requestPath = $requestParts['path'] ?? '/';
+$queryString = isset($requestParts['query']) && $requestParts['query'] !== '' ? '?' . $requestParts['query'] : '';
 $decodedPath = rawurldecode($requestPath);
+
+$redirects = [
+    '/index' => '/',
+    '/missions/our-main-mission-statement/' => '/mission/our-main-mission-statement/',
+    '/missions/our-main-mission-statement' => '/mission/our-main-mission-statement/',
+    '/missions/support-ethical-rehabilitation/' => '/mission/support-ethical-rehabilitation/',
+    '/missions/support-ethical-rehabilitation' => '/mission/support-ethical-rehabilitation/',
+    '/changelog/' => '/change-log-hub/',
+    '/changelog' => '/change-log-hub/',
+    '/change-log/' => '/change-log-hub/',
+    '/change-log' => '/change-log-hub/',
+    '/news/post/Introducing-the-new-APES-CareBase/' => 'https://www.apesnews.org.uk/introducing-the-new-myapes-manage-your-details-online/',
+    '/news/post/Introducing-the-new-APES-CareBase' => 'https://www.apesnews.org.uk/introducing-the-new-myapes-manage-your-details-online/',
+    '/news/post/Urgent-APES-Must-Relocate-by-3-March-2026/' => 'https://www.apesnews.org.uk/tag/apes-cic/',
+    '/news/post/Urgent-APES-Must-Relocate-by-3-March-2026' => 'https://www.apesnews.org.uk/tag/apes-cic/',
+    '/news/post/APES-Partners-with-Double-the-Donation-to-Double-Your-Donation-Impact/' => 'https://www.apesnews.org.uk/tag/apes-donor-community/',
+    '/news/post/APES-Partners-with-Double-the-Donation-to-Double-Your-Donation-Impact' => 'https://www.apesnews.org.uk/tag/apes-donor-community/',
+    '/news/post/important-update-temporary-move-what-it-means-for-you/' => 'https://www.apesnews.org.uk/tag/apes-cic/',
+    '/news/post/important-update-temporary-move-what-it-means-for-you' => 'https://www.apesnews.org.uk/tag/apes-cic/',
+    '/news/post/fundraising-appeal-help-apes-invest-in-essential-welfare-management-software/' => 'https://www.apesnews.org.uk/tag/apes-donor-community/',
+    '/news/post/fundraising-appeal-help-apes-invest-in-essential-welfare-management-software' => 'https://www.apesnews.org.uk/tag/apes-donor-community/',
+    '/news/tag/moving-properties/' => 'https://www.apesnews.org.uk/tag/apes-cic/',
+    '/news/tag/moving-properties' => 'https://www.apesnews.org.uk/tag/apes-cic/',
+    '/news/tag/funds/' => 'https://www.apesnews.org.uk/tag/apes-donor-community/',
+    '/news/tag/funds' => 'https://www.apesnews.org.uk/tag/apes-donor-community/',
+];
+
+if (isset($redirects[$decodedPath])) {
+    return apes_router_redirect($redirects[$decodedPath]);
+}
 
 $forbiddenPrefixes = [
     '/includes',
@@ -58,31 +121,41 @@ if (str_starts_with($decodedPath, '/.')) {
     return true;
 }
 
-$pathHasExtension = pathinfo($decodedPath, PATHINFO_EXTENSION) !== '';
+if ($decodedPath === '/') {
+    return apes_router_serve_file($publicRoot . '/index.html');
+}
 
-if ($pathHasExtension) {
-    $candidate = realpath($publicRoot . '/' . ltrim($decodedPath, '/'));
+$relativePath = ltrim($decodedPath, '/');
+$fileCandidate = realpath($publicRoot . '/' . $relativePath);
 
-    if ($candidate !== false && str_starts_with($candidate, $publicRoot) && is_file($candidate)) {
-        return false;
+if ($fileCandidate !== false && str_starts_with($fileCandidate, $publicRoot) && is_file($fileCandidate)) {
+    return apes_router_serve_file($fileCandidate);
+}
+
+$directoryCandidate = realpath($publicRoot . '/' . trim($relativePath, '/'));
+if ($directoryCandidate !== false && str_starts_with($directoryCandidate, $publicRoot) && is_dir($directoryCandidate)) {
+    if (!str_ends_with($decodedPath, '/')) {
+        return apes_router_redirect($decodedPath . '/' . $queryString);
+    }
+
+    $indexCandidate = $directoryCandidate . '/index.html';
+    if (is_file($indexCandidate)) {
+        return apes_router_serve_file($indexCandidate);
     }
 }
 
-$newsroomRedirect = apes_newsroom_redirects()[$requestPath] ?? null;
-
-if ($newsroomRedirect !== null) {
-    header('Location: ' . $newsroomRedirect, true, 301);
+$pathHasExtension = pathinfo($relativePath, PATHINFO_EXTENSION) !== '';
+if ($pathHasExtension) {
+    apes_router_error_page($publicRoot, 404, 'Not found');
 
     return true;
 }
 
-$_SERVER['DOCUMENT_ROOT'] = $publicRoot;
-
-try {
-    require $publicRoot . '/index.php';
-} catch (Throwable $throwable) {
-    error_log('APES local preview router failure: ' . $throwable->getMessage());
-    apes_router_error_page($publicRoot, 500, 'Internal server error');
+$routeIndexCandidate = $publicRoot . '/' . trim($relativePath, '/') . '/index.html';
+if (is_file($routeIndexCandidate)) {
+    return apes_router_serve_file($routeIndexCandidate);
 }
+
+apes_router_error_page($publicRoot, 404, 'Not found');
 
 return true;

@@ -2,6 +2,48 @@
 
 Track every major release for this website, including updates, fixes, compliance changes, and user-facing improvements.
 
+## [v3.0.0b] - 2026-06-11
+
+<span class="pill pill-version">Version v3.0.0b</span>
+<span class="pill pill-status">Beta</span>
+<span class="pill pill-type">Changed</span>
+<span class="pill pill-type">Removed</span>
+<span class="pill pill-compliance">Compliance</span>
+
+### Summary
+
+Migrated the public website to a static-first HTML/CSS/JS architecture with page-owned assets, a browser-side search index, and no public dependency on the previous shared PHP or shared theme runtime.
+
+### Detailed changes
+
+- Generated dedicated `page.css` and `page.js` files for every public route and branded error page so each page now ships with its own local styling and browser behavior entrypoints.
+- Replaced the public shared-theme runtime by removing `public/theme/`, `public/includes/`, `public/scripts/export-static-site.php`, the legacy compatibility shims, and the public PHP entry points.
+- Added a generated static search index at `public/assets/data/search-index.json` and browser-side search rendering on `/search/` so search no longer depends on PHP rendering.
+- Reworked local preview and validation around a static Node-backed preview server, preserved legacy redirects and branded error handling, and kept footer-required links, sitemap, robots, and APES Newsroom routing intact.
+
+### Affected areas
+
+- Website: www.apes.org.uk
+- Page or route: whole public website, `/search/`, Services hub route-finder behavior, branded error pages, Change Log Hub, root and public release records, README preview notes, local preview helpers and validation tooling
+- Files changed: public HTML pages, page-owned CSS and JS assets, static search index, `.htaccess`, `dev/router.php`, preview and validation scripts, VERSION files, root CHANGELOG and public CHANGELOG
+- User groups affected: all public visitors plus APES maintainers editing, previewing and validating the site
+- Public impact: routes, content, hubs, route finders, footer links and external service handoffs are preserved while the site no longer relies on the previous shared runtime architecture
+- Internal impact: maintainers can now change individual pages directly without editing a shared theme or shared PHP rendering layer first
+
+### Version decision
+
+- Previous version: v2.9.7
+- New version: v3.0.0b
+- Version type: major beta
+- Reason for version bump: architecture-level migration to a static page-owned runtime with public-file cleanup and preview/validation workflow replacement
+
+### Validation
+
+- Checks run: `powershell -ExecutionPolicy Bypass -File .\scripts\validate-public-site.ps1`
+- Manual checks completed: representative route review, redirect review, branded 403/404 review, page-owned asset generation review, footer-required link review and version-file consistency review
+- Known limitations: repository documentation and historical release notes still contain references to the previous shared PHP/theme architecture and need a wider editorial pass before the migration can be treated as stable
+- Rollback notes: restore the removed public PHP/theme files, revert the page-owned asset generation, restore the previous preview/validation helpers and version records, then regenerate the public bundle from the prior architecture if needed
+
 ## [v2.9.7] - 2026-06-10
 
 <span class="pill pill-version">Version v2.9.7</span>
