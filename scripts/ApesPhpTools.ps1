@@ -96,9 +96,17 @@ function Start-ApesPhpPreview {
         }
     }
 
+    $arguments = @("-S", "$BindHost`:$Port", "-t", $DocumentRoot, $RouterPath) | ForEach-Object {
+        if ($_ -match '[\s"]') {
+            '"' + ($_ -replace '"', '\"') + '"'
+        } else {
+            $_
+        }
+    }
+
     $process = Start-Process `
         -FilePath $PhpPath `
-        -ArgumentList @("-S", "$BindHost`:$Port", "-t", $DocumentRoot, $RouterPath) `
+        -ArgumentList $arguments `
         -WorkingDirectory $WorkingDirectory `
         -RedirectStandardOutput $stdoutPath `
         -RedirectStandardError $stderrPath `

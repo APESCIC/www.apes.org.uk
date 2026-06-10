@@ -1,9 +1,9 @@
 ## Current release
 
-- Version: `v2.9.2`
+- Version: `v2.9.3`
 - Release date: `2026-06-10`
-- Release impact: applied the APES rendering standard across the whole website by adding a shared PHP preview router, reusable validation and packaging helpers, and aligned Cloudron workflow documentation.
-- Operational note: shared PHP remains the source of truth; use **APES: Preview PHP source site** for rendered-route checks, **APES: Preview static public snapshots** for exported output review, run `scripts/validate-public-site.ps1` before staging, and package only the `public/` bundle for Cloudron upload.
+- Release impact: added direct `file://` rendering support for exported static HTML snapshots while preserving the APES `public/` web-root and Cloudron LAMP hosting assumptions.
+- Operational note: shared PHP remains the source of truth; use **APES: Preview PHP source site** for rendered-route checks, **APES: Preview static public snapshots** for HTTP output review, direct `file://` only for exported snapshot inspection, run `scripts/validate-public-site.ps1` before staging, and package only the `public/` bundle for Cloudron upload.
 
 <p align="center">
   <a href="https://www.apes.org.uk/" target="_blank" rel="noopener noreferrer">
@@ -245,7 +245,9 @@ If PHP is installed, this equivalent command also works:
 php -S localhost:8080 -t public
 ```
 
-Open `http://localhost:8080/` and test representative routes. Root-relative links such as `/theme/site.css`, `/donate/` and `/change-log-hub/` expect `public/` to be served as the web root; raw `file://` opening is not the supported preview mode.
+Open `http://localhost:8080/` and test representative routes. HTTP preview remains the preferred validation path because it matches the deployed `public/` web-root behavior.
+
+Exported static snapshots also support direct disk inspection after regeneration. For quick visual checks, open `public/index.html` with `file://`; the generated HTML rewrites local assets, internal links and route-finder data to relative paths while leaving PHP source rendering, canonical URLs and Cloudron hosting assumptions unchanged.
 
 ### 6. Run checks before staging or committing
 

@@ -18,14 +18,46 @@ function Invoke-ApesHttpRequest {
         [switch] $NoRedirect
     )
 
+    if ($NoRedirect) {
+        $request = [System.Net.WebRequest]::Create($Uri)
+        $request.AllowAutoRedirect = $false
+
+        try {
+            $response = $request.GetResponse()
+        } catch [System.Net.WebException] {
+            $response = $_.Exception.Response
+
+            if ($null -eq $response) {
+                throw
+            }
+        }
+
+        $stream = $response.GetResponseStream()
+        $reader = New-Object System.IO.StreamReader($stream)
+
+        $statusCode = [int] $response.StatusCode
+        $headers = $response.Headers
+
+        try {
+            $content = $reader.ReadToEnd()
+        } finally {
+            $reader.Dispose()
+            $stream.Dispose()
+            $response.Dispose()
+        }
+
+        return [pscustomobject]@{
+            StatusCode = $statusCode
+            Headers = $headers
+            Content = $content
+            Uri = $Uri
+        }
+    }
+
     try {
         $parameters = @{
             Uri = $Uri
             UseBasicParsing = $true
-        }
-
-        if ($NoRedirect) {
-            $parameters["MaximumRedirection"] = 0
         }
 
         $response = Invoke-WebRequest @parameters
@@ -36,7 +68,7 @@ function Invoke-ApesHttpRequest {
             Content = [string] $response.Content
             Uri = $Uri
         }
-    } catch [System.Net.WebException] {
+    } catch {
         $response = $_.Exception.Response
 
         if ($null -eq $response) {

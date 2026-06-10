@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-const APES_FALLBACK_VERSION = 'v2.9.2';
+const APES_FALLBACK_VERSION = 'v2.9.3';
 const APES_SITE_NAME = 'Association of Protecting Exotic Species CIC';
 const APES_CIC_NUMBER = '16253848';
 const APES_CONTACT_EMAIL = 'info@apes.org.uk';
@@ -2705,9 +2705,9 @@ HTML,
                 'hero_summary' => 'Track every major release for this website, including updates, fixes, compliance changes, and user-facing improvements.',
                 'hero_actions' => [
                     ['label' => 'Expand all releases', 'href' => '#release-list', 'variant' => 'primary'],
-                    ['label' => 'View current release', 'href' => '#release-v292', 'variant' => 'secondary'],
+                    ['label' => 'View current release', 'href' => '#release-v293', 'variant' => 'secondary'],
                 ],
-                'pills' => ['Current version ' . $siteVersion, 'Patch stable', 'Rendering standard rollout'],
+                'pills' => ['Current version ' . $siteVersion, 'Patch stable', 'File preview support'],
                 'body_html' => <<<'HTML'
 <section class="section-shell">
   <div class="release-tools">
@@ -2735,7 +2735,54 @@ HTML,
 </section>
 
 <section class="section-shell" id="release-list">
-  <details class="release-card" data-release-card data-tags="current stable changed fixed compliance internal-only" open id="release-v292">
+  <details class="release-card" data-release-card data-tags="current stable changed fixed internal-only" open id="release-v293">
+    <summary>
+      <span class="release-version">v2.9.3</span>
+      <span class="release-date">2026-06-10</span>
+    </summary>
+    <div class="release-body">
+      <div class="pill-row">
+        <span class="pill pill-version">Version v2.9.3</span>
+        <span class="pill pill-status">Stable</span>
+        <span class="pill pill-type">Changed</span>
+        <span class="pill pill-fix">Fix</span>
+      </div>
+      <h3>Summary</h3>
+      <p>Added direct <code>file://</code> rendering support for exported static HTML snapshots while preserving the APES <code>public/</code> web-root and Cloudron LAMP hosting assumptions.</p>
+      <h3>Detailed changes</h3>
+      <ul class="clean-list">
+        <li>Updated the static HTML exporter so generated snapshots rewrite internal root-relative assets, links and route-finder data to page-depth-aware relative paths.</li>
+        <li>Tightened local validation helpers so PHP preview startup handles workspace paths with spaces and redirect assertions work reliably in Windows PowerShell.</li>
+        <li>Preserved PHP source rendering, canonical URLs, Open Graph metadata, JSON-LD and hosted Cloudron paths so production output still uses the approved web-root model.</li>
+        <li>Regenerated the public static snapshots so <code>public/index.html</code> can be opened directly from disk with styling, images, navigation and route-finder links intact.</li>
+        <li>Updated README preview guidance to clarify that HTTP/PHP preview remains preferred, while exported static snapshots now support direct <code>file://</code> inspection.</li>
+      </ul>
+      <h3>Affected areas</h3>
+      <ul class="clean-list">
+        <li>Website: www.apes.org.uk</li>
+        <li>Page or route: exported static snapshots, homepage file preview, internal static navigation, route-finder links, Change Log Hub, root and public release records, README and generated public HTML snapshots</li>
+        <li>Files changed: static exporter, PHP preview and validation helpers, shared site data release records, VERSION files, root CHANGELOG, public CHANGELOG, README and regenerated static HTML snapshots</li>
+        <li>User groups affected: APES maintainers previewing exported snapshots locally in Codex, VS Code or a browser without a running local server</li>
+        <li>Public impact: no public route, content, SEO metadata or production hosting behavior change is intended.</li>
+        <li>Internal impact: maintainers can inspect the generated public bundle from disk while retaining HTTP preview and Cloudron LAMP parity for deployment checks.</li>
+      </ul>
+      <h3>Version decision</h3>
+      <ul class="clean-list">
+        <li>Previous version: v2.9.2</li>
+        <li>New version: v2.9.3</li>
+        <li>Version type: patch stable</li>
+        <li>Reason for version bump: local static snapshot rendering fix without public route expansion, content change or production architecture change.</li>
+      </ul>
+      <h3>Validation</h3>
+      <ul class="clean-list">
+        <li>Checks run: PHP syntax checks where available, static export regeneration, generated-link inspection for homepage and nested routes, route-finder data inspection, local HTTP preview smoke checks and release-metadata consistency review</li>
+        <li>Manual checks completed: direct <code>file://</code> homepage preview, stylesheet/logo rendering review, navigation link review, route-finder interaction review, footer-required link review, Change Log Hub release review and Cloudron LAMP compatibility review</li>
+        <li>Known limitations: <code>file://</code> preview is for local inspection of exported static snapshots only; HTTP/PHP preview remains the preferred validation path for route and server behavior.</li>
+        <li>Rollback notes: restore the previous static exporter, PHP preview helper, validation helper, version files and release records, then rerun the PHP static export to restore root-relative generated snapshots.</li>
+      </ul>
+    </div>
+  </details>
+  <details class="release-card" data-release-card data-tags="stable changed fixed compliance internal-only" id="release-v292">
     <summary>
       <span class="release-version">v2.9.2</span>
       <span class="release-date">2026-06-10</span>

@@ -1,3 +1,45 @@
+## [v2.9.3] - 2026-06-10
+
+<span class="pill pill-version">Version v2.9.3</span>
+<span class="pill pill-status">Stable</span>
+<span class="pill pill-type">Changed</span>
+<span class="pill pill-fix">Fix</span>
+
+### Summary
+
+Added direct `file://` rendering support for exported static HTML snapshots while preserving the APES `public/` web-root and Cloudron LAMP hosting assumptions.
+
+### Detailed changes
+
+- Updated the static HTML exporter so generated snapshots rewrite internal root-relative assets, links and route-finder data to page-depth-aware relative paths.
+- Tightened local validation helpers so PHP preview startup handles workspace paths with spaces and redirect assertions work reliably in Windows PowerShell.
+- Preserved PHP source rendering, canonical URLs, Open Graph metadata, JSON-LD and hosted Cloudron paths so production output still uses the approved web-root model.
+- Regenerated the public static snapshots so `public/index.html` can be opened directly from disk with styling, images, navigation and route-finder links intact.
+- Updated README preview guidance to clarify that HTTP/PHP preview remains preferred, while exported static snapshots now support direct `file://` inspection.
+
+### Affected areas
+
+- Website: www.apes.org.uk
+- Page or route: exported static snapshots, homepage file preview, internal static navigation, route-finder links, Change Log Hub, root and public release records, README and generated public HTML snapshots
+- Files changed: static exporter, PHP preview and validation helpers, shared site data release records, VERSION files, root CHANGELOG, public CHANGELOG, README and regenerated static HTML snapshots
+- User groups affected: APES maintainers previewing exported snapshots locally in Codex, VS Code or a browser without a running local server
+- Public impact: no public route, content, SEO metadata or production hosting behavior change is intended.
+- Internal impact: maintainers can inspect the generated public bundle from disk while retaining HTTP preview and Cloudron LAMP parity for deployment checks.
+
+### Version decision
+
+- Previous version: v2.9.2
+- New version: v2.9.3
+- Version type: patch stable
+- Reason for version bump: local static snapshot rendering fix without public route expansion, content change or production architecture change.
+
+### Validation
+
+- Checks run: PHP syntax checks where available, static export regeneration, generated-link inspection for homepage and nested routes, route-finder data inspection, local HTTP preview smoke checks and release-metadata consistency review
+- Manual checks completed: direct `file://` homepage preview, stylesheet/logo rendering review, navigation link review, route-finder interaction review, footer-required link review, Change Log Hub release review and Cloudron LAMP compatibility review
+- Known limitations: `file://` preview is for local inspection of exported static snapshots only; HTTP/PHP preview remains the preferred validation path for route and server behavior.
+- Rollback notes: restore the previous static exporter, PHP preview helper, validation helper, version files and release records, then rerun the PHP static export to restore root-relative generated snapshots.
+
 ## [v2.9.2] - 2026-06-10
 
 <span class="pill pill-version">Version v2.9.2</span>
