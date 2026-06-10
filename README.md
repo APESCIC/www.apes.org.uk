@@ -1,9 +1,9 @@
 ## Current release
 
-- Version: `v2.9.0`
+- Version: `v2.9.1`
 - Release date: `2026-06-10`
-- Release impact: refactored the public website theme into modular CSS and browser-module JavaScript, added a manual VS Code static export task and kept production PHP routing intact for Cloudron LAMP.
-- Operational note: shared PHP remains the source of truth; serve `public/` as the local preview web root, run the manual VS Code export task after source changes, and use a PHP-enabled environment for final static export and syntax checks before deployment.
+- Release impact: restored a reliable VS Code browser preview workflow by adding a PHP-free static preview task while keeping production PHP routing intact for Cloudron LAMP.
+- Operational note: shared PHP remains the source of truth; serve `public/` as the local preview web root, use **APES: Preview public site** for browser preview in VS Code, run the manual export task after source changes, and use a PHP-enabled environment for final static export and syntax checks before deployment.
 
 <p align="center">
   <a href="https://www.apes.org.uk/" target="_blank" rel="noopener noreferrer">
@@ -213,6 +213,10 @@ php public/scripts/export-static-site.php
 In VS Code, use the task **APES: Export static HTML snapshots** to run the same exporter manually.
 
 ### 4. Preview from the public web root
+
+In VS Code, run the task **APES: Preview public site**, then open `http://localhost:8080/` in **Simple Browser: Show** or a local browser. This task serves the exported static snapshots from `public/` and does not require PHP.
+
+If PHP is installed, this equivalent command also works:
 
 ```bash
 php -S localhost:8080 -t public
