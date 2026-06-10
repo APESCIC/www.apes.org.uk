@@ -1,9 +1,9 @@
 ## Current release
 
-- Version: `v2.9.1`
+- Version: `v2.9.2`
 - Release date: `2026-06-10`
-- Release impact: restored a reliable VS Code browser preview workflow by adding a PHP-free static preview task while keeping production PHP routing intact for Cloudron LAMP.
-- Operational note: shared PHP remains the source of truth; serve `public/` as the local preview web root, use **APES: Preview public site** for browser preview in VS Code, run the manual export task after source changes, and use a PHP-enabled environment for final static export and syntax checks before deployment.
+- Release impact: applied the APES rendering standard across the whole website by adding a shared PHP preview router, reusable validation and packaging helpers, and aligned Cloudron workflow documentation.
+- Operational note: shared PHP remains the source of truth; use **APES: Preview PHP source site** for rendered-route checks, **APES: Preview static public snapshots** for exported output review, run `scripts/validate-public-site.ps1` before staging, and package only the `public/` bundle for Cloudron upload.
 
 <p align="center">
   <a href="https://www.apes.org.uk/" target="_blank" rel="noopener noreferrer">
@@ -170,6 +170,15 @@ The exact structure may vary by framework, but the repository should stay easy t
 This repository currently serves the production website from `public/` as static files and PHP under Apache-compatible Cloudron LAMP hosting.
 
 ```text
+dev/
+└── router.php           # Shared PHP preview router for local HTTP rendering parity
+scripts/
+├── ApesPhpTools.ps1     # Shared PHP runtime detection and preview helpers
+├── export-static-html-snapshots.ps1
+├── preview-php-source-site.ps1
+├── validate-public-site.ps1
+├── stage-cloudron-public.ps1
+└── package-cloudron-public.ps1
 public/
 ├── assets/              # Images, favicons, logos and one-release CSS/JS compatibility shims
 ├── includes/            # PHP rendering, site data, header and footer source of truth
@@ -204,7 +213,21 @@ cd www.apes.org.uk
 php -v
 ```
 
-### 3. Regenerate static snapshots
+If PHP is not already on your `PATH`, the VS Code tasks and repo-root PowerShell helpers will auto-detect common Windows installs such as XAMPP.
+
+### 3. Preview the shared PHP source site
+
+In VS Code, run **APES: Preview PHP source site**, then open `http://localhost:8080/` in **Simple Browser: Show** or a local browser.
+
+If you prefer a terminal command, use:
+
+```bash
+php -S 127.0.0.1:8080 -t public dev/router.php
+```
+
+This is the primary local rendering path for the shared PHP source of truth and avoids unsupported `file://` previews.
+
+### 4. Regenerate static snapshots
 
 ```bash
 php public/scripts/export-static-site.php
@@ -212,9 +235,9 @@ php public/scripts/export-static-site.php
 
 In VS Code, use the task **APES: Export static HTML snapshots** to run the same exporter manually.
 
-### 4. Preview from the public web root
+### 5. Preview exported static snapshots from the public web root
 
-In VS Code, run the task **APES: Preview public site**, then open `http://localhost:8080/` in **Simple Browser: Show** or a local browser. This task serves the exported static snapshots from `public/` and does not require PHP.
+In VS Code, run **APES: Preview static public snapshots**, then open `http://localhost:8080/` in **Simple Browser: Show** or a local browser. This task serves the exported static snapshots from `public/` and does not require PHP.
 
 If PHP is installed, this equivalent command also works:
 
@@ -224,14 +247,23 @@ php -S localhost:8080 -t public
 
 Open `http://localhost:8080/` and test representative routes. Root-relative links such as `/theme/site.css`, `/donate/` and `/change-log-hub/` expect `public/` to be served as the web root; raw `file://` opening is not the supported preview mode.
 
-### 5. Run checks before committing where PHP is available
+### 6. Run checks before staging or committing
 
 ```bash
 php -l public/includes/render-page.php
 php -l public/includes/footer.php
 php -l public/includes/site-data.php
+php -l dev/router.php
 php -l public/scripts/export-static-site.php
 php public/scripts/export-static-site.php
+powershell -ExecutionPolicy Bypass -File .\scripts\validate-public-site.ps1
+```
+
+### 7. Stage or package the Cloudron public bundle
+
+```bash
+powershell -ExecutionPolicy Bypass -File .\scripts\stage-cloudron-public.ps1
+powershell -ExecutionPolicy Bypass -File .\scripts\package-cloudron-public.ps1
 ```
 
 ---

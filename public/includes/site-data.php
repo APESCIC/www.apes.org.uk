@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-const APES_FALLBACK_VERSION = 'v2.9.1';
+const APES_FALLBACK_VERSION = 'v2.9.2';
 const APES_SITE_NAME = 'Association of Protecting Exotic Species CIC';
 const APES_CIC_NUMBER = '16253848';
 const APES_CONTACT_EMAIL = 'info@apes.org.uk';
@@ -2705,9 +2705,9 @@ HTML,
                 'hero_summary' => 'Track every major release for this website, including updates, fixes, compliance changes, and user-facing improvements.',
                 'hero_actions' => [
                     ['label' => 'Expand all releases', 'href' => '#release-list', 'variant' => 'primary'],
-                    ['label' => 'View current release', 'href' => '#release-v291', 'variant' => 'secondary'],
+                    ['label' => 'View current release', 'href' => '#release-v292', 'variant' => 'secondary'],
                 ],
-                'pills' => ['Current version ' . $siteVersion, 'Patch stable', 'Public-facing'],
+                'pills' => ['Current version ' . $siteVersion, 'Patch stable', 'Rendering standard rollout'],
                 'body_html' => <<<'HTML'
 <section class="section-shell">
   <div class="release-tools">
@@ -2735,7 +2735,54 @@ HTML,
 </section>
 
 <section class="section-shell" id="release-list">
-  <details class="release-card" data-release-card data-tags="current stable changed fixed internal-only" open id="release-v291">
+  <details class="release-card" data-release-card data-tags="current stable changed fixed compliance internal-only" open id="release-v292">
+    <summary>
+      <span class="release-version">v2.9.2</span>
+      <span class="release-date">2026-06-10</span>
+    </summary>
+    <div class="release-body">
+      <div class="pill-row">
+        <span class="pill pill-version">Version v2.9.2</span>
+        <span class="pill pill-status">Stable</span>
+        <span class="pill pill-type">Changed</span>
+        <span class="pill pill-fix">Fix</span>
+        <span class="pill pill-compliance">Compliance</span>
+      </div>
+      <h3>Summary</h3>
+      <p>Applied the APES rendering standard across the whole website by adding a shared PHP preview router, reusable deployment helpers and aligned Cloudron validation workflows.</p>
+      <h3>Detailed changes</h3>
+      <ul class="clean-list">
+        <li>Added repo-root PHP preview routing through <code>dev/router.php</code> plus the task <code>APES: Preview PHP source site</code> so the shared PHP source can be tested over HTTP instead of relying on <code>file://</code> or static-only previews.</li>
+        <li>Added reusable PowerShell helpers for PHP preview, static export, full-site validation, Cloudron staging and ZIP packaging while auto-detecting common Windows PHP installs such as XAMPP.</li>
+        <li>Added GitHub Actions workflows to validate the shared PHP/public output and build a Cloudron public-bundle artifact so the documented deployment path now exists in the repository.</li>
+        <li>Preserved <code>public/</code> as the approved APES web-root equivalent while keeping Apache redirects, sitemap, robots, branded error pages, footer links, README notes and release records aligned for Cloudron LAMP.</li>
+      </ul>
+      <h3>Affected areas</h3>
+      <ul class="clean-list">
+        <li>Website: www.apes.org.uk</li>
+        <li>Page or route: whole-site preview workflow, shared PHP rendering, legacy redirect parity, deployment helpers, Change Log Hub, root and public release records, README, Cloudron docs, validation report and regenerated public HTML snapshots</li>
+        <li>Files changed: <code>dev/router.php</code>, repo-root PowerShell helpers, GitHub workflow scaffolds, VS Code tasks, shared PHP runtime, Apache headers, VERSION files, root and public changelogs, README, deployment docs, validation report, Change Log Hub source and regenerated static HTML snapshots</li>
+        <li>User groups affected: APES maintainers previewing, validating, packaging and publishing the website to Cloudron LAMP</li>
+        <li>Public impact: no new public routes or information-architecture changes are intended; rendered output and release metadata stay aligned while maintainers get stronger preview and deployment parity.</li>
+        <li>Internal impact: APES now has a consistent HTTP preview, validation, staging and packaging workflow grounded in the approved rendering standard.</li>
+      </ul>
+      <h3>Version decision</h3>
+      <ul class="clean-list">
+        <li>Previous version: v2.9.1</li>
+        <li>New version: v2.9.2</li>
+        <li>Version type: patch stable</li>
+        <li>Reason for version bump: whole-site rendering, deployment and documentation alignment without public route expansion or architecture replacement.</li>
+      </ul>
+      <h3>Validation</h3>
+      <ul class="clean-list">
+        <li>Checks run: PHP lint checks for the shared runtime and router, <code>php public/scripts/export-static-site.php</code>, <code>powershell -ExecutionPolicy Bypass -File scripts/validate-public-site.ps1</code>, Cloudron staging/package helper review and release-metadata consistency review</li>
+        <li>Manual checks completed: representative route preview review, root-relative asset 200 review, canonical and legacy-news redirect review, branded 403/404 handling review, footer-required link review, Change Log Hub release review, sitemap/robots review and Cloudron LAMP documentation alignment review</li>
+        <li>Known limitations: final browser QA on the deployed Cloudron staging app and live Apache verification still require a post-upload environment outside this repo-only implementation pass.</li>
+        <li>Rollback notes: restore the previous preview tasks and shared runtime files, remove the new repo-root scripts and workflows, restore the previous version files and release records, then rerun the shared PHP static export before redeployment.</li>
+      </ul>
+    </div>
+  </details>
+  <details class="release-card" data-release-card data-tags="stable changed fixed internal-only" id="release-v291">
     <summary>
       <span class="release-version">v2.9.1</span>
       <span class="release-date">2026-06-10</span>

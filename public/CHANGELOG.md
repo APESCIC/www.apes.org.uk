@@ -1,3 +1,45 @@
+## [v2.9.2] - 2026-06-10
+
+<span class="pill pill-version">Version v2.9.2</span>
+<span class="pill pill-status">Stable</span>
+<span class="pill pill-type">Changed</span>
+<span class="pill pill-fix">Fix</span>
+<span class="pill pill-compliance">Compliance</span>
+
+### Summary
+
+Applied the APES rendering standard across the whole website by adding a shared PHP preview router, reusable deployment helpers and aligned Cloudron validation workflows.
+
+### Detailed changes
+
+- Added repo-root PHP preview routing through `dev/router.php` plus the task `APES: Preview PHP source site` so the shared PHP source can be tested over HTTP instead of relying on `file://` or static-only previews.
+- Added reusable PowerShell helpers for PHP preview, static export, full-site validation, Cloudron staging and ZIP packaging while auto-detecting common Windows PHP installs such as XAMPP.
+- Added GitHub Actions workflows to validate the shared PHP/public output and build a Cloudron public-bundle artifact so the documented deployment path now exists in the repository.
+- Preserved `public/` as the approved APES web-root equivalent while keeping Apache redirects, sitemap, robots, branded error pages, footer links, README notes and release records aligned for Cloudron LAMP.
+
+### Affected areas
+
+- Website: www.apes.org.uk
+- Page or route: whole-site preview workflow, shared PHP rendering, legacy redirect parity, deployment helpers, Change Log Hub, root and public release records, README, Cloudron docs, validation report and regenerated public HTML snapshots
+- Files changed: `dev/router.php`, repo-root PowerShell helpers, GitHub workflow scaffolds, VS Code tasks, shared PHP runtime, Apache headers, VERSION files, root and public changelogs, README, deployment docs, validation report, Change Log Hub source and regenerated static HTML snapshots
+- User groups affected: APES maintainers previewing, validating, packaging and publishing the website to Cloudron LAMP
+- Public impact: no new public routes or information-architecture changes are intended; rendered output and release metadata stay aligned while maintainers get stronger preview and deployment parity.
+- Internal impact: APES now has a consistent HTTP preview, validation, staging and packaging workflow grounded in the approved rendering standard.
+
+### Version decision
+
+- Previous version: v2.9.1
+- New version: v2.9.2
+- Version type: patch stable
+- Reason for version bump: whole-site rendering, deployment and documentation alignment without public route expansion or architecture replacement.
+
+### Validation
+
+- Checks run: PHP lint checks for the shared runtime and router, `php public/scripts/export-static-site.php`, `powershell -ExecutionPolicy Bypass -File scripts/validate-public-site.ps1`, Cloudron staging/package helper review and release-metadata consistency review
+- Manual checks completed: representative route preview review, root-relative asset 200 review, canonical and legacy-news redirect review, branded 403/404 handling review, footer-required link review, Change Log Hub release review, sitemap/robots review and Cloudron LAMP documentation alignment review
+- Known limitations: final browser QA on the deployed Cloudron staging app and live Apache verification still require a post-upload environment outside this repo-only implementation pass.
+- Rollback notes: restore the previous preview tasks and shared runtime files, remove the new repo-root scripts and workflows, restore the previous version files and release records, then rerun the shared PHP static export before redeployment.
+
 ## [v2.9.1] - 2026-06-10
 
 <span class="pill pill-version">Version v2.9.1</span>

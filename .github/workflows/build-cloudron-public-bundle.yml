@@ -1,0 +1,43 @@
+name: Build Cloudron Public Bundle
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  build-cloudron-public-bundle:
+    runs-on: windows-latest
+
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Set up PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: "8.2"
+
+      - name: Export static HTML snapshots
+        shell: pwsh
+        run: powershell -ExecutionPolicy Bypass -File .\scripts\export-static-html-snapshots.ps1
+
+      - name: Stage Cloudron public bundle
+        shell: pwsh
+        run: powershell -ExecutionPolicy Bypass -File .\scripts\stage-cloudron-public.ps1
+
+      - name: Package Cloudron public bundle
+        shell: pwsh
+        run: powershell -ExecutionPolicy Bypass -File .\scripts\package-cloudron-public.ps1
+
+      - name: Upload Cloudron public bundle artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: cloudron-public-bundle
+          path: |
+            dist/cloudron-public
+            dist/cloudron-public.zip

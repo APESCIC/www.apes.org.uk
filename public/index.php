@@ -5,6 +5,13 @@ require_once __DIR__ . '/includes/site-data.php';
 
 $requestUri = $_SERVER['REQUEST_URI'] ?? '/';
 $requestPath = apes_path_from_request_uri($requestUri);
+$newsroomRedirect = apes_newsroom_redirects()[$requestPath] ?? null;
+
+if ($newsroomRedirect !== null) {
+    header('Location: ' . $newsroomRedirect, true, 301);
+    exit;
+}
+
 $page_key = apes_page_key_from_request($requestUri) ?? 'missing';
 $canonicalRoute = apes_canonical_route_for_key($page_key);
 

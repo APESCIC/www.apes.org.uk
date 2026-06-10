@@ -2,7 +2,30 @@
   "version": "2.0.0",
   "tasks": [
     {
-      "label": "APES: Preview public site",
+      "label": "APES: Preview PHP source site",
+      "type": "shell",
+      "command": "powershell",
+      "args": [
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "${workspaceFolder}/scripts/preview-php-source-site.ps1",
+        "-Port",
+        "8080"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}"
+      },
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated",
+        "clear": true
+      }
+    },
+    {
+      "label": "APES: Preview static public snapshots",
       "type": "shell",
       "command": "powershell",
       "args": [
@@ -27,9 +50,13 @@
     {
       "label": "APES: Export static HTML snapshots",
       "type": "shell",
-      "command": "php",
+      "command": "powershell",
       "args": [
-        "public/scripts/export-static-site.php"
+        "-NoProfile",
+        "-ExecutionPolicy",
+        "Bypass",
+        "-File",
+        "${workspaceFolder}/scripts/export-static-html-snapshots.ps1"
       ],
       "options": {
         "cwd": "${workspaceFolder}"
