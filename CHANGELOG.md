@@ -2,6 +2,47 @@
 
 Track every major release for this website, including updates, fixes, compliance changes, and user-facing improvements.
 
+## [v2.9.1] - 2026-06-10
+
+<span class="pill pill-version">Version v2.9.1</span>
+<span class="pill pill-status">Stable</span>
+<span class="pill pill-type">Changed</span>
+<span class="pill pill-fix">Fix</span>
+
+### Summary
+
+Restored a reliable VS Code browser preview workflow by adding a PHP-free static preview task and Live Server public-root settings.
+
+### Detailed changes
+
+- Added a local PowerShell static preview helper that serves `public/` as the web root, resolves clean directory routes to `index.html`, and returns the branded static error pages when available.
+- Added the VS Code task `APES: Preview public site` so maintainers can open `http://localhost:8080/` in VS Code Simple Browser without needing PHP installed.
+- Set the VS Code Live Server root to `/public` so root-relative assets such as `/theme/site.css` and `/theme/js/site.js` resolve correctly during local preview.
+- Kept the existing PHP export task unchanged for production static snapshot generation in PHP-enabled environments.
+
+### Affected areas
+
+- Website: www.apes.org.uk
+- Page or route: local VS Code preview workflow, Change Log Hub, root and public release records, README and footer version display
+- Files changed: VS Code settings and tasks, local preview helper, VERSION files, root CHANGELOG, public CHANGELOG, README, Change Log Hub source and generated static HTML snapshots
+- User groups affected: APES maintainers previewing the website locally in VS Code
+- Public impact: no public route, content, metadata, navigation or journey change is intended.
+- Internal impact: maintainers can preview the exported website from the correct public web root even when PHP is not installed locally.
+
+### Version decision
+
+- Previous version: v2.9.0
+- New version: v2.9.1
+- Version type: patch stable
+- Reason for version bump: local preview tooling and documentation fix without route, content, database or production hosting changes.
+
+### Validation
+
+- Checks run: VS Code task review, PowerShell static preview helper review, local HTTP preview smoke test, release-metadata consistency review and Cloudron LAMP compatibility review
+- Manual checks completed: served-root asset path review, APES footer required-link review, Newsroom routing verification-only review, sitemap and robots verification-only review, branded 403/404/500 static-page review and VS Code preview workflow documentation review
+- Known limitations: `php` is not installed in this implementation environment, so PHP syntax checks and the standard PHP static exporter still need to run in a PHP-enabled environment before deployment.
+- Rollback notes: restore the previous VS Code settings and tasks, remove the local static preview helper, restore the previous version files and release records, then rerun the standard PHP export in a PHP-enabled environment if needed.
+
 ## [v2.9.0] - 2026-06-10
 
 <span class="pill pill-version">Version v2.9.0</span>
