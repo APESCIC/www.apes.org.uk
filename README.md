@@ -1,9 +1,9 @@
 ## Current release
 
-- Version: `v3.0.0b`
+- Version: `v4.0.0b`
 - Release date: `2026-06-11`
-- Release impact: migrated the website to a static-first HTML/CSS/JS runtime with page-owned assets, browser-side search, and no public dependency on the previous shared PHP or shared theme source layer.
-- Operational note: preview the site with **APES: Preview static site** or `scripts/preview-static-site.ps1`, run `scripts/build-static-page-assets.ps1` after shared structural edits that need page-owned asset regeneration, run `scripts/validate-public-site.ps1` before staging, and package only the `public/` bundle for Cloudron upload.
+- Release impact: restored the website to a PHP-first shared runtime, removed checked-in static route snapshots and static-only page-owned bundles, and realigned preview, validation, and release records around the shared PHP source of truth.
+- Operational note: preview the site with `scripts/preview-php-source-site.ps1`, run `scripts/validate-public-site.ps1` before staging, use `scripts/export-static-site.php` only for optional non-canonical static exports, and package only the `public/` bundle for Cloudron upload.
 
 <p align="center">
   <a href="https://www.apes.org.uk/" target="_blank" rel="noopener noreferrer">
@@ -167,27 +167,27 @@ The exact structure may vary by framework, but the repository should stay easy t
 
 ### Current public-site structure
 
-This repository now serves the production website from `public/` as a static HTML/CSS/JS site under Apache-compatible Cloudron hosting. Public pages are edited directly and each route owns its own local stylesheet and script.
+This repository serves the production website from `public/` as a PHP-first site under Apache-compatible Cloudron hosting. Public routes render through one shared PHP source of truth and one shared theme asset layer.
 
 ```text
 dev/
-└── router.php           # Local static-route preview parity
+└── router.php           # Local PHP preview parity
 scripts/
-├── build-static-page-assets.ps1
+├── ApesPhpTools.ps1
+├── export-static-site.php
 ├── preview-php-source-site.ps1
-├── preview-static-site.ps1
-├── static-preview-server.js
 ├── validate-public-site.ps1
 ├── stage-cloudron-public.ps1
 └── package-cloudron-public.ps1
 public/
-├── assets/              # Shared public media, favicons, logos and generated search data
-├── page.css             # Homepage-owned stylesheet
-├── page.js              # Homepage-owned browser behavior
-├── 403.css / 403.js     # Branded 403 page assets
-├── 404.css / 404.js     # Branded 404 page assets
-├── 500.css / 500.js     # Branded 500 page assets
-└── <route>/             # Each public route keeps its own index.html, page.css and page.js
+├── index.php            # Public front controller
+├── includes/            # Shared page data and rendering partials
+├── theme/               # Shared CSS and JS runtime
+├── assets/              # Shared public media, favicons and logos
+├── 403.html             # Apache fallback error document
+├── 404.html             # Apache fallback error document
+├── 500.html             # Apache fallback error document
+└── robots.txt / sitemap.xml / site.webmanifest
 ```
 
 ---
@@ -201,25 +201,29 @@ git clone https://github.com/APESCIC/www.apes.org.uk.git
 cd www.apes.org.uk
 ```
 
-### 2. Preview the static site locally
-
-In VS Code, run **APES: Preview static site**, then open `http://127.0.0.1:8080/` in **Simple Browser: Show** or a local browser.
+### 2. Preview the PHP source site locally
 
 If you prefer a terminal command, use:
 
 ```bash
-powershell -ExecutionPolicy Bypass -File .\scripts\preview-static-site.ps1
+powershell -ExecutionPolicy Bypass -File .\scripts\preview-php-source-site.ps1
 ```
 
 HTTP preview remains the preferred validation path because it matches the deployed `public/` web-root behavior. Do not rely on `file://` preview for acceptance checks.
 
-### 3. Regenerate page-owned assets after structural shared edits
+### 3. Optional static export for offline review or handoff
 
 ```bash
-powershell -ExecutionPolicy Bypass -File .\scripts\build-static-page-assets.ps1
+php .\scripts\export-static-site.php
 ```
 
-Run this when a broad sitewide change requires the current page-owned CSS/JS files or the generated search index to be refreshed.
+On Windows, you can also use:
+
+```bash
+powershell -ExecutionPolicy Bypass -File .\scripts\export-static-site.ps1
+```
+
+This export writes to `dist/static-export` by default and is not the canonical website source. Do not copy it back into `public/`.
 
 ### 4. Run checks before staging or committing
 

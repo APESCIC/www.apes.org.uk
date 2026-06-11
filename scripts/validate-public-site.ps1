@@ -7,107 +7,7 @@ param(
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
 
-function Wait-ApesHttpEndpoint {
-    [CmdletBinding()]
-    param(
-        [Parameter(Mandatory = $true)]
-        [string] $Uri,
-
-        [int] $TimeoutSeconds = 15
-    )
-
-    $deadline = (Get-Date).AddSeconds($TimeoutSeconds)
-
-    while ((Get-Date) -lt $deadline) {
-        try {
-            Invoke-WebRequest -Uri $Uri -UseBasicParsing -TimeoutSec 2 | Out-Null
-            return
-        } catch {
-            Start-Sleep -Milliseconds 250
-        }
-    }
-
-    throw "Timed out waiting for $Uri"
-}
-
-function Get-ApesNodePath {
-    [CmdletBinding()]
-    param()
-
-    $nodeCommand = Get-Command node -ErrorAction SilentlyContinue | Select-Object -First 1
-
-    if ($null -eq $nodeCommand -or -not $nodeCommand.Source) {
-        throw "Unable to locate node.exe for static preview validation."
-    }
-
-    return $nodeCommand.Source
-}
-
-function Start-ApesStaticPreview {
-    [CmdletBinding()]
-    param(
-        [Parameter(Mandatory = $true)]
-        [string] $NodePath,
-
-        [Parameter(Mandatory = $true)]
-        [string] $ServerScriptPath,
-
-        [Parameter(Mandatory = $true)]
-        [string] $DocumentRoot,
-
-        [string] $BindHost = "127.0.0.1",
-
-        [int] $Port = 8080,
-
-        [string] $WorkingDirectory = (Get-Location).Path
-    )
-
-    $stdoutPath = Join-Path ([System.IO.Path]::GetTempPath()) ("apes-static-preview-$Port-stdout.log")
-    $stderrPath = Join-Path ([System.IO.Path]::GetTempPath()) ("apes-static-preview-$Port-stderr.log")
-
-    foreach ($logPath in @($stdoutPath, $stderrPath)) {
-        if (Test-Path -LiteralPath $logPath) {
-            Remove-Item -LiteralPath $logPath -Force
-        }
-    }
-
-    $arguments = @($ServerScriptPath, $BindHost, $Port.ToString(), $DocumentRoot) | ForEach-Object {
-        if ($_ -match '[\s"]') {
-            '"' + ($_ -replace '"', '\"') + '"'
-        } else {
-            $_
-        }
-    }
-
-    $process = Start-Process `
-        -FilePath $NodePath `
-        -ArgumentList $arguments `
-        -WorkingDirectory $WorkingDirectory `
-        -RedirectStandardOutput $stdoutPath `
-        -RedirectStandardError $stderrPath `
-        -PassThru `
-        -WindowStyle Hidden
-
-    Wait-ApesHttpEndpoint -Uri "http://$BindHost`:$Port/"
-
-    return [pscustomobject]@{
-        Process = $process
-        BaseUri = "http://$BindHost`:$Port"
-    }
-}
-
-function Stop-ApesPreviewProcess {
-    [CmdletBinding()]
-    param(
-        [Parameter(Mandatory = $true)]
-        [System.Diagnostics.Process] $Process
-    )
-
-    if (-not $Process.HasExited) {
-        Stop-Process -Id $Process.Id -Force
-        $Process.WaitForExit()
-    }
-}
+. (Join-Path $PSScriptRoot "ApesPhpTools.ps1")
 
 function Invoke-ApesHttpRequest {
     [CmdletBinding()]
@@ -190,6 +90,7 @@ function Invoke-ApesHttpRequest {
 }
 
 function Assert-ApesStatus {
+    [CmdletBinding()]
     param(
         [Parameter(Mandatory = $true)]
         [pscustomobject] $Response,
@@ -207,6 +108,7 @@ function Assert-ApesStatus {
 }
 
 function Assert-ApesContains {
+    [CmdletBinding()]
     param(
         [Parameter(Mandatory = $true)]
         [string] $Content,
@@ -223,34 +125,51 @@ function Assert-ApesContains {
     }
 }
 
+function Get-ApesTrackedRouteSnapshots {
+    [CmdletBinding()]
+    param(
+        [Parameter(Mandatory = $true)]
+        [string] $PublicRoot
+    )
+
+    return @(Get-ChildItem -LiteralPath $PublicRoot -Recurse -File -Filter "index.html" |
+        Where-Object {
+            $relativePath = $_.FullName.Substring($PublicRoot.Length).TrimStart("\")
+            $relativePath -ne "index.html"
+        })
+}
+
 $repoRoot = (Resolve-Path (Join-Path $PSScriptRoot "..")).Path
-$nodePath = Get-ApesNodePath
-$version = (Get-Content (Join-Path $repoRoot "VERSION") -Raw).Trim()
-$serverScriptPath = (Resolve-Path (Join-Path $repoRoot "scripts/static-preview-server.js")).Path
-$documentRoot = (Resolve-Path (Join-Path $repoRoot "public")).Path
-$searchIndexPath = Join-Path $repoRoot "public/assets/data/search-index.json"
-$htmlFiles = Get-ChildItem (Join-Path $repoRoot "public") -Recurse -File -Filter "*.html"
+$publicRoot = (Resolve-Path (Join-Path $repoRoot "public")).Path
+$routerPath = (Resolve-Path (Join-Path $repoRoot "dev/router.php")).Path
+$rootVersionPath = Join-Path $repoRoot "VERSION"
+$publicVersionPath = Join-Path $publicRoot "VERSION"
 
 $requiredFiles = @(
     "public/.htaccess",
-    "public/index.html",
-    "public/page.css",
-    "public/page.js",
+    "public/index.php",
+    "public/includes/site-data.php",
+    "public/includes/render-page.php",
+    "public/includes/header.php",
+    "public/includes/footer.php",
+    "public/theme/site.css",
+    "public/theme/js/site.js",
     "public/403.html",
-    "public/403.css",
-    "public/403.js",
     "public/404.html",
-    "public/404.css",
-    "public/404.js",
     "public/500.html",
-    "public/500.css",
-    "public/500.js",
-    "public/assets/data/search-index.json",
     "public/robots.txt",
     "public/sitemap.xml",
     "public/site.webmanifest",
+    "public/CHANGELOG.md",
+    "public/VERSION",
+    "scripts/export-static-site.php",
+    "scripts/ApesPhpTools.ps1",
+    "scripts/export-static-site.ps1",
+    "scripts/preview-php-source-site.ps1",
+    "scripts/validate-public-site.ps1",
     "VERSION",
-    "public/VERSION"
+    "README.md",
+    "CHANGELOG.md"
 )
 
 foreach ($relativePath in $requiredFiles) {
@@ -261,46 +180,70 @@ foreach ($relativePath in $requiredFiles) {
     }
 }
 
-if (-not (Test-Path -LiteralPath $searchIndexPath -PathType Leaf)) {
-    throw "Static search index is missing."
-}
+$obsoleteFiles = @(
+    "public/index.html",
+    "public/page.css",
+    "public/page.js",
+    "public/403.css",
+    "public/403.js",
+    "public/404.css",
+    "public/404.js",
+    "public/404.php",
+    "public/500.css",
+    "public/500.js",
+    "public/assets/css/site.css",
+    "public/assets/js/site.js",
+    "scripts/build-static-page-assets.ps1",
+    "scripts/preview-static-site.ps1",
+    "scripts/static-preview-server.js"
+)
 
-$searchIndex = Get-Content -LiteralPath $searchIndexPath -Raw | ConvertFrom-Json
+foreach ($relativePath in $obsoleteFiles) {
+    $absolutePath = Join-Path $repoRoot $relativePath
 
-if ($searchIndex.Count -lt 30) {
-    throw "Search index looks incomplete. Expected at least 30 entries but found $($searchIndex.Count)."
-}
-
-foreach ($htmlFile in $htmlFiles) {
-    $content = Get-Content -LiteralPath $htmlFile.FullName -Raw
-
-    if ($content -match 'href="[^"]*theme/site\.css"' -or $content -match 'src="[^"]*theme/js/site\.js"') {
-        throw "$($htmlFile.FullName) still contains live references to the removed shared theme assets."
-    }
-
-    if ($content -match 'href="[^"]*assets/css/site\.css"' -or $content -match 'src="[^"]*assets/js/site\.js"') {
-        throw "$($htmlFile.FullName) still contains live references to the compatibility shims."
-    }
-
-    if ($content -match 'href="[^"]*includes/' -or $content -match 'src="[^"]*includes/' -or $content -match 'href="[^"]*index\.php"' -or $content -match 'src="[^"]*index\.php"') {
-        throw "$($htmlFile.FullName) still contains live references to removed PHP source-of-truth routes."
-    }
-
-    $directory = Split-Path -Parent $htmlFile.FullName
-    $fileName = Split-Path -Leaf $htmlFile.FullName
-    $expectedCss = if ($fileName -ieq "index.html") { "page.css" } else { ([System.IO.Path]::GetFileNameWithoutExtension($fileName) + ".css") }
-    $expectedJs = if ($fileName -ieq "index.html") { "page.js" } else { ([System.IO.Path]::GetFileNameWithoutExtension($fileName) + ".js") }
-
-    if (-not (Test-Path -LiteralPath (Join-Path $directory $expectedCss) -PathType Leaf)) {
-        throw "$($htmlFile.FullName) is missing its page-owned stylesheet $expectedCss."
-    }
-
-    if (-not (Test-Path -LiteralPath (Join-Path $directory $expectedJs) -PathType Leaf)) {
-        throw "$($htmlFile.FullName) is missing its page-owned script $expectedJs."
+    if (Test-Path -LiteralPath $absolutePath) {
+        throw "Obsolete static-first file still exists: $relativePath"
     }
 }
 
-$preview = Start-ApesStaticPreview -NodePath $nodePath -ServerScriptPath $serverScriptPath -DocumentRoot $documentRoot -BindHost $BindHost -Port $Port -WorkingDirectory $repoRoot
+$trackedRouteSnapshots = @(Get-ApesTrackedRouteSnapshots -PublicRoot $publicRoot)
+
+if ($trackedRouteSnapshots.Count -gt 0) {
+    $sample = ($trackedRouteSnapshots | Select-Object -First 5 | ForEach-Object {
+        $_.FullName.Substring($publicRoot.Length).TrimStart("\").Replace("\", "/")
+    }) -join ", "
+
+    throw "Checked-in static route snapshots still exist under public/: $sample"
+}
+
+$rootVersion = (Get-Content -LiteralPath $rootVersionPath -Raw).Trim()
+$publicVersion = (Get-Content -LiteralPath $publicVersionPath -Raw).Trim()
+
+if ($rootVersion -eq "") {
+    throw "Root VERSION is empty."
+}
+
+if ($publicVersion -eq "") {
+    throw "public/VERSION is empty."
+}
+
+if ($rootVersion -ne $publicVersion) {
+    throw "VERSION mismatch: root is '$rootVersion' but public/VERSION is '$publicVersion'."
+}
+
+$readme = Get-Content -LiteralPath (Join-Path $repoRoot "README.md") -Raw
+foreach ($contentCheck in @(
+    @{ Content = $readme; Label = "README"; Unexpected = "static-first HTML/CSS/JS runtime" },
+    @{ Content = $readme; Label = "README"; Unexpected = "preview-static-site.ps1" },
+    @{ Content = $readme; Label = "README"; Unexpected = "build-static-page-assets.ps1" }
+)) {
+    if ($contentCheck.Content -like "*$($contentCheck.Unexpected)*") {
+        throw "$($contentCheck.Label) still contains outdated static-first text: $($contentCheck.Unexpected)"
+    }
+}
+
+$phpPath = Get-ApesPhpPath
+$preview = Start-ApesPhpPreview -PhpPath $phpPath -DocumentRoot $publicRoot -RouterPath $routerPath -BindHost $BindHost -Port $Port -WorkingDirectory $repoRoot
 
 try {
     $baseUri = $preview.BaseUri
@@ -312,6 +255,7 @@ try {
         "/donate/",
         "/contact/",
         "/search/",
+        "/search/?q=volunteer",
         "/news/",
         "/policies/privacy/",
         "/mission/our-main-mission-statement/",
@@ -319,9 +263,9 @@ try {
         "/24-7-services/",
         "/robots.txt",
         "/sitemap.xml",
-        "/page.css",
-        "/page.js",
-        "/assets/data/search-index.json"
+        "/site.webmanifest",
+        "/theme/site.css",
+        "/theme/js/site.js"
     )
 
     foreach ($route in $okRoutes) {
@@ -343,6 +287,11 @@ try {
         throw "$legacyNewsRoute did not redirect to the expected APES Newsroom URL."
     }
 
+    $snapshotRoute = Invoke-ApesHttpRequest -Uri ($baseUri + "/services/index.html") -NoRedirect
+    if ($snapshotRoute.StatusCode -eq 200) {
+        throw "/services/index.html still resolves as a checked-in static snapshot route."
+    }
+
     $missingRoute = Invoke-ApesHttpRequest -Uri ($baseUri + "/definitely-missing-route/")
     Assert-ApesStatus -Response $missingRoute -ExpectedStatusCode 404 -Label "missing route"
     Assert-ApesContains -Content $missingRoute.Content -ExpectedText "The page you requested could not be found." -Label "missing route"
@@ -351,16 +300,12 @@ try {
     Assert-ApesStatus -Response $forbiddenRoute -ExpectedStatusCode 403 -Label "forbidden route"
     Assert-ApesContains -Content $forbiddenRoute.Content -ExpectedText "You do not have access to that page." -Label "forbidden route"
 
-    if ($responses["/page.css"].Headers["Content-Type"] -notlike "text/css*") {
-        throw "/page.css did not return a CSS content type."
+    if ($responses["/theme/site.css"].Headers["Content-Type"] -notlike "text/css*") {
+        throw "/theme/site.css did not return a CSS content type."
     }
 
-    if ($responses["/page.js"].Headers["Content-Type"] -notlike "application/javascript*") {
-        throw "/page.js did not return a JavaScript content type."
-    }
-
-    if ($responses["/assets/data/search-index.json"].Headers["Content-Type"] -notlike "application/json*") {
-        throw "/assets/data/search-index.json did not return a JSON content type."
+    if ($responses["/theme/js/site.js"].Headers["Content-Type"] -notlike "application/javascript*") {
+        throw "/theme/js/site.js did not return a JavaScript content type."
     }
 
     foreach ($footerRoute in @("/", "/donate/", "/contact/", "/change-log-hub/")) {
@@ -369,15 +314,16 @@ try {
         Assert-ApesContains -Content $content -ExpectedText "Terms of Service" -Label "$footerRoute footer"
         Assert-ApesContains -Content $content -ExpectedText "Change Log Hub" -Label "$footerRoute footer"
         Assert-ApesContains -Content $content -ExpectedText "CIC No: 16253848" -Label "$footerRoute footer"
-        Assert-ApesContains -Content $content -ExpectedText "APES CIC $version" -Label "$footerRoute version"
+        Assert-ApesContains -Content $content -ExpectedText "APES CIC $rootVersion" -Label "$footerRoute version"
     }
 
-    Assert-ApesContains -Content $responses["/search/"].Content -ExpectedText "data-static-search-results" -Label "/search/"
+    Assert-ApesContains -Content $responses["/search/"].Content -ExpectedText "Search the site to see results." -Label "/search/"
+    Assert-ApesContains -Content $responses["/search/?q=volunteer"].Content -ExpectedText 'Search results for "volunteer"' -Label "/search/?q=volunteer"
 
     Write-Host "Validation passed:"
-    Write-Host "- Confirmed static required files, page-owned CSS/JS assets, and generated search index"
-    Write-Host "- Checked representative HTTP routes, redirects, branded error responses, and static asset endpoints"
-    Write-Host "- Confirmed representative footer-required links, CIC number, and website version text"
+    Write-Host "- Confirmed PHP-first public structure and version alignment"
+    Write-Host "- Checked representative HTTP routes, redirects, forbidden paths, and fallback errors"
+    Write-Host "- Confirmed shared theme asset endpoints, footer-required links, and search rendering"
 } finally {
     Stop-ApesPreviewProcess -Process $preview.Process
 }

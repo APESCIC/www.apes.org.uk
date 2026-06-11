@@ -18,5 +18,8 @@
    - contact
    - policy pages
    - footer compliance
-4. Record the incident in GitHub issue `#2` and keep the issue open until the failed change is understood.
+   - Change Log Hub
+   - branded 403/404 handling
+4. If this PHP-first migration is the failing release, restore the previous approved `v3.0.0b` public bundle before reattempting rollout.
+5. Record the incident in GitHub issue `#2` and keep the issue open until the failed change is understood.
 

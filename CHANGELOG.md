@@ -2,6 +2,48 @@
 
 Track every major release for this website, including updates, fixes, compliance changes, and user-facing improvements.
 
+## [v4.0.0b] - 2026-06-11
+
+<span class="pill pill-version">Version v4.0.0b</span>
+<span class="pill pill-status">Beta</span>
+<span class="pill pill-type">Changed</span>
+<span class="pill pill-type">Removed</span>
+<span class="pill pill-compliance">Compliance</span>
+
+### Summary
+
+Restored the website to a PHP-first architecture with shared rendering, removed checked-in static route snapshots and static-only page-owned bundles, and realigned preview, validation, and release records around the shared PHP runtime.
+
+### Detailed changes
+
+- Re-established `public/index.php`, `public/includes/`, and `public/theme/` as the canonical source of truth for public routes, metadata, redirects, search rendering, footer links, and branded error handling.
+- Removed checked-in route snapshots under `public/**/index.html`, removed obsolete generated bundles such as `public/page.css`, `public/page.js`, and the extra branded `403/404/500` CSS and JS files, and deleted static-only preview and asset-generation helpers that were no longer part of the supported workflow.
+- Moved the optional static export helper out of the public web root to `scripts/export-static-site.php`, keeping static export as an optional maintainer tool that writes to `dist/static-export` instead of repopulating `public/`.
+- Updated the local preview path, PHP-first validation flow, version records, Change Log Hub metadata source, README notes, Cloudron deployment notes, validation notes, rollback notes, and site inventory to match the restored PHP-first structure.
+
+### Affected areas
+
+- Website: www.apes.org.uk
+- Page or route: whole public website, Change Log Hub, preview and validation tooling, Cloudron staging/package workflow, branded fallback error pages, and repository release records
+- Files changed: shared PHP runtime, local preview and validation scripts, public web-root structure, VERSION files, root and public changelogs, README, Cloudron deployment notes, validation report, rollback notes, and route inventory documentation
+- User groups affected: all public visitors plus APES maintainers previewing, validating, packaging, and reviewing the website
+- Public impact: public routes, redirects, SEO records, footer-required links, and external handoff routes remain available while the website once again serves from one shared PHP source of truth
+- Internal impact: maintainers now update the site through the shared PHP renderer and theme instead of maintaining duplicate checked-in route snapshots
+
+### Version decision
+
+- Previous version: v3.0.0b
+- New version: v4.0.0b
+- Version type: major beta
+- Reason for version bump: architecture-level migration from static-first checked-in route snapshots back to a PHP-first shared runtime with public-structure cleanup and workflow changes
+
+### Validation
+
+- Checks run: PHP-first repository structure validation and static-source cleanup checks through `powershell -ExecutionPolicy Bypass -File .\scripts\validate-public-site.ps1`
+- Manual checks completed: preview/runtime command review, Cloudron public-root structure review, footer-required link source review, Change Log Hub source review, and version-record consistency review
+- Known limitations: this implementation environment does not currently expose a working local PHP binary, so live PHP lint and local HTTP runtime checks still need to be run in a PHP-enabled environment before deployment
+- Rollback notes: restore the removed checked-in static route snapshots and static-only helpers if needed, reset the version and release records to `v3.0.0b`, and redeploy the previous approved public bundle if the PHP-first runtime must be rolled back
+
 ## [v3.0.0b] - 2026-06-11
 
 <span class="pill pill-version">Version v3.0.0b</span>

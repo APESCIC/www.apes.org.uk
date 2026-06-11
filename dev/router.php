@@ -68,7 +68,6 @@ function apes_router_serve_file(string $path): bool
 $requestUri = $_SERVER['REQUEST_URI'] ?? '/';
 $requestParts = parse_url($requestUri);
 $requestPath = $requestParts['path'] ?? '/';
-$queryString = isset($requestParts['query']) && $requestParts['query'] !== '' ? '?' . $requestParts['query'] : '';
 $decodedPath = rawurldecode($requestPath);
 
 $redirects = [
@@ -121,10 +120,6 @@ if (str_starts_with($decodedPath, '/.')) {
     return true;
 }
 
-if ($decodedPath === '/') {
-    return apes_router_serve_file($publicRoot . '/index.html');
-}
-
 $relativePath = ltrim($decodedPath, '/');
 $fileCandidate = realpath($publicRoot . '/' . $relativePath);
 
@@ -135,27 +130,14 @@ if ($fileCandidate !== false && str_starts_with($fileCandidate, $publicRoot) && 
 $directoryCandidate = realpath($publicRoot . '/' . trim($relativePath, '/'));
 if ($directoryCandidate !== false && str_starts_with($directoryCandidate, $publicRoot) && is_dir($directoryCandidate)) {
     if (!str_ends_with($decodedPath, '/')) {
+        $queryString = isset($requestParts['query']) && $requestParts['query'] !== '' ? '?' . $requestParts['query'] : '';
         return apes_router_redirect($decodedPath . '/' . $queryString);
     }
-
-    $indexCandidate = $directoryCandidate . '/index.html';
-    if (is_file($indexCandidate)) {
-        return apes_router_serve_file($indexCandidate);
-    }
 }
 
-$pathHasExtension = pathinfo($relativePath, PATHINFO_EXTENSION) !== '';
-if ($pathHasExtension) {
-    apes_router_error_page($publicRoot, 404, 'Not found');
+$_SERVER['DOCUMENT_ROOT'] = $publicRoot;
+$_SERVER['REQUEST_URI'] = $requestUri;
 
-    return true;
-}
-
-$routeIndexCandidate = $publicRoot . '/' . trim($relativePath, '/') . '/index.html';
-if (is_file($routeIndexCandidate)) {
-    return apes_router_serve_file($routeIndexCandidate);
-}
-
-apes_router_error_page($publicRoot, 404, 'Not found');
+require $publicRoot . '/index.php';
 
 return true;

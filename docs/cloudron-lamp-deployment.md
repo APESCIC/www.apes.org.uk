@@ -14,14 +14,16 @@
 - Shared PHP under `public/index.php` and `public/includes/` remains the canonical source of truth.
 - Local HTTP preview parity now runs through `dev/router.php` with:
   `php -S 127.0.0.1:8080 -t public dev/router.php`
-- Exported HTML snapshots are regenerated with:
-  `php public/scripts/export-static-site.php`
-- Static snapshot review can still use the PowerShell helper that serves `public/` as the web root.
+- Optional static export output can be generated with:
+  `php scripts/export-static-site.php`
+- On Windows workstations, the same export can be run with:
+  `powershell -ExecutionPolicy Bypass -File .\scripts\export-static-site.ps1`
+- Optional static export output is written to `dist/static-export` and is not checked back into `public/`.
 
 ## Repository helpers
 
 - Preview shared PHP locally: `powershell -ExecutionPolicy Bypass -File .\scripts\preview-php-source-site.ps1`
-- Export static snapshots: `powershell -ExecutionPolicy Bypass -File .\scripts\export-static-html-snapshots.ps1`
+- Export optional static snapshots: `powershell -ExecutionPolicy Bypass -File .\scripts\export-static-site.ps1`
 - Validate the public site: `powershell -ExecutionPolicy Bypass -File .\scripts\validate-public-site.ps1`
 - Stage a deployable public bundle: `powershell -ExecutionPolicy Bypass -File .\scripts\stage-cloudron-public.ps1`
 - Package a ZIP bundle: `powershell -ExecutionPolicy Bypass -File .\scripts\package-cloudron-public.ps1`

@@ -2,8 +2,8 @@
 
 - Crawl date: `2026-06-03`
 - Source domain: `https://www.apes.org.uk`
-- Crawl method: live public inspection, attached migration brief review, and rebuilt route-map verification from `public/includes/site-data.php`
-- Migration mode reference: `Mode B`
+- Crawl method: live public inspection, repository route-map verification from `public/includes/site-data.php`, and PHP-first cleanup review against the maintained public route set
+- Runtime model: shared PHP source of truth with Apache-compatible `public/` web root
 
 ## Internal route inventory
 
